@@ -1,0 +1,48 @@
+# /etc/nginx/sites-available/ai-app.conf
+# Frontend on 127.0.0.1:18030
+# Backend on 127.0.0.1:18031
+
+upstream ai_app_web {
+  server 127.0.0.1:18030;
+  keepalive 64;
+}
+
+upstream ai_app_api {
+  server 127.0.0.1:18031;
+  keepalive 64;
+}
+
+server {
+  listen 80;
+  server_name app.example.test;
+
+  client_max_body_size 20m;
+
+  # Web app
+  location / {
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_pass http://ai_app_web;
+  }
+
+  # API proxy with /api prefix (backend expects /api/v1/...)
+  location /api/ {
+    proxy_http_version 1.1;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_pass http://ai_app_api/api/;
+  }
+
+  # Optional health passthrough
+  location = /health {
+    proxy_set_header Host $host;
+    proxy_pass http://ai_app_api/api/v1/health;
+  }
+}

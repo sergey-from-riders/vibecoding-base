@@ -1,0 +1,121 @@
+openapi: 3.2.0
+info:
+  title: Python React Postgres Framework API
+  version: 1.0.0
+  summary: Modular OpenAPI contract for Python React Postgres Framework
+  description: |
+    Source-of-truth API contract.
+    Generated bundle is served by docs endpoints.
+  license:
+    name: MIT
+    identifier: MIT
+servers:
+  - url: https://api.example.test
+    description: Production
+  - url: https://staging-api.example.test
+    description: Staging
+security: []
+tags:
+  - name: auth
+    summary: Authentication and session lifecycle
+    description: Registration, login, session lifecycle, OAuth, native exchange.
+  - name: company
+    summary: Company context and switching
+    description: Company listing, creation, and active company switching.
+  - name: docs
+    summary: API documentation and testing assets
+    description: Bundled OpenAPI artifacts, endpoint catalog, and testing collection metadata.
+paths:
+  /api/v1/auth/register:
+    $ref: ./modules/auth.yaml#/paths/~1api~1v1~1auth~1register
+  /api/v1/auth/activate:
+    $ref: ./modules/auth.yaml#/paths/~1api~1v1~1auth~1activate
+  /api/v1/auth/login:
+    $ref: ./modules/auth.yaml#/paths/~1api~1v1~1auth~1login
+  /api/v1/auth/logout:
+    $ref: ./modules/auth.yaml#/paths/~1api~1v1~1auth~1logout
+  /api/v1/auth/refresh:
+    $ref: ./modules/auth.yaml#/paths/~1api~1v1~1auth~1refresh
+  /api/v1/auth/me:
+    $ref: ./modules/auth.yaml#/paths/~1api~1v1~1auth~1me
+  /api/v1/auth/oauth/{provider}/start:
+    $ref: ./modules/auth.yaml#/paths/~1api~1v1~1auth~1oauth~1{provider}~1start
+  /api/v1/auth/oauth/{provider}/callback:
+    $ref: ./modules/auth.yaml#/paths/~1api~1v1~1auth~1oauth~1{provider}~1callback
+  /api/v1/auth/telegram/miniapp:
+    $ref: ./modules/auth.yaml#/paths/~1api~1v1~1auth~1telegram~1miniapp
+  /api/v1/auth/native/exchange:
+    $ref: ./modules/auth.yaml#/paths/~1api~1v1~1auth~1native~1exchange
+  /api/v1/auth/sessions:
+    $ref: ./modules/auth.yaml#/paths/~1api~1v1~1auth~1sessions
+  /api/v1/auth/sessions/{session_id}:
+    $ref: ./modules/auth.yaml#/paths/~1api~1v1~1auth~1sessions~1{session_id}
+  /api/v1/auth/sessions/revoke-others:
+    $ref: ./modules/auth.yaml#/paths/~1api~1v1~1auth~1sessions~1revoke-others
+  /api/v1/auth/password-reset/request:
+    $ref: ./modules/auth.yaml#/paths/~1api~1v1~1auth~1password-reset~1request
+  /api/v1/auth/password-reset/confirm:
+    $ref: ./modules/auth.yaml#/paths/~1api~1v1~1auth~1password-reset~1confirm
+  /api/v1/companies:
+    $ref: ./modules/company.yaml#/paths/~1api~1v1~1companies
+  /api/v1/companies/{company_id}/switch:
+    $ref: ./modules/company.yaml#/paths/~1api~1v1~1companies~1{company_id}~1switch
+  /api/v1/docs/openapi.json:
+    $ref: ./modules/docs.yaml#/paths/~1api~1v1~1docs~1openapi.json
+  /api/v1/docs/openapi.yaml:
+    $ref: ./modules/docs.yaml#/paths/~1api~1v1~1docs~1openapi.yaml
+  /api/v1/docs/endpoints:
+    $ref: ./modules/docs.yaml#/paths/~1api~1v1~1docs~1endpoints
+  /api/v1/docs/testing/postman:
+    $ref: ./modules/docs.yaml#/paths/~1api~1v1~1docs~1testing~1postman
+components:
+  schemas:
+    Problem:
+      $ref: ./components/schemas/common.yaml#/Problem
+    SessionView:
+      $ref: ./components/schemas/auth.yaml#/SessionView
+    UserMe:
+      $ref: ./components/schemas/auth.yaml#/UserMe
+    CompanyView:
+      $ref: ./components/schemas/company.yaml#/CompanyView
+    EndpointDoc:
+      $ref: ./components/schemas/docs.yaml#/EndpointDoc
+    EndpointDocList:
+      $ref: ./components/schemas/docs.yaml#/EndpointDocList
+    TestingCollection:
+      $ref: ./components/schemas/docs.yaml#/TestingCollection
+  headers:
+    X-Request-Id:
+      description: Unique request identifier
+      required: true
+      schema:
+        type: string
+        example: req_01HPX4K9V7F5Q3Q0M3X6B8N1TZ
+    X-App-Result:
+      description: Result status (`ok`, `fix_required`, `error`)
+      required: true
+      schema:
+        type: string
+        enum: [ok, fix_required, error]
+    X-App-Action:
+      description: Action hint in imperative tone (e.g. "Проверьте validate email")
+      required: false
+      schema:
+        type: string
+    X-App-Validate:
+      description: Comma-separated fields for validation
+      required: false
+      schema:
+        type: string
+        example: email,password
+    Content-Language:
+      description: Response language code
+      required: true
+      schema:
+        type: string
+        example: ru-RU
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

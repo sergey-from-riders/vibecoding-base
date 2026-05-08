@@ -1,0 +1,10 @@
+{
+  "name": "vibecoding-base",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "description": "Catalog of copyable AI-native repository frameworks for agentic development.",
+  "scripts": {
+    "frameworks:check": "tools/scripts/check_frameworks.sh"
+  }
+}

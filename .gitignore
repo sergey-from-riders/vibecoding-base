@@ -1,0 +1,21 @@
+# Environment files
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
+
+# Dependencies and generated runtime state
+node_modules/
+.venv/
+__pycache__/
+.pytest_cache/
+.next/
+dist/
+build/
+
+# Logs and temp
+logs/
+*.log
+tmp/

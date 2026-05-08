@@ -1,0 +1,28 @@
+{
+  "name": "go-next-postgres-framework",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "description": "AI-native Go + Next.js + PostgreSQL repo framework with contracts, agents, and quality gates.",
+  "packageManager": "pnpm@11.0.8",
+  "engines": {
+    "node": ">=24.0.0 <27.0.0",
+    "pnpm": ">=11.0.0"
+  },
+  "scripts": {
+    "contracts:build": "tools/scripts/build_openapi_bundle.sh",
+    "contracts:check": "tools/scripts/check_openapi_coverage.sh",
+    "db:check": "tools/scripts/check_db_contract.sh",
+    "limits:go": "tools/scripts/check_go_limits.sh apps/api",
+    "limits:web": "tools/scripts/check_web_limits.sh apps/web",
+    "limits:cpp": "tools/scripts/check_cpp_limits.sh apps/desktop/qt",
+    "template:check": "tools/scripts/check_template_clean.sh",
+    "starter:check": "tools/scripts/check_starter_integrity.sh",
+    "verify:offline": "tools/scripts/check_starter_integrity.sh",
+    "verify:contracts": "tools/scripts/build_openapi_bundle.sh && tools/scripts/check_openapi_coverage.sh"
+  },
+  "devDependencies": {
+    "@redocly/cli": "^2.30.4",
+    "openapi-to-postmanv2": "^6.0.1"
+  }
+}

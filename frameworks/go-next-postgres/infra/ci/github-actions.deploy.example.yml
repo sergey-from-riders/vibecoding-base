@@ -1,0 +1,203 @@
+name: deploy
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  verify-backend:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_DB: ai_app_test
+          POSTGRES_USER: ai_app
+          POSTGRES_PASSWORD: local_ci_password_only
+        ports:
+          - "5432:5432"
+        options: >-
+          --health-cmd "pg_isready -U ai_app"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.26.x"
+
+      - name: Backend tests
+        run: |
+          set -euo pipefail
+          tools/scripts/check_go_limits.sh apps/api
+          echo "Run backend unit + integration tests"
+          # Example:
+          # go test ./... -count=1 -race
+
+  verify-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Enable pnpm
+        run: corepack enable
+
+      - name: Install dependencies
+        run: |
+          set -euo pipefail
+          # Example:
+          # pnpm install --frozen-lockfile
+          true
+
+      - name: Frontend tests
+        env:
+          APP_E2E_UNIVERSAL_EMAIL: ${{ secrets.APP_E2E_UNIVERSAL_EMAIL }}
+          APP_E2E_UNIVERSAL_PASSWORD: ${{ secrets.APP_E2E_UNIVERSAL_PASSWORD }}
+        run: |
+          set -euo pipefail
+          tools/scripts/check_web_limits.sh apps/web
+          echo "Run web typecheck + unit/integration + e2e"
+          # Example:
+          # pnpm -C apps/web test
+          # pnpm -C apps/web test:e2e
+
+  verify-db:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_DB: ai_app_test
+          POSTGRES_USER: ai_app
+          POSTGRES_PASSWORD: local_ci_password_only
+        ports:
+          - "5432:5432"
+        options: >-
+          --health-cmd "pg_isready -U ai_app"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Migration gate
+        run: |
+          set -euo pipefail
+          tools/scripts/check_db_contract.sh db/migrations
+          echo "Run migration up/down and schema policy checks"
+          # Example:
+          # make db-migrate-up
+          # make db-migrate-down
+          # make db-policy-check
+
+  verify-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Contract bundle and coverage checks
+        run: |
+          set -euo pipefail
+          tools/scripts/build_openapi_bundle.sh
+          tools/scripts/check_openapi_coverage.sh
+
+  verify-desktop-qt:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Desktop C++ checks
+        run: |
+          set -euo pipefail
+          tools/scripts/check_cpp_limits.sh apps/desktop/qt
+          echo "Run desktop sanitizer/static-analysis/tests"
+          # Example:
+          # cmake --preset qt-linux-debug
+          # cmake --build --preset qt-linux-debug
+          # ctest --preset qt-linux-debug --output-on-failure
+
+  build-and-push:
+    runs-on: ubuntu-latest
+    needs: [verify-backend, verify-frontend, verify-db, verify-contracts, verify-desktop-qt]
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push API image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: apps/api/Dockerfile
+          push: true
+          tags: ghcr.io/your-org/ai-app-api:${{ github.sha }}
+
+      - name: Build and push Web image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: apps/web/Dockerfile
+          push: true
+          tags: ghcr.io/your-org/ai-app-web:${{ github.sha }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    steps:
+      - name: Deploy over SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script: |
+            set -euo pipefail
+            cd /opt/ai-app/infra/docker
+
+            sed -i "s#^APP_API_IMAGE=.*#APP_API_IMAGE=ghcr.io/your-org/ai-app-api:${{ github.sha }}#g" .env
+            sed -i "s#^APP_WEB_IMAGE=.*#APP_WEB_IMAGE=ghcr.io/your-org/ai-app-web:${{ github.sha }}#g" .env
+
+            docker compose --env-file .env -f docker-compose.server.yml pull
+            docker compose --env-file .env -f docker-compose.server.yml up -d --remove-orphans
+
+  post-deploy-smoke:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Smoke checks
+        run: |
+          set -euo pipefail
+          echo "Run smoke checks against deployed web/api and auth/session baseline"
+          # Example:
+          # curl -fsS https://app.example.test/ >/dev/null
+          # curl -fsS https://app.example.test/api/healthz >/dev/null

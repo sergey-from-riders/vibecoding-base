@@ -1,0 +1,23 @@
+# method	path	module
+POST	/api/v1/auth/register	auth
+POST	/api/v1/auth/activate	auth
+POST	/api/v1/auth/login	auth
+POST	/api/v1/auth/logout	auth
+POST	/api/v1/auth/refresh	auth
+GET	/api/v1/auth/me	auth
+GET	/api/v1/auth/oauth/{provider}/start	auth
+GET	/api/v1/auth/oauth/{provider}/callback	auth
+POST	/api/v1/auth/telegram/miniapp	auth
+POST	/api/v1/auth/native/exchange	auth
+GET	/api/v1/auth/sessions	auth
+DELETE	/api/v1/auth/sessions/{session_id}	auth
+POST	/api/v1/auth/sessions/revoke-others	auth
+POST	/api/v1/auth/password-reset/request	auth
+POST	/api/v1/auth/password-reset/confirm	auth
+GET	/api/v1/companies	company
+POST	/api/v1/companies	company
+POST	/api/v1/companies/{company_id}/switch	company
+GET	/api/v1/docs/openapi.json	docs
+GET	/api/v1/docs/openapi.yaml	docs
+GET	/api/v1/docs/endpoints	docs
+GET	/api/v1/docs/testing/postman	docs

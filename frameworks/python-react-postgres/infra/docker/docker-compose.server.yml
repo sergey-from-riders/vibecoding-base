@@ -1,0 +1,53 @@
+name: ai-app
+
+services:
+  api:
+    image: ${APP_API_IMAGE}
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    environment:
+      APP_API_HOST: 0.0.0.0
+      APP_API_PORT: 18031
+    ports:
+      - "127.0.0.1:${APP_API_PORT:-18031}:18031"
+    depends_on:
+      - postgres
+    networks:
+      - app_net
+
+  web:
+    image: ${APP_WEB_IMAGE}
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    environment:
+      PORT: 18030
+      HOSTNAME: 0.0.0.0
+      NEXT_PUBLIC_APP_API_BASE_URL: "https://app.example.test/api"
+      NEXT_PUBLIC_APP_BASE_URL: "https://app.example.test"
+    ports:
+      - "127.0.0.1:${APP_WEB_PORT:-18030}:18030"
+    depends_on:
+      - api
+    networks:
+      - app_net
+
+  postgres:
+    image: postgres:18
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${APP_DB_NAME}
+      POSTGRES_USER: ${APP_DB_USER}
+      POSTGRES_PASSWORD: ${APP_DB_PASSWORD}
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - app_net
+
+volumes:
+  pg_data:
+
+networks:
+  app_net:
+    name: ${APP_DOCKER_NETWORK:-ai-app-net}
