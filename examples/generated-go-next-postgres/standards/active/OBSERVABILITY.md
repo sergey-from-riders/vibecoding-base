@@ -1,45 +1,47 @@
-<!-- Generated from registry/standards/observability/three-signals@1.0.1. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/observability/three-signals@1.1.0. Update the registry standard, then regenerate. -->
 
-# 22. Observability Standard (Mandatory)
+# Three Signals Observability Standard
 
-Этот документ фиксирует обязательный стандарт observability для generated project.
+This standard applies to enabled runtime components only. In the base stacks that means `apps/api` and `apps/web`. Mobile, desktop, worker and payments telemetry applies only after those features are enabled.
 
-## 1) Scope
+## May 2026 Baseline
 
-Стандарт обязателен для:
-1. `apps/api` (все handler/service операции)
-2. `apps/web` (client + server adapters)
-3. `apps/mobile/android` (WebView shell, deep link, bridge)
-4. `apps/desktop/qt` (native adapter)
+1. OpenTelemetry is the preferred instrumentation model.
+2. Semantic conventions should follow the selected OpenTelemetry semconv version.
+3. Three core signals are traces, logs and metrics.
+4. Profiling is optional and must be explicitly enabled.
+5. PII and secrets are redacted before leaving the process.
 
-## 2) Three-signal model (required)
+## Three-Signal Model
 
-1. `traces` — причинно-следственная цепочка запроса
-2. `logs` — структурированные события
-3. `metrics` — агрегаты для SLA/SLO и алертов
+1. `traces`: causal request flow.
+2. `logs`: structured events.
+3. `metrics`: aggregates for SLOs, capacity and alerts.
 
-Наличие только логов без trace/metrics считается неполным внедрением.
+Logs without traces or metrics are incomplete for production behavior.
 
-## 3) Request correlation contract
+## Request Correlation
 
-Обязательная связка идентификаторов:
-1. `request_id` — всегда в HTTP header `X-Request-Id`
-2. `trace_id` — всегда в span context
-3. `span_id` — для конкретного span
+Required identifiers:
 
-Правило:
-1. Если `X-Request-Id` пришел извне, используем его.
-2. Если не пришел, генерируем и возвращаем в ответе.
-3. `request_id` обязан быть в:
-- response headers;
-- structured logs;
-- span attributes (`rp.request_id`).
+1. `request_id` in `X-Request-Id`;
+2. `trace_id` in span context;
+3. `span_id` for the current span.
 
-## 4) Structured logging format
+Rules:
 
-Формат логов API: JSON lines.
+1. honor incoming `X-Request-Id` when safe;
+2. generate one when absent;
+3. return it in responses;
+4. include it in logs;
+5. include it in span attributes as `vibe.request_id` or the project-approved namespace.
 
-Обязательные ключи каждого server log record:
+## Structured Logging
+
+Server logs use JSON lines.
+
+Required server log fields:
+
 1. `timestamp`
 2. `level`
 3. `message`
@@ -54,119 +56,118 @@
 12. `http_route`
 13. `http_status`
 14. `latency_ms`
-15. `result` (`ok|fix_required|error`)
+15. `result`
 
-Условные ключи (если есть контекст):
+Conditional fields:
+
 1. `user_id`
 2. `company_id`
 3. `session_id`
 4. `error_code`
 5. `validate`
 
-Запрещено логировать:
-1. plaintext password/token/code_verifier
-2. access/refresh tokens
-3. Telegram raw init data целиком
-4. OAuth authorization codes
-5. любые секреты из env
+Forbidden in logs:
 
-## 5) Tracing standard
+1. plaintext passwords;
+2. access or refresh tokens;
+3. OAuth codes;
+4. raw third-party signed payloads;
+5. environment secrets;
+6. full payment payloads.
 
-## 5.1 Span naming
+## Tracing
 
-Формат server span:
-`HTTP <METHOD> <ROUTE_TEMPLATE>`
+Server span name:
 
-Пример:
-`HTTP POST /api/v1/auth/login`
+```text
+HTTP <METHOD> <ROUTE_TEMPLATE>
+```
 
-## 5.2 Required span attributes
+Example:
 
-1. `http.request.method`
-2. `url.path`
-3. `http.response.status_code`
-4. `client.address` (если доступно)
-5. `user_agent.original` (если доступно)
-6. `enduser.id` (если authenticated)
-7. `rp.company_id` (если есть tenant context)
-8. `rp.session_id` (если есть session)
-9. `rp.request_id`
-10. `rp.module`
-11. `rp.operation`
+```text
+HTTP POST /api/v1/auth/login
+```
 
-## 5.3 Status mapping
+Required span attributes:
 
-1. `2xx` -> span status `Ok`
-2. `4xx` -> span status `Ok` (если бизнес-валидация), но с event `validation_required`
-3. `5xx` -> span status `Error`
+1. HTTP method;
+2. route template;
+3. response status;
+4. client address when available;
+5. user agent when available;
+6. authenticated user ID when available;
+7. tenant/company ID when available;
+8. request ID;
+9. module;
+10. operation.
 
-## 6) Metrics baseline (mandatory)
+Use stable route templates, not raw URLs with IDs.
 
-Минимальный набор API-метрик:
+## Status Mapping
+
+1. `2xx` -> span status `Ok`.
+2. Correctable `4xx` -> span status `Ok` with validation event.
+3. `5xx` -> span status `Error`.
+4. Canceled requests should record cancellation reason when safe.
+
+## Metrics
+
+Minimum API metrics:
+
 1. `http_server_requests_total{method,route,status,result}`
-2. `http_server_request_duration_ms{method,route}` (histogram)
+2. `http_server_request_duration_ms{method,route}`
 3. `auth_attempts_total{provider,result}`
-4. `auth_session_revocations_total{mode}` (`one|others|mass`)
+4. `auth_session_revocations_total{mode}`
 5. `active_sessions_gauge`
 
-Latency SLO baseline:
-1. `P95 < 300ms` для read endpoints
-2. `P95 < 500ms` для auth/session mutation endpoints
+Baseline SLO targets:
 
-## 7) Mandatory handler observability checklist
+1. read endpoint `P95 < 300ms`;
+2. auth/session mutation endpoint `P95 < 500ms`;
+3. error budget defined before production.
 
-Каждый HTTP handler обязан:
-1. получить/создать `request_id`
-2. стартовать span с route template
-3. передать `context.Context` ниже по слоям
-4. добавить domain attributes (`module`, `operation`, `user_id/company_id` при наличии)
-5. записать structured log на завершении
-6. записать duration metric
-7. выставить `X-Request-Id` в ответ
+## Sampling And Retention
 
-Если любой пункт не выполнен, handler считается non-compliant.
+Starter defaults:
 
-## 8) Error observability rules
+1. `5xx` traces: `100%`;
+2. validation traces: sampled;
+3. success traces: sampled;
+4. security-sensitive events: retained according to compliance needs;
+5. high-cardinality debug data: short retention.
 
-1. Для `fix_required` записываем validation event:
-- `event = validation_required`
-- `validate = <csv>`
-2. Для `error` записываем:
-- `event = internal_error`
-- `error_code`
-- stacktrace только в internal sink
+Do not sample away audit-critical payment or security events without an explicit reason.
 
-Пользовательский ответ не должен содержать stacktrace.
+## Web Telemetry
 
-## 9) Sampling and retention
+When `apps/web` is enabled:
 
-1. Error traces (`5xx`) sampling: `100%`
-2. Validation traces (`4xx/fix_required`) sampling: `25%`
-3. Success traces sampling: `10%`
+1. collect Web Vitals: `LCP`, `INP`, `CLS`;
+2. propagate `request_id` in API calls;
+3. capture client runtime errors;
+4. avoid logging PII from forms;
+5. connect route changes to user-visible performance metrics.
 
-Retention baseline:
-1. logs: `30` дней
-2. traces: `14` дней
-3. high-cardinality debug traces: `3` дня
+## Optional Feature Telemetry
 
-## 10) Platform-specific notes
+When enabled:
 
-### Web
-1. Web-Vitals (`CLS`, `INP`, `LCP`) обязательны в telemetry pipeline.
-2. `request_id` передается в API calls и сохраняется в client diagnostics.
+1. worker jobs expose job ID, attempt, queue, duration and result;
+2. mobile exposes crash-free sessions, startup, deep links and network errors;
+3. payments exposes webhook event ID, payment intent ID, idempotency key hash and reconciliation status;
+4. desktop follows its own optional standard.
 
-### Android WebView shell
-1. Логируются события `webview_load_start`, `webview_load_end`, `deep_link_open`.
-2. Bridge вызовы логируются без payload с PII.
+## Definition Of Done
 
-### Qt desktop
-1. Network request logs должны содержать `request_id` и `trace_id` (если прокинуты).
-2. Crash/exception events идут в отдельный error sink.
+A feature is observability-ready when:
 
-## 11) Definition of Done for observability
+1. new endpoints have trace coverage;
+2. success and error paths produce structured logs;
+3. request count and latency metrics exist;
+4. sensitive data is redacted;
+5. dashboards/alerts are updated where runtime exists.
 
-Фича не принимается без:
-1. trace coverage для новых endpoint-ов
-2. structured logs с `request_id` на success/error paths
-3. metrics для latency + request count
-4. update docs при изменении telemetry contract
+## Enforcement Reality
+
+This standard is documented by default. It becomes linted/tested/CI-blocking only when the generated project includes real telemetry checks, snapshot tests or runtime smoke tests.

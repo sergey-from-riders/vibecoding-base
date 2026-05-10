@@ -177,6 +177,29 @@ enforcement:
 
 Если правило только описано, так и пишем. Не притворяемся, что оно enforced.
 
+## Baseline На Май 2026
+
+Текущие standards целятся в:
+
+- Go 1.26
+- Python 3.14
+- PostgreSQL 18
+- OpenAPI 3.2
+- Next.js 16
+- React 19.2
+- Vite 8
+- TypeScript 6
+- Node 24 LTS
+- React Native 0.85
+
+Templates легкие. Часть runtime-папок — честные placeholders, поэтому у stack profiles стоит `runtime: partial`. Это не "притворяемся production-ready", а нормальная база для дальнейшего вайбкодинга.
+
+## Lockfile Policy
+
+`.vibe/registry.lock` пинит версии standards и templates.
+
+Package-manager lockfiles создаются уже в реальном generated project после установки зависимостей. Templates фиксируют package manager и tested baseline ranges, но не коммитят фейковые lockfiles.
+
 ## Status Matrix
 
 У stack profile есть отдельная готовность:

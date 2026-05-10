@@ -2,4 +2,4 @@ checks:
   - id: check_openapi
     file: registry/checks/check_openapi.sh
     scope: generated-project
-    description: Verifies the active project has OpenAPI root, modules, schemas and endpoint inventory.
+    description: Verifies starter OpenAPI structure, version, required docs endpoints, inventory presence and key module patterns.

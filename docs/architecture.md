@@ -111,6 +111,8 @@ templates:
 
 The profile can say `backend/go@^1.0.0`; the lockfile records the resolved version.
 
+Runtime package lockfiles are separate. Lightweight templates do not ship fake `pnpm-lock.yaml`, `go.sum` or `uv.lock` files. A real generated project should commit those after installing dependencies.
+
 ## Generated AGENTS.md
 
 `AGENTS.md` is generated from the active profile. It must list only the chosen stack and active read order.
@@ -131,3 +133,5 @@ It must not mention inactive future stacks as if they exist in the project.
 8. active standards and lockfile consistency.
 9. active standard file content against the registry source.
 10. exact duplicate standard bodies inside `registry/standards`.
+11. stack checks for generated examples, excluding verify-wrapper checks to avoid recursion.
+12. secret-like patterns across the repository, with scanner implementation files excluded.

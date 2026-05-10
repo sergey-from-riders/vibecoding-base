@@ -9,11 +9,11 @@ project_residue_pattern='185\.225|46\.254|hellor8g|bitrix@|root@|S3curePassword|
 violations=0
 
 if command -v rg >/dev/null 2>&1; then
-  if rg -n --glob '!node_modules/**' --glob '!.git/**' --glob '!**/check_template_hygiene.sh' "$secret_shape_pattern" "$TARGET_DIR"; then
+  if rg -n --glob '!node_modules/**' --glob '!.git/**' --glob '!dist/**' --glob '!**/check_template_hygiene.sh' --glob '!**/scripts/check.sh' --glob '!tools/vibe.mjs' "$secret_shape_pattern" "$TARGET_DIR"; then
     echo "VIOLATION template_secret_shape"
     violations=$((violations + 1))
   fi
-  if rg -n --glob '!node_modules/**' --glob '!.git/**' --glob '!**/check_template_hygiene.sh' "$project_residue_pattern" "$TARGET_DIR"; then
+  if rg -n --glob '!node_modules/**' --glob '!.git/**' --glob '!dist/**' --glob '!**/check_template_hygiene.sh' --glob '!**/scripts/check.sh' --glob '!tools/vibe.mjs' "$project_residue_pattern" "$TARGET_DIR"; then
     echo "VIOLATION template_project_residue"
     violations=$((violations + 1))
   fi

@@ -1,6 +1,6 @@
 id: frontend/react
 name: React web template
-version: 1.0.1
+version: 1.1.0
 status: partial
 paths:
   - apps/web

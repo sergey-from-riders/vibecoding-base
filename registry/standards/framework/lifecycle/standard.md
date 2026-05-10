@@ -4,6 +4,16 @@ This standard defines the delivery lifecycle for generated projects that use `vi
 
 The core idea is simple: coding agents are fast, but the project must give them rails. The rails are active standards, stack profile metadata, contracts, checks, generated docs and human checkpoints.
 
+## May 2026 Baseline
+
+Modern starter repositories should be registry-driven, not folder-copy-driven:
+
+1. reusable standards live once in `registry/standards`;
+2. stack profiles compose standards and templates;
+3. generated projects contain only active context;
+4. examples are reproducible artifacts;
+5. readiness is shown as a matrix, not as vague "production ready" marketing.
+
 ## Principles
 
 ### 1. Active Context Before Code
@@ -103,6 +113,25 @@ Generated projects and registry templates must stay reusable:
 5. no dependency vendor folders;
 6. safe placeholder domains only.
 
+### 9. Readiness Is Specific
+
+Do not describe a stack as fully ready when its template, runtime, checks and docs have different maturity.
+
+Use this matrix:
+
+1. `template: ready | partial | missing`
+2. `runtime: ready | partial | missing`
+3. `checks: ready | partial | missing`
+4. `docs: ready | partial | missing`
+
+### 10. Standards Move Through SemVer
+
+Standard updates must say whether they are:
+
+1. patch: text clarity or non-breaking checks;
+2. minor: new recommendations or optional checks;
+3. major: stricter required behavior or incompatible structure.
+
 ## Lifecycle
 
 Every meaningful task moves through this lifecycle:
@@ -167,6 +196,18 @@ Do not edit generated `standards/active/*` as the source of truth. Update the ma
 
 `vibe verify` should fail when a generated active standard drifts from the registry.
 
+## Registry Change Anatomy
+
+A standards change is complete only when:
+
+1. `standard.md` reflects the rule;
+2. `standard.yaml` version and enforcement are truthful;
+3. `CHANGELOG.md` explains the change;
+4. affected stack profiles still resolve;
+5. examples are regenerated;
+6. lockfiles pin the resolved versions;
+7. `vibe verify` passes.
+
 ## Definition Of Ready
 
 A task is ready when:
@@ -189,6 +230,18 @@ A task is done when:
 5. hygiene checks still pass;
 6. unresolved risks are documented;
 7. human checkpoints were completed where required.
+
+## Public Release Gate
+
+Before publishing the repository:
+
+1. no real secrets or private endpoints;
+2. no old copyable framework folders;
+3. no generated-example drift;
+4. no duplicate standards as separate sources of truth;
+5. status/readiness matrix is current;
+6. examples regenerate cleanly;
+7. verification commands are documented.
 
 ## Standard Workflow For A New Endpoint
 
@@ -220,3 +273,7 @@ A task is done when:
 5. Use selected design tokens/profile.
 6. Add component/integration/e2e coverage for changed flows where runtime exists.
 7. Run `scripts/check.sh`.
+
+## Enforcement Reality
+
+This lifecycle standard is documented by default. Registry drift and generated example drift are enforced by `vibe verify`; human checkpoint discipline is review-enforced unless a project adds workflow automation.

@@ -1,10 +1,11 @@
 [project]
 name = "generated-api"
 version = "0.1.0"
-requires-python = ">=3.12"
+requires-python = ">=3.14"
 dependencies = [
-  "fastapi>=0.115",
-  "uvicorn[standard]>=0.30"
+  "fastapi>=0.136,<0.137",
+  "pydantic>=2.12,<3.0",
+  "uvicorn[standard]>=0.38,<0.39"
 ]
 
 [tool.pytest.ini_options]

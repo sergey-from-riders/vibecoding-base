@@ -1,23 +1,23 @@
-# method	path	module
-POST	/api/v1/auth/register	auth
-POST	/api/v1/auth/activate	auth
-POST	/api/v1/auth/login	auth
-POST	/api/v1/auth/logout	auth
-POST	/api/v1/auth/refresh	auth
-GET	/api/v1/auth/me	auth
-GET	/api/v1/auth/oauth/{provider}/start	auth
-GET	/api/v1/auth/oauth/{provider}/callback	auth
-POST	/api/v1/auth/telegram/miniapp	auth
-POST	/api/v1/auth/native/exchange	auth
-GET	/api/v1/auth/sessions	auth
-DELETE	/api/v1/auth/sessions/{session_id}	auth
-POST	/api/v1/auth/sessions/revoke-others	auth
-POST	/api/v1/auth/password-reset/request	auth
-POST	/api/v1/auth/password-reset/confirm	auth
-GET	/api/v1/companies	company
-POST	/api/v1/companies	company
-POST	/api/v1/companies/{company_id}/switch	company
-GET	/api/v1/docs/openapi.json	docs
-GET	/api/v1/docs/openapi.yaml	docs
-GET	/api/v1/docs/endpoints	docs
-GET	/api/v1/docs/testing/postman	docs
+# method	path	module	operation_id
+POST	/api/v1/auth/register	auth	authRegister
+POST	/api/v1/auth/activate	auth	authActivate
+POST	/api/v1/auth/login	auth	authLogin
+POST	/api/v1/auth/logout	auth	authLogout
+POST	/api/v1/auth/refresh	auth	authRefresh
+GET	/api/v1/auth/me	auth	authMe
+GET	/api/v1/auth/oauth/{provider}/start	auth	authOauthStart
+GET	/api/v1/auth/oauth/{provider}/callback	auth	authOauthCallback
+POST	/api/v1/auth/telegram/miniapp	auth	authTelegramMiniApp
+POST	/api/v1/auth/native/exchange	auth	authNativeExchange
+GET	/api/v1/auth/sessions	auth	authSessionsList
+DELETE	/api/v1/auth/sessions/{session_id}	auth	authSessionRevoke
+POST	/api/v1/auth/sessions/revoke-others	auth	authSessionsRevokeOthers
+POST	/api/v1/auth/password-reset/request	auth	authPasswordResetRequest
+POST	/api/v1/auth/password-reset/confirm	auth	authPasswordResetConfirm
+GET	/api/v1/companies	company	companyList
+POST	/api/v1/companies	company	companyCreate
+POST	/api/v1/companies/{company_id}/switch	company	companySwitch
+GET	/api/v1/docs/openapi.json	docs	docsOpenapiJson
+GET	/api/v1/docs/openapi.yaml	docs	docsOpenapiYaml
+GET	/api/v1/docs/endpoints	docs	docsEndpointsCatalog
+GET	/api/v1/docs/testing/postman	docs	docsTestingPostman

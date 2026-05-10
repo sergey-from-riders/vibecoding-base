@@ -1,6 +1,6 @@
 {
   "name": "vibecoding-base",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Composable stack profiles and standards registry for AI-native development.",
   "registry": {
     "path": "registry",

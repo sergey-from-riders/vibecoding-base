@@ -1,6 +1,6 @@
 id: payments/stripe
 name: Stripe Payments Standard
-version: 1.0.0
+version: 1.1.0
 status: experimental
 domain: payments
 owners:

@@ -1,6 +1,6 @@
 id: api/openapi-modular
 name: Modular OpenAPI Contract Standard
-version: 1.0.1
+version: 1.1.0
 status: stable
 domain: api
 owners:

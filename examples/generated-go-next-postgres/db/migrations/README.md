@@ -13,8 +13,9 @@ Migration policy:
   - full snapshot written on each insert/update/delete
   - log tables are excluded
 
-Starter static check:
-- `tools/scripts/check_db_contract.sh db/migrations`
+Starter verification:
+- base generated projects check that migration files exist through `scripts/check.sh`
+- add a real DB contract checker before marking database checks as runtime-enforced
 
 Current foundation migrations:
 1. `000001` — PostgreSQL extensions.

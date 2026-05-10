@@ -1,17 +1,21 @@
 # apps/web
 
-React 19 web adapter.
+React 19 + Vite 8 web placeholder.
 
 ## Scope
-- auth UI
-- switch company UI
 
-## Mandatory engineering contract
+- Minimal package metadata for the active stack.
+- Target frontend architecture is documented in active standards.
+- Auth UI and company switch UI are contract goals, not fully scaffolded runtime code in this starter template.
+
+## Engineering Contract
+
 - `standards/active/FRONTEND.md`
 - `standards/active/UI.md`
 - `standards/active/TESTING.md`
 
-## Hard numeric limits
+## Target Numeric Limits
+
 1. `MAX_TS_FILE_LINES = 260`
 2. `MAX_COMPONENT_LINES = 70`
 3. `MAX_FUNCTION_LINES = 45`
@@ -20,9 +24,12 @@ React 19 web adapter.
 6. `SHADOW_USAGE_COUNT = 0`
 7. `BLACK_BORDER_USAGE_COUNT = 0`
 
-## Mandatory frontend policy
-1. `shadcn-only` interactive primitives.
-2. Unified list kit only.
-3. Reuse-first for all repeatable UI/data patterns.
-4. Mobile-first compact layout.
-5. Animation without layout shift by default.
+## Policy When Runtime UI Is Added
+
+1. Use the local `components/ui` layer for interactive primitives when shadcn is installed.
+2. Use one unified list kit for repeated list/table screens.
+3. Reuse repeatable UI and data patterns.
+4. Keep layouts mobile-first and compact.
+5. Avoid animation that creates layout shift.
+
+This template is intentionally `partial`; it does not claim shadcn/Tailwind runtime setup until those files are added.

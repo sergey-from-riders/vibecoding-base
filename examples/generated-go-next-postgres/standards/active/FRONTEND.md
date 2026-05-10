@@ -1,4 +1,4 @@
-<!-- Generated from registry/standards/frontend/next@1.0.0. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/frontend/next@1.1.0. Update the registry standard, then regenerate. -->
 
 # Next.js Frontend Engineering Standard
 
@@ -6,12 +6,21 @@ This standard applies to `apps/web` when the active stack uses Next.js.
 
 UI density, shadcn usage, color policy and compact layout rules live in `ui/shadcn-compact`. Keep this standard focused on framework architecture, runtime boundaries, contracts and testability.
 
+## May 2026 Baseline
+
+1. Next.js baseline: `16.x`.
+2. React baseline: `19.2.x`.
+3. Node.js production baseline: `24.x LTS`.
+4. TypeScript baseline: `6.0.x`.
+5. ESLint baseline: `10.x`.
+6. Server Components are the default for route data-loading views.
+
 ## Stack Contract
 
 1. `NEXT_MAJOR = 16`
 2. `REACT_MAJOR = 19`
 3. `NODE_MAJOR = 24`
-4. `TYPESCRIPT_MAJOR = 5`
+4. `TYPESCRIPT_MAJOR = 6`
 5. `SERVER_COMPONENT_DEFAULT_PERCENT = 100`
 
 ## App Router Boundaries
@@ -21,6 +30,16 @@ UI density, shadcn usage, color policy and compact layout rules live in `ui/shad
 3. Client Components require an interaction reason.
 4. Server actions stay narrow and typed.
 5. Direct access to `process.env` is allowed only in configuration modules.
+6. Route handlers do not become a second backend unless explicitly documented.
+7. Cache behavior is named at the data boundary.
+
+## Next 16 Runtime Notes
+
+1. Turbopack is the default build/dev path unless the project documents why not.
+2. The removed framework-provided lint script is not the standard command; use the ESLint CLI.
+3. Middleware/proxy conventions must follow the active Next.js version.
+4. React Compiler may be enabled only with an explicit compatibility note.
+5. Image, cache and prefetch behavior should be treated as runtime contract, not styling.
 
 ## Contract-First Frontend
 
@@ -28,6 +47,16 @@ UI density, shadcn usage, color policy and compact layout rules live in `ui/shad
 2. Feature code must not invent hidden response shapes.
 3. Error states use the shared problem/error model.
 4. Request IDs from API responses must remain visible to observability and support flows.
+5. Generated clients are regenerated when OpenAPI changes.
+6. Frontend validation mirrors API constraints but does not replace backend validation.
+
+## State And Data
+
+1. Server state belongs in server components, actions or a shared client cache.
+2. Client state has one owner.
+3. Do not duplicate domain state across local component state and remote cache.
+4. Loading, empty, error and permission-denied states are part of the feature.
+5. Optimistic updates require rollback behavior.
 
 ## Reuse-First Rules
 
@@ -35,6 +64,7 @@ UI density, shadcn usage, color policy and compact layout rules live in `ui/shad
 2. `DUPLICATE_FEATURE_COMPONENTS_ALLOWED = 0`.
 3. `DIRECT_FETCH_OUTSIDE_SHARED_API_CLIENT = 0`.
 4. `BUNDLER_ABSTRACTION_COUNT = 1`.
+5. `UNEXPLAINED_USE_CLIENT = 0`.
 
 ## File And Component Limits
 
@@ -61,6 +91,16 @@ UI density, shadcn usage, color policy and compact layout rules live in `ui/shad
 6. `ABOVE_THE_FOLD_IMAGE_LAZYLOAD = 0`
 7. `NON_CRITICAL_IMAGE_LAZYLOAD = 100%`
 8. `USE_CLIENT_WITHOUT_REASON = 0`
+9. Server-rendered routes should not ship avoidable client JavaScript.
+10. Route-level performance evidence is required for UX-critical pages when runtime checks exist.
+
+## Accessibility
+
+1. WCAG 2.2 AA is the target.
+2. Keyboard operation is required for interactive flows.
+3. Focus states must be visible and not obscured.
+4. Form errors must be programmatically associated with fields.
+5. Authentication must avoid cognitive puzzles as the only path.
 
 ## Test Gates
 
@@ -74,3 +114,7 @@ UI density, shadcn usage, color policy and compact layout rules live in `ui/shad
 
 1. `scripts/check.sh` must call the active frontend checks when the project has runnable frontend code.
 2. Until runtime checks exist, enforcement must be marked as documented only.
+
+## Enforcement Reality
+
+This standard is documented by default. It becomes linted/tested/CI-blocking only when the generated project includes real Next.js, ESLint, typecheck, component, e2e and performance checks.

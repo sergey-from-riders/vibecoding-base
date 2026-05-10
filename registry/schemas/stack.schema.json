@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "vibecoding-base stack profile",
   "type": "object",
+  "additionalProperties": false,
   "required": [
     "id",
     "name",
@@ -16,7 +17,12 @@
   "properties": {
     "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
     "status": { "enum": ["draft", "experimental", "stable", "deprecated"] },
-    "components": { "type": "object" },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "components": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
     "standards": { "type": "array", "items": { "type": "string" } },
     "templates": { "type": "array", "items": { "type": "string" } },
     "checks": { "type": "array", "items": { "type": "string" } },
@@ -28,7 +34,9 @@
         "runtime": { "enum": ["ready", "partial", "missing"] },
         "checks": { "enum": ["ready", "partial", "missing"] },
         "docs": { "enum": ["ready", "partial", "missing"] }
-      }
-    }
+      },
+      "additionalProperties": false
+    },
+    "optional_features": { "type": "object" }
   }
 }

@@ -1,6 +1,6 @@
 id: backend/go
 name: Go Backend Engineering Standard
-version: 1.0.1
+version: 1.1.0
 status: stable
 domain: backend
 owners:

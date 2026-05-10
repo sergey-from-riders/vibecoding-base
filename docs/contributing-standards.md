@@ -78,7 +78,7 @@ enforcement:
   ci_blocking: false
 ```
 
-Set `linted`, `tested` or `ci_blocking` to `true` only when `checks.yaml` references a real check file.
+Set `linted`, `tested` or `ci_blocking` to `true` only when `checks.yaml` references a real check file. If a check covers only structure, say that in `checks.yaml` and in `standard.md`; do not imply it validates deeper runtime behavior.
 
 ## Review Model
 
@@ -120,6 +120,12 @@ Then reference it from:
 1. the relevant `checks.yaml`;
 2. stack profile `checks`;
 3. generated `scripts/check.sh` logic if it must run inside copied projects.
+
+`vibe verify` runs non-wrapper stack checks against generated examples. `check_structure` and `check_standards` are wrappers around `vibe verify --project-only`, so they are not recursively executed as stack checks.
+
+## Runtime Lockfiles
+
+Do not hand-write fake package lockfiles in templates. If a generated example is meant to be runnable with installed dependencies, generate and commit the real lockfile from the package manager. Otherwise keep the stack readiness honest with `runtime: partial`.
 
 ## Deprecating A Standard
 

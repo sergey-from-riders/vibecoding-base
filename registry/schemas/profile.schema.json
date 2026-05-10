@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "generated project vibe profile",
   "type": "object",
+  "additionalProperties": false,
   "required": [
     "stack",
     "project_name",
@@ -14,8 +15,17 @@
     "stack": { "type": "string" },
     "project_name": { "type": "string" },
     "registry_version": { "type": "string" },
-    "components": { "type": "object" },
-    "enabled": { "type": "object" },
-    "disabled": { "type": "object" }
+    "components": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "enabled": {
+      "type": "object",
+      "additionalProperties": { "type": "boolean" }
+    },
+    "disabled": {
+      "type": "object",
+      "additionalProperties": { "type": "boolean" }
+    }
   }
 }

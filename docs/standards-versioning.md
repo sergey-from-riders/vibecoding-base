@@ -40,6 +40,7 @@ Use MINOR for compatible additions:
 3. additional examples;
 4. new non-required metadata;
 5. new optional templates.
+6. updated recommended runtime baselines when templates remain partial and compatible.
 
 Example:
 
@@ -57,6 +58,7 @@ Use MAJOR for breaking changes:
 4. removed rules;
 5. changed generated file names;
 6. new CI-blocking enforcement.
+7. changing a template from placeholder partial runtime to mandatory runnable runtime with stricter checks.
 
 Example:
 

@@ -52,6 +52,23 @@ if [ -d registry ] || [ -d frameworks ]; then
   violations=$((violations + 1))
 fi
 
+if [ -d contracts/openapi ]; then
+  for item in contracts/openapi/openapi.root.yaml contracts/openapi/endpoints.inventory.tsv contracts/openapi/modules contracts/openapi/components; do
+    if [ ! -e "$item" ]; then
+      echo "VIOLATION missing_openapi_path path=$item"
+      violations=$((violations + 1))
+    fi
+  done
+fi
+
+if command -v rg >/dev/null 2>&1; then
+  secret_shape_pattern='BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{35}|xox[baprs]-|ghp_[0-9A-Za-z]{36}|github_pat_[0-9A-Za-z_]{80,}|sk-[A-Za-z0-9]{20,}'
+  if rg -n --glob '!node_modules/**' --glob '!.git/**' --glob '!dist/**' --glob '!scripts/check.sh' "$secret_shape_pattern" .; then
+    echo "VIOLATION generated_project_secret_shape"
+    violations=$((violations + 1))
+  fi
+fi
+
 if [ "$violations" -gt 0 ]; then
   echo "Generated project check failed: violations=$violations"
   exit 1

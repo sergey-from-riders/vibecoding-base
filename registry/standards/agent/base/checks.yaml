@@ -2,4 +2,4 @@ checks:
   - id: check_standards
     file: registry/checks/check_standards.sh
     scope: generated-project
-    description: Verifies generated AGENTS.md and active standard files exist.
+    description: Verifies generated project structure and active standard drift through vibe verify --project-only.

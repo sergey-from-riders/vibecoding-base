@@ -1,6 +1,6 @@
 stack: go-next-postgres
 project_name: generated-go-next-postgres
-registry_version: 1.0.0
+registry_version: 1.1.0
 components:
   backend: go
   frontend: next

@@ -1,10 +1,18 @@
-<!-- Generated from registry/standards/backend/go@1.0.1. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/backend/go@1.1.0. Update the registry standard, then regenerate. -->
 
-# 18. Go Backend Engineering Standard (Strict Numeric Rules)
+# Go Backend Engineering Standard
 
-Этот стандарт обязателен для `apps/api`.
+This standard applies to `apps/api` when the active stack uses Go.
 
-## 1) Каноническая структура
+## May 2026 Baseline
+
+1. Go baseline: `1.26.x`.
+2. Use Go modules and pin the toolchain in `go.mod`.
+3. Use `context.Context` through request, service and repository boundaries.
+4. Use structured logging through `log/slog` or the stack-approved adapter.
+5. Run `go test ./...`; add race/fuzz/vulnerability checks when runtime maturity allows it.
+
+## Canonical Structure
 
 ```text
 apps/api/
@@ -25,7 +33,7 @@ apps/api/
 └─ internal/modules/company/repository/*.go
 ```
 
-## 2) Числовые лимиты (обязательные)
+## Numeric Limits
 
 1. `MAX_GO_FILE_LINES = 250`
 2. `MAX_FUNCTION_LINES = 40`
@@ -48,15 +56,17 @@ apps/api/
 19. `MAX_TODO_IN_MAIN_BRANCH = 0`
 20. `MAX_UNTESTED_CHANGED_FILES = 0`
 
-## 3) Router decomposition rules
+These limits are documented unless the generated project includes a real limits checker.
+
+## Router Decomposition
 
 1. `GLOBAL_ROUTER_FILES = 1` (`internal/platform/httpserver/router.go`)
-2. `MODULE_ROUTER_FILES_MIN = 1` на каждый модуль
+2. `MODULE_ROUTER_FILES_MIN = 1` per module
 3. `ENDPOINTS_PER_HANDLER_FILE = 1`
 4. `HANDLER_FILES_PER_MODULE_MIN = 1`
 5. `ROUTES_WITHOUT_MODULE_OWNER = 0`
 
-## 4) Handler contract rules
+## Handler Contract
 
 1. Parse input: `1`
 2. Validate input: `1`
@@ -70,50 +80,87 @@ apps/api/
 3. Domain policy branches: `0`
 4. Transaction control: `0`
 
-## 5) Service contract rules
+Handlers map protocol to application calls. Business policy lives in services.
+
+## Service Contract
 
 1. HTTP imports in service package: `0`
 2. DB driver imports in service package: `0`
 3. Repository interfaces per service file: `<= 4`
 4. Unit tests required per public service method: `>= 1`
+5. Hidden goroutine launches without lifecycle ownership: `0`
+6. Business errors must be typed or wrapped with stable sentinels.
 
-## 6) Repository contract rules
+Use `errors.Is`, `errors.As` and `errors.Join` where they make error handling clearer.
+
+## Repository Contract
 
 1. `context.Context` in public methods: `100%`
 2. Non-UUID domain IDs: `0`
 3. Direct HTTP dependency in repository: `0`
 4. Integration tests per repository method: `>= 1`
+5. SQL is parameterized: `100%`
+6. Transactions are explicit and owned by a service/application boundary.
 
-## 7) Team-readability rules
+Prefer generated or typed query layers when they exist in the project. Do not add a new ORM by default.
+
+## Concurrency And Runtime Safety
+
+1. Request goroutines must be cancellable.
+2. Background goroutines require a lifecycle owner and shutdown path.
+3. Mutable package globals are forbidden.
+4. Shared maps and caches require synchronization and tests.
+5. Use `context.WithCancelCause` for long-running flows where cancellation reason matters.
+6. Race-sensitive code needs `go test -race` evidence before merge.
+
+## Security And Supply Chain
+
+1. `govulncheck` is the preferred vulnerability gate when available.
+2. Keep `GOTOOLCHAIN` or toolchain pinning explicit for reproducible builds.
+3. Do not log tokens, passwords, session secrets or raw credentials.
+4. External calls must set timeouts and handle retries deliberately.
+5. File/path/network inputs need validation before use.
+
+## Observability
+
+1. Every request has `request_id`.
+2. Logs are structured.
+3. Errors include safe codes, not raw internals.
+4. Traces propagate through service and repository calls.
+5. Metrics use stable route templates, not raw URLs.
+
+## Team Readability
 
 1. Constructor per component: `1`
 2. Hidden singleton mutable state: `0`
 3. Public symbol count per file: `<= 12`
 4. Distinct responsibilities per file: `1`
 
-## 8) Test gates for backend module
+## Test Gates
 
 1. Unit suite pass rate: `100%`
 2. Integration suite pass rate: `100%`
 3. Contract checks pass rate: `100%`
 4. Migration up/down checks: `100%`
 5. Critical auth/session/security tests pass: `100%`
+6. Race test for concurrency-sensitive code: `100%`
+7. Fuzz tests for parsers/normalizers where malformed input is a risk.
 
-## 9) Merge gate
+## Merge Gate
 
-Фича не принимается при любом нарушении:
-1. Любой лимит из раздела 2: `> 0` нарушений
-2. Любой пропущенный тест gate: `> 0`
-3. Любой giant router/handler file: `> 0`
+Feature work is not accepted when:
 
-## 10) Автоматическая проверка
+1. documented limits are knowingly violated without an ADR;
+2. changed behavior has no test evidence;
+3. handlers bypass services/repositories;
+4. contract and runtime disagree;
+5. secrets or unsafe logs are introduced.
 
-1. Скрипт: `tools/scripts/check_go_limits.sh`
-2. Команда: `tools/scripts/check_go_limits.sh apps/api`
-3. Допустимое число нарушений: `0`
-4. Код возврата при нарушениях: `1`
+## Enforcement Reality
 
-## 11) Связанные документы
+This standard is documented by default. It becomes linted/tested/CI-blocking only when the generated project includes real Go checks such as formatting, vet, staticcheck, tests, race checks, limits checks or `govulncheck`.
+
+## Related Standards
 
 1. `standards/active/TESTING.md`
 2. `standards/active/API.md`

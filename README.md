@@ -98,6 +98,18 @@ registry/standards/backend/go/
 
 See [`docs/contributing-standards.md`](docs/contributing-standards.md) before changing standards.
 
+## May 2026 Baselines
+
+Current standards target Go 1.26, Python 3.14, PostgreSQL 18, OpenAPI 3.2, Next.js 16, React 19.2, Vite 8, TypeScript 6, Node 24 LTS and React Native 0.85.
+
+Templates are intentionally lightweight and marked partial where runtime scaffolding is not complete. Do not treat this repo as "production runtime ready"; treat it as a clean, agent-friendly standards and stack-profile base.
+
+## Lockfile Policy
+
+Registry-generated examples pin standard/template versions in `.vibe/registry.lock`.
+
+Package manager lockfiles (`pnpm-lock.yaml`, `go.sum`, `uv.lock`) are not committed in lightweight templates until dependencies are installed in a real project. The package manager/runtime baseline is documented in template metadata and package files; runnable projects should commit their generated lockfiles after first install.
+
 ## Commands
 
 ```bash

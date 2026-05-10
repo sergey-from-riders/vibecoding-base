@@ -177,6 +177,29 @@ enforcement:
 
 If a rule is only written down, we say so. No fake "enforced" claims.
 
+## May 2026 Baselines
+
+Current standards target:
+
+- Go 1.26
+- Python 3.14
+- PostgreSQL 18
+- OpenAPI 3.2
+- Next.js 16
+- React 19.2
+- Vite 8
+- TypeScript 6
+- Node 24 LTS
+- React Native 0.85
+
+Templates are lightweight. Some runtime folders are placeholders and their stack readiness says `runtime: partial`. That is intentional and honest.
+
+## Lockfile Policy
+
+`.vibe/registry.lock` pins standard and template versions.
+
+Package-manager lockfiles are created by the real generated project after dependencies are installed. The templates document package managers and tested baseline ranges, but they do not commit fake lockfiles.
+
 ## Status Matrix
 
 Stacks use separate readiness fields:

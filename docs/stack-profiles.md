@@ -95,6 +95,22 @@ standards:
 
 If two stacks differ only by backend/runtime, share the common standards and swap only the specific ones.
 
+## Check Semantics
+
+`checks` lists real registry checks. `vibe verify` runs non-wrapper checks against generated examples.
+
+Use wrapper checks for project structure:
+
+- `check_structure`
+- `check_standards`
+
+Use direct checks for concrete surfaces:
+
+- `check_openapi`
+- `check_template_hygiene`
+
+Do not list checks that do not exist or checks that imply runtime coverage the stack does not have.
+
 ## Example Projects
 
 Examples under `examples/generated-*` are generated from stack profiles. They show the expected project shape:

@@ -1,130 +1,128 @@
-<!-- Generated from registry/standards/testing/tdd-strict@1.0.1. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/testing/tdd-strict@1.1.0. Update the registry standard, then regenerate. -->
 
-# 17. Testing, TDD and Quality Gates (Mandatory)
+# TDD Strict Quality Gate Standard
 
-Этот документ обязателен для всех изменений в generated project.
+This standard applies to all enabled runtime components in a generated project.
 
-Главный принцип: **фича не считается принятой, пока не написаны и не пройдены тесты**.
+Main principle: a feature is not accepted until behavior is specified, tested or otherwise verified with honest evidence.
 
-## 1) Vibe Coding Through Testing
+## May 2026 Baseline
 
-Для каждой задачи применяется цикл `Red -> Green -> Refactor`:
+1. Contract-first changes need contract checks.
+2. Backend changes need unit and integration evidence.
+3. Frontend changes need component/integration/e2e evidence according to risk.
+4. Security-sensitive changes need negative tests.
+5. Generated templates must not claim checks that do not exist.
 
-1. `Red`: сначала пишем тесты под новый сценарий и убеждаемся, что они падают.
-2. `Green`: реализуем минимальный код, чтобы тесты стали зелеными.
-3. `Refactor`: улучшаем код без изменения поведения и снова прогоняем тесты.
-4. Обновляем документацию и фиксируем evidence (какие наборы тестов прошли).
+## Red Green Refactor
 
-Без этого цикла задача не закрывается.
+Use the cycle for behavior changes:
 
-## 2) Обязательный тестовый минимум для backend
+1. `Red`: write or identify the failing test/check.
+2. `Green`: implement the smallest correct behavior.
+3. `Refactor`: improve structure without changing behavior.
+4. `Evidence`: record what passed.
 
-Каждый backend-модуль (`apps/api/internal/<module>`) обязан иметь:
+If a check cannot exist yet, document that honestly in the status matrix or task notes.
 
-1. Unit tests:
-- service layer;
-- бизнес-правила;
-- обработку ошибок и валидацию.
+## Backend Minimum
 
-2. Integration tests (реальные, не мокнутые end-to-end внутри backend):
-- HTTP handler -> service -> repository -> PostgreSQL;
-- проверка миграций и ограничений схемы;
-- проверка security-инвариантов (auth/session/revoke/switch company).
+For enabled backend modules:
 
-3. Regression cases:
-- каждый баг фиксируется тестом, который падал до исправления;
-- каждый новый endpoint имеет как минимум happy-path + negative-path интеграционные сценарии.
+1. service/business rules have unit tests;
+2. handler -> service -> repository paths have integration tests when persistence exists;
+3. migrations are exercised in test databases when migration tooling exists;
+4. auth/session/security invariants include negative tests;
+5. each bug fix adds a regression test when practical.
 
-## 3) Обязательный тестовый минимум для frontend (web)
+## Frontend Minimum
 
-Каждая frontend-фича обязана иметь:
+For enabled web modules:
 
-1. Component/unit tests:
-- рендеринг состояния;
-- ветки UI-логики;
-- обработку ошибок/пустых состояний.
+1. component tests cover rendering states;
+2. integration tests cover user interactions;
+3. e2e smoke covers critical paths;
+4. API contracts use generated clients or contract mocks;
+5. accessibility states are tested for critical flows.
 
-2. Integration tests:
-- взаимодействие страниц/виджетов;
-- контракты с API (через тестовый backend или контрактные моки);
-- критические сценарии auth/sessions/company switch.
+## Contract Minimum
 
-3. E2E smoke + feature flow:
-- Playwright-сценарий на ключевой путь фичи;
-- обязательный smoke на login -> me -> switch company -> sessions UI;
-- отдельный прогон в Telegram-совместимом web-режиме для web-клиента.
+For OpenAPI-enabled stacks:
 
-## 4) Универсальный тестовый аккаунт (обязательный)
+1. OpenAPI root and modules exist;
+2. endpoint inventory exists;
+3. changed endpoints update examples and schemas;
+4. generated clients are refreshed when the project uses them;
+5. compatibility impact is documented for breaking changes.
 
-Для межфичевого regression используется единый seed-аккаунт в test/stage окружениях.
+## Optional Feature Testing
 
-Назначение:
-- после каждой фичи прогонять сквозной сценарий "все основные темы";
-- проверять, что новые изменения не ломают старые auth/session/company сценарии.
+Only enabled features add gates:
 
-Минимальный профиль universal account:
-- активированный пользователь;
-- membership минимум в 2 компаниях;
-- привязанные identity: `password`, `telegram`, `google` (и другие провайдеры по мере подключения);
-- несколько активных сессий (для проверки revoke-one/revoke-others).
+1. worker: job idempotency, retry and DLQ tests;
+2. mobile: deep link, auth handoff, offline and crash smoke tests;
+3. payments: webhook signature, duplicate event, reconciliation and live-mode guard tests;
+4. desktop: platform-specific tests only after a desktop standard is enabled.
 
-Правила:
-- только non-production окружения;
-- учетные данные хранятся в secrets manager/CI secrets;
-- plaintext пароли в репозиторий не коммитятся.
+Disabled feature checks must not appear in the generated project quality gate.
 
-## 5) CI/CD quality gates (без исключений)
+## Universal Regression Account
 
-Пайплайн обязателен в таком порядке:
+When auth and tenant flows exist, maintain a non-production seed account for regression:
 
-1. `verify-backend`
-- lint/static checks;
-- go limits check (`tools/scripts/check_go_limits.sh apps/api`);
-- unit tests;
-- integration tests с PostgreSQL.
+1. active user;
+2. membership in at least two companies;
+3. identities only for enabled providers;
+4. multiple active sessions when session management exists.
 
-2. `verify-frontend`
-- typecheck/lint;
-- web limits check (`tools/scripts/check_web_limits.sh apps/web`);
-- component/integration tests;
-- Playwright e2e (минимум smoke + измененная фича).
+Credentials live in CI secrets or a secrets manager, never in the repository.
 
-3. `verify-db`
-- миграции `up/down` в тестовой БД;
-- static DB contract check (`tools/scripts/check_db_contract.sh db/migrations`);
-- проверки naming/versioning-контрактов.
+## CI Quality Gate Shape
 
-4. `verify-contracts`
-- OpenAPI bundle build (`tools/scripts/build_openapi_bundle.sh`);
-- OpenAPI coverage check (`tools/scripts/check_openapi_coverage.sh`).
+A mature stack should run, in order:
 
-5. `verify-desktop-qt`
-- c++ limits check (`tools/scripts/check_cpp_limits.sh apps/desktop/qt`);
-- sanitizer/static-analysis/test набор для desktop модулей.
+1. `verify-structure`;
+2. `verify-contracts`;
+3. `verify-backend` when backend runtime exists;
+4. `verify-frontend` when frontend runtime exists;
+5. `verify-db` when database runtime exists;
+6. optional feature gates only for enabled features;
+7. build only after verify gates;
+8. deploy only after build and smoke.
 
-6. `build-images`
-- выполняется только после успешных verify jobs.
+## Merge Gate
 
-7. `deploy`
-- выполняется только после успешной сборки;
-- после деплоя запускается post-deploy smoke.
+A feature branch is not accepted when:
 
-Если любой verify/job падает, deploy блокируется.
+1. changed behavior has no evidence;
+2. contract and runtime disagree;
+3. security-sensitive negative paths are untested;
+4. flaky tests are ignored without a quarantine note;
+5. disabled feature checks are required by accident;
+6. docs and generated artifacts are out of sync.
 
-## 6) Gate для merge и приемки задачи
+## Advanced Testing Options
 
-Feature branch не может быть принята, если:
-- нет новых/обновленных тестов под измененное поведение;
-- не пройден backend integration для затронутых модулей;
-- не пройден frontend e2e для затронутых пользовательских сценариев;
-- не пройден universal-account regression pack.
+Use when risk warrants it:
 
-## 7) Definition of Done для фичи
+1. property tests for parsers and validators;
+2. fuzz tests for untrusted input;
+3. mutation testing for critical business rules;
+4. Testcontainers or provider-managed ephemeral services for integration tests;
+5. visual regression for complex UI surfaces;
+6. load smoke for high-traffic endpoints.
 
-Фича считается готовой только когда одновременно выполнено:
+## Definition Of Done
 
-1. Контракт и код синхронизированы.
-2. Тесты написаны до финального кода (TDD-процесс соблюден).
-3. Все обязательные тестовые наборы зеленые локально и в CI.
-4. Build и deploy не обошли test gates.
-5. Документация обновлена в том же изменении.
+A feature is done when:
+
+1. contract and code are synchronized;
+2. tests/checks prove changed behavior;
+3. docs are updated at the source of truth;
+4. generated artifacts are refreshed;
+5. skipped checks are named with reasons;
+6. `scripts/check.sh` passes for the generated project.
+
+## Enforcement Reality
+
+This standard is documented by default. It becomes tested/CI-blocking only when generated projects include real runtime test commands. The base generated `scripts/check.sh` currently enforces structure and disabled-folder hygiene.

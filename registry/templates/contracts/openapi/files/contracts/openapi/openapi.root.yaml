@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Generated Stack API
-  version: 1.0.0
+  version: 1.1.0
   summary: Modular OpenAPI contract for the generated stack
   description: |
     Source-of-truth API contract.

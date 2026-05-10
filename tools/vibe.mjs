@@ -3,9 +3,10 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { createHash } from "node:crypto";
+import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
-const REGISTRY_VERSION = "1.0.0";
+const REGISTRY_VERSION = "1.1.0";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..");
@@ -180,6 +181,7 @@ function dumpYaml(value, indent = 0) {
       .join("\n");
   }
   if (value && typeof value === "object") {
+    if (Object.keys(value).length === 0) return "{}";
     return Object.entries(value)
       .map(([key, child]) => {
         if (Array.isArray(child)) {
@@ -187,6 +189,7 @@ function dumpYaml(value, indent = 0) {
           return `${pad}${key}:\n${dumpYaml(child, indent + 2)}`;
         }
         if (child && typeof child === "object") {
+          if (Object.keys(child).length === 0) return `${pad}${key}: {}`;
           return `${pad}${key}:\n${dumpYaml(child, indent + 2)}`;
         }
         return `${pad}${key}: ${formatScalar(child)}`;
@@ -514,6 +517,23 @@ if [ -d registry ] || [ -d frameworks ]; then
   violations=$((violations + 1))
 fi
 
+if [ -d contracts/openapi ]; then
+  for item in contracts/openapi/openapi.root.yaml contracts/openapi/endpoints.inventory.tsv contracts/openapi/modules contracts/openapi/components; do
+    if [ ! -e "$item" ]; then
+      echo "VIOLATION missing_openapi_path path=$item"
+      violations=$((violations + 1))
+    fi
+  done
+fi
+
+if command -v rg >/dev/null 2>&1; then
+  secret_shape_pattern='BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{35}|xox[baprs]-|ghp_[0-9A-Za-z]{36}|github_pat_[0-9A-Za-z_]{80,}|sk-[A-Za-z0-9]{20,}'
+  if rg -n --glob '!node_modules/**' --glob '!.git/**' --glob '!dist/**' --glob '!scripts/check.sh' "$secret_shape_pattern" .; then
+    echo "VIOLATION generated_project_secret_shape"
+    violations=$((violations + 1))
+  fi
+fi
+
 if [ "$violations" -gt 0 ]; then
   echo "Generated project check failed: violations=$violations"
   exit 1
@@ -668,6 +688,13 @@ function validateRequired(data, fields, label, errors) {
   }
 }
 
+function validateAllowedKeys(data, fields, label, errors) {
+  const allowed = new Set(fields);
+  for (const field of Object.keys(data || {})) {
+    if (!allowed.has(field)) errors.push(`${label}: unknown field ${field}`);
+  }
+}
+
 function verifyRegistry() {
   const errors = [];
   const standardIds = allStandardIds();
@@ -677,6 +704,12 @@ function verifyRegistry() {
   for (const id of standardIds) {
     const dir = standardDir(id);
     const meta = readYaml(path.join(dir, "standard.yaml"));
+    validateAllowedKeys(
+      meta,
+      ["id", "name", "version", "status", "domain", "owners", "applies_to", "dependencies", "enforcement", "files", "compatibility", "changelog"],
+      `standard ${id}`,
+      errors
+    );
     validateRequired(
       meta,
       ["id", "name", "version", "status", "domain", "owners", "applies_to", "dependencies", "enforcement", "files", "compatibility", "changelog"],
@@ -687,7 +720,13 @@ function verifyRegistry() {
     if (!/^[0-9]+\.[0-9]+\.[0-9]+$/.test(meta.version || "")) errors.push(`standard ${id}: invalid SemVer version`);
     if (!STATUS_VALUES.has(meta.status)) errors.push(`standard ${id}: invalid status ${meta.status}`);
     if (!Array.isArray(meta.owners) || meta.owners.length === 0) errors.push(`standard ${id}: owners must be non-empty`);
+    if (!Array.isArray(meta.applies_to?.languages)) errors.push(`standard ${id}: applies_to.languages must be an array`);
+    if (!Array.isArray(meta.applies_to?.runtimes)) errors.push(`standard ${id}: applies_to.runtimes must be an array`);
     if (!Array.isArray(meta.dependencies)) errors.push(`standard ${id}: dependencies must be an array`);
+    for (const key of ["documented", "linted", "tested", "ci_blocking"]) {
+      if (typeof meta.enforcement?.[key] !== "boolean") errors.push(`standard ${id}: enforcement.${key} must be boolean`);
+    }
+    if (!Array.isArray(meta.compatibility?.stacks)) errors.push(`standard ${id}: compatibility.stacks must be an array`);
     for (const dep of meta.dependencies || []) {
       const depId = splitRef(dep).id;
       if (!seenStandards.has(depId)) errors.push(`standard ${id}: unknown dependency ${dep}`);
@@ -723,6 +762,12 @@ function verifyRegistry() {
 
   for (const stackId of allStackIds()) {
     const stack = loadStack(stackId);
+    validateAllowedKeys(
+      stack,
+      ["id", "name", "status", "description", "components", "standards", "templates", "checks", "readiness", "optional_features"],
+      `stack ${stackId}`,
+      errors
+    );
     validateRequired(stack, ["id", "name", "status", "description", "components", "standards", "templates", "checks", "readiness"], `stack ${stackId}`, errors);
     if (stack.id !== stackId) errors.push(`stack ${stackId}: id must match filename`);
     if (!STATUS_VALUES.has(stack.status)) errors.push(`stack ${stackId}: invalid status ${stack.status}`);
@@ -830,6 +875,40 @@ function verifyProject(projectDir) {
   return errors;
 }
 
+function runProjectStackChecks(projectDir) {
+  const errors = [];
+  projectDir = path.resolve(projectDir);
+  const profileFile = path.join(projectDir, ".vibe", "profile.yaml");
+  if (!fs.existsSync(profileFile)) return errors;
+
+  const profile = readYaml(profileFile);
+  if (!fs.existsSync(stackFile(profile.stack))) return errors;
+  const stack = loadStack(profile.stack);
+
+  for (const check of stack.checks || []) {
+    if (check === "check_structure" || check === "check_standards") continue;
+    const file = checkFile(check);
+    if (!fs.existsSync(file)) {
+      errors.push(`project ${projectDir}: stack check ${check} is missing`);
+      continue;
+    }
+    const result = spawnSync(file, [projectDir], {
+      cwd: REPO_ROOT,
+      encoding: "utf8",
+      maxBuffer: 1024 * 1024
+    });
+    if (result.status !== 0) {
+      const detail = `${result.stdout || ""}${result.stderr || ""}`
+        .trim()
+        .split(/\r?\n/)
+        .slice(0, 8)
+        .join("; ");
+      errors.push(`project ${projectDir}: stack check ${check} failed${detail ? `: ${detail}` : ""}`);
+    }
+  }
+  return errors;
+}
+
 function scanSecrets(targetDir) {
   const patterns = [
     /BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY/,
@@ -853,9 +932,17 @@ function scanSecrets(targetDir) {
         continue;
       }
       if (!entry.isFile()) continue;
+      const relative = path.relative(targetDir, full).split(path.sep).join("/");
+      if (
+        relative === "tools/vibe.mjs" ||
+        relative.endsWith("/scripts/check.sh") ||
+        relative === "registry/checks/check_template_hygiene.sh"
+      ) {
+        continue;
+      }
       const text = readText(full);
       if (patterns.some((pattern) => pattern.test(text))) {
-        errors.push(`secret-like pattern in ${path.relative(targetDir, full)}`);
+        errors.push(`secret-like pattern in ${relative}`);
       }
     }
   }
@@ -867,17 +954,20 @@ function runVerify(target, flags = {}) {
   const errors = [];
   if (!flags["project-only"]) {
     errors.push(...verifyRegistry());
-    errors.push(...scanSecrets(REGISTRY_DIR));
+    errors.push(...scanSecrets(REPO_ROOT));
   }
 
   if (target) {
     errors.push(...verifyProject(target));
+    if (!flags["skip-stack-checks"]) errors.push(...runProjectStackChecks(target));
   } else if (!flags["registry-only"] && !flags["project-only"]) {
     const examplesDir = path.join(REPO_ROOT, "examples");
     if (fs.existsSync(examplesDir)) {
       for (const entry of fs.readdirSync(examplesDir, { withFileTypes: true })) {
         if (entry.isDirectory() && fs.existsSync(path.join(examplesDir, entry.name, ".vibe", "profile.yaml"))) {
-          errors.push(...verifyProject(path.join(examplesDir, entry.name)));
+          const examplePath = path.join(examplesDir, entry.name);
+          errors.push(...verifyProject(examplePath));
+          errors.push(...runProjectStackChecks(examplePath));
         }
       }
     }

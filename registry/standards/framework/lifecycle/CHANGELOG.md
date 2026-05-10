@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.0
+
+- Added May 2026 registry-first lifecycle expectations, readiness matrix discipline and public release gate.
+- Added a registry change checklist for standard, stack, lockfile and generated-example updates.
+
 ## 1.0.1
 
 - Clarified lifecycle language for registry-generated projects.

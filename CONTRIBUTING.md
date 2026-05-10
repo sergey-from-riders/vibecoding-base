@@ -40,3 +40,5 @@ node tools/vibe.mjs verify
 ```
 
 The verify command checks registry references, schemas, enforcement claims, generated examples and no-clutter project structure.
+
+Do not add fake lockfiles or fake enforcement. If a template is a placeholder, keep its readiness and README honest.
