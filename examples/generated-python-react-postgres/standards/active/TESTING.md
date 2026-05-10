@@ -1,8 +1,8 @@
-<!-- Generated from registry/standards/testing/tdd-strict@1.0.0. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/testing/tdd-strict@1.0.1. Update the registry standard, then regenerate. -->
 
 # 17. Testing, TDD and Quality Gates (Mandatory)
 
-Этот документ обязателен для всех изменений в Go Next Postgres Framework.
+Этот документ обязателен для всех изменений в generated project.
 
 Главный принцип: **фича не считается принятой, пока не написаны и не пройдены тесты**.
 

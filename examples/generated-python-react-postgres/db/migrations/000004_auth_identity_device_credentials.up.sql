@@ -1,4 +1,4 @@
--- Go Next Postgres Framework 2026: align auth/session schema with unified identity and device restore contract
+-- Generated stack 2026: align auth/session schema with unified identity and device restore contract
 
 ALTER TABLE sessions
   RENAME COLUMN token_hash TO session_token_hash;

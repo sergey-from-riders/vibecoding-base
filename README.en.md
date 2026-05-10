@@ -57,6 +57,31 @@ ai
 
 Those parts stay in the registry until you explicitly enable them.
 
+## No Duplicate Sources 🧭
+
+There is one source of truth for standards:
+
+```text
+registry/standards
+```
+
+Generated projects and examples receive copies in:
+
+```text
+standards/active
+```
+
+That copy is runtime context for humans and agents. It is not where standards are maintained.
+
+If you want to change a standard:
+
+1. edit `registry/standards/<id>/standard.md`;
+2. update `standard.yaml` and `CHANGELOG.md`;
+3. regenerate examples;
+4. run `node tools/vibe.mjs verify`.
+
+`verify` fails if generated active standards drift from the registry.
+
 ## Daily Commands
 
 ```bash

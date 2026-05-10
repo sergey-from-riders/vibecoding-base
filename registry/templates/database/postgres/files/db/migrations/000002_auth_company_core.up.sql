@@ -1,4 +1,4 @@
--- Go Next Postgres Framework 2026: auth + company context core schema
+-- Generated stack 2026: auth + company context core schema
 
 CREATE OR REPLACE FUNCTION set_updated_at_now()
 RETURNS TRIGGER AS $$

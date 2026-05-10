@@ -1,4 +1,4 @@
--- Go Next Postgres Framework 2026: rollback unified identity and device restore schema alignment
+-- Generated stack 2026: rollback unified identity and device restore schema alignment
 
 DROP TRIGGER IF EXISTS trg_device_credential_versions_delete ON device_credentials;
 DROP TRIGGER IF EXISTS trg_device_credential_versions_write ON device_credentials;

@@ -28,7 +28,7 @@ paths:
                   value:
                     openapi: 3.2.0
                     info:
-                      title: Go Next Postgres Framework API
+                      title: Generated Stack API
                       version: 1.0.0
         '500':
           description: Docs asset unavailable
@@ -115,7 +115,7 @@ paths:
                   value: |
                     openapi: 3.2.0
                     info:
-                      title: Go Next Postgres Framework API
+                      title: Generated Stack API
                       version: 1.0.0
         '404':
           description: Docs asset not found

@@ -1,45 +1,48 @@
-<!-- Generated from registry/standards/framework/lifecycle@1.0.0. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/framework/lifecycle@1.0.1. Update the registry standard, then regenerate. -->
 
-# Kalka Framework
+# Framework Lifecycle Standard
 
-Kalka is the operating model behind this repository: a lightweight framework for building software with humans and coding agents in the same repo.
+This standard defines the delivery lifecycle for generated projects that use `vibecoding-base`.
 
-The core idea is simple: agents are fast, but they need rails. Kalka gives them rails through contracts, playbooks, docs, checks, and human checkpoints.
+The core idea is simple: coding agents are fast, but the project must give them rails. The rails are active standards, stack profile metadata, contracts, checks, generated docs and human checkpoints.
 
 ## Principles
 
-### 1. Context Before Code
+### 1. Active Context Before Code
 
-Every non-trivial change starts by reading the repository rules:
+Every non-trivial change starts by reading the generated project context:
 
-- `AGENTS.md`
-- relevant docs in `docs/`
-- relevant playbook in `agents/playbooks/`
-- existing contracts and migrations
+1. `AGENTS.md`
+2. relevant files in `standards/active/`
+3. `.vibe/profile.yaml`
+4. `.vibe/registry.lock` when changing stack composition or standard versions
+5. existing contracts and migrations
 
-If the agent does not know the local rules, it should not write code.
+If the agent does not know the active standards, it should not write code.
 
 ### 2. Scope Before Speed
 
-Fast implementation is useful only inside a clear boundary. New product domains, architecture changes, data model changes, and deployment changes need an ADR or an explicit update to an existing decision.
+Fast implementation is useful only inside a clear boundary. New product domains, architecture changes, data model changes and deployment changes need an explicit task note, ADR, or standard/profile update.
 
-Default scope for this starter:
+Default generated project scope is intentionally narrow:
 
-- Auth
-- session lifecycle
-- company context
-- API docs/testing assets
+1. selected backend;
+2. selected frontend;
+3. selected database;
+4. selected contracts;
+5. selected standards;
+6. explicitly enabled optional features.
 
-Everything else is opt-in.
+Everything else is opt-in through `vibe enable`.
 
 ### 3. Contract Before Runtime
 
 The contract is the source of truth:
 
-- API behavior starts in OpenAPI.
-- Data behavior starts in migrations.
-- UI behavior follows API and design tokens.
-- SDKs follow generated or maintained contracts.
+1. API behavior starts in `contracts/openapi`.
+2. Data behavior starts in `db/migrations`.
+3. UI behavior follows API contracts and selected UI standards.
+4. SDKs follow generated or maintained contracts.
 
 Runtime code should not invent hidden APIs.
 
@@ -47,12 +50,12 @@ Runtime code should not invent hidden APIs.
 
 A task is not implementation-ready until the expected failure is clear:
 
-- failing unit test;
-- failing integration test;
-- failing e2e scenario;
-- failing contract coverage;
-- failing static gate;
-- or a documented reason why a different gate is used.
+1. failing unit test;
+2. failing integration test;
+3. failing e2e scenario;
+4. failing contract coverage;
+5. failing static gate;
+6. documented reason why another gate is used.
 
 ### 5. Vertical Slice Over Horizontal Piles
 
@@ -74,33 +77,33 @@ many schemas -> many empty handlers -> no tests -> no behavior
 
 Every real feature should carry:
 
-- request ID propagation;
-- structured logs;
-- traces for request flow;
-- metrics for latency/errors/security-sensitive flows;
-- redaction for secrets and tokens.
+1. request ID propagation;
+2. structured logs;
+3. traces for request flow;
+4. metrics for latency/errors/security-sensitive flows;
+5. redaction for secrets and tokens.
 
 ### 7. Human Checkpoints For Dangerous Work
 
 Humans must review before:
 
-- deployment;
-- schema/data migration with real data impact;
-- auth/session/security changes;
-- enabling MCP or other integrations with write access;
-- destructive git operations;
-- secret rotation.
+1. deployment;
+2. schema/data migration with real data impact;
+3. auth/session/security changes;
+4. enabling integrations with write access;
+5. destructive git operations;
+6. secret rotation.
 
 ### 8. Public Template Hygiene
 
-The repository must stay reusable:
+Generated projects and registry templates must stay reusable:
 
-- no real secrets;
-- no private hostnames or server paths;
-- no product-specific leftovers;
-- no committed `.env`;
-- no dependency vendor folders;
-- safe placeholder domains only.
+1. no real secrets;
+2. no private hostnames or server paths;
+3. no product-specific leftovers;
+4. no committed `.env`;
+5. no dependency vendor folders;
+6. safe placeholder domains only.
 
 ## Lifecycle
 
@@ -109,7 +112,6 @@ Every meaningful task moves through this lifecycle:
 ```text
 Idea
   -> Scope
-  -> ADR or task log
   -> Contract
   -> Test plan
   -> Red
@@ -117,6 +119,7 @@ Idea
   -> Green
   -> Observability
   -> Docs
+  -> Verify
   -> Review
   -> Merge
 ```
@@ -125,16 +128,16 @@ Idea
 
 A good task has:
 
-- title;
-- scope;
-- non-goals;
-- files/modules likely to change;
-- contract impact;
-- data impact;
-- tests/gates;
-- security impact;
-- docs impact;
-- acceptance criteria.
+1. title;
+2. scope;
+3. non-goals;
+4. files/modules likely to change;
+5. contract impact;
+6. data impact;
+7. tests/gates;
+8. security impact;
+9. docs impact;
+10. acceptance criteria.
 
 Example:
 
@@ -143,170 +146,79 @@ Example:
 
 Scope:
 - apps/api
-- packages/contracts/openapi
+- contracts/openapi
 - db/migrations
-- docs
+- standards/active
 
 Non-goals:
 - OAuth providers
 - UI polish
-- Android/Qt
+- mobile
 
 Acceptance:
 - login endpoint follows OpenAPI contract
 - token stored only as hash
 - request_id is returned and logged
 - integration test covers success and invalid password
-- verify:offline and verify:contracts pass
+- scripts/check.sh passes
 ```
 
-## Agent Roles
+## Generated Docs Rule
 
-You can use one agent or multiple agents, but keep ownership explicit.
+Do not edit generated `standards/active/*` as the source of truth. Update the matching `registry/standards/<id>/standard.md`, then regenerate the project.
 
-### Planner
-
-Reads docs, scopes work, identifies risks, and proposes file ownership.
-
-### Contract Agent
-
-Updates OpenAPI, endpoint inventory, examples, schemas, and generated artifacts.
-
-### Backend Agent
-
-Implements service, handler, repository, middleware, integration tests, and observability.
-
-### Frontend Agent
-
-Implements UI against existing contracts, using shared API clients and design tokens.
-
-### QA Agent
-
-Runs checks, reviews edge cases, and verifies regression coverage.
-
-### Security Agent
-
-Reviews auth/session/storage/logging/secret handling and incident runbook impact.
-
-For small tasks, one agent can cover multiple roles. For larger tasks, split by file ownership to avoid conflicts.
+`vibe verify` should fail when a generated active standard drifts from the registry.
 
 ## Definition Of Ready
 
 A task is ready when:
 
-- the scope is narrow;
-- the owner understands the relevant docs;
-- API/data impact is known;
-- security impact is known;
-- expected validation is listed;
-- non-goals are explicit.
+1. the scope is narrow;
+2. the owner understands the active standards;
+3. API/data impact is known;
+4. security impact is known;
+5. expected validation is listed;
+6. non-goals are explicit.
 
 ## Definition Of Done
 
 A task is done when:
 
-- implementation matches the contract;
-- tests or gates prove behavior;
-- docs are updated;
-- generated artifacts are refreshed;
-- template clean check still passes;
-- unresolved risks are documented;
-- human checkpoints were completed where required.
+1. implementation matches the contract;
+2. tests or gates prove behavior;
+3. docs are updated at the source of truth;
+4. generated artifacts are refreshed;
+5. hygiene checks still pass;
+6. unresolved risks are documented;
+7. human checkpoints were completed where required.
 
 ## Standard Workflow For A New Endpoint
 
-1. Add endpoint to `packages/contracts/openapi/modules/<module>.yaml`.
-2. Add or update schemas in `components/schemas`.
-3. Add row to `endpoints.inventory.tsv`.
-4. Add examples and `x-codeSamples`.
-5. Run `pnpm run verify:contracts`.
-6. Add backend handler/service tests.
-7. Implement backend service and handler.
-8. Add observability.
-9. Update docs/playbooks if the pattern is new.
+1. Add endpoint to `contracts/openapi/modules/<module>.yaml`.
+2. Add or update schemas in `contracts/openapi/components/schemas`.
+3. Add row to `contracts/openapi/endpoints.inventory.tsv`.
+4. Add examples and code samples.
+5. Add backend handler/service tests.
+6. Implement backend service and handler.
+7. Add observability.
+8. Run `scripts/check.sh`.
+9. Update registry docs if the pattern creates a reusable rule.
 
 ## Standard Workflow For A New Table
 
-1. Read `docs/07-DB-NAMING-CONVENTIONS.md`.
-2. Read `docs/15-DATA-VERSIONING-AND-DIFF.md`.
-3. Add append-only up/down migrations.
-4. Use UUID entity IDs and canonical FK names.
-5. Add versioning tables/triggers for business entities.
-6. Run `pnpm run db:check`.
-7. Update schema docs.
+1. Read `standards/active/DATABASE.md`.
+2. Add append-only up/down migrations.
+3. Use UUID entity IDs and canonical FK names.
+4. Add versioning tables/triggers for business entities when required.
+5. Run the active project checks.
+6. Update docs if the data model changes.
 
 ## Standard Workflow For UI
 
-1. Read `docs/08-UI-CROSS-PLATFORM-RULES.md`.
-2. Read `docs/19-NEXT-NODE-FRONTEND-STANDARD.md`.
+1. Read `standards/active/FRONTEND.md`.
+2. Read `standards/active/UI.md` when enabled.
 3. Reuse shared components and API clients.
 4. Do not duplicate backend validation.
-5. Use design tokens.
-6. Add component/integration/e2e coverage for changed flows.
-7. Run `pnpm run limits:web`.
-
-## Prompt Pattern
-
-Use prompts with this shape:
-
-```text
-Read AGENTS.md and FRAMEWORK.md first.
-
-Task:
-<one clear outcome>
-
-Scope:
-<allowed folders/files>
-
-Non-goals:
-<what not to touch>
-
-Required docs:
-<docs/playbooks to read>
-
-Validation:
-<commands/tests that must pass>
-
-Output:
-- changed files
-- validation results
-- unresolved risks
-```
-
-## Review Pattern
-
-Review agent work in this order:
-
-1. Scope: did it touch only intended files?
-2. Contract: did API/data behavior drift?
-3. Security: did secrets, tokens, auth, logging, or MCP access get weaker?
-4. Tests: are failures meaningful and are green checks real?
-5. Docs: can the next agent understand the new state?
-6. Maintainability: did it add duplication or hidden coupling?
-
-## Anti-Patterns
-
-Avoid:
-
-- "implement everything" prompts;
-- UI before backend contract;
-- schema edits without migrations;
-- generated code without source changes;
-- passing tests by weakening gates;
-- adding MCP write access without a human checkpoint;
-- keeping outdated docs because "the code works";
-- treating agent output as reviewed code.
-
-## Framework Files
-
-The framework is spread across:
-
-- `FRAMEWORK.md` - operating model;
-- `AGENTS.md` - agent rules;
-- `docs/06-VIBECODING-WORKFLOW.md` - task workflow;
-- `docs/17-TESTING-TDD-QUALITY-GATES.md` - quality gates;
-- `docs/25-MCP-AGENTS-OPERATIONS-STANDARD.md` - MCP and agent safety;
-- `agents/playbooks/` - task-specific playbooks;
-- `tools/scripts/` - executable gates.
-
-Keep these files synchronized. If one changes the workflow, update the others.
+5. Use selected design tokens/profile.
+6. Add component/integration/e2e coverage for changed flows where runtime exists.
+7. Run `scripts/check.sh`.

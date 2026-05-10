@@ -1,4 +1,4 @@
--- Go Next Postgres Framework 2026: rollback mandatory business-entity versioning
+-- Generated stack 2026: rollback mandatory business-entity versioning
 
 DROP TRIGGER IF EXISTS trg_company_membership_versions_delete ON company_memberships;
 DROP TRIGGER IF EXISTS trg_company_membership_versions_write ON company_memberships;

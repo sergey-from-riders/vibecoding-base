@@ -2,7 +2,7 @@
 
 Composable stack profiles and a versioned standards registry for AI-native development.
 
-Short version: this repo is no longer a pile of copyable `frameworks/*` folders. The registry is the source of truth. A generated project contains only the active stack you chose, plus the exact standards and checks that apply to that stack.
+Short version: this repo is no longer a pile of copyable stack folders. The registry is the source of truth. A generated project contains only the active stack you chose, plus the exact standards and checks that apply to that stack.
 
 ## Languages
 
@@ -35,6 +35,14 @@ AGENTS.md
 ```
 
 Disabled features stay in `registry`, not in the generated project.
+
+## Duplication Policy
+
+There is one source of truth for standards: `registry/standards`.
+
+`examples/*/standards/active` contains generated copies so users can inspect a real project shape. Do not edit those files by hand. Update the registry standard and regenerate examples instead.
+
+`node tools/vibe.mjs verify` checks that generated active standards have not drifted from the registry.
 
 ## Quick Start
 

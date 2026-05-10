@@ -1,6 +1,6 @@
 # 22. Observability Standard (Mandatory)
 
-Этот документ фиксирует обязательный стандарт observability для Go Next Postgres Framework.
+Этот документ фиксирует обязательный стандарт observability для generated project.
 
 ## 1) Scope
 

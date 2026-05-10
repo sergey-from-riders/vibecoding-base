@@ -113,8 +113,8 @@ apps/api/
 
 ## 11) Связанные документы
 
-1. `docs/17-TESTING-TDD-QUALITY-GATES.md`
-2. `docs/05-AUTH-COMPANY-SWITCH.md`
-3. `docs/16-UNIFIED-AUTH-SESSION-ARCHITECTURE.md`
-4. `docs/07-DB-NAMING-CONVENTIONS.md`
-5. `docs/99-REFERENCES.md`
+1. `standards/active/TESTING.md`
+2. `standards/active/API.md`
+3. `standards/active/DATABASE.md`
+4. `standards/active/SECURITY.md`
+5. `standards/active/OBSERVABILITY.md`

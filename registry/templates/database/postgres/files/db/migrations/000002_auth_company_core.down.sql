@@ -1,4 +1,4 @@
--- Go Next Postgres Framework 2026: rollback auth + company context core schema
+-- Generated stack 2026: rollback auth + company context core schema
 
 DROP TABLE IF EXISTS auth_events;
 DROP TABLE IF EXISTS sessions;

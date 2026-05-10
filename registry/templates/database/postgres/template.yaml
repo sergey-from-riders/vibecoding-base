@@ -1,6 +1,6 @@
 id: database/postgres
 name: PostgreSQL migrations template
-version: 1.0.0
+version: 1.0.1
 status: ready
 paths:
   - db/migrations

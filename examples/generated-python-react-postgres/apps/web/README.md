@@ -7,9 +7,9 @@ React 19 web adapter.
 - switch company UI
 
 ## Mandatory engineering contract
-- `docs/19-REACT-NODE-FRONTEND-STANDARD.md`
-- `docs/17-TESTING-TDD-QUALITY-GATES.md`
-- `docs/08-UI-CROSS-PLATFORM-RULES.md`
+- `standards/active/FRONTEND.md`
+- `standards/active/UI.md`
+- `standards/active/TESTING.md`
 
 ## Hard numeric limits
 1. `MAX_TS_FILE_LINES = 260`

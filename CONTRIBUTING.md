@@ -2,7 +2,7 @@
 
 `vibecoding-base` is a standards registry plus composable stack profiles.
 
-Do not add a new copied `frameworks/<stack>` folder. Add reusable standards, templates and stack profiles instead.
+Do not add a copied stack folder. Add reusable standards, templates and stack profiles instead.
 
 ## Contribution Types
 

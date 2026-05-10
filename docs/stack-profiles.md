@@ -2,6 +2,8 @@
 
 Stack profiles are YAML compositions. They choose standards, templates and checks without copying their content.
 
+Stack profiles must stay small. They reference standards and templates; they do not contain standard text.
+
 ## Required Fields
 
 ```yaml
@@ -92,3 +94,16 @@ standards:
 ```
 
 If two stacks differ only by backend/runtime, share the common standards and swap only the specific ones.
+
+## Example Projects
+
+Examples under `examples/generated-*` are generated from stack profiles. They show the expected project shape:
+
+```text
+AGENTS.md
+standards/active
+.vibe/profile.yaml
+.vibe/registry.lock
+```
+
+Do not manually maintain example standards. Change `registry/standards`, regenerate examples, then run `node tools/vibe.mjs verify`.

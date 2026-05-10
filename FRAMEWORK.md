@@ -17,6 +17,7 @@ standards + templates + stack profile + lockfile + generated active context
 5. Lockfiles pin exact generated versions.
 6. Enforcement must be honest.
 7. Disabled features must not create folders.
+8. Generated examples are derived artifacts, not source folders.
 
 ## Delivery Loop
 
@@ -47,3 +48,4 @@ node tools/vibe.mjs enable <feature> [variant] --project <dir>
 4. Does enforcement point to real checks?
 5. Does the stack status matrix avoid overclaiming readiness?
 6. Do generated examples still pass `node tools/vibe.mjs verify`?
+7. Did any generated active standard drift from `registry/standards`?

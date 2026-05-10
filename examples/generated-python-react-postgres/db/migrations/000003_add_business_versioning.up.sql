@@ -1,4 +1,4 @@
--- Go Next Postgres Framework 2026: mandatory business-entity versioning
+-- Generated stack 2026: mandatory business-entity versioning
 -- Applies to business data tables only; logs (e.g., auth_events) are excluded.
 
 CREATE OR REPLACE FUNCTION rp_current_actor()

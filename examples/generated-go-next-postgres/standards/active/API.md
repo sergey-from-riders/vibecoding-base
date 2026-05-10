@@ -1,4 +1,4 @@
-<!-- Generated from registry/standards/api/openapi-modular@1.0.0. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/api/openapi-modular@1.0.1. Update the registry standard, then regenerate. -->
 
 # 21. OpenAPI Modular Contract Standard (Strict)
 
@@ -15,10 +15,10 @@
 ## 1) Version and structure (fixed)
 
 1. `OPENAPI_VERSION = 3.2.0`
-2. `ROOT_FILE = packages/contracts/openapi/openapi.root.yaml`
+2. `ROOT_FILE = contracts/openapi/openapi.root.yaml`
 3. `MODULE_FILES = 1` файл на модуль (`auth.yaml`, `company.yaml`, `docs.yaml`)
-4. `INVENTORY_FILE = packages/contracts/openapi/endpoints.inventory.tsv`
-5. `DIST_DIR = packages/contracts/openapi/dist`
+4. `INVENTORY_FILE = contracts/openapi/endpoints.inventory.tsv`
+5. `DIST_DIR = contracts/openapi/dist`
 
 ## 2) Endpoint coverage rules
 
@@ -153,7 +153,7 @@
 
 ## 11) HTTP method policy (strict matrix)
 
-### 11.1 Allowed methods in Go Next Postgres Framework API
+### 11.1 Allowed methods in generated stack API
 1. `GET` (read)
 2. `POST` (commands/create/mutation)
 3. `PUT` (full replace, only if explicitly needed)

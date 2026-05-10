@@ -1,6 +1,6 @@
 id: contracts/openapi
 name: Modular OpenAPI template
-version: 1.0.0
+version: 1.0.1
 status: ready
 paths:
   - contracts/openapi

@@ -1,6 +1,6 @@
 id: testing/tdd-strict
 name: TDD Strict Quality Gate Standard
-version: 1.0.0
+version: 1.0.1
 status: stable
 domain: testing
 owners:

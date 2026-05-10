@@ -2,6 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 
 const REGISTRY_VERSION = "1.0.0";
@@ -358,6 +359,12 @@ function activeStandardFileName(id, standard) {
   return `${standard.domain.toUpperCase()}.md`;
 }
 
+function generatedStandardContent(id, version, standard) {
+  const source = path.join(standardDir(id), standard.files.human_readable || "standard.md");
+  const header = `<!-- Generated from registry/standards/${id}@${version}. Update the registry standard, then regenerate. -->\n\n`;
+  return `${header}${readText(source)}`;
+}
+
 function sortedActiveStandards(resolved) {
   const order = [
     "agent/base",
@@ -597,10 +604,8 @@ function generateProject(stackId, projectDir, options = {}, featureConfigs = {})
   fs.rmSync(activeDir, { recursive: true, force: true });
   fs.mkdirSync(activeDir, { recursive: true });
   for (const item of sortedActiveStandards(standards)) {
-    const source = path.join(standardDir(item.id), item.standard.files.human_readable || "standard.md");
     const target = path.join(activeDir, activeStandardFileName(item.id, item.standard));
-    const header = `<!-- Generated from registry/standards/${item.id}@${item.version}. Update the registry standard, then regenerate. -->\n\n`;
-    writeText(target, `${header}${readText(source)}`);
+    writeText(target, generatedStandardContent(item.id, item.version, item.standard));
   }
 
   writeText(path.join(projectDir, "AGENTS.md"), renderAgents(stack, standards));
@@ -667,6 +672,7 @@ function verifyRegistry() {
   const errors = [];
   const standardIds = allStandardIds();
   const seenStandards = new Set(standardIds);
+  const standardBodyHashes = new Map();
 
   for (const id of standardIds) {
     const dir = standardDir(id);
@@ -689,6 +695,16 @@ function verifyRegistry() {
     if (!fs.existsSync(path.join(dir, meta.files?.human_readable || ""))) errors.push(`standard ${id}: missing human-readable file`);
     if (!fs.existsSync(path.join(dir, meta.changelog || ""))) errors.push(`standard ${id}: missing changelog`);
     if (!fs.existsSync(path.join(dir, "README.md"))) errors.push(`standard ${id}: missing README.md`);
+    if (meta.files?.human_readable && fs.existsSync(path.join(dir, meta.files.human_readable))) {
+      const body = readText(path.join(dir, meta.files.human_readable)).trim().replace(/\r\n/g, "\n");
+      const hash = createHash("sha256").update(body).digest("hex");
+      const duplicateOf = standardBodyHashes.get(hash);
+      if (duplicateOf) {
+        errors.push(`standard ${id}: human-readable body duplicates standard ${duplicateOf}`);
+      } else {
+        standardBodyHashes.set(hash, id);
+      }
+    }
     const enforced = meta.enforcement?.linted || meta.enforcement?.tested || meta.enforcement?.ci_blocking;
     if (enforced) {
       const checksPath = meta.files?.checks;
@@ -793,6 +809,11 @@ function verifyProject(projectDir) {
     if (standard.version !== version) errors.push(`project ${projectDir}: standard ${id} lock=${version} registry=${standard.version}`);
     const activeFile = path.join(projectDir, "standards", "active", activeStandardFileName(id, standard));
     if (!fs.existsSync(activeFile)) errors.push(`project ${projectDir}: missing active standard ${activeStandardFileName(id, standard)}`);
+    if (fs.existsSync(activeFile)) {
+      const expected = generatedStandardContent(id, version, standard).trim().replace(/\r\n/g, "\n");
+      const actual = readText(activeFile).trim().replace(/\r\n/g, "\n");
+      if (actual !== expected) errors.push(`project ${projectDir}: active standard drifted from registry: ${activeStandardFileName(id, standard)}`);
+    }
   }
   for (const [id, version] of Object.entries(lock.templates || {})) {
     if (!fs.existsSync(path.join(templateDir(id), "template.yaml"))) {

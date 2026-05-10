@@ -1,6 +1,6 @@
 id: frontend/next
 name: Next.js web template
-version: 1.0.0
+version: 1.0.1
 status: partial
 paths:
   - apps/web

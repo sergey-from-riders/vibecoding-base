@@ -1,8 +1,8 @@
-<!-- Generated from registry/standards/observability/three-signals@1.0.0. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/observability/three-signals@1.0.1. Update the registry standard, then regenerate. -->
 
 # 22. Observability Standard (Mandatory)
 
-Этот документ фиксирует обязательный стандарт observability для Go Next Postgres Framework.
+Этот документ фиксирует обязательный стандарт observability для generated project.
 
 ## 1) Scope
 

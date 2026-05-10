@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Go Next Postgres Framework API
+  title: Generated Stack API
   version: 1.0.0
-  summary: Modular OpenAPI contract for Go Next Postgres Framework
+  summary: Modular OpenAPI contract for the generated stack
   description: |
     Source-of-truth API contract.
     Generated bundle is served by docs endpoints.

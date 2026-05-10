@@ -34,6 +34,23 @@ AGENTS.md
 
 The generated project must not contain all stacks, all standards or all templates.
 
+## Duplication Policy
+
+Forbidden duplication:
+
+1. copying the same standard into multiple stack folders;
+2. maintaining standards inside generated examples;
+3. adding a second source of truth under `docs/` for rules already owned by `registry/standards`;
+4. copying inactive feature templates into a generated project.
+
+Allowed generated copies:
+
+1. `standards/active/*` inside generated projects;
+2. generated example projects under `examples/`;
+3. lockfile snapshots in `.vibe/registry.lock`.
+
+Allowed copies are derived artifacts. They must be regenerated from the registry and verified for drift.
+
 ## Stack Profile
 
 A stack profile is YAML composition:
@@ -112,3 +129,5 @@ It must not mention inactive future stacks as if they exist in the project.
 6. enforcement claims versus actual checks;
 7. generated project no-clutter rules;
 8. active standards and lockfile consistency.
+9. active standard file content against the registry source.
+10. exact duplicate standard bodies inside `registry/standards`.

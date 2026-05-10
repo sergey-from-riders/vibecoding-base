@@ -2,6 +2,8 @@
 
 Standards are first-class versioned units. Do not hide a rule inside a stack folder.
 
+Do not edit `examples/*/standards/active/*` as source. Those files are generated from `registry/standards`.
+
 ## Create A New Standard
 
 Create:
@@ -48,6 +50,19 @@ When changing a standard:
 5. Update `checks.yaml` if the rule is automatically checked.
 6. Run `node tools/vibe.mjs verify`.
 7. Add a migration note if the change breaks existing stack profiles or generated projects.
+8. Regenerate examples if the standard is active in an example.
+
+## Regenerating Examples
+
+After a standard or template change:
+
+```bash
+node tools/vibe.mjs use go-next-postgres --project examples/generated-go-next-postgres --force
+node tools/vibe.mjs use python-react-postgres --project examples/generated-python-react-postgres --force
+node tools/vibe.mjs verify
+```
+
+The generated examples are documentation by example. They are useful, but they are not the source of truth.
 
 ## Enforcement Rules
 
