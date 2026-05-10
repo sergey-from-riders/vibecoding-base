@@ -1,22 +1,42 @@
 # Contributing
 
-Contributions should keep `vibecoding-base` as a catalog of reusable frameworks, not a single product repository.
+`vibecoding-base` is a standards registry plus composable stack profiles.
 
-## Adding A Framework
+Do not add a new copied `frameworks/<stack>` folder. Add reusable standards, templates and stack profiles instead.
 
-1. Create `frameworks/<stack-name>`.
-2. Include `README.md`, `FRAMEWORK.md`, `AGENTS.md`, `LICENSE`, `SECURITY.md`, and `CONTRIBUTING.md`.
-3. Include local checks under `tools/scripts`.
-4. Keep all env files as examples only.
-5. Add the framework to `catalog.json`.
-6. Run `tools/scripts/check_frameworks.sh`.
+## Contribution Types
 
-## Review Standard
+1. Standard changes: edit `registry/standards/<id>/`.
+2. Stack profile changes: edit `registry/stacks/<stack>.yaml`.
+3. Template changes: edit `registry/templates/<template>/`.
+4. Check changes: edit `registry/checks/`.
+5. Docs changes: edit `docs/`.
 
-Frameworks should be:
+## Standard Change Checklist
 
-- copyable without private infrastructure;
-- explicit about what is implemented and what is pending;
-- strict enough for coding agents;
-- documented enough for humans;
-- safe for public GitHub publishing.
+1. Update `standard.md`.
+2. Update `standard.yaml`.
+3. Update `CHANGELOG.md`.
+4. Mark breaking/non-breaking impact.
+5. Update `checks.yaml` if automated enforcement changed.
+6. Add migration notes for breaking profile changes.
+7. Regenerate examples if active output changes.
+8. Run `node tools/vibe.mjs verify`.
+
+## Review Model
+
+Every standard has `owners`.
+
+1. Stable standard changes need review from an owner.
+2. Breaking changes need a major version bump.
+3. CI-blocking enforcement must point to a real check.
+4. Stack profiles should pin compatible ranges.
+5. Generated projects pin exact versions through `.vibe/registry.lock`.
+
+## Local Validation
+
+```bash
+node tools/vibe.mjs verify
+```
+
+The verify command checks registry references, schemas, enforcement claims, generated examples and no-clutter project structure.

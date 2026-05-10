@@ -1,0 +1,25 @@
+id: security/no-secrets
+name: No Secrets Security Standard
+version: 1.0.0
+status: stable
+domain: security
+owners:
+  - security
+applies_to:
+  languages: []
+  runtimes:
+    - any
+dependencies: []
+enforcement:
+  documented: true
+  linted: true
+  tested: false
+  ci_blocking: true
+files:
+  human_readable: standard.md
+  checks: checks.yaml
+compatibility:
+  stacks:
+    - go-next-postgres
+    - python-react-postgres
+changelog: CHANGELOG.md

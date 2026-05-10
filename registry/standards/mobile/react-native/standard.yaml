@@ -1,0 +1,27 @@
+id: mobile/react-native
+name: React Native Mobile Standard
+version: 1.0.0
+status: experimental
+domain: mobile
+owners:
+  - mobile
+applies_to:
+  languages:
+    - typescript
+  runtimes:
+    - react-native
+dependencies:
+  - api/openapi-modular@^1.0.0
+  - security/no-secrets@^1.0.0
+enforcement:
+  documented: true
+  linted: false
+  tested: false
+  ci_blocking: false
+files:
+  human_readable: standard.md
+compatibility:
+  stacks:
+    - go-next-postgres
+    - python-react-postgres
+changelog: CHANGELOG.md

@@ -1,0 +1,5 @@
+checks:
+  - id: check_template_hygiene
+    file: registry/checks/check_template_hygiene.sh
+    scope: registry-and-generated-project
+    description: Scans templates and generated projects for common secret shapes and private leftovers.

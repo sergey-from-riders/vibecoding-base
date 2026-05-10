@@ -1,34 +1,41 @@
 {
   "name": "vibecoding-base",
-  "description": "Copyable AI-native repository frameworks for agentic development.",
-  "frameworks": [
+  "version": "1.0.0",
+  "description": "Composable stack profiles and standards registry for AI-native development.",
+  "registry": {
+    "path": "registry",
+    "standards": "registry/standards",
+    "stacks": "registry/stacks",
+    "templates": "registry/templates",
+    "checks": "registry/checks",
+    "schemas": "registry/schemas"
+  },
+  "stacks": [
     {
       "id": "go-next-postgres",
       "name": "Go + Next.js + PostgreSQL",
-      "path": "frameworks/go-next-postgres",
-      "status": "ready",
-      "backend": "Go 1.26+",
-      "frontend": "Next.js 16 + React 19",
-      "database": "PostgreSQL 18+",
-      "best_for": [
-        "strict service-layer backend",
-        "contract-first web products",
-        "teams that want Go runtime discipline"
-      ]
+      "profile": "registry/stacks/go-next-postgres.yaml",
+      "example": "examples/generated-go-next-postgres",
+      "status": "stable",
+      "readiness": {
+        "template": "ready",
+        "runtime": "partial",
+        "checks": "partial",
+        "docs": "ready"
+      }
     },
     {
       "id": "python-react-postgres",
       "name": "Python/FastAPI + React + PostgreSQL",
-      "path": "frameworks/python-react-postgres",
-      "status": "ready",
-      "backend": "Python 3.14+ + FastAPI",
-      "frontend": "React 19",
-      "database": "PostgreSQL 18+",
-      "best_for": [
-        "Python backend teams",
-        "React-first applications",
-        "agentic delivery with FastAPI contracts"
-      ]
+      "profile": "registry/stacks/python-react-postgres.yaml",
+      "example": "examples/generated-python-react-postgres",
+      "status": "stable",
+      "readiness": {
+        "template": "ready",
+        "runtime": "partial",
+        "checks": "partial",
+        "docs": "ready"
+      }
     }
   ]
 }

@@ -1,0 +1,9 @@
+id: frontend/next
+name: Next.js web template
+version: 1.0.0
+status: partial
+paths:
+  - apps/web
+standards:
+  - frontend/next
+  - ui/shadcn-compact

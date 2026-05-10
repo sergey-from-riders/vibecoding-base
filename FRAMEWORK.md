@@ -1,27 +1,22 @@
 # vibecoding-base Framework Model
 
-`vibecoding-base` is a framework catalog. A framework is a copyable repository shape with executable rules.
+`vibecoding-base` is a registry-first framework library.
 
-Each framework should answer five questions before the first feature is written:
+The framework is not a copied folder. The framework is the composition system:
 
-1. What can agents change?
-2. Where is the API contract?
-3. How does data evolve?
-4. Which checks prove the work?
-5. When must a human review the change?
+```text
+standards + templates + stack profile + lockfile + generated active context
+```
 
-## Framework Contract
+## Principles
 
-A framework in this catalog must include:
-
-- agent instructions;
-- human delivery workflow;
-- contract-first API baseline;
-- migration-first database baseline;
-- quality gates;
-- security policy;
-- env/deploy conventions;
-- public-template hygiene checks.
+1. Registry contains all reusable knowledge.
+2. Generated projects contain only active stack context.
+3. Standards are independently versioned.
+4. Stack profiles compose standards and templates.
+5. Lockfiles pin exact generated versions.
+6. Enforcement must be honest.
+7. Disabled features must not create folders.
 
 ## Delivery Loop
 
@@ -36,31 +31,19 @@ Scope
   -> Review
 ```
 
-## Catalog Rules
+## No-Clutter Rule
 
-1. A framework must be useful when copied alone.
-2. A framework must not depend on private infrastructure.
-3. A framework must not contain real secrets.
-4. A framework must have a clear stack identity.
-5. A framework must pass its own local checks.
-6. A framework should be strict enough for agents and readable enough for humans.
+Generated projects must not contain unused technology folders. Add optional parts only through:
 
-## Framework Status
+```bash
+node tools/vibe.mjs enable <feature> [variant] --project <dir>
+```
 
-Use these statuses in `catalog.json`:
+## Review Checklist
 
-- `ready`: safe to copy and use as a template.
-- `draft`: structure exists but docs/checks are incomplete.
-- `experimental`: useful but not yet recommended as a default.
-- `deprecated`: kept for reference only.
-
-## Review Checklist For New Frameworks
-
-- Is the stack name clear?
-- Are commands documented?
-- Does `template:check` block obvious public-release mistakes?
-- Are contracts generated and checked?
-- Are env examples safe?
-- Does CI run the same gates as local commands?
-- Is there a clear first vertical slice path?
-- Does the framework avoid promising runtime code it does not contain?
+1. Does the change update the registry source of truth?
+2. Does it avoid duplicated standards?
+3. Does `standard.yaml` match the standard content?
+4. Does enforcement point to real checks?
+5. Does the stack status matrix avoid overclaiming readiness?
+6. Do generated examples still pass `node tools/vibe.mjs verify`?

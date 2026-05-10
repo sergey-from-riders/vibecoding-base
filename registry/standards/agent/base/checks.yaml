@@ -1,0 +1,5 @@
+checks:
+  - id: check_standards
+    file: registry/checks/check_standards.sh
+    scope: generated-project
+    description: Verifies generated AGENTS.md and active standard files exist.

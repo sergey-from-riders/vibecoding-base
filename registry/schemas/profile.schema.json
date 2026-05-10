@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "generated project vibe profile",
+  "type": "object",
+  "required": [
+    "stack",
+    "project_name",
+    "registry_version",
+    "components",
+    "enabled",
+    "disabled"
+  ],
+  "properties": {
+    "stack": { "type": "string" },
+    "project_name": { "type": "string" },
+    "registry_version": { "type": "string" },
+    "components": { "type": "object" },
+    "enabled": { "type": "object" },
+    "disabled": { "type": "object" }
+  }
+}

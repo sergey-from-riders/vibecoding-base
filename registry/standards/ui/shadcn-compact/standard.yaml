@@ -1,0 +1,26 @@
+id: ui/shadcn-compact
+name: shadcn Compact UI Profile
+version: 1.0.0
+status: stable
+domain: ui
+owners:
+  - design-system
+applies_to:
+  languages:
+    - typescript
+  runtimes:
+    - react
+dependencies:
+  - security/no-secrets@^1.0.0
+enforcement:
+  documented: true
+  linted: false
+  tested: false
+  ci_blocking: false
+files:
+  human_readable: standard.md
+compatibility:
+  stacks:
+    - go-next-postgres
+    - python-react-postgres
+changelog: CHANGELOG.md

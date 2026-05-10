@@ -1,0 +1,8 @@
+id: backend/go
+name: Go API template
+version: 1.0.0
+status: partial
+paths:
+  - apps/api
+standards:
+  - backend/go

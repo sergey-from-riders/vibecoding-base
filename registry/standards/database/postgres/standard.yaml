@@ -1,0 +1,26 @@
+id: database/postgres
+name: PostgreSQL Data Contract Standard
+version: 1.0.0
+status: stable
+domain: database
+owners:
+  - data
+applies_to:
+  languages:
+    - sql
+  runtimes:
+    - postgresql
+dependencies:
+  - security/no-secrets@^1.0.0
+enforcement:
+  documented: true
+  linted: false
+  tested: false
+  ci_blocking: false
+files:
+  human_readable: standard.md
+compatibility:
+  stacks:
+    - go-next-postgres
+    - python-react-postgres
+changelog: CHANGELOG.md

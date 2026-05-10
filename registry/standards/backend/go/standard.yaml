@@ -1,0 +1,26 @@
+id: backend/go
+name: Go Backend Engineering Standard
+version: 1.0.0
+status: stable
+domain: backend
+owners:
+  - backend
+applies_to:
+  languages:
+    - go
+  runtimes:
+    - go
+dependencies:
+  - security/no-secrets@^1.0.0
+  - testing/tdd-strict@^1.0.0
+enforcement:
+  documented: true
+  linted: false
+  tested: false
+  ci_blocking: false
+files:
+  human_readable: standard.md
+compatibility:
+  stacks:
+    - go-next-postgres
+changelog: CHANGELOG.md

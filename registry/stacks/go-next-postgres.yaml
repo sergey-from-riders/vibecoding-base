@@ -1,0 +1,55 @@
+id: go-next-postgres
+name: Go + Next.js + PostgreSQL
+status: stable
+description: Full-stack web app profile for Go API, Next.js frontend and PostgreSQL.
+components:
+  backend: go
+  frontend: next
+  database: postgres
+  contracts: openapi
+standards:
+  - agent/base@^1.0.0
+  - framework/lifecycle@^1.0.0
+  - api/openapi-modular@^1.0.0
+  - backend/go@^1.0.0
+  - frontend/next@^1.0.0
+  - database/postgres@^1.0.0
+  - testing/tdd-strict@^1.0.0
+  - security/no-secrets@^1.0.0
+  - observability/three-signals@^1.0.0
+  - ui/shadcn-compact@^1.0.0
+templates:
+  - backend/go
+  - frontend/next
+  - database/postgres
+  - contracts/openapi
+checks:
+  - check_structure
+  - check_standards
+  - check_openapi
+  - check_template_hygiene
+readiness:
+  template: ready
+  runtime: partial
+  checks: partial
+  docs: ready
+optional_features:
+  worker:
+    templates:
+      - worker/base
+    standards:
+      - backend/worker@^1.0.0
+  mobile:
+    variants:
+      react-native:
+        templates:
+          - mobile/react-native
+        standards:
+          - mobile/react-native@^1.0.0
+  payments:
+    variants:
+      stripe:
+        templates:
+          - payments/stripe
+        standards:
+          - payments/stripe@^1.0.0

@@ -1,0 +1,26 @@
+id: frontend/react
+name: React Frontend Engineering Standard
+version: 1.0.0
+status: stable
+domain: frontend
+owners:
+  - frontend
+applies_to:
+  languages:
+    - typescript
+  runtimes:
+    - react
+dependencies:
+  - api/openapi-modular@^1.0.0
+  - testing/tdd-strict@^1.0.0
+enforcement:
+  documented: true
+  linted: false
+  tested: false
+  ci_blocking: false
+files:
+  human_readable: standard.md
+compatibility:
+  stacks:
+    - python-react-postgres
+changelog: CHANGELOG.md

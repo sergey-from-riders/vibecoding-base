@@ -1,0 +1,26 @@
+id: payments/stripe
+name: Stripe Payments Standard
+version: 1.0.0
+status: experimental
+domain: payments
+owners:
+  - payments
+applies_to:
+  languages: []
+  runtimes:
+    - stripe
+dependencies:
+  - security/no-secrets@^1.0.0
+  - observability/three-signals@^1.0.0
+enforcement:
+  documented: true
+  linted: false
+  tested: false
+  ci_blocking: false
+files:
+  human_readable: standard.md
+compatibility:
+  stacks:
+    - go-next-postgres
+    - python-react-postgres
+changelog: CHANGELOG.md

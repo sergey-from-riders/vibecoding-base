@@ -1,0 +1,9 @@
+id: frontend/react
+name: React web template
+version: 1.0.0
+status: partial
+paths:
+  - apps/web
+standards:
+  - frontend/react
+  - ui/shadcn-compact

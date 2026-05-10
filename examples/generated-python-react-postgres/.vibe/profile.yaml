@@ -1,0 +1,24 @@
+stack: python-react-postgres
+project_name: generated-python-react-postgres
+registry_version: 1.0.0
+components:
+  backend: python
+  frontend: react
+  database: postgres
+  contracts: openapi
+enabled:
+  backend: true
+  frontend: true
+  database: true
+  contracts: true
+  testing: true
+  security: true
+  observability: true
+disabled:
+  mobile: true
+  desktop: true
+  worker: true
+  admin: true
+  payments: true
+  queue: true
+  ai: true

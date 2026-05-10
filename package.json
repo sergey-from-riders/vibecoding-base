@@ -1,10 +1,15 @@
 {
   "name": "vibecoding-base",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "license": "MIT",
-  "description": "Catalog of copyable AI-native repository frameworks for agentic development.",
+  "description": "Composable stack profiles and standards registry for AI-native development.",
+  "bin": {
+    "vibe": "tools/vibe.mjs"
+  },
   "scripts": {
-    "frameworks:check": "tools/scripts/check_frameworks.sh"
+    "verify": "node tools/vibe.mjs verify",
+    "registry:check": "node tools/vibe.mjs verify --registry-only",
+    "examples:generate": "node tools/vibe.mjs use go-next-postgres --project examples/generated-go-next-postgres --force && node tools/vibe.mjs use python-react-postgres --project examples/generated-python-react-postgres --force"
   }
 }

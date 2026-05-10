@@ -1,0 +1,8 @@
+id: payments/stripe
+name: Stripe payments template
+version: 1.0.0
+status: partial
+paths:
+  - packages/payments
+standards:
+  - payments/stripe

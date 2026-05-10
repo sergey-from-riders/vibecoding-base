@@ -1,0 +1,27 @@
+id: agent/base
+name: Agent Base Standard
+version: 1.0.0
+status: stable
+domain: agent
+owners:
+  - agents
+applies_to:
+  languages: []
+  runtimes:
+    - codex
+    - cursor
+dependencies:
+  - security/no-secrets@^1.0.0
+enforcement:
+  documented: true
+  linted: true
+  tested: false
+  ci_blocking: true
+files:
+  human_readable: standard.md
+  checks: checks.yaml
+compatibility:
+  stacks:
+    - go-next-postgres
+    - python-react-postgres
+changelog: CHANGELOG.md

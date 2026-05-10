@@ -1,502 +1,172 @@
 # vibecoding-base 🧱✨
 
-Готовые копируемые AI-native фреймворки репозиториев для разработки с coding agents.
+`vibecoding-base` — это composable registry для AI-native проектов.
 
-Если совсем просто: `vibecoding-base` — это библиотека заготовок репозиториев. Ты выбираешь стек, копируешь папку, переименовываешь под свой продукт и начинаешь разрабатывать с AI-агентом, у которого уже есть правила, контракты, проверки и ограничения.
+Если по-человечески: это не папка "скопируй весь фреймворк". Это библиотека стандартов, stack profiles, templates и checks. Ты выбираешь стек, а в проект попадает только активный контекст. Все отключенное остается в registry и не захламляет проект.
 
-Это не магия. Это не готовое приложение. Это нормальная база, чтобы агент не превращал пустой репозиторий в кашу из случайных файлов.
+## Зачем Это Нужно
 
-## Главная Идея 🧠
+Coding agents быстрые. Но без правил они быстро делают хаос:
 
-Coding agents работают быстро. Очень быстро. Но если в репозитории нет структуры, агент начинает угадывать:
+- случайные папки;
+- дубли стандартов;
+- разные правила для почти одинаковых стеков;
+- незаметный drift между framework-ами;
+- стандарты, которые страшно обновлять;
+- обещания "ready", хотя на самом деле готовы только docs.
 
-- куда класть backend;
-- как описывать API;
-- как менять базу данных;
-- какие тесты нужны;
-- что нельзя коммитить;
-- что значит "готово";
-- когда нужен человеческий review.
+Идея простая:
 
-Угадывание — это место, где начинается хаос.
+> Registry содержит все. Проект содержит только выбранный активный стек.
 
-`vibecoding-base` дает агенту карту до того, как он начнет писать код.
+## Что Генерируется
 
-Карта выглядит так:
-
-```text
-правила -> контракты -> тесты -> реализация -> документация -> проверки -> review
-```
-
-Вот в этом вся идея.
-
-## Что Внутри? 📦
-
-Этот репозиторий — каталог. Каждый элемент каталога — полноценный framework репозитория.
-
-В каждом framework обычно есть:
-
-- `AGENTS.md` — правила для AI coding agents;
-- `FRAMEWORK.md` — как людям и агентам работать в этом репозитории;
-- `README.md` — инструкция конкретного framework;
-- OpenAPI contracts;
-- inventory endpoint-ов;
-- миграции базы данных;
-- примеры env-файлов;
-- security policy;
-- contribution policy;
-- CI workflow;
-- локальные quality gates;
-- проверка чистоты шаблона;
-- playbooks для agentic delivery;
-- docs и ADR.
-
-То есть вместо того, чтобы дать агенту пустую папку и сказать "сделай приложение", ты даешь ему репозиторий, который уже говорит:
-
-> "Вот как тут принято работать. Следуй правилам."
-
-## Доступные Frameworks 🚀
-
-| Framework | Stack | Когда Брать |
-| --- | --- | --- |
-| [`go-next-postgres`](frameworks/go-next-postgres) | Go + Next.js + PostgreSQL | Нужен строгий backend service layer, contract-first API и full-stack web база. |
-| [`python-react-postgres`](frameworks/python-react-postgres) | Python/FastAPI + React + PostgreSQL | Нужен Python backend, React frontend и такая же дисциплина для AI-разработки. |
-
-Позже можно добавлять новые:
-
-```text
-node-react-postgres
-rust-react-postgres
-php-laravel-inertia
-python-next-postgres
-go-react-postgres
-```
-
-## Чем Это Не Является 🚫
-
-Это не готовый продукт.
-
-Тут нет:
-
-- готового SaaS-приложения;
-- готового красивого auth UI;
-- production runtime-кода;
-- реальных deploy credentials;
-- настоящих env-значений;
-- уже поднятой облачной базы данных.
-
-Тут есть фундамент проекта. Сам продукт все равно нужно строить.
-
-Разница в том, что ты строишь не с пустого места, а на понятных рельсах.
-
-## Для Кого Это? 👥
-
-Используй `vibecoding-base`, если:
-
-- ты работаешь с ChatGPT, Codex, Claude Code, Copilot, Cursor или другими coding agents;
-- хочешь, чтобы агент следовал правилам репозитория, а не придумывал архитектуру на ходу;
-- хочешь contract-first API;
-- хочешь миграции базы с первого дня;
-- не хочешь случайно закоммитить секреты;
-- хочешь повторяемые проверки;
-- хочешь starter серьезнее, чем "hello world";
-- хочешь делать несколько проектов в одном стиле.
-
-Не используй, если:
-
-- тебе нужно сразу увидеть готовую визуальную аппку после clone;
-- тебе не нужны docs и процесс;
-- ты делаешь быстрый одноразовый прототип без контрактов;
-- ты хочешь, чтобы AI принимал все архитектурные решения сам.
-
-## Быстрый Старт 🏁
-
-Склонируй каталог:
+Команда:
 
 ```bash
-git clone <repo-url> vibecoding-base
-cd vibecoding-base
+node tools/vibe.mjs use go-next-postgres --project ../my-app
 ```
 
-Проверь весь каталог:
+создает:
+
+```text
+apps/api
+apps/web
+contracts/openapi
+db/migrations
+standards/active
+scripts/check.sh
+README.md
+AGENTS.md
+.vibe/profile.yaml
+.vibe/enabled.yaml
+.vibe/registry.lock
+```
+
+В проект не попадают отключенные части:
+
+```text
+mobile
+desktop
+worker
+admin
+payments
+queue
+ai
+```
+
+Они есть только в `registry`, пока ты явно их не включишь.
+
+## Основные Команды
 
 ```bash
-tools/scripts/check_frameworks.sh
+# Сгенерировать проект
+node tools/vibe.mjs use go-next-postgres --project ../my-app
+
+# Проверить registry и examples
+node tools/vibe.mjs verify
+
+# Посмотреть стандарты
+node tools/vibe.mjs standards list
+
+# Объяснить стандарт
+node tools/vibe.mjs standards explain backend/go
+
+# Включить опциональные части
+node tools/vibe.mjs enable worker --project ../my-app
+node tools/vibe.mjs enable mobile react-native --project ../my-app
+node tools/vibe.mjs enable payments stripe --project ../my-app
+
+# Отключить часть
+node tools/vibe.mjs disable mobile --project ../my-app
 ```
 
-Выбери framework:
-
-```bash
-cp -a frameworks/go-next-postgres ../my-product
-cd ../my-product
-```
-
-Или Python/React:
-
-```bash
-cp -a frameworks/python-react-postgres ../my-product
-cd ../my-product
-```
-
-Поставь зависимости:
-
-```bash
-pnpm install
-```
-
-Запусти проверки:
-
-```bash
-pnpm run verify:offline
-pnpm run verify:contracts
-pnpm run template:check
-```
-
-Если все прошло — framework чистый и готов становиться твоим продуктовым репозиторием.
-
-## Что Переименовать После Копирования ✍️
-
-После копирования framework в новый репозиторий переименуй очевидные вещи:
-
-1. `package.json`
-   - поменяй `name`;
-   - поменяй `description`;
-   - оставь `"private": true`, если это не npm package.
-
-2. `README.md`
-   - замени название framework на название продукта;
-   - оставь секции с командами;
-   - оставь security notes.
-
-3. `packages/contracts/openapi/openapi.root.yaml`
-   - поменяй title API;
-   - поменяй summary;
-   - оставь `example.test`, пока нет реального публичного домена.
-
-4. Env examples
-   - оставь `APP_*`;
-   - оставь `NEXT_PUBLIC_APP_*`;
-   - не коммить реальные `.env`.
-
-5. Настройки GitHub
-   - включи template repository, если хочешь, чтобы другие копировали;
-   - включи security advisories, если хостинг поддерживает;
-   - не выключай CI.
-
-## Как Должен Работать Агент 🤖
-
-Агент не должен сразу прыгать в файлы.
-
-Для серьезных задач скажи ему сначала прочитать:
-
-- `AGENTS.md`;
-- `FRAMEWORK.md`;
-- нужные docs в `docs/`;
-- нужный playbook в `agents/playbooks/`.
-
-Хороший prompt:
+## Структура Репозитория
 
 ```text
-Read AGENTS.md and FRAMEWORK.md first.
-
-Task:
-Implement the login backend vertical slice.
-
-Scope:
-apps/api, packages/contracts, db/migrations, docs.
-
-Non-goals:
-No UI, no OAuth providers, no Android/Qt changes.
-
-Required docs:
-docs/17-TESTING-TDD-QUALITY-GATES.md
-docs/21-OPENAPI-MODULAR-CONTRACT-STANDARD.md
-docs/22-OBSERVABILITY-STANDARD.md
-
-Validation:
-pnpm run verify:offline
-pnpm run verify:contracts
-
-Output:
-- changed files
-- validation results
-- unresolved risks
+registry/
+  standards/      версионируемые стандарты
+  stacks/         YAML stack profiles
+  templates/      части генерируемого проекта
+  checks/         проверки registry и generated projects
+  schemas/        schemas для standards, stacks и profiles
+tools/
+  vibe.mjs        минимальный CLI
+examples/
+  generated-go-next-postgres
+  generated-python-react-postgres
+docs/
+  architecture.md
+  contributing-standards.md
+  stack-profiles.md
+  standards-versioning.md
 ```
 
-Плохой prompt:
+## Stack Profiles
+
+Сейчас есть:
+
+- `go-next-postgres`: Go API, Next.js web, PostgreSQL, OpenAPI.
+- `python-react-postgres`: Python/FastAPI API, React web, PostgreSQL, OpenAPI.
+
+Stack profile — это YAML-композиция:
+
+```yaml
+components:
+  backend: go
+  frontend: next
+  database: postgres
+  contracts: openapi
+standards:
+  - backend/go@^1.0.0
+templates:
+  - backend/go
+checks:
+  - check_structure
+```
+
+## Standards
+
+Каждый standard — отдельная версионируемая единица:
 
 ```text
-сделай все приложение
+registry/standards/backend/go/
+  standard.yaml
+  standard.md
+  checks.yaml
+  CHANGELOG.md
+  README.md
 ```
 
-Такой prompt дает агенту слишком много свободы. Слишком много свободы часто рождает случайную архитектуру.
+`standard.yaml` хранит owners, SemVer version, dependencies, enforcement reality и совместимые stacks.
 
-## Основной Workflow 🔁
+Enforcement честный:
 
-Любая нормальная feature должна идти так:
-
-```text
-Scope
-  -> Contract
-  -> Tests
-  -> Implementation
-  -> Observability
-  -> Docs
-  -> Checks
-  -> Review
+```yaml
+enforcement:
+  documented: true
+  linted: false
+  tested: false
+  ci_blocking: false
 ```
 
-По-человечески:
+Если правило только описано, так и пишем. Не притворяемся, что оно enforced.
 
-1. **Scope**
-   Решаем, что входит в задачу, а что не входит.
+## Status Matrix
 
-2. **Contract**
-   Сначала OpenAPI и миграции, потом runtime-код.
+У stack profile есть отдельная готовность:
 
-3. **Tests**
-   Добавляем падающие тесты или фиксируем, какая проверка должна падать до исправления.
+- `template`: файлы генерируются.
+- `runtime`: насколько готов runnable runtime.
+- `checks`: насколько готовы автоматические проверки.
+- `docs`: насколько готовы docs.
 
-4. **Implementation**
-   Делаем минимальный полезный vertical slice.
+Так мы не называем стек "готовым", если реально готовы только документы.
 
-5. **Observability**
-   Добавляем request id, logs, traces, metrics и правила скрытия секретов.
+## Для Контрибьюторов
 
-6. **Docs**
-   Обновляем документацию в том же изменении.
+Читать:
 
-7. **Checks**
-   Запускаем локальные проверки и CI.
-
-8. **Review**
-   Человек смотрит результат, особенно если есть auth, данные, deploy или security.
-
-## Что Такое Vertical Slice? 🍰
-
-Vertical slice — это один полностью рабочий путь через систему.
-
-Например:
-
-```text
-OpenAPI login endpoint
-  -> поля в базе
-  -> backend service
-  -> HTTP handler
-  -> tests
-  -> logs/traces
-  -> docs
-```
-
-Это лучше, чем сделать 50 пустых файлов "на будущее".
-
-Vertical slice доказывает, что система реально работает.
-
-## Зачем OpenAPI? 📜
-
-OpenAPI — это контракт API. Он говорит людям, агентам, тестам и будущим SDK, как API должен себя вести.
-
-В каждом framework:
-
-```text
-packages/contracts/openapi/
-```
-
-Важные файлы:
-
-- `openapi.root.yaml` — главный контракт;
-- `modules/*.yaml` — группы endpoint-ов;
-- `components/schemas/*.yaml` — общие схемы;
-- `endpoints.inventory.tsv` — список endpoint-ов для проверок;
-- `dist/` — сгенерированные артефакты.
-
-Если меняешь endpoint — сначала меняй контракт.
-
-## Зачем Миграции Базы? 🗄️
-
-Структура базы — это не побочный эффект. Это часть продуктового контракта.
-
-Миграции тут:
-
-```text
-db/migrations/
-```
-
-Правила:
-
-- миграции только append-only;
-- up/down парами;
-- UUID для domain entities;
-- не использовать generic `id`;
-- токены и парольный материал хранить только как hash;
-- версионировать business entities, если это требуется стандартом framework.
-
-## Зачем Столько Проверок? ✅
-
-Потому что агенты достаточно быстрые, чтобы быстро наделать много ошибок.
-
-Проверки — это дешевые тормоза.
-
-Обычные команды внутри framework:
-
-```bash
-pnpm run verify:offline
-pnpm run verify:contracts
-pnpm run template:check
-```
-
-Что они ловят:
-
-- отсутствующие обязательные файлы;
-- сломанные DB contracts;
-- слишком большие файлы/функции;
-- отсутствующие OpenAPI examples;
-- отсутствующие строки в endpoint inventory;
-- остатки старого проекта;
-- типичные формы секретов;
-- небезопасные leftovers в template.
-
-## Тур По Папкам 🧭
-
-Корень каталога:
-
-```text
-vibecoding-base/
-├─ README.md              # выбор языка
-├─ README.en.md           # документация на английском
-├─ README.ru.md           # документация на русском
-├─ FRAMEWORK.md           # модель всего каталога
-├─ catalog.json           # машинно-читаемый каталог frameworks
-├─ frameworks/            # копируемые frameworks
-└─ tools/scripts/         # проверки каталога
-```
-
-Внутри framework:
-
-```text
-framework/
-├─ AGENTS.md              # правила для coding agents
-├─ FRAMEWORK.md           # delivery model конкретного framework
-├─ README.md              # документация framework
-├─ docs/                  # standards, architecture, ADR
-├─ agents/playbooks/      # пошаговые agent workflows
-├─ apps/                  # будущие runtime apps
-├─ packages/contracts/    # OpenAPI contracts
-├─ db/migrations/         # SQL migrations
-├─ infra/                 # Docker, Nginx, CI examples
-└─ tools/scripts/         # checks and helper scripts
-```
-
-## Каталог Frameworks 🗂️
-
-Каталог лежит тут:
-
-```text
-catalog.json
-```
-
-Там указаны:
-
-- framework id;
-- человекочитаемое имя;
-- path;
-- status;
-- backend;
-- frontend;
-- database;
-- best use cases.
-
-Если добавляешь новый framework — добавь его в `catalog.json`.
-
-## Как Добавить Новый Framework 🧩
-
-Создай папку:
-
-```text
-frameworks/<language>-<frontend>-<database>/
-```
-
-Примеры:
-
-```text
-frameworks/node-react-postgres/
-frameworks/rust-react-postgres/
-frameworks/php-laravel-inertia/
-```
-
-Минимально нужны:
-
-- `README.md`;
-- `FRAMEWORK.md`;
-- `AGENTS.md`;
-- `LICENSE`;
-- `SECURITY.md`;
-- `CONTRIBUTING.md`;
-- `package.json` или другой понятный command manifest;
-- `tools/scripts/check_starter_integrity.sh`;
-- `tools/scripts/check_template_clean.sh`;
-- OpenAPI baseline;
-- env examples;
-- CI workflow или CI example.
-
-Потом запускай:
-
-```bash
-tools/scripts/check_frameworks.sh
-```
-
-Если проверка падает — framework еще не готов.
-
-## Checklist Перед Публикацией 🚢
-
-Перед публикацией каталога:
-
-```bash
-tools/scripts/check_frameworks.sh
-```
-
-Потом руками проверь:
-
-- нет `node_modules`;
-- нет `.venv`;
-- нет реальных `.env`;
-- нет приватных IP;
-- нет путей с реальных серверов;
-- нет настоящих tokens/API keys;
-- `catalog.json` совпадает с папками;
-- у каждого framework есть docs;
-- каждый framework проходит свои локальные проверки.
-
-## FAQ 🙋
-
-### Это boilerplate?
-
-Не совсем. Boilerplate обычно дает код приложения. Это дает operating model репозитория.
-
-### Можно из этого сделать реальное приложение?
-
-Да. Копируешь framework и начинаешь реализовывать vertical slices.
-
-### Почему просто не попросить AI создать все?
-
-Можно. Но без правил результат менее предсказуемый. Этот проект дает AI стабильную форму, которой нужно следовать.
-
-### Почему некоторые app-папки пустые?
-
-Потому что это foundation. Runtime-код должен добавляться маленькими scoped vertical slices, а не большим хаотичным комком.
-
-### Почему в `package.json` стоит `private: true`?
-
-Чтобы случайно не опубликовать это в npm. GitHub-репозиторий при этом может быть публичным.
-
-### Можно удалить Android или Qt?
-
-Да. Если продукту они не нужны, удали папки и документы вместе. Не оставляй мертвые правила, которым агент будет пытаться следовать.
-
-### Можно использовать другой стек?
-
-Да. Добавь новый framework в `frameworks/`.
-
-## License 📄
-
-MIT. Смотри [LICENSE](LICENSE).
+- [`docs/contributing-standards.md`](docs/contributing-standards.md)
+- [`docs/standards-versioning.md`](docs/standards-versioning.md)
+- [`docs/stack-profiles.md`](docs/stack-profiles.md)
