@@ -1,3 +1,5 @@
 # ui/shadcn-compact
 
-Compact, reusable, shadcn-oriented UI profile. This is separate from frontend runtime standards.
+Источник правил — `rules/*.md`. `standard.md` собирается автоматически.
+
+Редактируйте отдельное правило, затем выполните `node tools/handbook.mjs generate` и `node tools/vibe.mjs verify`.

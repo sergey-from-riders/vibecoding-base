@@ -5,8 +5,9 @@ import process from "node:process";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { verifyHandbook } from "./handbook.mjs";
 
-const REGISTRY_VERSION = "1.1.0";
+const REGISTRY_VERSION = "2.0.0";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..");
@@ -697,6 +698,7 @@ function validateAllowedKeys(data, fields, label, errors) {
 
 function verifyRegistry() {
   const errors = [];
+  try { verifyHandbook(); } catch (error) { errors.push(`handbook: ${error.message}`); }
   const standardIds = allStandardIds();
   const seenStandards = new Set(standardIds);
   const standardBodyHashes = new Map();

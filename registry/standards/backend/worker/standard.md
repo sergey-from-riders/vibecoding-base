@@ -1,81 +1,226 @@
 # Worker Backend Standard
 
-This experimental optional standard applies when a project enables a background worker component.
+> Собрано автоматически из rules/*.md. Редактируйте исходные правила, затем выполните `node tools/handbook.mjs generate`.
 
-Workers are optional. A generated project must not contain worker folders, worker standards or queue-specific assumptions until `vibe enable worker` is used.
+## Определите, откуда восстанавливается кеш
 
-## May 2026 Baseline
+### Коротко
 
-1. Workers are at-least-once by default unless a specific queue proves otherwise.
-2. Exactly-once delivery is not assumed.
-3. Idempotency is mandatory for side effects.
-4. Retry, timeout and dead-letter behavior is part of the contract.
-5. Worker telemetry is required before production use.
+Кеш ускоряет чтение и должен быть воспроизводим из основного источника.
 
-## Core Rules
+### Плохо
 
-1. Workers must be idempotent.
-2. Queue messages must have explicit schemas.
-3. Retries must be bounded and observable.
-4. Business logic shared with API code must live in a service layer, not inside queue handlers.
-5. Dead-letter handling must be documented before production use.
-6. Poison messages must not block the queue forever.
-7. Message handlers must be safe to replay.
+```text
+Данные есть только в Redis, резервной копии нет.
+```
 
-## Message Contract
+### Хорошо
 
-Each message type defines:
+```text
+Оригинал — БД или Git.
+Кеш можно пересобрать по версии источника.
+```
 
-1. schema version;
-2. message ID;
-3. idempotency key;
-4. correlation/request ID;
-5. created timestamp;
-6. tenant/user context when needed;
-7. maximum retry count;
-8. timeout or lease duration.
+### Почему
 
-## Retry And Failure
+Очистка кеша не должна уничтожать единственный экземпляр данных.
 
-1. Retries use exponential backoff with jitter.
-2. Permanent failures are distinguishable from transient failures.
-3. Dead-letter entries include reason, attempts and safe context.
-4. Operators need a replay path before production.
-5. Replay must not duplicate side effects.
+### Когда применять
 
-## Data Consistency
+Хранилище может быть основным, но тогда для него нужны соответствующие гарантии сохранности.
 
-Use one of these patterns for cross-boundary side effects:
+### Как проверить
 
-1. transactional outbox;
-2. inbox/deduplication table;
-3. provider idempotency key;
-4. explicit reconciliation job.
+- Удалите тестовый кеш и восстановите его из источника.
 
-Do not publish a queue message from a database transaction unless the consistency model is documented.
+### Источники
 
-## Observability
+- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9111.html)
 
-Worker logs/spans/metrics include:
+Уровень: Рекомендуется. Проверено: 2026-11-09.
 
-1. queue name;
-2. message type;
-3. message ID;
-4. attempt number;
-5. duration;
-6. result;
-7. dead-letter reason when applicable.
+## Задавайте срок и способ обновления кеша
 
-## Tests
+### Коротко
 
-Worker features need:
+Укажите допустимую задержку, ключ версии и поведение при недоступном источнике.
 
-1. idempotency test;
-2. retry test;
-3. poison message test;
-4. schema compatibility test;
-5. replay test for side effects.
+### Плохо
 
-## Enforcement Reality
+```text
+Кеш бессрочный; никто не знает, когда он обновлён.
+```
 
-This standard is documented only until a concrete queue runtime and checks are selected.
+### Хорошо
+
+```text
+Версия источника + время загрузки.
+Проверка обновлений. Показ последнего исправного снимка.
+```
+
+### Почему
+
+Быстрый ответ бесполезен, если он незаметно устарел.
+
+### Когда применять
+
+Старые справочные данные могут быть допустимы. Для прав доступа, остатков и цены допустимость отдельная.
+
+### Как проверить
+
+- Проверьте обновление и отказ источника.
+
+### Источники
+
+- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9111.html)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+
+## Разделяйте публичный и персональный кеш
+
+### Коротко
+
+Ключ кеша и HTTP-политика должны учитывать пользователя, организацию и права.
+
+### Плохо
+
+```text
+/profile закеширован одинаково для всех.
+```
+
+### Хорошо
+
+```text
+Персональный ответ: private или no-store.
+При серверном кеше учитывается контекст доступа.
+```
+
+### Почему
+
+Общий кеш может показать данные одного человека другому.
+
+### Когда применять
+
+Выбор private/no-store зависит от чувствительности; no-cache означает проверку свежести, а не запрет хранения.
+
+### Как проверить
+
+- Последовательно запросите данные двух разных пользователей.
+
+### Источники
+
+- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9111.html)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+
+## Считайте повторную доставку обычным сценарием
+
+### Коротко
+
+Повтор сообщения не должен повторять необратимый эффект.
+
+### Плохо
+
+```text
+Одно сообщение пришло дважды → отправлены два заказа.
+```
+
+### Хорошо
+
+```text
+message_id проверяется транзакционно.
+Повтор возвращает уже сохранённый результат.
+```
+
+### Почему
+
+Успешная обработка и подтверждение доставки могут разделиться сетевым сбоем.
+
+### Когда применять
+
+Не обещайте exactly-once без доказанной модели всей цепочки, включая внешние эффекты.
+
+### Как проверить
+
+- Завершите процесс после эффекта, но до подтверждения сообщения.
+
+### Источники
+
+- [Первоисточник](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+
+## Сохраняйте намерение внешнего действия вместе с данными
+
+### Коротко
+
+Свяжите запись бизнеса и событие, чтобы сбой не потерял отправку.
+
+### Плохо
+
+```text
+Заказ сохранён. Сбой перед публикацией события.
+```
+
+### Хорошо
+
+```text
+Транзакция: заказ + запись outbox.
+Worker доставляет событие и отмечает результат.
+```
+
+### Почему
+
+Outbox закрывает разрыв между сохранением БД и последующей отправкой.
+
+### Когда применять
+
+Доставка всё равно может повториться; получатель должен поддерживать дедупликацию.
+
+### Как проверить
+
+- После аварии событие доставляется без второго бизнес-эффекта?
+
+### Источники
+
+- [Первоисточник](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
+
+Уровень: Зависит от задачи. Проверено: 2026-11-09.
+
+## Отделяйте неисправимые сообщения от очереди
+
+### Коротко
+
+После ограниченных попыток сохраняйте причину и возможность безопасного разбора.
+
+### Плохо
+
+```text
+Одно повреждённое сообщение бесконечно блокирует очередь.
+```
+
+### Хорошо
+
+```text
+Ограниченные повторы → очередь разбора.
+Причина, попытки, безопасный повтор после исправления.
+```
+
+### Почему
+
+Остальные задания должны продолжать выполняться.
+
+### Когда применять
+
+В записи ошибки не должно быть секретов; повтор выполняется с исходной идентичностью операции.
+
+### Как проверить
+
+- Проверьте повреждённое сообщение, восстановление и повтор.
+
+### Источники
+
+- [Первоисточник](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+

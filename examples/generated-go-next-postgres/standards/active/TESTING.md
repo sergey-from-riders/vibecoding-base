@@ -1,128 +1,226 @@
-<!-- Generated from registry/standards/testing/tdd-strict@1.1.0. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/testing/tdd-strict@2.0.0. Update the registry standard, then regenerate. -->
 
 # TDD Strict Quality Gate Standard
 
-This standard applies to all enabled runtime components in a generated project.
+> Собрано автоматически из rules/*.md. Редактируйте исходные правила, затем выполните `node tools/handbook.mjs generate`.
 
-Main principle: a feature is not accepted until behavior is specified, tested or otherwise verified with honest evidence.
+## Выбирайте проверки по риску изменения
 
-## May 2026 Baseline
+### Коротко
 
-1. Contract-first changes need contract checks.
-2. Backend changes need unit and integration evidence.
-3. Frontend changes need component/integration/e2e evidence according to risk.
-4. Security-sensitive changes need negative tests.
-5. Generated templates must not claim checks that do not exist.
+Проверяйте наблюдаемое поведение, которое действительно может сломаться.
 
-## Red Green Refactor
+### Плохо
 
-Use the cycle for behavior changes:
+```text
+Тест проверяет, что константа равна самой себе.
+```
 
-1. `Red`: write or identify the failing test/check.
-2. `Green`: implement the smallest correct behavior.
-3. `Refactor`: improve structure without changing behavior.
-4. `Evidence`: record what passed.
+### Хорошо
 
-If a check cannot exist yet, document that honestly in the status matrix or task notes.
+```text
+Тест проверяет отказ в доступе к чужому заказу.
+```
 
-## Backend Minimum
+### Почему
 
-For enabled backend modules:
+Большое число тестов не гарантирует полезного покрытия.
 
-1. service/business rules have unit tests;
-2. handler -> service -> repository paths have integration tests when persistence exists;
-3. migrations are exercised in test databases when migration tooling exists;
-4. auth/session/security invariants include negative tests;
-5. each bug fix adds a regression test when practical.
+### Когда применять
 
-## Frontend Minimum
+Для простой правки текста достаточно просмотра. Для авторизации, денег и данных нужны отрицательные и интеграционные сценарии.
 
-For enabled web modules:
+### Как проверить
 
-1. component tests cover rendering states;
-2. integration tests cover user interactions;
-3. e2e smoke covers critical paths;
-4. API contracts use generated clients or contract mocks;
-5. accessibility states are tested for critical flows.
+- Какую реальную ошибку обнаружит каждый новый тест?
 
-## Contract Minimum
+### Источники
 
-For OpenAPI-enabled stacks:
+- [Первоисточник](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
 
-1. OpenAPI root and modules exist;
-2. endpoint inventory exists;
-3. changed endpoints update examples and schemas;
-4. generated clients are refreshed when the project uses them;
-5. compatibility impact is documented for breaking changes.
+Уровень: Рекомендуется. Проверено: 2026-11-09.
 
-## Optional Feature Testing
+## Покажите, что тест обнаруживает исходную ошибку
 
-Only enabled features add gates:
+### Коротко
 
-1. worker: job idempotency, retry and DLQ tests;
-2. mobile: deep link, auth handoff, offline and crash smoke tests;
-3. payments: webhook signature, duplicate event, reconciliation and live-mode guard tests;
-4. desktop: platform-specific tests only after a desktop standard is enabled.
+Для исправления бага полезно сначала воспроизвести неправильное поведение.
 
-Disabled feature checks must not appear in the generated project quality gate.
+### Плохо
 
-## Universal Regression Account
+```text
+Тест написан после исправления и всегда проходил.
+```
 
-When auth and tenant flows exist, maintain a non-production seed account for regression:
+### Хорошо
 
-1. active user;
-2. membership in at least two companies;
-3. identities only for enabled providers;
-4. multiple active sessions when session management exists.
+```text
+На старой версии тест падает по нужной причине.
+На исправленной — проходит.
+```
 
-Credentials live in CI secrets or a secrets manager, never in the repository.
+### Почему
 
-## CI Quality Gate Shape
+Так проверка подтверждает причину исправления, а не случайную деталь реализации.
 
-A mature stack should run, in order:
+### Когда применять
 
-1. `verify-structure`;
-2. `verify-contracts`;
-3. `verify-backend` when backend runtime exists;
-4. `verify-frontend` when frontend runtime exists;
-5. `verify-db` when database runtime exists;
-6. optional feature gates only for enabled features;
-7. build only after verify gates;
-8. deploy only after build and smoke.
+Если автоматизация нецелесообразна, сохраните воспроизводимый ручной сценарий и ограничение.
 
-## Merge Gate
+### Как проверить
 
-A feature branch is not accepted when:
+- Тест действительно отличает старое поведение от нового?
 
-1. changed behavior has no evidence;
-2. contract and runtime disagree;
-3. security-sensitive negative paths are untested;
-4. flaky tests are ignored without a quarantine note;
-5. disabled feature checks are required by accident;
-6. docs and generated artifacts are out of sync.
+### Источники
 
-## Advanced Testing Options
+- [Первоисточник](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
 
-Use when risk warrants it:
+Уровень: Рекомендуется. Проверено: 2026-11-09.
 
-1. property tests for parsers and validators;
-2. fuzz tests for untrusted input;
-3. mutation testing for critical business rules;
-4. Testcontainers or provider-managed ephemeral services for integration tests;
-5. visual regression for complex UI surfaces;
-6. load smoke for high-traffic endpoints.
+## Проверяйте границы с настоящими зависимостями
 
-## Definition Of Done
+### Коротко
 
-A feature is done when:
+Изолированные тесты не заменяют проверки SQL, миграций и форматов взаимодействия.
 
-1. contract and code are synchronized;
-2. tests/checks prove changed behavior;
-3. docs are updated at the source of truth;
-4. generated artifacts are refreshed;
-5. skipped checks are named with reasons;
-6. `scripts/check.sh` passes for the generated project.
+### Плохо
 
-## Enforcement Reality
+```text
+Mock всегда возвращает успех; реальная миграция не запускается.
+```
 
-This standard is documented by default. It becomes tested/CI-blocking only when generated projects include real runtime test commands. The base generated `scripts/check.sh` currently enforces structure and disabled-folder hygiene.
+### Хорошо
+
+```text
+Тестовая БД → миграции → запрос → проверка результата.
+```
+
+### Почему
+
+Ошибка схемы или прав БД может не проявиться в mock.
+
+### Когда применять
+
+Используйте отдельную тестовую среду и ограниченные данные. Рабочая база не должна служить полигоном.
+
+### Как проверить
+
+- Проверены реальные права роли и ограничения схемы?
+
+### Источники
+
+- [Первоисточник](https://www.postgresql.org/docs/18/ddl-constraints.html)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+
+## Проверяйте важные сценарии целиком
+
+### Коротко
+
+Небольшой набор сквозных тестов должен покрывать основные пользовательские действия.
+
+### Плохо
+
+```text
+Есть unit-тесты, но кнопка сохранения не связана с API.
+```
+
+### Хорошо
+
+```text
+Вход → создание → повторное открытие.
+Отдельно — отказ доступа и ошибка сети.
+```
+
+### Почему
+
+Правильные компоненты могут быть неправильно соединены.
+
+### Когда применять
+
+Не заменяйте все быстрые тесты медленными e2e. Выбирайте сценарии с наибольшей ценой ошибки.
+
+### Как проверить
+
+- Можно ли пройти основной путь на узком экране?
+
+### Источники
+
+- [Первоисточник](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+
+## Отличайте выполненную проверку от описанной
+
+### Коротко
+
+Публикуйте точный объём проверки, версию и ограничения.
+
+### Плохо
+
+```text
+CI зелёный, хотя скрипт проверяет только наличие папок.
+```
+
+### Хорошо
+
+```text
+Проверена структура.
+Runtime-тесты пока отсутствуют.
+```
+
+### Почему
+
+Статус должен объяснять, что именно подтверждено.
+
+### Когда применять
+
+Проверки контента, линтер, сборка и тест поведения доказывают разные вещи.
+
+### Как проверить
+
+- Откройте команды проверки и сопоставьте их с заявленным результатом.
+
+### Источники
+
+- [Первоисточник](https://slsa.dev/spec/v1.2/)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+
+## Делайте сбои тестов воспроизводимыми
+
+### Коротко
+
+Управляйте временем, случайностью и внешними зависимостями в тестах.
+
+### Плохо
+
+```text
+Тест ждёт sleep(10) и зависит от рабочего API.
+```
+
+### Хорошо
+
+```text
+Управляемые часы и фиксированные данные.
+Ожидание конкретного состояния.
+```
+
+### Почему
+
+Случайные падения делают команду нечувствительной к настоящим ошибкам.
+
+### Когда применять
+
+Карантин нестабильного теста должен иметь владельца и срок исправления.
+
+### Как проверить
+
+- Можно ли повторить сбой с теми же входными данными?
+
+### Источники
+
+- [Первоисточник](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+

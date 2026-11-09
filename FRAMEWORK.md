@@ -1,3 +1,5 @@
+> **Справочник 2.0:** 100 русских правил в 15 разделах. Источник — `registry/standards/<domain>/<name>/rules/*.md`; `standard.md` и примеры генерируются. [Как предложить изменение](docs/contributing-standards.md) · [Аудит прежних правил](docs/audit-2026-11-09.md).
+
 # vibecoding-base Framework Model
 
 `vibecoding-base` is a registry-first framework library.
@@ -19,7 +21,7 @@ standards + templates + stack profile + lockfile + generated active context
 7. Disabled features must not create folders.
 8. Generated examples are derived artifacts, not source folders.
 9. Runtime readiness is explicit; placeholders must say they are placeholders.
-10. May 2026 baselines are kept in standards, not scattered across stack copies.
+10. Explicit version requirements are kept in standards, not scattered across stack copies.
 
 ## Delivery Loop
 

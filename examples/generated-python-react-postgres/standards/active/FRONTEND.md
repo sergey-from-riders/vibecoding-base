@@ -1,118 +1,115 @@
-<!-- Generated from registry/standards/frontend/react@1.1.0. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/frontend/react@2.0.0. Update the registry standard, then regenerate. -->
 
 # React Frontend Engineering Standard
 
-This standard applies to `apps/web` when the active stack uses React without the Next.js app runtime.
+> Собрано автоматически из rules/*.md. Редактируйте исходные правила, затем выполните `node tools/handbook.mjs generate`.
 
-UI density, shadcn usage, color policy and compact layout rules live in `ui/shadcn-compact`. Keep this standard focused on React architecture, state ownership, contracts and testability.
+## Вычисляйте производные значения без лишнего состояния
 
-## May 2026 Baseline
+### Коротко
 
-1. React baseline: `19.2.x`.
-2. Vite baseline: `8.x`.
-3. Node.js production baseline: `24.x LTS`.
-4. TypeScript baseline: `6.0.x`.
-5. ESLint baseline: `10.x`.
+Если значение полностью определяется текущими данными, вычислите его при отображении.
 
-## Stack Contract
+### Плохо
 
-1. `REACT_MAJOR = 19`
-2. `NODE_MAJOR = 24`
-3. `TYPESCRIPT_MAJOR = 6`
-4. `VITE_MAJOR = 8`
-5. `BUNDLER_ABSTRACTION_COUNT = 1`
-6. `ROUTE_LEVEL_CODE_SPLITTING_PERCENT = 100`
+```javascript
+useEffect(() => setFullName(first + " " + last), [first, last]);
+```
 
-## React Boundaries
+### Хорошо
 
-1. Components render UI and delegate side effects to hooks or services.
-2. Feature state must have one explicit owner.
-3. Shared data fetching goes through the typed API client.
-4. Cross-feature state requires a documented owner and tests.
-5. Runtime configuration is read through a typed config module only.
-6. Effects are synchronization points, not a general business logic layer.
-7. Error boundaries exist around route-level flows.
-8. Suspense boundaries are placed where loading states are useful to users.
+```javascript
+const fullName = first + " " + last;
+```
 
-## React 19 Usage
+### Почему
 
-1. Use `useEffectEvent` for non-reactive effect logic when it avoids stale closures.
-2. Use optimistic UI only with rollback behavior and user-visible failure states.
-3. Do not add manual memoization everywhere; prefer measured fixes and compiler-compatible code.
-4. Server-only React APIs are not used in a pure client React stack unless a framework runtime is added.
+Лишняя копия состояния требует синхронизации и создаёт промежуточные неверные значения.
 
-## Contract-First Frontend
+### Когда применять
 
-1. API calls go through a shared typed client generated or maintained from OpenAPI.
-2. Feature code must not invent hidden response shapes.
-3. Error states use the shared problem/error model.
-4. Request IDs from API responses must remain visible to observability and support flows.
-5. Generated clients are regenerated when OpenAPI changes.
-6. Frontend validation mirrors API constraints but does not replace backend validation.
+Effect нужен для синхронизации с внешней системой. Тяжёлое вычисление оптимизируйте после измерения.
 
-## State And Data
+### Как проверить
 
-1. Server state and client state are separated.
-2. Remote cache ownership is explicit.
-3. Do not copy remote data into local state unless editing a draft.
-4. Forms own draft state and submit through typed API calls.
-5. URL state is used for shareable filters and pagination.
+- Не хранится ли одна информация в нескольких состояниях?
 
-## Reuse-First Rules
+### Источники
 
-1. `REUSE_REQUIRED_PERCENT = 100` for repeated UI patterns.
-2. `DUPLICATE_FEATURE_COMPONENTS_ALLOWED = 0`.
-3. `DIRECT_FETCH_OUTSIDE_SHARED_API_CLIENT = 0`.
-4. `CLIENT_STATE_WITHOUT_OWNER = 0`.
-5. `DUPLICATE_REMOTE_CACHE_LAYERS = 0`.
+- [Первоисточник](https://react.dev/learn/you-might-not-need-an-effect)
 
-## File And Component Limits
+Уровень: Рекомендуется. Проверено: 2026-11-09.
 
-1. `MAX_TS_FILE_LINES = 260`
-2. `MAX_COMPONENT_LINES = 70`
-3. `MAX_FUNCTION_LINES = 45`
-4. `MAX_HOOK_LINES = 55`
-5. `MAX_COMPONENT_PROPS = 10`
-6. `MAX_FUNCTION_PARAMS = 4`
-7. `MAX_NESTING_DEPTH = 3`
-8. `MAX_CYCLOMATIC_COMPLEXITY = 10`
-9. `MAX_COMMENT_RATIO_PERCENT = 5`
-10. `MAX_UNTESTED_CHANGED_FILES = 0`
+## Отделяйте серверные данные от черновика
 
-## Performance Budgets
+### Коротко
 
-1. `WEB_VITALS_LCP_MS_P75_MAX = 2500`
-2. `WEB_VITALS_INP_MS_P75_MAX = 200`
-3. `WEB_VITALS_CLS_P75_MAX = 0.1`
-4. `JS_PAYLOAD_KB_GZIP_INITIAL_MAX = 170`
-5. `CRITICAL_CSS_KB_MAX = 35`
-6. `ABOVE_THE_FOLD_IMAGE_LAZYLOAD = 0`
-7. `NON_CRITICAL_IMAGE_LAZYLOAD = 100%`
-8. Route chunks must stay explainable.
-9. Expensive lists need virtualization or pagination.
-10. Runtime errors must be visible during local development.
+У полученных данных и редактируемой формы должны быть понятные владельцы.
 
-## Accessibility
+### Плохо
 
-1. WCAG 2.2 AA is the target.
-2. Keyboard operation is required for interactive flows.
-3. Focus states must be visible and not obscured.
-4. Form errors must be programmatically associated with fields.
-5. Drag actions need non-drag alternatives.
+```text
+Обновление списка молча заменяет введённый текст формы.
+```
 
-## Test Gates
+### Хорошо
 
-1. Unit/component pass rate: `100%`.
-2. Integration pass rate: `100%`.
-3. E2E smoke pass rate: `100%`.
-4. Contract compatibility check pass rate: `100%`.
-5. Performance budget check pass rate: `100%`.
+```text
+Серверный снимок + локальный черновик.
+При сохранении проверяется revision.
+```
 
-## Automated Checks
+### Почему
 
-1. `scripts/check.sh` must call the active frontend checks when the project has runnable frontend code.
-2. Until runtime checks exist, enforcement must be marked as documented only.
+Фоновое обновление не должно уничтожать работу пользователя.
 
-## Enforcement Reality
+### Когда применять
 
-This standard is documented by default. It becomes linted/tested/CI-blocking only when the generated project includes real React, Vite, ESLint, typecheck, component, e2e and performance checks.
+Копировать данные в состояние формы допустимо для редактирования, если явно определены начало и завершение черновика.
+
+### Как проверить
+
+- Обновите серверные данные во время ввода. Текст сохранился?
+
+### Источники
+
+- [Первоисточник](https://react.dev/learn/you-might-not-need-an-effect)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+
+## Сохраняйте общие фильтры в адресе страницы
+
+### Коротко
+
+Поиск и фильтры, которыми делятся, должны восстанавливаться по ссылке.
+
+### Плохо
+
+```text
+После обновления страницы поиск пропал.
+```
+
+### Хорошо
+
+```text
+/standards/?q=uuid&level=contextual
+```
+
+### Почему
+
+Ссылка становится воспроизводимым описанием того, что видит пользователь.
+
+### Когда применять
+
+Не помещайте в URL секреты или чувствительные данные. Временное состояние открытого меню не обязано попадать в адрес.
+
+### Как проверить
+
+- Откройте ссылку в новой вкладке и нажмите «Назад».
+
+### Источники
+
+- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9110.html)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+

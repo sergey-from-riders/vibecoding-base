@@ -1,3 +1,5 @@
+> В версии 2.0 источником служат `rules/*.md`. `standard.md` — результат сборки; не редактируйте его вручную.
+
 # Architecture
 
 `vibecoding-base` is registry-first.

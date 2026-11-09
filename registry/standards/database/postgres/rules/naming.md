@@ -1,0 +1,52 @@
+---
+id: "database.naming"
+title: "Называйте сущности и связи последовательно"
+section: "database"
+level: "recommended"
+tags: ["naming", "SQL"]
+technologies: ["SQL"]
+reviewed_at: "2026-11-09"
+order: 20
+related: ["database.identifiers", "database.constraints"]
+sources: ["https://www.postgresql.org/docs/18/ddl-constraints.html"]
+schema_version: 1
+---
+
+# Называйте сущности и связи последовательно
+
+## Коротко
+
+Из имени поля должно быть понятно, какую связь оно хранит.
+
+## Плохо
+
+```sql
+CREATE TABLE sessions (
+  id uuid, ref uuid
+);
+```
+
+## Хорошо
+
+```sql
+CREATE TABLE sessions (
+  session_id uuid PRIMARY KEY,
+  user_id uuid REFERENCES users(user_id)
+);
+```
+
+## Почему
+
+Явные имена помогают читать запросы с несколькими таблицами.
+
+## Когда применять
+
+snake_case и entity_id — соглашение этого справочника. Название id допустимо в другом последовательном соглашении; массовое переименование существующей БД не требуется.
+
+## Как проверить
+
+- Можно ли без комментария понять назначение ref?
+
+## Источники
+
+- [Первоисточник](https://www.postgresql.org/docs/18/ddl-constraints.html)

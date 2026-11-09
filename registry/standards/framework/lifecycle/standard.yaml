@@ -1,6 +1,6 @@
 id: framework/lifecycle
 name: Framework Lifecycle Standard
-version: 1.1.0
+version: 2.0.0
 status: stable
 domain: framework
 owners:
@@ -10,8 +10,8 @@ applies_to:
   runtimes:
     - any
 dependencies:
-  - agent/base@^1.0.0
-  - security/no-secrets@^1.0.0
+  - agent/base@^2.0.0
+  - security/no-secrets@^2.0.0
 enforcement:
   documented: true
   linted: false

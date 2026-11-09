@@ -1,281 +1,232 @@
-<!-- Generated from registry/standards/framework/lifecycle@1.1.0. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/framework/lifecycle@2.0.0. Update the registry standard, then regenerate. -->
 
 # Framework Lifecycle Standard
 
-This standard defines the delivery lifecycle for generated projects that use `vibecoding-base`.
+> Собрано автоматически из rules/*.md. Редактируйте исходные правила, затем выполните `node tools/handbook.mjs generate`.
 
-The core idea is simple: coding agents are fast, but the project must give them rails. The rails are active standards, stack profile metadata, contracts, checks, generated docs and human checkpoints.
+## Сначала определите результат задачи
 
-## May 2026 Baseline
+### Коротко
 
-Modern starter repositories should be registry-driven, not folder-copy-driven:
+Опишите поведение, которое должен получить пользователь, и способ его проверить.
 
-1. reusable standards live once in `registry/standards`;
-2. stack profiles compose standards and templates;
-3. generated projects contain only active context;
-4. examples are reproducible artifacts;
-5. readiness is shown as a matrix, not as vague "production ready" marketing.
-
-## Principles
-
-### 1. Active Context Before Code
-
-Every non-trivial change starts by reading the generated project context:
-
-1. `AGENTS.md`
-2. relevant files in `standards/active/`
-3. `.vibe/profile.yaml`
-4. `.vibe/registry.lock` when changing stack composition or standard versions
-5. existing contracts and migrations
-
-If the agent does not know the active standards, it should not write code.
-
-### 2. Scope Before Speed
-
-Fast implementation is useful only inside a clear boundary. New product domains, architecture changes, data model changes and deployment changes need an explicit task note, ADR, or standard/profile update.
-
-Default generated project scope is intentionally narrow:
-
-1. selected backend;
-2. selected frontend;
-3. selected database;
-4. selected contracts;
-5. selected standards;
-6. explicitly enabled optional features.
-
-Everything else is opt-in through `vibe enable`.
-
-### 3. Contract Before Runtime
-
-The contract is the source of truth:
-
-1. API behavior starts in `contracts/openapi`.
-2. Data behavior starts in `db/migrations`.
-3. UI behavior follows API contracts and selected UI standards.
-4. SDKs follow generated or maintained contracts.
-
-Runtime code should not invent hidden APIs.
-
-### 4. Red Before Green
-
-A task is not implementation-ready until the expected failure is clear:
-
-1. failing unit test;
-2. failing integration test;
-3. failing e2e scenario;
-4. failing contract coverage;
-5. failing static gate;
-6. documented reason why another gate is used.
-
-### 5. Vertical Slice Over Horizontal Piles
-
-Prefer one thin complete path over many unfinished layers.
-
-Good:
+### Плохо
 
 ```text
-OpenAPI -> migration -> service -> handler -> test -> docs
+Сделай современную систему целиком.
 ```
 
-Risky:
+### Хорошо
 
 ```text
-many schemas -> many empty handlers -> no tests -> no behavior
+Пользователь скачивает счёт.
+Учитываем доступ и ошибки.
+Готово: чужой счёт скачать нельзя.
 ```
 
-### 6. Observable By Default
+### Почему
 
-Every real feature should carry:
+Без границ агент может потратить время на ненужные функции.
 
-1. request ID propagation;
-2. structured logs;
-3. traces for request flow;
-4. metrics for latency/errors/security-sensitive flows;
-5. redaction for secrets and tokens.
+### Когда применять
 
-### 7. Human Checkpoints For Dangerous Work
+Для изменений поведения. Опечатку можно исправить без отдельного проектного документа.
 
-Humans must review before:
+### Как проверить
 
-1. deployment;
-2. schema/data migration with real data impact;
-3. auth/session/security changes;
-4. enabling integrations with write access;
-5. destructive git operations;
-6. secret rotation.
+- Можно ли понять из задачи, что должно получиться?
 
-### 8. Public Template Hygiene
+### Источники
 
-Generated projects and registry templates must stay reusable:
+- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)
 
-1. no real secrets;
-2. no private hostnames or server paths;
-3. no product-specific leftovers;
-4. no committed `.env`;
-5. no dependency vendor folders;
-6. safe placeholder domains only.
+Уровень: Рекомендуется. Проверено: 2026-11-09.
 
-### 9. Readiness Is Specific
+## Храните правило в одном источнике
 
-Do not describe a stack as fully ready when its template, runtime, checks and docs have different maturity.
+### Коротко
 
-Use this matrix:
+Сайт, документация и инструкции агента должны собираться из одного оригинала.
 
-1. `template: ready | partial | missing`
-2. `runtime: ready | partial | missing`
-3. `checks: ready | partial | missing`
-4. `docs: ready | partial | missing`
-
-### 10. Standards Move Through SemVer
-
-Standard updates must say whether they are:
-
-1. patch: text clarity or non-breaking checks;
-2. minor: new recommendations or optional checks;
-3. major: stricter required behavior or incompatible structure.
-
-## Lifecycle
-
-Every meaningful task moves through this lifecycle:
+### Плохо
 
 ```text
-Idea
-  -> Scope
-  -> Contract
-  -> Test plan
-  -> Red
-  -> Implementation
-  -> Green
-  -> Observability
-  -> Docs
-  -> Verify
-  -> Review
-  -> Merge
+Правило исправлено на сайте.
+Markdown и инструкции остались прежними.
 ```
 
-## Task Anatomy
+### Хорошо
 
-A good task has:
-
-1. title;
-2. scope;
-3. non-goals;
-4. files/modules likely to change;
-5. contract impact;
-6. data impact;
-7. tests/gates;
-8. security impact;
-9. docs impact;
-10. acceptance criteria.
-
-Example:
-
-```md
-# Task: Auth login vertical slice
-
-Scope:
-- apps/api
-- contracts/openapi
-- db/migrations
-- standards/active
-
-Non-goals:
-- OAuth providers
-- UI polish
-- mobile
-
-Acceptance:
-- login endpoint follows OpenAPI contract
-- token stored only as hash
-- request_id is returned and logged
-- integration test covers success and invalid password
-- scripts/check.sh passes
+```text
+Правило исправлено в Markdown.
+Сайт и инструкции обновлены из него.
 ```
 
-## Generated Docs Rule
+### Почему
 
-Do not edit generated `standards/active/*` as the source of truth. Update the matching `registry/standards/<id>/standard.md`, then regenerate the project.
+Редактируемые копии со временем противоречат друг другу.
 
-`vibe verify` should fail when a generated active standard drifts from the registry.
+### Когда применять
 
-## Registry Change Anatomy
+Копии для чтения и кеш допустимы, если известны источник и версия.
 
-A standards change is complete only when:
+### Как проверить
 
-1. `standard.md` reflects the rule;
-2. `standard.yaml` version and enforcement are truthful;
-3. `CHANGELOG.md` explains the change;
-4. affected stack profiles still resolve;
-5. examples are regenerated;
-6. lockfiles pin the resolved versions;
-7. `vibe verify` passes.
+- Внесите изменение в оригинал и проверьте все представления.
 
-## Definition Of Ready
+### Источники
 
-A task is ready when:
+- [Первоисточник](https://slsa.dev/spec/v1.2/)
 
-1. the scope is narrow;
-2. the owner understands the active standards;
-3. API/data impact is known;
-4. security impact is known;
-5. expected validation is listed;
-6. non-goals are explicit.
+Уровень: Рекомендуется. Проверено: 2026-11-09.
 
-## Definition Of Done
+## Согласуйте границу до реализации
 
-A task is done when:
+### Коротко
 
-1. implementation matches the contract;
-2. tests or gates prove behavior;
-3. docs are updated at the source of truth;
-4. generated artifacts are refreshed;
-5. hygiene checks still pass;
-6. unresolved risks are documented;
-7. human checkpoints were completed where required.
+Опишите вход, выход, ошибки и права, когда несколько частей системы взаимодействуют.
 
-## Public Release Gate
+### Плохо
 
-Before publishing the repository:
+```text
+Frontend ждёт price.
+Backend отдаёт amount.
+```
 
-1. no real secrets or private endpoints;
-2. no old copyable framework folders;
-3. no generated-example drift;
-4. no duplicate standards as separate sources of truth;
-5. status/readiness matrix is current;
-6. examples regenerate cleanly;
-7. verification commands are documented.
+### Хорошо
 
-## Standard Workflow For A New Endpoint
+```text
+Контракт: amountMinor + currency.
+Обе стороны проверяют один контракт.
+```
 
-1. Add endpoint to `contracts/openapi/modules/<module>.yaml`.
-2. Add or update schemas in `contracts/openapi/components/schemas`.
-3. Add row to `contracts/openapi/endpoints.inventory.tsv`.
-4. Add examples and code samples.
-5. Add backend handler/service tests.
-6. Implement backend service and handler.
-7. Add observability.
-8. Run `scripts/check.sh`.
-9. Update registry docs if the pattern creates a reusable rule.
+### Почему
 
-## Standard Workflow For A New Table
+Несогласованные интерфейсы ломают интеграцию даже при работающих отдельных модулях.
 
-1. Read `standards/active/DATABASE.md`.
-2. Add append-only up/down migrations.
-3. Use UUID entity IDs and canonical FK names.
-4. Add versioning tables/triggers for business entities when required.
-5. Run the active project checks.
-6. Update docs if the data model changes.
+### Когда применять
 
-## Standard Workflow For UI
+Для внешних границ и совместной разработки. Внутренней функции не всегда нужен OpenAPI.
 
-1. Read `standards/active/FRONTEND.md`.
-2. Read `standards/active/UI.md` when enabled.
-3. Reuse shared components and API clients.
-4. Do not duplicate backend validation.
-5. Use selected design tokens/profile.
-6. Add component/integration/e2e coverage for changed flows where runtime exists.
-7. Run `scripts/check.sh`.
+### Как проверить
 
-## Enforcement Reality
+- Есть ли пример успешного ответа и ошибки?
 
-This lifecycle standard is documented by default. Registry drift and generated example drift are enforced by `vibe verify`; human checkpoint discipline is review-enforced unless a project adds workflow automation.
+### Источники
+
+- [Первоисточник](https://spec.openapis.org/oas/v3.2.0.html)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+
+## Доведите один сценарий до работающего результата
+
+### Коротко
+
+Связывайте интерфейс, данные и проверки небольшими законченными изменениями.
+
+### Плохо
+
+```text
+20 пустых обработчиков.
+Ни один сценарий не работает.
+```
+
+### Хорошо
+
+```text
+Один запрос → проверка доступа → данные → ответ.
+Есть проверка результата.
+```
+
+### Почему
+
+Так ошибки взаимодействия обнаруживаются раньше.
+
+### Когда применять
+
+Рекомендация для продуктовой разработки; отдельное исследование может не иметь рабочего интерфейса.
+
+### Как проверить
+
+- Можно ли показать завершённый пользовательский сценарий?
+
+### Источники
+
+- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+
+## Добавляйте зависимости под конкретную потребность
+
+### Коротко
+
+Новый сервис или пакет должен решать измеримую задачу и иметь понятную поддержку.
+
+### Плохо
+
+```text
+Для справочника сразу добавлены БД, очередь и Redis.
+```
+
+### Хорошо
+
+```text
+Markdown хранится в Git.
+Сайт читает проверенный снимок файлов.
+```
+
+### Почему
+
+Каждый дополнительный компонент требует обновлений, мониторинга и восстановления.
+
+### Когда применять
+
+Инфраструктура оправдана нагрузкой или требованиями, а не модой.
+
+### Как проверить
+
+- Какое требование нельзя выполнить существующими средствами?
+
+### Источники
+
+- [Первоисточник](https://sre.google/sre-book/service-level-objectives/)
+
+Уровень: Зависит от задачи. Проверено: 2026-11-09.
+
+## Описывайте готовность проверяемыми фактами
+
+### Коротко
+
+Разделяйте готовый шаблон, работающий сервис и реально выполненные проверки.
+
+### Плохо
+
+```text
+Production ready: папки и README созданы.
+```
+
+### Хорошо
+
+```text
+Шаблон готов. Runtime частичный.
+Проверена структура. Нагрузочные тесты не выполнены.
+```
+
+### Почему
+
+Наличие файлов не доказывает работоспособность.
+
+### Когда применять
+
+Для шаблонов, библиотек и релизов. Указывайте ограничения рядом с результатами.
+
+### Как проверить
+
+- Можно ли повторить заявленные проверки?
+
+### Источники
+
+- [Первоисточник](https://slsa.dev/spec/v1.2/)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+

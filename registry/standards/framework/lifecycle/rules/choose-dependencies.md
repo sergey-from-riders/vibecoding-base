@@ -1,0 +1,48 @@
+---
+id: "architecture.choose-dependencies"
+title: "Добавляйте зависимости под конкретную потребность"
+section: "architecture"
+level: "contextual"
+tags: ["choose-dependencies"]
+technologies: []
+reviewed_at: "2026-11-09"
+order: 5
+related: ["architecture.scope", "architecture.one-source"]
+sources: ["https://sre.google/sre-book/service-level-objectives/"]
+schema_version: 1
+---
+
+# Добавляйте зависимости под конкретную потребность
+
+## Коротко
+
+Новый сервис или пакет должен решать измеримую задачу и иметь понятную поддержку.
+
+## Плохо
+
+```text
+Для справочника сразу добавлены БД, очередь и Redis.
+```
+
+## Хорошо
+
+```text
+Markdown хранится в Git.
+Сайт читает проверенный снимок файлов.
+```
+
+## Почему
+
+Каждый дополнительный компонент требует обновлений, мониторинга и восстановления.
+
+## Когда применять
+
+Инфраструктура оправдана нагрузкой или требованиями, а не модой.
+
+## Как проверить
+
+- Какое требование нельзя выполнить существующими средствами?
+
+## Источники
+
+- [Первоисточник](https://sre.google/sre-book/service-level-objectives/)

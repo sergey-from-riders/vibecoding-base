@@ -1,0 +1,49 @@
+---
+id: "collaboration.preserve-changes"
+title: "Сохраняйте чужие незавершённые изменения"
+section: "collaboration"
+level: "required"
+tags: ["preserve-changes"]
+technologies: []
+reviewed_at: "2026-11-09"
+order: 15
+related: ["collaboration.small-pr", "collaboration.ownership"]
+sources: ["https://docs.github.com/en/pull-requests/reference/pull-requests"]
+schema_version: 1
+---
+
+# Сохраняйте чужие незавершённые изменения
+
+## Коротко
+
+Перед началом проверьте рабочее дерево и отделите собственные изменения.
+
+## Плохо
+
+```text
+Неизвестный файл мешает → git reset --hard.
+```
+
+## Хорошо
+
+```text
+Проверка diff.
+Свои изменения в отдельной ветке.
+Чужая работа сохранена.
+```
+
+## Почему
+
+Массовый сброс может уничтожить результат другого участника.
+
+## Когда применять
+
+Особенно важно в общей папке; удаление требует понимания происхождения изменений.
+
+## Как проверить
+
+- Сравните состояние до и после задачи.
+
+## Источники
+
+- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)

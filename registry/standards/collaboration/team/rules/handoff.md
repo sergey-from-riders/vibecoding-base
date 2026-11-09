@@ -1,0 +1,49 @@
+---
+id: "collaboration.handoff"
+title: "Передавайте проверяемый результат"
+section: "collaboration"
+level: "recommended"
+tags: ["handoff"]
+technologies: []
+reviewed_at: "2026-11-09"
+order: 17
+related: ["collaboration.small-pr", "collaboration.ownership"]
+sources: ["https://docs.github.com/en/pull-requests/reference/pull-requests"]
+schema_version: 1
+---
+
+# Передавайте проверяемый результат
+
+## Коротко
+
+В конце задачи укажите, что изменилось, как проверено и что осталось неизвестным.
+
+## Плохо
+
+```text
+Готово, продолжай сам.
+```
+
+## Хорошо
+
+```text
+Изменено: обработка повторов.
+Проверено: двойной запрос.
+Не проверено: живой провайдер.
+```
+
+## Почему
+
+Следующий участник не должен восстанавливать весь разговор.
+
+## Когда применять
+
+Для передачи между людьми, агентами и сменами поддержки.
+
+## Как проверить
+
+- Можно ли продолжить по ссылке на PR и короткой заметке?
+
+## Источники
+
+- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)

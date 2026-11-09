@@ -1,6 +1,6 @@
 id: mobile/react-native
 name: React Native Mobile Standard
-version: 1.1.0
+version: 2.0.0
 status: experimental
 domain: mobile
 owners:
@@ -11,8 +11,8 @@ applies_to:
   runtimes:
     - react-native
 dependencies:
-  - api/openapi-modular@^1.0.0
-  - security/no-secrets@^1.0.0
+  - api/openapi-modular@^2.0.0
+  - security/no-secrets@^2.0.0
 enforcement:
   documented: true
   linted: false

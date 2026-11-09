@@ -1,6 +1,6 @@
 id: backend/python
 name: Python Backend Engineering Standard
-version: 1.1.0
+version: 2.0.0
 status: stable
 domain: backend
 owners:
@@ -12,8 +12,8 @@ applies_to:
     - python
     - fastapi
 dependencies:
-  - security/no-secrets@^1.0.0
-  - testing/tdd-strict@^1.0.0
+  - security/no-secrets@^2.0.0
+  - testing/tdd-strict@^2.0.0
 enforcement:
   documented: true
   linted: false

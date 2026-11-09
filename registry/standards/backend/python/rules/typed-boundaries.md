@@ -1,0 +1,49 @@
+---
+id: "backend.typed-boundaries"
+title: "Проверяйте вход на границе приложения"
+section: "backend"
+level: "required"
+tags: ["typed-boundaries", "Python", "FastAPI"]
+technologies: ["Python", "FastAPI"]
+reviewed_at: "2026-11-09"
+order: 43
+related: ["backend.boundaries", "backend.go-context"]
+sources: ["https://spec.openapis.org/oas/v3.2.0.html"]
+schema_version: 1
+---
+
+# Проверяйте вход на границе приложения
+
+## Коротко
+
+Типы помогают разработчику, а проверка входа защищает работающую систему.
+
+## Плохо
+
+```text
+quantity = payload["quantity"]
+charge(quantity * price)
+```
+
+## Хорошо
+
+```text
+quantity = validated_request.quantity
+# Целое число в разрешённом диапазоне.
+```
+
+## Почему
+
+Аннотация типа сама по себе не проверяет входящий JSON.
+
+## Когда применять
+
+Для Python/FastAPI подходят модели Pydantic; конкретная версия фиксируется зависимостями проекта.
+
+## Как проверить
+
+- Проверьте строку, отрицательное число и слишком большое значение.
+
+## Источники
+
+- [Первоисточник](https://spec.openapis.org/oas/v3.2.0.html)

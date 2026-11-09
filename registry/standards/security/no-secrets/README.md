@@ -1,3 +1,5 @@
 # security/no-secrets
 
-Secret hygiene and public-template safety rules. Changes here affect publish readiness and generated project checks.
+Источник правил — `rules/*.md`. `standard.md` собирается автоматически.
+
+Редактируйте отдельное правило, затем выполните `node tools/handbook.mjs generate` и `node tools/vibe.mjs verify`.
