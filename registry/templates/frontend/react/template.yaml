@@ -6,4 +6,3 @@ paths:
   - apps/web
 standards:
   - frontend/react
-  - ui/shadcn-compact

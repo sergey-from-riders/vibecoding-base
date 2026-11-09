@@ -1,7 +1,7 @@
 {
   "checked_at": "2026-11-09T13:38:10+03:00",
-  "rules": 117,
-  "unique_sources": 134,
+  "rules": 111,
+  "unique_sources": 125,
   "results": [
     {
       "url": "https://12factor.net/config",
@@ -1265,76 +1265,6 @@
       "anchor": true
     },
     {
-      "url": "https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification.html",
-      "rules": [
-        "interface.consistent-components"
-      ],
-      "status": 200,
-      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification.html",
-      "title": "Understanding Success Criterion 3.2.4: Consistent Identification | WAI | W3C",
-      "anchor": true
-    },
-    {
-      "url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
-      "rules": [
-        "interface.contrast"
-      ],
-      "status": 200,
-      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
-      "title": "Understanding Success Criterion 1.4.3: Contrast (Minimum) | WAI | W3C",
-      "anchor": true
-    },
-    {
-      "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html",
-      "rules": [
-        "interface.forms"
-      ],
-      "status": 200,
-      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html",
-      "title": "Understanding Success Criterion 3.3.1: Error Identification | WAI | W3C",
-      "anchor": true
-    },
-    {
-      "url": "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html",
-      "rules": [
-        "interface.keyboard"
-      ],
-      "status": 200,
-      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html",
-      "title": "Understanding Success Criterion 2.4.7: Focus Visible | WAI | W3C",
-      "anchor": true
-    },
-    {
-      "url": "https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html",
-      "rules": [
-        "interface.keyboard"
-      ],
-      "status": 200,
-      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html",
-      "title": "Understanding Success Criterion 2.1.1: Keyboard | WAI | W3C",
-      "anchor": true
-    },
-    {
-      "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html",
-      "rules": [
-        "interface.clear-actions"
-      ],
-      "status": 200,
-      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html",
-      "title": "Understanding Success Criterion 3.3.2: Labels or Instructions | WAI | W3C",
-      "anchor": true
-    },
-    {
-      "url": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
-      "rules": [
-        "interface.responsive"
-      ],
-      "status": 200,
-      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
-      "title": "Understanding Success Criterion 1.4.10: Reflow | WAI | W3C",
-      "anchor": true
-    },
-    {
       "url": "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html",
       "rules": [
         "frontend.states"
@@ -1342,26 +1272,6 @@
       "status": 200,
       "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html",
       "title": "Understanding Success Criterion 4.1.3: Status Messages | WAI | W3C",
-      "anchor": true
-    },
-    {
-      "url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
-      "rules": [
-        "interface.consistent-components"
-      ],
-      "status": 200,
-      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
-      "title": "Understanding Success Criterion 2.5.8: Target Size (Minimum) | WAI | W3C",
-      "anchor": true
-    },
-    {
-      "url": "https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html",
-      "rules": [
-        "interface.contrast"
-      ],
-      "status": 200,
-      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html",
-      "title": "Understanding Success Criterion 1.4.1: Use of Color | WAI | W3C",
       "anchor": true
     }
   ]

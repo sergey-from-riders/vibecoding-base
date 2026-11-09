@@ -13,7 +13,6 @@ This project was generated from the `python-react-postgres` stack profile.
 - `testing/tdd-strict@2.1.1`
 - `security/no-secrets@2.1.1`
 - `observability/three-signals@2.1.1`
-- `ui/shadcn-compact@2.1.1`
 - `collaboration/team@2.1.1`
 - `delivery/release@2.1.1`
 - `integrations/external@2.1.1`

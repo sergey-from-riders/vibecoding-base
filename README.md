@@ -1,4 +1,4 @@
-> **Справочник 2.1:** 117 русских правил в 15 основных разделах и подразделе UI/UX. Источник — `registry/standards/<domain>/<name>/rules/*.md`; `standard.md` и примеры генерируются. [Как предложить изменение](docs/contributing-standards.md) · [Аудит прежних правил](docs/audit-2026-11-09.md).
+> **Справочник 2.2:** 111 русских правил в 15 разделах. Источник — `registry/standards/<domain>/<name>/rules/*.md`; `standard.md` и примеры генерируются. [Как предложить изменение](docs/contributing-standards.md) · [Аудит прежних правил](docs/audit-2026-11-09.md).
 
 # vibecoding-base 🧱✨
 

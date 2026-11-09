@@ -16,7 +16,6 @@ Read order:
 1. standards/active/TESTING.md
 1. standards/active/SECURITY.md
 1. standards/active/OBSERVABILITY.md
-1. standards/active/UI.md
 1. standards/active/COLLABORATION.md
 1. standards/active/DELIVERY.md
 1. standards/active/INTEGRATIONS.md

@@ -352,7 +352,6 @@ function activeStandardFileName(id, standard) {
     "testing/tdd-strict": "TESTING.md",
     "security/no-secrets": "SECURITY.md",
     "observability/three-signals": "OBSERVABILITY.md",
-    "ui/shadcn-compact": "UI.md",
     "backend/worker": "WORKER.md",
     "mobile/react-native": "MOBILE.md",
     "payments/stripe": "PAYMENTS.md"
@@ -382,7 +381,6 @@ function sortedActiveStandards(resolved) {
     "testing/tdd-strict",
     "security/no-secrets",
     "observability/three-signals",
-    "ui/shadcn-compact",
     "backend/worker",
     "mobile/react-native",
     "payments/stripe"
