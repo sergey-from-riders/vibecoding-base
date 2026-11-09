@@ -1,6 +1,6 @@
 ---
 id: "collaboration.decisions"
-title: "Записывайте причины существенных решений"
+title: "Architecture Decision Record"
 section: "collaboration"
 level: "contextual"
 tags: ["decisions"]
@@ -12,7 +12,7 @@ sources: ["https://docs.github.com/en/pull-requests/reference/pull-requests"]
 schema_version: 1
 ---
 
-# Записывайте причины существенных решений
+# Architecture Decision Record
 
 ## Коротко
 
@@ -40,6 +40,18 @@ schema_version: 1
 Для архитектуры и необратимых решений; мелкой правке отдельный ADR не нужен.
 
 ## Как проверить
+
+- У решения есть причина и условие пересмотра?
+
+## Человек
+
+Фиксирует принятое решение, ограничения и отвергнутые альтернативы.
+
+## Агент
+
+Проверяет рабочее дерево, сохраняет чужие изменения и передаёт diff, команды проверки и ограничения.
+
+Контроль результата:
 
 - У решения есть причина и условие пересмотра?
 

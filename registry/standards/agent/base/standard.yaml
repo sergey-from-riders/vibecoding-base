@@ -1,6 +1,6 @@
 id: agent/base
 name: Agent Base Standard
-version: 2.0.0
+version: 2.1.0
 status: stable
 domain: agent
 owners:
@@ -11,7 +11,7 @@ applies_to:
     - codex
     - cursor
 dependencies:
-  - security/no-secrets@^2.0.0
+  - security/no-secrets@^2.1.0
 enforcement:
   documented: true
   linted: true

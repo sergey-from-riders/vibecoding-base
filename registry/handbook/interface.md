@@ -1,7 +1,8 @@
 ---
 id: "interface"
-title: "Интерфейсы и доступность"
+title: "Правила UI/UX"
 order: 8
+parent: "frontend"
 schema_version: 1
 ---
 

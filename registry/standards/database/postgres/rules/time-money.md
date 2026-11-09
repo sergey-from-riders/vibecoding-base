@@ -1,50 +1,61 @@
 ---
 id: "database.time-money"
-title: "Храните момент времени и деньги без двусмысленности"
+title: "Дата и время: timestamptz"
 section: "database"
 level: "recommended"
-tags: ["time-money", "SQL"]
-technologies: ["SQL"]
+tags: ["time", "даты", "timezone", "timestamptz"]
+technologies: ["PostgreSQL"]
 reviewed_at: "2026-11-09"
 order: 26
-related: ["database.identifiers", "database.naming"]
-sources: ["https://www.postgresql.org/docs/18/ddl.html"]
+related: ["database.money", "database.naming"]
+sources: ["https://www.postgresql.org/docs/18/datatype-datetime.html"]
 schema_version: 1
 ---
 
-# Храните момент времени и деньги без двусмысленности
+# Дата и время: timestamptz
 
 ## Коротко
 
-Для денег задавайте валюту и точность, для времени различайте момент и местное расписание.
+Момент времени и местное расписание — разные данные. PostgreSQL `timestamptz` хранит момент, но не исходное название часового пояса.
 
 ## Плохо
 
-```text
-price = 0.1 + 0.2
-meeting = "09.11.2026 10:00"
+```sql
+CREATE TABLE meeting (starts_at text);
+-- '09.11.2026 10:00' без формата и часового пояса
 ```
 
 ## Хорошо
 
-```text
-amount_minor = 30; currency = "RUB"
-created_at timestamptz
-meeting_zone = "Europe/Moscow"
+```sql
+CREATE TABLE meeting (
+  starts_at timestamptz NOT NULL,
+  time_zone text NOT NULL
+);
+-- '2026-11-09T10:00:00+03:00', 'Europe/Moscow'
 ```
 
 ## Почему
 
-Двоичная дробь может округляться неожиданно; время без зоны не всегда определяет момент.
+Без зоны одна строка может означать разные моменты. Для будущего повторяющегося расписания нужен местный час и название зоны, а не только одна UTC-метка.
 
 ## Когда применять
 
-Для денег подходят integer minor units или numeric с политикой округления. Для будущего местного расписания храните также часовую зону; timestamptz её название не сохраняет.
+PostgreSQL 18: `timestamptz` — события и аудит; `date` — календарная дата; `timestamp without time zone` вместе с зоной и правилом повтора — локальное расписание. Не добавляйте зону к дате рождения. Денежные типы вынесены в отдельное правило `database.money`.
 
 ## Как проверить
 
-- Проверены округление, валюта и переходы часового пояса?
+- Проверены преобразования UTC, разные зоны и переходы летнего времени?
+- Различаются дата, момент и повторяющееся расписание?
+
+## Человек
+
+Определяет, хранится ли точный момент, местная дата или повторяющееся расписание.
+
+## Агент
+
+Выбирает типы по согласованной семантике, проверяет преобразования зон и неоднозначное местное время.
 
 ## Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/ddl.html)
+- [PostgreSQL 18: Date/Time Types](https://www.postgresql.org/docs/18/datatype-datetime.html)

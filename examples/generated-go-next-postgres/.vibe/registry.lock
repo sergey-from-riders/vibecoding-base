@@ -1,19 +1,19 @@
-registry_version: 2.0.0
+registry_version: 2.1.0
 stack: go-next-postgres
 standards:
-  agent/base: 2.0.0
-  framework/lifecycle: 2.0.0
-  backend/go: 2.0.0
-  frontend/next: 2.0.0
-  database/postgres: 2.0.0
-  api/openapi-modular: 2.0.0
-  testing/tdd-strict: 2.0.0
-  security/no-secrets: 2.0.0
-  observability/three-signals: 2.0.0
-  ui/shadcn-compact: 2.0.0
-  collaboration/team: 2.0.0
-  delivery/release: 2.0.0
-  integrations/external: 2.0.0
+  agent/base: 2.1.0
+  framework/lifecycle: 2.1.0
+  backend/go: 2.1.0
+  frontend/next: 2.1.0
+  database/postgres: 2.1.0
+  api/openapi-modular: 2.1.0
+  testing/tdd-strict: 2.1.0
+  security/no-secrets: 2.1.0
+  observability/three-signals: 2.1.0
+  ui/shadcn-compact: 2.1.0
+  collaboration/team: 2.1.0
+  delivery/release: 2.1.0
+  integrations/external: 2.1.0
 templates:
   backend/go: 1.1.0
   frontend/next: 1.1.0

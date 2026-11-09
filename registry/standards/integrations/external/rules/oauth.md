@@ -1,6 +1,6 @@
 ---
 id: "integrations.oauth"
-title: "Используйте безопасный OAuth-поток"
+title: "OAuth и PKCE"
 section: "integrations"
 level: "required"
 tags: ["oauth", "OAuth"]
@@ -12,7 +12,7 @@ sources: ["https://www.rfc-editor.org/rfc/rfc9700.html"]
 schema_version: 1
 ---
 
-# Используйте безопасный OAuth-поток
+# OAuth и PKCE
 
 ## Коротко
 
@@ -41,6 +41,18 @@ Authorization Code + PKCE.
 Состав проверок зависит от клиента и провайдера. Не используйте password grant; минимизируйте scopes.
 
 ## Как проверить
+
+- Проверьте подмену state, redirect_uri и токена другой аудитории.
+
+## Человек
+
+Регистрирует приложение и выбирает минимальные разрешения.
+
+## Агент
+
+Реализует интеграцию по документации установленной версии и проверяет отказ, тайм-аут и повтор.
+
+Контроль результата:
 
 - Проверьте подмену state, redirect_uri и токена другой аудитории.
 
