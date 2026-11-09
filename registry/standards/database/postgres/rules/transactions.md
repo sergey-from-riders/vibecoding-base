@@ -7,8 +7,8 @@ tags: ["transactions", "SQL"]
 technologies: ["SQL"]
 reviewed_at: "2026-11-09"
 order: 23
-related: ["database.identifiers", "database.naming"]
-sources: ["https://www.postgresql.org/docs/18/ddl.html"]
+related: ["caching.outbox", "database.constraints"]
+sources: ["https://www.postgresql.org/docs/18/tutorial-transactions.html"]
 schema_version: 1
 ---
 
@@ -20,7 +20,7 @@ schema_version: 1
 
 ## Плохо
 
-```sql
+```text
 Списать остаток.
 Сбой.
 Заказ не создан.
@@ -61,4 +61,4 @@ COMMIT;
 
 ## Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/ddl.html)
+- [PostgreSQL: Documentation: 18: 3.4. Transactions](https://www.postgresql.org/docs/18/tutorial-transactions.html)

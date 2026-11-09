@@ -8,7 +8,7 @@ technologies: ["HTTP"]
 reviewed_at: "2026-11-09"
 order: 30
 related: ["api.http-status", "api.error-details"]
-sources: ["https://www.rfc-editor.org/rfc/rfc9110.html"]
+sources: ["https://www.rfc-editor.org/rfc/rfc9110.html#section-9", "https://www.rfc-editor.org/rfc/rfc5789.html"]
 schema_version: 1
 ---
 
@@ -56,4 +56,5 @@ POST подходит для команд и создания, PUT — полн�
 
 ## Источники
 
-- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9110.html)
+- [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html#section-9)
+- [rfc5789.html](https://www.rfc-editor.org/rfc/rfc5789.html)

@@ -65,5 +65,5 @@ POST /orders принимает title длиной до 200 символов. П
 
 ## Источники
 
-- [Документация 1](https://docs.nestjs.com/techniques/validation)
-- [Документация 2](https://docs.nestjs.com/guards)
+- [Documentation](https://docs.nestjs.com/techniques/validation)
+- [Guards](https://docs.nestjs.com/guards)

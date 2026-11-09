@@ -50,7 +50,7 @@ Effect нужен для синхронизации с внешней систе
 
 ### Источники
 
-- [Первоисточник](https://react.dev/learn/you-might-not-need-an-effect)
+- [You Might Not Need an Effect – React](https://react.dev/learn/you-might-not-need-an-effect)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -99,7 +99,7 @@ Effect нужен для синхронизации с внешней систе
 
 ### Источники
 
-- [Первоисточник](https://react.dev/learn/you-might-not-need-an-effect)
+- [You Might Not Need an Effect – React](https://react.dev/learn/you-might-not-need-an-effect)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -147,7 +147,8 @@ Effect нужен для синхронизации с внешней систе
 
 ### Источники
 
-- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9110.html)
+- [Working with the History API - Web APIs](https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API)
+- [URLSearchParams - Web APIs](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 

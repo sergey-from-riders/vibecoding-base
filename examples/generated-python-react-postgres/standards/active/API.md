@@ -1,4 +1,4 @@
-<!-- Generated from registry/standards/api/openapi-modular@2.1.0. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/api/openapi-modular@2.1.1. Update the registry standard, then regenerate. -->
 
 # Modular OpenAPI Contract Standard
 
@@ -54,7 +54,7 @@ Content-Type: application/problem+json
 
 ### Источники
 
-- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9457.html)
+- [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457.html)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -102,7 +102,8 @@ POST подходит для команд и создания, PUT — полн�
 
 ### Источники
 
-- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9110.html)
+- [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html#section-9)
+- [rfc5789.html](https://www.rfc-editor.org/rfc/rfc5789.html)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -152,7 +153,7 @@ Problem Details задаёт общую основу; errors и request_id — �
 
 ### Источники
 
-- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9457.html)
+- [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -201,7 +202,7 @@ OpenAPI 3.2 подходит при поддержке инструментов;
 
 ### Источники
 
-- [Первоисточник](https://spec.openapis.org/oas/v3.2.0.html)
+- [OpenAPI Specification v3.2.0](https://spec.openapis.org/oas/v3.2.0.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -230,7 +231,7 @@ OpenAPI 3.2 подходит при поддержке инструментов;
 
 ### Когда применять
 
-Ключ связан с пользователем, операцией и содержимым. Другое содержимое под тем же ключом — конфликт. Срок хранения ключей документируется.
+Ключ связан с пользователем, операцией и содержимым. Другое содержимое под тем же ключом — конфликт. Срок хранения ключей документируется. `Idempotency-Key` — контракт конкретного API, а не обязательный заголовок RFC 9110. После истечения срока дедупликации повтор может стать новой операцией.
 
 ### Как проверить
 
@@ -250,7 +251,8 @@ OpenAPI 3.2 подходит при поддержке инструментов;
 
 ### Источники
 
-- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9110.html)
+- [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2)
+- [Idempotent requests](https://docs.stripe.com/api/idempotent_requests)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -300,7 +302,7 @@ OpenAPI 3.2 подходит при поддержке инструментов;
 
 ### Источники
 
-- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9110.html)
+- [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -349,7 +351,8 @@ Cursor удобен для меняющихся списков; offset допу�
 
 ### Источники
 
-- [Первоисточник](https://owasp.org/API-Security/editions/2023/en/0x11-t10/)
+- [PostgreSQL: Documentation: 18: 7.6. LIMIT and OFFSET](https://www.postgresql.org/docs/18/queries-limit.html)
+- [API4:2023 Unrestricted Resource Consumption - OWASP API Security Top 10](https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -398,7 +401,7 @@ amount вчера означал рубли, сегодня — копейки.
 
 ### Источники
 
-- [Первоисточник](https://spec.openapis.org/oas/v3.2.0.html)
+- [AIP-180: Backwards compatibility](https://google.aip.dev/180)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -449,7 +452,7 @@ X-Request-Id полезен для поддержки, если согласов
 
 ### Источники
 
-- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9110.html)
+- [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 

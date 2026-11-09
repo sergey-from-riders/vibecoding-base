@@ -8,7 +8,7 @@ technologies: ["Stripe"]
 reviewed_at: "2026-11-09"
 order: 98
 related: ["payments.payment-truth", "payments.payment-events"]
-sources: ["https://docs.stripe.com/webhooks"]
+sources: ["https://docs.stripe.com/security/guide"]
 schema_version: 1
 ---
 
@@ -57,4 +57,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://docs.stripe.com/webhooks)
+- [Integration security guide](https://docs.stripe.com/security/guide)

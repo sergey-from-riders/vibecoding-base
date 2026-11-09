@@ -27,6 +27,8 @@ HTTP-обработчик сам считает скидку, делает SQL �
 
 ### Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Количество слоёв соразмерно задаче. Требование ровно одного вызова сервиса не является свойством Go.
 
 ### Как проверить
@@ -47,7 +49,7 @@ HTTP-обработчик сам считает скидку, делает SQL �
 
 ### Источники
 
-- [Первоисточник](https://go.dev/doc/effective_go)
+- [Organizing a Go module - The Go Programming Language](https://go.dev/doc/modules/layout)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -60,7 +62,10 @@ HTTP-обработчик сам считает скидку, делает SQL �
 ### Плохо
 
 ```go
-db.Query("SELECT ...") // запрос живёт после ухода клиента
+// В HTTP-обработчике: срок запроса потерян.
+ctx := context.Background()
+err := db.QueryRowContext(ctx, query, orderID).Scan(&title)
+if err != nil { return err }
 ```
 
 ### Хорошо
@@ -68,7 +73,8 @@ db.Query("SELECT ...") // запрос живёт после ухода клие
 ```go
 ctx, cancel := context.WithTimeout(r.Context(), 2*time.Second)
 defer cancel()
-rows, err := db.QueryContext(ctx, query)
+err := db.QueryRowContext(ctx, query, orderID).Scan(&title)
+if err != nil { return err }
 ```
 
 ### Почему
@@ -77,7 +83,7 @@ rows, err := db.QueryContext(ctx, query)
 
 ### Когда применять
 
-Две секунды — пример, а не норматив. В Go передавайте context явно; фоновая задача должна иметь собственного владельца и срок жизни.
+Фрагмент функции, возвращающей error: db — *sql.DB, r — *http.Request, query — параметризованный SELECT одной строки. Две секунды — пример, а не норматив. В Go передавайте context явно; фоновая задача должна иметь собственного владельца и срок жизни.
 
 ### Как проверить
 
@@ -97,7 +103,8 @@ rows, err := db.QueryContext(ctx, query)
 
 ### Источники
 
-- [Первоисточник](https://go.dev/doc/effective_go)
+- [Canceling in-progress operations - The Go Programming Language](https://go.dev/doc/database/cancel-operations)
+- [sql package - database/sql - Go Packages](https://pkg.go.dev/database/sql#Rows)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -110,16 +117,22 @@ rows, err := db.QueryContext(ctx, query)
 ### Плохо
 
 ```go
-result, _ := saveOrder(order)
-return success(result)
+func persist(order Order) (*Order, error) {
+    result, _ := saveOrder(order)
+    return result, nil
+}
 ```
 
 ### Хорошо
 
 ```go
-result, err := saveOrder(order)
-if err != nil { return fmt.Errorf("save order: %w", err) }
-return result, nil
+func persist(order Order) (*Order, error) {
+    result, err := saveOrder(order)
+    if err != nil {
+        return nil, fmt.Errorf("save order: %w", err)
+    }
+    return result, nil
+}
 ```
 
 ### Почему
@@ -148,7 +161,7 @@ return result, nil
 
 ### Источники
 
-- [Первоисточник](https://go.dev/doc/effective_go)
+- [Working with Errors in Go 1.13 - The Go Programming Language](https://go.dev/blog/go1.13-errors)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -197,7 +210,8 @@ return result, nil
 
 ### Источники
 
-- [Первоисточник](https://go.dev/doc/effective_go)
+- [Effective Go - The Go Programming Language](https://go.dev/doc/effective_go#channels)
+- [Data Race Detector - The Go Programming Language](https://go.dev/doc/articles/race_detector)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 

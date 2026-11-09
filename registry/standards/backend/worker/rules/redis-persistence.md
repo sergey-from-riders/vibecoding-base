@@ -63,5 +63,5 @@ Redis OSS, AOF и RDB. Для восстанавливаемого кеша pers
 
 ## Источники
 
-- [Документация 1](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/)
-- [Документация 2](https://redis.io/docs/latest/develop/reference/eviction/)
+- [Redis persistence](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/)
+- [Key eviction](https://redis.io/docs/latest/develop/reference/eviction/)

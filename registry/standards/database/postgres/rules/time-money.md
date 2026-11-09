@@ -58,4 +58,4 @@ PostgreSQL 18: `timestamptz` — события и аудит; `date` — кал
 
 ## Источники
 
-- [PostgreSQL 18: Date/Time Types](https://www.postgresql.org/docs/18/datatype-datetime.html)
+- [PostgreSQL: Documentation: 18: 8.5. Date/Time Types](https://www.postgresql.org/docs/18/datatype-datetime.html)

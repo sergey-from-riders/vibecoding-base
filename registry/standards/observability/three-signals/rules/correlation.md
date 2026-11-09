@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 83
 related: ["operations.http-spans", "operations.signals"]
-sources: ["https://opentelemetry.io/docs/specs/semconv/http/http-spans/"]
+sources: ["https://opentelemetry.io/docs/concepts/context-propagation/"]
 schema_version: 1
 ---
 
@@ -57,4 +57,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://opentelemetry.io/docs/specs/semconv/http/http-spans/)
+- [Context propagation](https://opentelemetry.io/docs/concepts/context-propagation/)

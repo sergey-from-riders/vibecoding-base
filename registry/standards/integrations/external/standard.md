@@ -47,7 +47,7 @@
 
 ### Источники
 
-- [Первоисточник](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
+- [Timeouts, retries, and backoff with jitter](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -96,7 +96,7 @@
 
 ### Источники
 
-- [Первоисточник](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
+- [Timeouts, retries, and backoff with jitter](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -146,7 +146,7 @@ Authorization Code + PKCE.
 
 ### Источники
 
-- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9700.html)
+- [RFC 9700: Best Current Practice for OAuth 2.0 Security](https://www.rfc-editor.org/rfc/rfc9700.html)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -195,7 +195,7 @@ Authorization Code + PKCE.
 
 ### Источники
 
-- [Первоисточник](https://docs.stripe.com/webhooks)
+- [Receive Stripe events in your webhook endpoint](https://docs.stripe.com/webhooks)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -244,7 +244,7 @@ Authorization Code + PKCE.
 
 ### Источники
 
-- [Первоисточник](https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices)
+- [Security Best Practices - Model Context Protocol](https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -293,7 +293,7 @@ Authorization Code + PKCE.
 
 ### Источники
 
-- [Первоисточник](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html)
+- [File Upload - OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 

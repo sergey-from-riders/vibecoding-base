@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 53
 related: ["interface.clear-actions", "interface.contrast"]
-sources: ["https://www.w3.org/TR/WCAG22/"]
+sources: ["https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html", "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html"]
 schema_version: 1
 ---
 
@@ -56,4 +56,5 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://www.w3.org/TR/WCAG22/)
+- [Understanding Success Criterion 2.1.1: Keyboard](https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html)
+- [Understanding Success Criterion 2.4.7: Focus Visible](https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html)

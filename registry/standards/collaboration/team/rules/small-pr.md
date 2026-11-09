@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 13
 related: ["collaboration.ownership", "collaboration.preserve-changes"]
-sources: ["https://docs.github.com/en/pull-requests/reference/pull-requests"]
+sources: ["https://google.github.io/eng-practices/review/developer/small-cls.html"]
 schema_version: 1
 ---
 
@@ -57,4 +57,4 @@ PR: исправление двойной оплаты.
 
 ## Источники
 
-- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)
+- [Small CLs](https://google.github.io/eng-practices/review/developer/small-cls.html)

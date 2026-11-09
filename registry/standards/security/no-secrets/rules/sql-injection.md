@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 72
 related: ["security.object-access", "security.secrets"]
-sources: ["https://owasp.org/API-Security/editions/2023/en/0x11-t10/"]
+sources: ["https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html", "https://www.psycopg.org/psycopg3/docs/basic/params.html"]
 schema_version: 1
 ---
 
@@ -20,15 +20,14 @@ schema_version: 1
 
 ## Плохо
 
-```sql
-query = "SELECT * FROM users WHERE name = '" + name + "'"
+```python
+cursor.execute("SELECT * FROM users WHERE name = '" + name + "'")
 ```
 
 ## Хорошо
 
-```sql
-query = "SELECT * FROM users WHERE name = $1"
-args = [name]
+```python
+cursor.execute("SELECT * FROM users WHERE name = %s", (name,))
 ```
 
 ## Почему
@@ -37,7 +36,7 @@ args = [name]
 
 ## Когда применять
 
-Для имён колонок и направления сортировки используйте разрешённый список; bind-параметры не заменяют SQL-идентификаторы.
+Пример для Python и Psycopg 3: `%s` — placeholder драйвера, а не строковая подстановка Python. Значения передаются отдельным аргументом. Для имён колонок и направления сортировки используйте разрешённый список; bind-параметры не заменяют SQL-идентификаторы.
 
 ## Как проверить
 
@@ -57,4 +56,5 @@ args = [name]
 
 ## Источники
 
-- [Первоисточник](https://owasp.org/API-Security/editions/2023/en/0x11-t10/)
+- [SQL Injection Prevention - OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
+- [Passing parameters to SQL queries - psycopg 3.3.9.dev1 documentation](https://www.psycopg.org/psycopg3/docs/basic/params.html)

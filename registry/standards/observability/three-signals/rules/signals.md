@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 85
 related: ["operations.correlation", "operations.http-spans"]
-sources: ["https://sre.google/sre-book/service-level-objectives/"]
+sources: ["https://opentelemetry.io/docs/concepts/signals/", "https://prometheus.io/docs/practices/naming/"]
 schema_version: 1
 ---
 
@@ -58,4 +58,5 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://sre.google/sre-book/service-level-objectives/)
+- [Signals](https://opentelemetry.io/docs/concepts/signals/)
+- [Metric and label naming](https://prometheus.io/docs/practices/naming/)

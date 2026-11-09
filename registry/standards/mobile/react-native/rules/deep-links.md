@@ -7,7 +7,7 @@ tags: ["deep-links", "React Native"]
 technologies: ["React Native"]
 reviewed_at: "2026-11-09"
 order: 93
-related: ["mobile.secure-storage", "mobile.offline"]
+related: ["integrations.oauth", "security.object-access"]
 sources: ["https://reactnative.dev/docs/security"]
 schema_version: 1
 ---
@@ -57,4 +57,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://reactnative.dev/docs/security)
+- [Security · React Native](https://reactnative.dev/docs/security)

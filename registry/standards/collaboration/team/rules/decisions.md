@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 18
 related: ["collaboration.small-pr", "collaboration.ownership"]
-sources: ["https://docs.github.com/en/pull-requests/reference/pull-requests"]
+sources: ["https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions.html"]
 schema_version: 1
 ---
 
@@ -57,4 +57,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)
+- [Documenting Architecture Decisions](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions.html)

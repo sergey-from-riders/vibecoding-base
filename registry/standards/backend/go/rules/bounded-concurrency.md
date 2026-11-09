@@ -8,7 +8,7 @@ technologies: ["Go"]
 reviewed_at: "2026-11-09"
 order: 41
 related: ["backend.boundaries", "backend.go-context"]
-sources: ["https://go.dev/doc/effective_go"]
+sources: ["https://go.dev/doc/effective_go#channels", "https://go.dev/doc/articles/race_detector"]
 schema_version: 1
 ---
 
@@ -57,4 +57,5 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://go.dev/doc/effective_go)
+- [Effective Go - The Go Programming Language](https://go.dev/doc/effective_go#channels)
+- [Data Race Detector - The Go Programming Language](https://go.dev/doc/articles/race_detector)

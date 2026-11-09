@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 52
 related: ["interface.keyboard", "interface.contrast"]
-sources: ["https://www.w3.org/TR/WCAG22/"]
+sources: ["https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html"]
 schema_version: 1
 ---
 
@@ -56,4 +56,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://www.w3.org/TR/WCAG22/)
+- [Understanding Success Criterion 3.3.2: Labels or Instructions](https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html)

@@ -57,4 +57,4 @@ OpenAPI 3.2 подходит при поддержке инструментов;
 
 ## Источники
 
-- [Первоисточник](https://spec.openapis.org/oas/v3.2.0.html)
+- [OpenAPI Specification v3.2.0](https://spec.openapis.org/oas/v3.2.0.html)

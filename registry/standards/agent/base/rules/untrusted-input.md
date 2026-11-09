@@ -58,4 +58,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)
+- [LLM01:2025 Prompt Injection - OWASP Gen AI Security Project](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)

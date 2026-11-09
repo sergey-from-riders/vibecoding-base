@@ -51,7 +51,7 @@ Client Component управляет поиском и кнопками.
 
 ### Источники
 
-- [Первоисточник](https://nextjs.org/docs/app/getting-started/server-and-client-components)
+- [Server and Client Components](https://nextjs.org/docs/app/getting-started/server-and-client-components)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -80,6 +80,8 @@ Client Component управляет поиском и кнопками.
 
 ### Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Не создавайте второй backend в обработчиках Next без необходимости. Маршрут скачивания документа может быть самостоятельной границей контента.
 
 ### Как проверить
@@ -100,7 +102,8 @@ Client Component управляет поиском и кнопками.
 
 ### Источники
 
-- [Первоисточник](https://spec.openapis.org/oas/v3.2.0.html)
+- [How to think about data security in Next.js](https://nextjs.org/docs/app/guides/data-security)
+- [OpenAPI Specification v3.2.0](https://spec.openapis.org/oas/v3.2.0.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -130,6 +133,8 @@ Client Component управляет поиском и кнопками.
 
 ### Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 При оптимистическом изменении нужны откат и объяснение ошибки.
 
 ### Как проверить
@@ -150,7 +155,7 @@ Client Component управляет поиском и кнопками.
 
 ### Источники
 
-- [Первоисточник](https://www.w3.org/TR/WCAG22/)
+- [Understanding Success Criterion 4.1.3: Status Messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -199,7 +204,7 @@ Client Component управляет поиском и кнопками.
 
 ### Источники
 
-- [Первоисточник](https://sre.google/sre-book/service-level-objectives/)
+- [Web Vitals  |  Articles  |  web.dev](https://web.dev/articles/vitals)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 

@@ -7,8 +7,8 @@ tags: ["go-context", "Go"]
 technologies: ["Go"]
 reviewed_at: "2026-11-09"
 order: 39
-related: ["backend.boundaries", "backend.errors"]
-sources: ["https://go.dev/doc/effective_go"]
+related: ["integrations.timeouts", "backend.bounded-concurrency"]
+sources: ["https://go.dev/doc/database/cancel-operations", "https://pkg.go.dev/database/sql#Rows"]
 schema_version: 1
 ---
 
@@ -21,7 +21,10 @@ schema_version: 1
 ## Плохо
 
 ```go
-db.Query("SELECT ...") // запрос живёт после ухода клиента
+// В HTTP-обработчике: срок запроса потерян.
+ctx := context.Background()
+err := db.QueryRowContext(ctx, query, orderID).Scan(&title)
+if err != nil { return err }
 ```
 
 ## Хорошо
@@ -29,7 +32,8 @@ db.Query("SELECT ...") // запрос живёт после ухода клие
 ```go
 ctx, cancel := context.WithTimeout(r.Context(), 2*time.Second)
 defer cancel()
-rows, err := db.QueryContext(ctx, query)
+err := db.QueryRowContext(ctx, query, orderID).Scan(&title)
+if err != nil { return err }
 ```
 
 ## Почему
@@ -38,7 +42,7 @@ rows, err := db.QueryContext(ctx, query)
 
 ## Когда применять
 
-Две секунды — пример, а не норматив. В Go передавайте context явно; фоновая задача должна иметь собственного владельца и срок жизни.
+Фрагмент функции, возвращающей error: db — *sql.DB, r — *http.Request, query — параметризованный SELECT одной строки. Две секунды — пример, а не норматив. В Go передавайте context явно; фоновая задача должна иметь собственного владельца и срок жизни.
 
 ## Как проверить
 
@@ -58,4 +62,5 @@ rows, err := db.QueryContext(ctx, query)
 
 ## Источники
 
-- [Первоисточник](https://go.dev/doc/effective_go)
+- [Canceling in-progress operations - The Go Programming Language](https://go.dev/doc/database/cancel-operations)
+- [sql package - database/sql - Go Packages](https://pkg.go.dev/database/sql#Rows)

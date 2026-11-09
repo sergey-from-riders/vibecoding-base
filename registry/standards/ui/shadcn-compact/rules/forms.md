@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 56
 related: ["interface.clear-actions", "interface.keyboard"]
-sources: ["https://www.w3.org/TR/WCAG22/"]
+sources: ["https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html"]
 schema_version: 1
 ---
 
@@ -57,4 +57,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://www.w3.org/TR/WCAG22/)
+- [Understanding Success Criterion 3.3.1: Error Identification](https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html)

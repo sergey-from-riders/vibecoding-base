@@ -8,7 +8,7 @@ technologies: ["React Native"]
 reviewed_at: "2026-11-09"
 order: 92
 related: ["mobile.deep-links", "mobile.offline"]
-sources: ["https://reactnative.dev/docs/security"]
+sources: ["https://reactnative.dev/docs/security", "https://developer.android.com/privacy-and-security/keystore"]
 schema_version: 1
 ---
 
@@ -27,7 +27,9 @@ schema_version: 1
 ## Хорошо
 
 ```text
-Токен в Keychain/Keystore через проверенную библиотеку.
+iOS: токен в Keychain.
+Android: токен зашифрован, ключ находится в Keystore.
+Библиотека поддерживает эту схему и очистку при выходе.
 ```
 
 ## Почему
@@ -36,7 +38,7 @@ schema_version: 1
 
 ## Когда применять
 
-Защищённое хранилище не заменяет срок действия и отзыв токена на сервере. Биометрия обычно разблокирует локальный доступ.
+Android Keystore хранит криптографические ключи, а не произвольный текст токена. Для React Native выбирайте поддерживаемую библиотеку с документированной реализацией для каждой платформы. Защищённое хранилище не заменяет срок действия и отзыв токена на сервере. Биометрия обычно разблокирует локальный доступ.
 
 ## Как проверить
 
@@ -56,4 +58,5 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://reactnative.dev/docs/security)
+- [Security · React Native](https://reactnative.dev/docs/security)
+- [Android Keystore system  |  Security  |  Android Developers](https://developer.android.com/privacy-and-security/keystore)

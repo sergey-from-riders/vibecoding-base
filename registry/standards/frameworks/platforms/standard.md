@@ -49,8 +49,8 @@ Laravel 12.x, Form Request и зарегистрированная Policy; в м
 
 ### Источники
 
-- [Документация 1](https://laravel.com/docs/12.x/validation)
-- [Документация 2](https://laravel.com/docs/12.x/authorization)
+- [Validation](https://laravel.com/docs/12.x/validation)
+- [Authorization](https://laravel.com/docs/12.x/authorization)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -84,7 +84,7 @@ Worker может начать работу до commit. При rollback уве�
 
 ### Когда применять
 
-Laravel 12.x и асинхронная очередь. `afterCommit()` не гарантирует доставку при падении процесса между commit и отправкой; для такой гарантии нужен outbox. Обработчик всё равно должен переносить повторы.
+Laravel 12.x и асинхронная очередь. Плохой пример предполагает `after_commit=false` в конфигурации соединения. При `after_commit=true` Laravel уже откладывает отправку до commit; явный `afterCommit()` тогда не обязателен. `afterCommit()` не гарантирует доставку при падении процесса между commit и отправкой; для такой гарантии нужен outbox. Обработчик всё равно должен переносить повторы.
 
 ### Человек
 
@@ -105,8 +105,8 @@ Laravel 12.x и асинхронная очередь. `afterCommit()` не га
 
 ### Источники
 
-- [Документация 1](https://laravel.com/docs/12.x/queues)
-- [Документация 2](https://laravel.com/docs/12.x/database#database-transactions)
+- [Queues](https://laravel.com/docs/12.x/queues)
+- [Database: Getting Started](https://laravel.com/docs/12.x/database#database-transactions)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -160,8 +160,8 @@ Laravel 12.x; связь customer объявлена и обязательна. 
 
 ### Источники
 
-- [Документация 1](https://laravel.com/docs/12.x/eloquent-relationships#eager-loading)
-- [Документация 2](https://laravel.com/docs/12.x/pagination)
+- [Eloquent: Relationships](https://laravel.com/docs/12.x/eloquent-relationships#eager-loading)
+- [Database: Pagination](https://laravel.com/docs/12.x/pagination)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -174,7 +174,7 @@ Laravel 12.x; связь customer объявлена и обязательна. 
 ### Плохо
 
 ```text
-/bitrix/components/bitrix/news.list/template.php
+/bitrix/components/bitrix/news.list/templates/.default/template.php
 /bitrix/modules/main/lib/application.php
 ```
 
@@ -212,8 +212,7 @@ Bitrix Framework с поддержкой /local (D7). Не копируйте я
 
 ### Источники
 
-- [Документация 1](https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=33874&LESSON_PATH=33872.33874)
-- [Документация 2](https://dev.1c-bitrix.ru/learning/course/?COURSE_ID=43&LESSON_ID=2829&LESSON_PATH=3913.4565.2829)
+- [Урок 1. Разворачиваем стенд и знакомимся с проектом](https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=33874&LESSON_PATH=33872.33874)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -276,8 +275,8 @@ D7, API сущностей с save(): Result, одна транзакционн�
 
 ### Источники
 
-- [Документация 1](https://dev.1c-bitrix.ru/api_d7/bitrix/main/db/connection/starttransaction.php)
-- [Документация 2](https://dev.1c-bitrix.ru/api_d7/bitrix/main/result/issuccess.php)
+- [Connection::startTransaction](https://dev.1c-bitrix.ru/api_d7/bitrix/main/db/connection/starttransaction.php)
+- [Result::isSuccess](https://dev.1c-bitrix.ru/api_d7/bitrix/main/result/issuccess.php)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -300,7 +299,7 @@ $cacheId = hash('sha256', json_encode([
   'v' => 1, 'user' => $userId,
   'filter' => $normalizedFilter,
   'permissions' => $permissionVersion,
-]));
+], JSON_THROW_ON_ERROR));
 ```
 
 ### Почему
@@ -309,7 +308,7 @@ $cacheId = hash('sha256', json_encode([
 
 ### Когда применять
 
-D7 Cache; в примере значения userId и permissionVersion получены на сервере после авторизации. При смене прав нужна инвалидация или смена версии. Публичные каталоги могут использовать общий кеш.
+D7 Cache, PHP 7.3+ для JSON_THROW_ON_ERROR; в примере значения userId и permissionVersion получены на сервере после авторизации. При смене прав нужна инвалидация или смена версии. Публичные каталоги могут использовать общий кеш.
 
 ### Человек
 
@@ -330,8 +329,7 @@ D7 Cache; в примере значения userId и permissionVersion пол�
 
 ### Источники
 
-- [Документация 1](https://dev.1c-bitrix.ru/api_d7/bitrix/main/data/cache/index.php)
-- [Документация 2](https://dev.1c-bitrix.ru/api_d7/bitrix/main/data/cache/clean.php)
+- [Главный модуль:Cache](https://dev.1c-bitrix.ru/api_d7/bitrix/main/data/cache/index.php)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -382,7 +380,7 @@ Bitrix24 REST, локальная интеграция через входящи
 
 ### Источники
 
-- [Документация 1](https://apidocs.bitrix24.ru/local-integrations/local-webhooks.html)
+- [Входящие и исходящие вебхуки](https://apidocs.bitrix24.ru/local-integrations/local-webhooks.html)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -434,8 +432,8 @@ QUERY_LIMIT_EXCEEDED → задержка с jitter
 
 ### Источники
 
-- [Документация 1](https://apidocs.bitrix24.ru/limits.html)
-- [Документация 2](https://apidocs.bitrix24.ru/api-reference/how-to-call-rest-api/batch.html)
+- [Лимиты REST API](https://apidocs.bitrix24.ru/limits.html)
+- [Как выполнить пакет запросов batch](https://apidocs.bitrix24.ru/settings/how-to-call-rest-api/batch.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -489,7 +487,7 @@ Django 5.2 и транзакционная БД. Импорт: `from django.db i
 
 ### Источники
 
-- [Документация 1](https://docs.djangoproject.com/en/5.2/topics/db/transactions/)
+- [Database transactions](https://docs.djangoproject.com/en/5.2/topics/db/transactions/)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -542,7 +540,7 @@ FastAPI, ASGI. Пример использует синхронный SDK. Дл�
 
 ### Источники
 
-- [Документация 1](https://fastapi.tiangolo.com/async/)
+- [Concurrency and async / await - FastAPI](https://fastapi.tiangolo.com/async/)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -599,8 +597,8 @@ POST /orders принимает title длиной до 200 символов. П
 
 ### Источники
 
-- [Документация 1](https://docs.nestjs.com/techniques/validation)
-- [Документация 2](https://docs.nestjs.com/guards)
+- [Documentation](https://docs.nestjs.com/techniques/validation)
+- [Guards](https://docs.nestjs.com/guards)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -651,7 +649,7 @@ Vue 3 Composition API. items — ref, sum — чистая функция. Watch
 
 ### Источники
 
-- [Документация 1](https://vuejs.org/guide/essentials/computed.html)
+- [Computed Properties](https://vuejs.org/guide/essentials/computed.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -702,8 +700,8 @@ Nuxt 4. Ключ должен учитывать параметры выдачи
 
 ### Источники
 
-- [Документация 1](https://nuxt.com/docs/4.x/api/composables/use-async-data)
-- [Документация 2](https://nuxt.com/docs/4.x/getting-started/data-fetching)
+- [useAsyncData · Nuxt Composables v4](https://nuxt.com/docs/4.x/api/composables/use-async-data)
+- [Data Fetching · Get Started with Nuxt v4](https://nuxt.com/docs/4.x/getting-started/data-fetching)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -727,7 +725,8 @@ import { db } from "$lib/db";
 import { db } from "$lib/server/db";
 export async function load() {
   return { products: await db.product.findMany({
-    select: { id: true, title: true }
+    select: { id: true, title: true },
+    orderBy: { id: "asc" }, take: 50
   }) };
 }
 ```
@@ -759,8 +758,8 @@ SvelteKit 2; db — пример ORM-клиента проекта. В прив�
 
 ### Источники
 
-- [Документация 1](https://svelte.dev/docs/kit/server-only-modules)
-- [Документация 2](https://svelte.dev/docs/kit/load)
+- [Server-only modules • SvelteKit Docs](https://svelte.dev/docs/kit/server-only-modules)
+- [Loading data • SvelteKit Docs](https://svelte.dev/docs/kit/load)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -784,7 +783,13 @@ if (!current_user_can('edit_post', $post_id)) {
   wp_die('Forbidden', '', ['response' => 403]);
 }
 check_admin_referer('save_post_' . $post_id);
-wp_update_post($validated_data);
+$result = wp_update_post(wp_slash([
+  'ID' => $post_id,
+  'post_title' => $validated_title,
+]), true);
+if (is_wp_error($result)) {
+  wp_die('Save failed', '', ['response' => 500]);
+}
 ```
 
 ### Почему
@@ -793,7 +798,7 @@ wp_update_post($validated_data);
 
 ### Когда применять
 
-WordPress, обработчик формы в админке. Форма создаёт соответствующий wp_nonce_field; входные данные валидируются. Для REST используйте permission_callback и механизм аутентификации REST.
+WordPress, обработчик формы в админке. Форма создаёт соответствующий wp_nonce_field; `$post_id` — проверенный ID из маршрута, `$validated_title` — валидированная строка без служебных слешей. В запись передаётся тот же ID, на который проверено право; wp_slash подготавливает массив для API WordPress. Для REST используйте permission_callback и механизм аутентификации REST.
 
 ### Человек
 
@@ -814,8 +819,9 @@ WordPress, обработчик формы в админке. Форма соз�
 
 ### Источники
 
-- [Документация 1](https://developer.wordpress.org/plugins/security/checking-user-capabilities/)
-- [Документация 2](https://developer.wordpress.org/apis/security/nonces/)
+- [Checking User Capabilities – Plugin Handbook](https://developer.wordpress.org/plugins/security/checking-user-capabilities/)
+- [Nonces – Common APIs Handbook](https://developer.wordpress.org/apis/security/nonces/)
+- [wp_update_post() – Function](https://developer.wordpress.org/reference/functions/wp_update_post/)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 

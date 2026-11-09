@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 17
 related: ["collaboration.small-pr", "collaboration.ownership"]
-sources: ["https://docs.github.com/en/pull-requests/reference/pull-requests"]
+sources: ["https://google.github.io/eng-practices/review/developer/cl-descriptions.html"]
 schema_version: 1
 ---
 
@@ -38,6 +38,8 @@ schema_version: 1
 
 ## Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Для передачи между людьми, агентами и сменами поддержки.
 
 ## Как проверить
@@ -58,4 +60,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)
+- [Writing good CL descriptions](https://google.github.io/eng-practices/review/developer/cl-descriptions.html)

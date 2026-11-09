@@ -56,4 +56,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
+- [Google Testing Blog: Just Say No to More End-to-End Tests](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)

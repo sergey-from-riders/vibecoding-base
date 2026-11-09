@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 7
 related: ["ai-agents.untrusted-input", "ai-agents.least-privilege"]
-sources: ["https://docs.github.com/en/pull-requests/reference/pull-requests"]
+sources: ["https://docs.github.com/en/copilot/concepts/prompting-and-context/custom-instructions"]
 schema_version: 1
 ---
 
@@ -37,6 +37,8 @@ schema_version: 1
 
 ## Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Путь к инструкциям зависит от агента. AGENTS.md — соглашение проекта, не общий протокол.
 
 ## Как проверить
@@ -57,4 +59,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)
+- [Custom instructions for GitHub Copilot - GitHub Docs](https://docs.github.com/en/copilot/concepts/prompting-and-context/custom-instructions)

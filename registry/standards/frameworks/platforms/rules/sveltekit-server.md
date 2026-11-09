@@ -32,7 +32,8 @@ import { db } from "$lib/db";
 import { db } from "$lib/server/db";
 export async function load() {
   return { products: await db.product.findMany({
-    select: { id: true, title: true }
+    select: { id: true, title: true },
+    orderBy: { id: "asc" }, take: 50
   }) };
 }
 ```
@@ -64,5 +65,5 @@ SvelteKit 2; db — пример ORM-клиента проекта. В прив�
 
 ## Источники
 
-- [Документация 1](https://svelte.dev/docs/kit/server-only-modules)
-- [Документация 2](https://svelte.dev/docs/kit/load)
+- [Server-only modules • SvelteKit Docs](https://svelte.dev/docs/kit/server-only-modules)
+- [Loading data • SvelteKit Docs](https://svelte.dev/docs/kit/load)

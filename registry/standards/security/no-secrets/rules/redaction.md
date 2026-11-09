@@ -7,8 +7,8 @@ tags: ["redaction"]
 technologies: []
 reviewed_at: "2026-11-09"
 order: 74
-related: ["security.object-access", "security.secrets"]
-sources: ["https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"]
+related: ["operations.correlation", "security.secrets"]
+sources: ["https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html"]
 schema_version: 1
 ---
 
@@ -56,4 +56,4 @@ log({request_id, route, status, duration_ms})
 
 ## Источники
 
-- [Первоисточник](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html)
+- [Logging - OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)

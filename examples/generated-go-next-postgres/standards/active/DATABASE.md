@@ -1,4 +1,4 @@
-<!-- Generated from registry/standards/database/postgres@2.1.0. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/database/postgres@2.1.1. Update the registry standard, then regenerate. -->
 
 # PostgreSQL Data Contract Standard
 
@@ -54,7 +54,7 @@ UUID уменьшает зависимость от единого генера�
 
 ### Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/functions-uuid.html)
+- [PostgreSQL: Documentation: 18: 9.14. UUID Functions](https://www.postgresql.org/docs/18/functions-uuid.html)
 
 Уровень: Зависит от задачи. Проверено: 2026-11-09.
 
@@ -107,7 +107,7 @@ snake_case и entity_id — соглашение этого справочник
 
 ### Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/ddl-constraints.html)
+- [PostgreSQL: Documentation: 18: 4.1. Lexical Structure](https://www.postgresql.org/docs/18/sql-syntax-lexical.html#SQL-SYNTAX-IDENTIFIERS)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -119,7 +119,7 @@ snake_case и entity_id — соглашение этого справочник
 
 ### Плохо
 
-```sql
+```javascript
 if (!emailExists(email)) {
   insertUser(email);
 }
@@ -158,7 +158,7 @@ CREATE UNIQUE INDEX users_email_unique
 
 ### Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/ddl-constraints.html)
+- [PostgreSQL: Documentation: 18: 5.5. Constraints](https://www.postgresql.org/docs/18/ddl-constraints.html)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -207,7 +207,7 @@ CASCADE подходит только для действительно зави
 
 ### Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/ddl-constraints.html)
+- [PostgreSQL: Documentation: 18: 5.5. Constraints](https://www.postgresql.org/docs/18/ddl-constraints.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -219,7 +219,7 @@ CASCADE подходит только для действительно зави
 
 ### Плохо
 
-```sql
+```text
 Списать остаток.
 Сбой.
 Заказ не создан.
@@ -260,7 +260,7 @@ COMMIT;
 
 ### Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/ddl.html)
+- [PostgreSQL: Documentation: 18: 3.4. Transactions](https://www.postgresql.org/docs/18/tutorial-transactions.html)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -309,7 +309,8 @@ COMMIT;
 
 ### Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/ddl.html)
+- [PostgreSQL: Documentation: 18: ALTER TABLE](https://www.postgresql.org/docs/18/sql-altertable.html)
+- [Editing a migration in Prisma ORM](https://www.prisma.io/docs/orm/prisma-migrate/workflows/customizing-migrations)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -358,7 +359,9 @@ COMMIT;
 
 ### Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/ddl-constraints.html)
+- [PostgreSQL: Documentation: 18: Chapter 11. Indexes](https://www.postgresql.org/docs/18/indexes.html)
+- [PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN](https://www.postgresql.org/docs/18/using-explain.html)
+- [PostgreSQL: Documentation: 18: 5.5. Constraints](https://www.postgresql.org/docs/18/ddl-constraints.html#DDL-CONSTRAINTS-FK)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -408,7 +411,7 @@ PostgreSQL 18: `timestamptz` — события и аудит; `date` — кал
 
 ### Источники
 
-- [PostgreSQL 18: Date/Time Types](https://www.postgresql.org/docs/18/datatype-datetime.html)
+- [PostgreSQL: Documentation: 18: 8.5. Date/Time Types](https://www.postgresql.org/docs/18/datatype-datetime.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -457,7 +460,7 @@ JSONB полезен для внешних снимков и разреженн�
 
 ### Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/ddl.html)
+- [PostgreSQL: Documentation: 18: 8.14. JSON Types](https://www.postgresql.org/docs/18/datatype-json.html)
 
 Уровень: Зависит от задачи. Проверено: 2026-11-09.
 
@@ -487,7 +490,7 @@ deleted_at есть, но все запросы читают удалённое.
 
 ### Когда применять
 
-История версий нужна при требованиях аудита. Таблицы связей могут иметь составной ключ без отдельного UUID.
+Аудит фиксирует, кто и что изменил; история версий позволяет восстановить прежнее содержимое. Выберите нужные механизмы отдельно. При soft delete проверьте уникальность активных записей, восстановление и окончательную очистку. Срок хранения задаёт политика проекта.
 
 ### Как проверить
 
@@ -507,7 +510,8 @@ deleted_at есть, но все запросы читают удалённое.
 
 ### Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/ddl.html)
+- [PostgreSQL: Documentation: 18: 11.8. Partial Indexes](https://www.postgresql.org/docs/18/indexes-partial.html)
+- [PostgreSQL: Documentation: 18: 41.10. Trigger Functions](https://www.postgresql.org/docs/18/plpgsql-trigger.html)
 
 Уровень: Зависит от задачи. Проверено: 2026-11-09.
 
@@ -540,11 +544,15 @@ INSERT INTO price VALUES (12345, 'RUB'); -- 123 руб. 45 коп.
 
 ### Когда применять
 
-PostgreSQL 18. `integer` допустим при доказанном диапазоне: максимум 2 147 483 647 минимальных единиц, то есть 21 474 836,47 RUB. `bigint` даёт больший запас, но тоже имеет предел. Для дробных тарифов, курсов и промежуточных расчётов подходит `numeric(p,s)` / `decimal(p,s)`; например, `numeric(20,6)` — только если хватает 14 целых и 6 дробных разрядов. Точность и округление задаёт предметная область.
+PostgreSQL 18. Тип выбирается по единице измерения и максимальной сумме:
+
+- `integer` / `int`: целые минимальные единицы в доказанном диапазоне. Максимум 2 147 483 647, то есть 21 474 836,47 RUB при хранении копеек.
+- `bigint`: целые минимальные единицы, если диапазона `integer` недостаточно. У него тоже есть предел; это не бесконечный тип.
+- `numeric(p,s)` / `decimal(p,s)`: точные десятичные суммы, дробные тарифы и курсы. `numeric(20,6)` допускает 14 целых и 6 дробных разрядов. Точность и округление задаёт предметная область.
 
 В примере поддерживается только RUB. Для нескольких валют нужна проверяемая таблица валют и их разрядности: не у всех валют две цифры после запятой; API провайдера может иметь исключения. Отрицательные суммы разрешайте для проводок, если это требует модель. PostgreSQL `money` зависит от денежных настроек локали, поэтому для переносимого контракта предпочтительнее явно заданные единицы.
 
-В JavaScript `Number` точно хранит целые только до 2^53 − 1. Большие `bigint` передавайте в JSON строкой; преобразование и арифметику выполняйте без промежуточного `float`.
+В JavaScript `Number` гарантирует точность целых только в безопасном диапазоне от −(2^53 − 1) до 2^53 − 1. Большие `bigint` передавайте в JSON строкой; преобразование и арифметику выполняйте без промежуточного `float`.
 
 ### Человек
 
@@ -566,10 +574,10 @@ PostgreSQL 18. `integer` допустим при доказанном диапа
 
 ### Источники
 
-- [Документация 1](https://www.postgresql.org/docs/18/datatype-numeric.html)
-- [Документация 2](https://www.postgresql.org/docs/18/datatype-money.html)
-- [Документация 3](https://docs.stripe.com/currencies)
-- [Документация 4](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER)
+- [PostgreSQL: Documentation: 18: 8.1. Numeric Types](https://www.postgresql.org/docs/18/datatype-numeric.html)
+- [PostgreSQL: Documentation: 18: 8.2. Monetary Types](https://www.postgresql.org/docs/18/datatype-money.html)
+- [Supported currencies](https://docs.stripe.com/currencies)
+- [Number.MAX_SAFE_INTEGER - JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 

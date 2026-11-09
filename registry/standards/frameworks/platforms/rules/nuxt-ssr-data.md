@@ -59,5 +59,5 @@ Nuxt 4. Ключ должен учитывать параметры выдачи
 
 ## Источники
 
-- [Документация 1](https://nuxt.com/docs/4.x/api/composables/use-async-data)
-- [Документация 2](https://nuxt.com/docs/4.x/getting-started/data-fetching)
+- [useAsyncData · Nuxt Composables v4](https://nuxt.com/docs/4.x/api/composables/use-async-data)
+- [Data Fetching · Get Started with Nuxt v4](https://nuxt.com/docs/4.x/getting-started/data-fetching)

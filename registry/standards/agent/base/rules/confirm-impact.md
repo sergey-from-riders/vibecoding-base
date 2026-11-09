@@ -58,4 +58,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices)
+- [Security Best Practices - Model Context Protocol](https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices)

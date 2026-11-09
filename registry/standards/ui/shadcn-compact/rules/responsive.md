@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 55
 related: ["interface.clear-actions", "interface.keyboard"]
-sources: ["https://www.w3.org/TR/WCAG22/"]
+sources: ["https://www.w3.org/WAI/WCAG22/Understanding/reflow.html"]
 schema_version: 1
 ---
 
@@ -58,4 +58,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://www.w3.org/TR/WCAG22/)
+- [Understanding Success Criterion 1.4.10: Reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html)

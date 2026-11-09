@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 67
 related: ["caching.source-of-truth", "caching.freshness"]
-sources: ["https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/"]
+sources: ["https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues-at-least-once-delivery.html"]
 schema_version: 1
 ---
 
@@ -57,4 +57,4 @@ message_id проверяется транзакционно.
 
 ## Источники
 
-- [Первоисточник](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
+- [Amazon SQS at-least-once delivery - Amazon Simple Queue Service](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues-at-least-once-delivery.html)

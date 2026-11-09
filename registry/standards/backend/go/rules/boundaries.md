@@ -8,7 +8,7 @@ technologies: ["Go", "Backend"]
 reviewed_at: "2026-11-09"
 order: 38
 related: ["backend.go-context", "backend.errors"]
-sources: ["https://go.dev/doc/effective_go"]
+sources: ["https://go.dev/doc/modules/layout"]
 schema_version: 1
 ---
 
@@ -37,6 +37,8 @@ HTTP-обработчик сам считает скидку, делает SQL �
 
 ## Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Количество слоёв соразмерно задаче. Требование ровно одного вызова сервиса не является свойством Go.
 
 ## Как проверить
@@ -57,4 +59,4 @@ HTTP-обработчик сам считает скидку, делает SQL �
 
 ## Источники
 
-- [Первоисточник](https://go.dev/doc/effective_go)
+- [Organizing a Go module - The Go Programming Language](https://go.dev/doc/modules/layout)

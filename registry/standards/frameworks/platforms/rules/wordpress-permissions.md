@@ -9,7 +9,7 @@ technologies: ["WordPress", "PHP"]
 reviewed_at: "2026-11-09"
 order: 116
 related: ["security.object-access", "testing.integration"]
-sources: ["https://developer.wordpress.org/plugins/security/checking-user-capabilities/", "https://developer.wordpress.org/apis/security/nonces/"]
+sources: ["https://developer.wordpress.org/plugins/security/checking-user-capabilities/", "https://developer.wordpress.org/apis/security/nonces/", "https://developer.wordpress.org/reference/functions/wp_update_post/"]
 ---
 
 # WordPress: capabilities и nonce
@@ -32,7 +32,13 @@ if (!current_user_can('edit_post', $post_id)) {
   wp_die('Forbidden', '', ['response' => 403]);
 }
 check_admin_referer('save_post_' . $post_id);
-wp_update_post($validated_data);
+$result = wp_update_post(wp_slash([
+  'ID' => $post_id,
+  'post_title' => $validated_title,
+]), true);
+if (is_wp_error($result)) {
+  wp_die('Save failed', '', ['response' => 500]);
+}
 ```
 
 ## Почему
@@ -41,7 +47,7 @@ wp_update_post($validated_data);
 
 ## Когда применять
 
-WordPress, обработчик формы в админке. Форма создаёт соответствующий wp_nonce_field; входные данные валидируются. Для REST используйте permission_callback и механизм аутентификации REST.
+WordPress, обработчик формы в админке. Форма создаёт соответствующий wp_nonce_field; `$post_id` — проверенный ID из маршрута, `$validated_title` — валидированная строка без служебных слешей. В запись передаётся тот же ID, на который проверено право; wp_slash подготавливает массив для API WordPress. Для REST используйте permission_callback и механизм аутентификации REST.
 
 ## Человек
 
@@ -62,5 +68,6 @@ WordPress, обработчик формы в админке. Форма соз�
 
 ## Источники
 
-- [Документация 1](https://developer.wordpress.org/plugins/security/checking-user-capabilities/)
-- [Документация 2](https://developer.wordpress.org/apis/security/nonces/)
+- [Checking User Capabilities – Plugin Handbook](https://developer.wordpress.org/plugins/security/checking-user-capabilities/)
+- [Nonces – Common APIs Handbook](https://developer.wordpress.org/apis/security/nonces/)
+- [wp_update_post() – Function](https://developer.wordpress.org/reference/functions/wp_update_post/)

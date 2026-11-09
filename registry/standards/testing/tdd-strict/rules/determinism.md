@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 82
 related: ["testing.risk", "testing.regression"]
-sources: ["https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html"]
+sources: ["https://playwright.dev/docs/best-practices"]
 schema_version: 1
 ---
 
@@ -57,4 +57,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
+- [Best Practices](https://playwright.dev/docs/best-practices)

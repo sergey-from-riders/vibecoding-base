@@ -7,8 +7,8 @@ tags: ["native-release", "React Native"]
 technologies: ["React Native"]
 reviewed_at: "2026-11-09"
 order: 95
-related: ["mobile.secure-storage", "mobile.deep-links"]
-sources: ["https://reactnative.dev/docs/security"]
+related: ["api.compatibility", "operations.rollback"]
+sources: ["https://docs.expo.dev/eas-update/runtime-versions/"]
 schema_version: 1
 ---
 
@@ -37,7 +37,7 @@ JS-обновление совместимо с установленным runti
 
 ## Когда применять
 
-OTA разрешён только в пределах политики магазина и выбранного механизма обновлений. Версии React и RN должны быть совместимы.
+Пример механизма совместимости — runtimeVersion в Expo EAS Update. OTA разрешён только в пределах политики магазина и выбранного механизма обновлений. Версии React и RN должны быть совместимы.
 
 ## Как проверить
 
@@ -57,4 +57,4 @@ OTA разрешён только в пределах политики мага�
 
 ## Источники
 
-- [Первоисточник](https://reactnative.dev/docs/security)
+- [Runtime versions and updates - Expo documentation](https://docs.expo.dev/eas-update/runtime-versions/)

@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 64
 related: ["caching.freshness", "caching.private-cache"]
-sources: ["https://www.rfc-editor.org/rfc/rfc9111.html"]
+sources: ["https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside"]
 schema_version: 1
 ---
 
@@ -57,4 +57,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9111.html)
+- [Cache-Aside Pattern - Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside)

@@ -58,4 +58,4 @@ async def handler():
 
 ## Источники
 
-- [Первоисточник](https://docs.python.org/3.14/library/asyncio-task.html)
+- [Coroutines and tasks — Python 3.14.10 documentation](https://docs.python.org/3.14/library/asyncio-task.html)

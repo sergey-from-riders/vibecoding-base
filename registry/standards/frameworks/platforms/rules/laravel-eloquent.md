@@ -62,5 +62,5 @@ Laravel 12.x; связь customer объявлена и обязательна. 
 
 ## Источники
 
-- [Документация 1](https://laravel.com/docs/12.x/eloquent-relationships#eager-loading)
-- [Документация 2](https://laravel.com/docs/12.x/pagination)
+- [Eloquent: Relationships](https://laravel.com/docs/12.x/eloquent-relationships#eager-loading)
+- [Database: Pagination](https://laravel.com/docs/12.x/pagination)

@@ -7,8 +7,8 @@ tags: ["choose-dependencies"]
 technologies: []
 reviewed_at: "2026-11-09"
 order: 5
-related: ["architecture.scope", "architecture.one-source"]
-sources: ["https://sre.google/sre-book/service-level-objectives/"]
+related: ["caching.source-of-truth", "security.supply-chain"]
+sources: ["https://sre.google/sre-book/simplicity/"]
 schema_version: 1
 ---
 
@@ -37,6 +37,8 @@ Markdown хранится в Git.
 
 ## Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Инфраструктура оправдана нагрузкой или требованиями, а не модой.
 
 ## Как проверить
@@ -57,4 +59,4 @@ Markdown хранится в Git.
 
 ## Источники
 
-- [Первоисточник](https://sre.google/sre-book/service-level-objectives/)
+- [Google SRE - Operational Simplicity: Stability and Agility](https://sre.google/sre-book/simplicity/)

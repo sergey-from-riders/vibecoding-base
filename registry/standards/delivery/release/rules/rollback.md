@@ -7,8 +7,8 @@ tags: ["rollback"]
 technologies: []
 reviewed_at: "2026-11-09"
 order: 88
-related: ["operations.correlation", "operations.http-spans"]
-sources: ["https://slsa.dev/spec/v1.2/"]
+related: ["operations.immutable-release", "database.migrations"]
+sources: ["https://sre.google/workbook/canarying-releases/"]
 schema_version: 1
 ---
 
@@ -58,4 +58,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://slsa.dev/spec/v1.2/)
+- [Google SRE - Canary Release: Deployment Safety and Efficiency](https://sre.google/workbook/canarying-releases/)

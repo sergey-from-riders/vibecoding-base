@@ -7,8 +7,8 @@ tags: ["resource-limits"]
 technologies: []
 reviewed_at: "2026-11-09"
 order: 76
-related: ["security.object-access", "security.secrets"]
-sources: ["https://owasp.org/API-Security/editions/2023/en/0x11-t10/"]
+related: ["api.pagination", "integrations.files"]
+sources: ["https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/"]
 schema_version: 1
 ---
 
@@ -57,4 +57,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://owasp.org/API-Security/editions/2023/en/0x11-t10/)
+- [API4:2023 Unrestricted Resource Consumption - OWASP API Security Top 10](https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/)

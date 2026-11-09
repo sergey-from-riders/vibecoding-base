@@ -1,4 +1,4 @@
-<!-- Generated from registry/standards/delivery/release@2.1.0. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/delivery/release@2.1.1. Update the registry standard, then regenerate. -->
 
 # Выпуск и восстановление
 
@@ -49,7 +49,7 @@
 
 ### Источники
 
-- [Первоисточник](https://slsa.dev/spec/v1.2/)
+- [SLSA • SLSA specification](https://slsa.dev/spec/v1.2/)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -99,7 +99,7 @@
 
 ### Источники
 
-- [Первоисточник](https://slsa.dev/spec/v1.2/)
+- [Google SRE - Canary Release: Deployment Safety and Efficiency](https://sre.google/workbook/canarying-releases/)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -124,7 +124,7 @@
 
 ### Почему
 
-Повреждение или отсутствие ключа шифрования обнаруживаются только при восстановлении.
+Наличие файла не доказывает целостность копии, доступность ключа и полноту данных. Проверка целостности полезна, а учебное восстановление дополнительно проверяет всю процедуру.
 
 ### Когда применять
 
@@ -148,7 +148,7 @@
 
 ### Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/backup.html)
+- [PostgreSQL: Documentation: 18: Chapter 25. Backup and Restore](https://www.postgresql.org/docs/18/backup.html)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -197,7 +197,8 @@
 
 ### Источники
 
-- [Первоисточник](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html)
+- [The Twelve-Factor App](https://12factor.net/config)
+- [Secrets Management - OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -246,7 +247,7 @@
 
 ### Источники
 
-- [Первоисточник](https://sre.google/sre-book/service-level-objectives/)
+- [Google SRE - Incident Management: Key to Restore Operations](https://sre.google/sre-book/managing-incidents/)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 

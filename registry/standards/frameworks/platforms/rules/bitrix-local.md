@@ -9,7 +9,7 @@ technologies: ["1С-Битрикс", "PHP"]
 reviewed_at: "2026-11-09"
 order: 105
 related: ["collaboration.preserve-changes", "operations.immutable-release"]
-sources: ["https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=33874&LESSON_PATH=33872.33874", "https://dev.1c-bitrix.ru/learning/course/?COURSE_ID=43&LESSON_ID=2829&LESSON_PATH=3913.4565.2829"]
+sources: ["https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=33874&LESSON_PATH=33872.33874"]
 ---
 
 # 1С-Битрикс: /local и расширения
@@ -21,7 +21,7 @@ sources: ["https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSO
 ## Плохо
 
 ```text
-/bitrix/components/bitrix/news.list/template.php
+/bitrix/components/bitrix/news.list/templates/.default/template.php
 /bitrix/modules/main/lib/application.php
 ```
 
@@ -59,5 +59,4 @@ Bitrix Framework с поддержкой /local (D7). Не копируйте я
 
 ## Источники
 
-- [Документация 1](https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=33874&LESSON_PATH=33872.33874)
-- [Документация 2](https://dev.1c-bitrix.ru/learning/course/?COURSE_ID=43&LESSON_ID=2829&LESSON_PATH=3913.4565.2829)
+- [Урок 1. Разворачиваем стенд и знакомимся с проектом](https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=33874&LESSON_PATH=33872.33874)

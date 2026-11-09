@@ -7,7 +7,7 @@ tags: ["supply-chain"]
 technologies: []
 reviewed_at: "2026-11-09"
 order: 75
-related: ["security.object-access", "security.secrets"]
+related: ["operations.immutable-release", "architecture.choose-dependencies"]
 sources: ["https://slsa.dev/spec/v1.2/"]
 schema_version: 1
 ---
@@ -57,4 +57,4 @@ SBOM и provenance зависят от зрелости выпуска. Нали
 
 ## Источники
 
-- [Первоисточник](https://slsa.dev/spec/v1.2/)
+- [SLSA • SLSA specification](https://slsa.dev/spec/v1.2/)

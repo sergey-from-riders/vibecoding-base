@@ -7,8 +7,8 @@ tags: ["outbox"]
 technologies: []
 reviewed_at: "2026-11-09"
 order: 68
-related: ["caching.source-of-truth", "caching.freshness"]
-sources: ["https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/"]
+related: ["database.transactions", "caching.idempotent-worker"]
+sources: ["https://learn.microsoft.com/en-us/power-platform/architecture/reference-architectures/transactional-outbox-pattern"]
 schema_version: 1
 ---
 
@@ -57,4 +57,4 @@ Outbox закрывает разрыв между сохранением БД и
 
 ## Источники
 
-- [Первоисточник](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
+- [Implement the Transactional Outbox pattern with Dataverse - Power Platform](https://learn.microsoft.com/en-us/power-platform/architecture/reference-architectures/transactional-outbox-pattern)

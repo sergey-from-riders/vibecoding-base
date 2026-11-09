@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 15
 related: ["collaboration.small-pr", "collaboration.ownership"]
-sources: ["https://docs.github.com/en/pull-requests/reference/pull-requests"]
+sources: ["https://git-scm.com/docs/git-status", "https://git-scm.com/docs/git-reset"]
 schema_version: 1
 ---
 
@@ -58,4 +58,5 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)
+- [Git - git-status Documentation](https://git-scm.com/docs/git-status)
+- [Git - git-reset Documentation](https://git-scm.com/docs/git-reset)

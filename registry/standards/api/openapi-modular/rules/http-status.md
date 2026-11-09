@@ -62,4 +62,4 @@ Content-Type: application/problem+json
 
 ## Источники
 
-- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9457.html)
+- [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457.html)

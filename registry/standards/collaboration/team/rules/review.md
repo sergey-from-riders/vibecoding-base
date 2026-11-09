@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 16
 related: ["collaboration.small-pr", "collaboration.ownership"]
-sources: ["https://docs.github.com/en/pull-requests/reference/pull-requests"]
+sources: ["https://google.github.io/eng-practices/review/reviewer/looking-for.html"]
 schema_version: 1
 ---
 
@@ -57,4 +57,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)
+- [What to look for in a code review](https://google.github.io/eng-practices/review/reviewer/looking-for.html)

@@ -7,8 +7,8 @@ tags: ["evals-budget", "LLM"]
 technologies: ["LLM"]
 reviewed_at: "2026-11-09"
 order: 12
-related: ["ai-agents.context", "ai-agents.untrusted-input"]
-sources: ["https://genai.owasp.org/llmrisk/llm01-prompt-injection/"]
+related: ["testing.risk", "ai-agents.evidence"]
+sources: ["https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents"]
 schema_version: 1
 ---
 
@@ -37,6 +37,8 @@ schema_version: 1
 
 ## Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Критерии и допустимая цена зависят от продукта; персональные данные в тестах обезличиваются.
 
 ## Как проверить
@@ -57,4 +59,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)
+- [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)

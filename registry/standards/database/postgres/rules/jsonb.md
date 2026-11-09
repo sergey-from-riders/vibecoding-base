@@ -7,8 +7,8 @@ tags: ["jsonb", "PostgreSQL"]
 technologies: ["PostgreSQL"]
 reviewed_at: "2026-11-09"
 order: 27
-related: ["database.identifiers", "database.naming"]
-sources: ["https://www.postgresql.org/docs/18/ddl.html"]
+related: ["database.constraints", "security.object-access"]
+sources: ["https://www.postgresql.org/docs/18/datatype-json.html"]
 schema_version: 1
 ---
 
@@ -57,4 +57,4 @@ JSONB полезен для внешних снимков и разреженн�
 
 ## Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/ddl.html)
+- [PostgreSQL: Documentation: 18: 8.14. JSON Types](https://www.postgresql.org/docs/18/datatype-json.html)

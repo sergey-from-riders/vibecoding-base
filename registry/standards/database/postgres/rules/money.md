@@ -41,11 +41,15 @@ INSERT INTO price VALUES (12345, 'RUB'); -- 123 руб. 45 коп.
 
 ## Когда применять
 
-PostgreSQL 18. `integer` допустим при доказанном диапазоне: максимум 2 147 483 647 минимальных единиц, то есть 21 474 836,47 RUB. `bigint` даёт больший запас, но тоже имеет предел. Для дробных тарифов, курсов и промежуточных расчётов подходит `numeric(p,s)` / `decimal(p,s)`; например, `numeric(20,6)` — только если хватает 14 целых и 6 дробных разрядов. Точность и округление задаёт предметная область.
+PostgreSQL 18. Тип выбирается по единице измерения и максимальной сумме:
+
+- `integer` / `int`: целые минимальные единицы в доказанном диапазоне. Максимум 2 147 483 647, то есть 21 474 836,47 RUB при хранении копеек.
+- `bigint`: целые минимальные единицы, если диапазона `integer` недостаточно. У него тоже есть предел; это не бесконечный тип.
+- `numeric(p,s)` / `decimal(p,s)`: точные десятичные суммы, дробные тарифы и курсы. `numeric(20,6)` допускает 14 целых и 6 дробных разрядов. Точность и округление задаёт предметная область.
 
 В примере поддерживается только RUB. Для нескольких валют нужна проверяемая таблица валют и их разрядности: не у всех валют две цифры после запятой; API провайдера может иметь исключения. Отрицательные суммы разрешайте для проводок, если это требует модель. PostgreSQL `money` зависит от денежных настроек локали, поэтому для переносимого контракта предпочтительнее явно заданные единицы.
 
-В JavaScript `Number` точно хранит целые только до 2^53 − 1. Большие `bigint` передавайте в JSON строкой; преобразование и арифметику выполняйте без промежуточного `float`.
+В JavaScript `Number` гарантирует точность целых только в безопасном диапазоне от −(2^53 − 1) до 2^53 − 1. Большие `bigint` передавайте в JSON строкой; преобразование и арифметику выполняйте без промежуточного `float`.
 
 ## Человек
 
@@ -67,7 +71,7 @@ PostgreSQL 18. `integer` допустим при доказанном диапа
 
 ## Источники
 
-- [Документация 1](https://www.postgresql.org/docs/18/datatype-numeric.html)
-- [Документация 2](https://www.postgresql.org/docs/18/datatype-money.html)
-- [Документация 3](https://docs.stripe.com/currencies)
-- [Документация 4](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER)
+- [PostgreSQL: Documentation: 18: 8.1. Numeric Types](https://www.postgresql.org/docs/18/datatype-numeric.html)
+- [PostgreSQL: Documentation: 18: 8.2. Monetary Types](https://www.postgresql.org/docs/18/datatype-money.html)
+- [Supported currencies](https://docs.stripe.com/currencies)
+- [Number.MAX_SAFE_INTEGER - JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER)

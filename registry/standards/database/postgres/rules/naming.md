@@ -8,7 +8,7 @@ technologies: ["SQL"]
 reviewed_at: "2026-11-09"
 order: 20
 related: ["database.identifiers", "database.constraints"]
-sources: ["https://www.postgresql.org/docs/18/ddl-constraints.html"]
+sources: ["https://www.postgresql.org/docs/18/sql-syntax-lexical.html#SQL-SYNTAX-IDENTIFIERS"]
 schema_version: 1
 ---
 
@@ -61,4 +61,4 @@ snake_case и entity_id — соглашение этого справочник
 
 ## Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/ddl-constraints.html)
+- [PostgreSQL: Documentation: 18: 4.1. Lexical Structure](https://www.postgresql.org/docs/18/sql-syntax-lexical.html#SQL-SYNTAX-IDENTIFIERS)

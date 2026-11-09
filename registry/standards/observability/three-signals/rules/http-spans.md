@@ -60,4 +60,4 @@ HTTP 500 → Error
 
 ## Источники
 
-- [Первоисточник](https://opentelemetry.io/docs/specs/semconv/http/http-spans/)
+- [Semantic conventions for HTTP spans](https://opentelemetry.io/docs/specs/semconv/http/http-spans/)

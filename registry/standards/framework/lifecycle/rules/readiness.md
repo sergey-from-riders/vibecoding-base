@@ -7,8 +7,8 @@ tags: ["readiness"]
 technologies: []
 reviewed_at: "2026-11-09"
 order: 6
-related: ["architecture.scope", "architecture.one-source"]
-sources: ["https://slsa.dev/spec/v1.2/"]
+related: ["testing.honest-checks", "operations.immutable-release"]
+sources: ["https://sre.google/sre-book/reliable-product-launches/"]
 schema_version: 1
 ---
 
@@ -37,6 +37,8 @@ Production ready: папки и README созданы.
 
 ## Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Для шаблонов, библиотек и релизов. Указывайте ограничения рядом с результатами.
 
 ## Как проверить
@@ -57,4 +59,4 @@ Production ready: папки и README созданы.
 
 ## Источники
 
-- [Первоисточник](https://slsa.dev/spec/v1.2/)
+- [Google SRE - Deployment Strategies for Product Launches](https://sre.google/sre-book/reliable-product-launches/)

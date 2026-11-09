@@ -7,8 +7,8 @@ tags: ["errors", "Go"]
 technologies: ["Go"]
 reviewed_at: "2026-11-09"
 order: 40
-related: ["backend.boundaries", "backend.go-context"]
-sources: ["https://go.dev/doc/effective_go"]
+related: ["api.error-details", "testing.regression"]
+sources: ["https://go.dev/blog/go1.13-errors"]
 schema_version: 1
 ---
 
@@ -21,16 +21,22 @@ schema_version: 1
 ## Плохо
 
 ```go
-result, _ := saveOrder(order)
-return success(result)
+func persist(order Order) (*Order, error) {
+    result, _ := saveOrder(order)
+    return result, nil
+}
 ```
 
 ## Хорошо
 
 ```go
-result, err := saveOrder(order)
-if err != nil { return fmt.Errorf("save order: %w", err) }
-return result, nil
+func persist(order Order) (*Order, error) {
+    result, err := saveOrder(order)
+    if err != nil {
+        return nil, fmt.Errorf("save order: %w", err)
+    }
+    return result, nil
+}
 ```
 
 ## Почему
@@ -59,4 +65,4 @@ return result, nil
 
 ## Источники
 
-- [Первоисточник](https://go.dev/doc/effective_go)
+- [Working with Errors in Go 1.13 - The Go Programming Language](https://go.dev/blog/go1.13-errors)

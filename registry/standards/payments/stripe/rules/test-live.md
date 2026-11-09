@@ -8,7 +8,7 @@ technologies: ["Stripe"]
 reviewed_at: "2026-11-09"
 order: 100
 related: ["payments.payment-truth", "payments.payment-events"]
-sources: ["https://docs.stripe.com/webhooks"]
+sources: ["https://docs.stripe.com/testing", "https://docs.stripe.com/api/versioning"]
 schema_version: 1
 ---
 
@@ -57,4 +57,5 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://docs.stripe.com/webhooks)
+- [Test card numbers](https://docs.stripe.com/testing)
+- [Versioning](https://docs.stripe.com/api/versioning)

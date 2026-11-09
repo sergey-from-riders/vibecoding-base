@@ -7,8 +7,8 @@ tags: ["migrations", "SQL"]
 technologies: ["SQL"]
 reviewed_at: "2026-11-09"
 order: 24
-related: ["database.identifiers", "database.naming"]
-sources: ["https://www.postgresql.org/docs/18/ddl.html"]
+related: ["operations.rollback", "operations.restore"]
+sources: ["https://www.postgresql.org/docs/18/sql-altertable.html", "https://www.prisma.io/docs/orm/prisma-migrate/workflows/customizing-migrations"]
 schema_version: 1
 ---
 
@@ -57,4 +57,5 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/ddl.html)
+- [PostgreSQL: Documentation: 18: ALTER TABLE](https://www.postgresql.org/docs/18/sql-altertable.html)
+- [Editing a migration in Prisma ORM](https://www.prisma.io/docs/orm/prisma-migrate/workflows/customizing-migrations)

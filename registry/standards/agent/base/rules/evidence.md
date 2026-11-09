@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 11
 related: ["ai-agents.context", "ai-agents.untrusted-input"]
-sources: ["https://slsa.dev/spec/v1.2/"]
+sources: ["https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents"]
 schema_version: 1
 ---
 
@@ -37,6 +37,8 @@ schema_version: 1
 
 ## Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Для изменения файлов, публикации, платежей и доставки сообщений.
 
 ## Как проверить
@@ -57,4 +59,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://slsa.dev/spec/v1.2/)
+- [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)

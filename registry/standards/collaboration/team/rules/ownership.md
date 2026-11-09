@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 14
 related: ["collaboration.small-pr", "collaboration.preserve-changes"]
-sources: ["https://docs.github.com/en/pull-requests/reference/pull-requests"]
+sources: ["https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners", "https://git-scm.com/docs/git-worktree"]
 schema_version: 1
 ---
 
@@ -38,6 +38,8 @@ schema_version: 1
 
 ## Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Для людей и агентов. Небольшую последовательную задачу не нужно искусственно распараллеливать.
 
 ## Как проверить
@@ -58,4 +60,5 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)
+- [About code owners - GitHub Docs](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners)
+- [Git - git-worktree Documentation](https://git-scm.com/docs/git-worktree)

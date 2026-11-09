@@ -47,7 +47,7 @@
 
 ### Источники
 
-- [Первоисточник](https://opentelemetry.io/docs/specs/semconv/http/http-spans/)
+- [Context propagation](https://opentelemetry.io/docs/concepts/context-propagation/)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -99,7 +99,7 @@ HTTP 500 → Error
 
 ### Источники
 
-- [Первоисточник](https://opentelemetry.io/docs/specs/semconv/http/http-spans/)
+- [Semantic conventions for HTTP spans](https://opentelemetry.io/docs/specs/semconv/http/http-spans/)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -149,7 +149,8 @@ HTTP 500 → Error
 
 ### Источники
 
-- [Первоисточник](https://sre.google/sre-book/service-level-objectives/)
+- [Signals](https://opentelemetry.io/docs/concepts/signals/)
+- [Metric and label naming](https://prometheus.io/docs/practices/naming/)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -198,7 +199,7 @@ API должен быть быстрым всегда.
 
 ### Источники
 
-- [Первоисточник](https://sre.google/sre-book/service-level-objectives/)
+- [Google SRE - Defining slo: service level objective meaning](https://sre.google/sre-book/service-level-objectives/)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 

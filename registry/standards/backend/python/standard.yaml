@@ -1,6 +1,6 @@
 id: backend/python
 name: Python Backend Engineering Standard
-version: 2.1.0
+version: 2.1.1
 status: stable
 domain: backend
 owners:

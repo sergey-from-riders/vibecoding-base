@@ -59,4 +59,4 @@ Bitrix24 REST, локальная интеграция через входящи
 
 ## Источники
 
-- [Документация 1](https://apidocs.bitrix24.ru/local-integrations/local-webhooks.html)
+- [Входящие и исходящие вебхуки](https://apidocs.bitrix24.ru/local-integrations/local-webhooks.html)

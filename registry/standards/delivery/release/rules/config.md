@@ -7,8 +7,8 @@ tags: ["config"]
 technologies: []
 reviewed_at: "2026-11-09"
 order: 90
-related: ["operations.correlation", "operations.http-spans"]
-sources: ["https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"]
+related: ["security.secrets", "operations.immutable-release"]
+sources: ["https://12factor.net/config", "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"]
 schema_version: 1
 ---
 
@@ -57,4 +57,5 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html)
+- [The Twelve-Factor App](https://12factor.net/config)
+- [Secrets Management - OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html)

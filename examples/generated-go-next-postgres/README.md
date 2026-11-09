@@ -4,19 +4,19 @@ This project was generated from the `go-next-postgres` stack profile.
 
 ## Active Standards
 
-- `agent/base@2.1.0`
-- `framework/lifecycle@2.1.0`
-- `backend/go@2.1.0`
-- `frontend/next@2.1.0`
-- `database/postgres@2.1.0`
-- `api/openapi-modular@2.1.0`
-- `testing/tdd-strict@2.1.0`
-- `security/no-secrets@2.1.0`
-- `observability/three-signals@2.1.0`
-- `ui/shadcn-compact@2.1.0`
-- `collaboration/team@2.1.0`
-- `delivery/release@2.1.0`
-- `integrations/external@2.1.0`
+- `agent/base@2.1.1`
+- `framework/lifecycle@2.1.1`
+- `backend/go@2.1.1`
+- `frontend/next@2.1.1`
+- `database/postgres@2.1.1`
+- `api/openapi-modular@2.1.1`
+- `testing/tdd-strict@2.1.1`
+- `security/no-secrets@2.1.1`
+- `observability/three-signals@2.1.1`
+- `ui/shadcn-compact@2.1.1`
+- `collaboration/team@2.1.1`
+- `delivery/release@2.1.1`
+- `integrations/external@2.1.1`
 
 ## Status Matrix
 

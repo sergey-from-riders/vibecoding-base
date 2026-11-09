@@ -42,7 +42,7 @@ Worker может начать работу до commit. При rollback уве�
 
 ## Когда применять
 
-Laravel 12.x и асинхронная очередь. `afterCommit()` не гарантирует доставку при падении процесса между commit и отправкой; для такой гарантии нужен outbox. Обработчик всё равно должен переносить повторы.
+Laravel 12.x и асинхронная очередь. Плохой пример предполагает `after_commit=false` в конфигурации соединения. При `after_commit=true` Laravel уже откладывает отправку до commit; явный `afterCommit()` тогда не обязателен. `afterCommit()` не гарантирует доставку при падении процесса между commit и отправкой; для такой гарантии нужен outbox. Обработчик всё равно должен переносить повторы.
 
 ## Человек
 
@@ -63,5 +63,5 @@ Laravel 12.x и асинхронная очередь. `afterCommit()` не га
 
 ## Источники
 
-- [Документация 1](https://laravel.com/docs/12.x/queues)
-- [Документация 2](https://laravel.com/docs/12.x/database#database-transactions)
+- [Queues](https://laravel.com/docs/12.x/queues)
+- [Database: Getting Started](https://laravel.com/docs/12.x/database#database-transactions)

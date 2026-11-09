@@ -57,4 +57,4 @@ CASCADE подходит только для действительно зави
 
 ## Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/ddl-constraints.html)
+- [PostgreSQL: Documentation: 18: 5.5. Constraints](https://www.postgresql.org/docs/18/ddl-constraints.html)

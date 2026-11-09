@@ -7,7 +7,7 @@ tags: ["restore", "PostgreSQL"]
 technologies: ["PostgreSQL"]
 reviewed_at: "2026-11-09"
 order: 89
-related: ["operations.correlation", "operations.http-spans"]
+related: ["database.migrations", "operations.rollback"]
 sources: ["https://www.postgresql.org/docs/18/backup.html"]
 schema_version: 1
 ---
@@ -33,7 +33,7 @@ schema_version: 1
 
 ## Почему
 
-Повреждение или отсутствие ключа шифрования обнаруживаются только при восстановлении.
+Наличие файла не доказывает целостность копии, доступность ключа и полноту данных. Проверка целостности полезна, а учебное восстановление дополнительно проверяет всю процедуру.
 
 ## Когда применять
 
@@ -57,4 +57,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/backup.html)
+- [PostgreSQL: Documentation: 18: Chapter 25. Backup and Restore](https://www.postgresql.org/docs/18/backup.html)

@@ -8,7 +8,7 @@ technologies: ["Next.js", "TypeScript"]
 reviewed_at: "2026-11-09"
 order: 46
 related: ["frontend.server-client", "frontend.derived-state"]
-sources: ["https://spec.openapis.org/oas/v3.2.0.html"]
+sources: ["https://nextjs.org/docs/app/guides/data-security", "https://spec.openapis.org/oas/v3.2.0.html"]
 schema_version: 1
 ---
 
@@ -37,6 +37,8 @@ schema_version: 1
 
 ## Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Не создавайте второй backend в обработчиках Next без необходимости. Маршрут скачивания документа может быть самостоятельной границей контента.
 
 ## Как проверить
@@ -57,4 +59,5 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://spec.openapis.org/oas/v3.2.0.html)
+- [How to think about data security in Next.js](https://nextjs.org/docs/app/guides/data-security)
+- [OpenAPI Specification v3.2.0](https://spec.openapis.org/oas/v3.2.0.html)

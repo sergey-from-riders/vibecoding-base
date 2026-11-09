@@ -7,8 +7,8 @@ tags: ["reconciliation", "Stripe"]
 technologies: ["Stripe"]
 reviewed_at: "2026-11-09"
 order: 99
-related: ["payments.payment-truth", "payments.payment-events"]
-sources: ["https://docs.stripe.com/webhooks"]
+related: ["payments.payment-events", "database.money"]
+sources: ["https://docs.stripe.com/payments/payment-intents/verifying-status", "https://docs.stripe.com/refunds"]
 schema_version: 1
 ---
 
@@ -57,4 +57,5 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://docs.stripe.com/webhooks)
+- [Payment status updates](https://docs.stripe.com/payments/payment-intents/verifying-status)
+- [Refund and cancel payments](https://docs.stripe.com/refunds)

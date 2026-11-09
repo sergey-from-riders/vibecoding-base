@@ -7,7 +7,7 @@ tags: ["concurrency", "HTTP"]
 technologies: ["HTTP"]
 reviewed_at: "2026-11-09"
 order: 34
-related: ["api.http-status", "api.methods"]
+related: ["frontend.remote-drafts", "database.transactions"]
 sources: ["https://www.rfc-editor.org/rfc/rfc9110.html"]
 schema_version: 1
 ---
@@ -58,4 +58,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9110.html)
+- [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html)

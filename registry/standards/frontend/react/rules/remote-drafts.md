@@ -57,4 +57,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://react.dev/learn/you-might-not-need-an-effect)
+- [You Might Not Need an Effect – React](https://react.dev/learn/you-might-not-need-an-effect)

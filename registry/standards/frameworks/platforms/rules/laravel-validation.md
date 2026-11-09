@@ -59,5 +59,5 @@ Laravel 12.x, Form Request и зарегистрированная Policy; в м
 
 ## Источники
 
-- [Документация 1](https://laravel.com/docs/12.x/validation)
-- [Документация 2](https://laravel.com/docs/12.x/authorization)
+- [Validation](https://laravel.com/docs/12.x/validation)
+- [Authorization](https://laravel.com/docs/12.x/authorization)

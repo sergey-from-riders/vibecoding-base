@@ -8,7 +8,7 @@ technologies: ["React", "Next.js"]
 reviewed_at: "2026-11-09"
 order: 51
 related: ["frontend.server-client", "frontend.data-boundary"]
-sources: ["https://sre.google/sre-book/service-level-objectives/"]
+sources: ["https://web.dev/articles/vitals"]
 schema_version: 1
 ---
 
@@ -57,4 +57,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://sre.google/sre-book/service-level-objectives/)
+- [Web Vitals  |  Articles  |  web.dev](https://web.dev/articles/vitals)

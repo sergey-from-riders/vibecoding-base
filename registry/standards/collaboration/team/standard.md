@@ -47,7 +47,7 @@ PR: исправление двойной оплаты.
 
 ### Источники
 
-- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)
+- [Small CLs](https://google.github.io/eng-practices/review/developer/small-cls.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -77,6 +77,8 @@ PR: исправление двойной оплаты.
 
 ### Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Для людей и агентов. Небольшую последовательную задачу не нужно искусственно распараллеливать.
 
 ### Как проверить
@@ -97,7 +99,8 @@ PR: исправление двойной оплаты.
 
 ### Источники
 
-- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)
+- [About code owners - GitHub Docs](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners)
+- [Git - git-worktree Documentation](https://git-scm.com/docs/git-worktree)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -147,7 +150,8 @@ PR: исправление двойной оплаты.
 
 ### Источники
 
-- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)
+- [Git - git-status Documentation](https://git-scm.com/docs/git-status)
+- [Git - git-reset Documentation](https://git-scm.com/docs/git-reset)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -196,7 +200,7 @@ PR: исправление двойной оплаты.
 
 ### Источники
 
-- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)
+- [What to look for in a code review](https://google.github.io/eng-practices/review/reviewer/looking-for.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -226,6 +230,8 @@ PR: исправление двойной оплаты.
 
 ### Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Для передачи между людьми, агентами и сменами поддержки.
 
 ### Как проверить
@@ -246,7 +252,7 @@ PR: исправление двойной оплаты.
 
 ### Источники
 
-- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)
+- [Writing good CL descriptions](https://google.github.io/eng-practices/review/developer/cl-descriptions.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -295,7 +301,7 @@ PR: исправление двойной оплаты.
 
 ### Источники
 
-- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)
+- [Documenting Architecture Decisions](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions.html)
 
 Уровень: Зависит от задачи. Проверено: 2026-11-09.
 

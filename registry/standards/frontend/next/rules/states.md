@@ -8,7 +8,7 @@ technologies: ["React"]
 reviewed_at: "2026-11-09"
 order: 50
 related: ["frontend.server-client", "frontend.data-boundary"]
-sources: ["https://www.w3.org/TR/WCAG22/"]
+sources: ["https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html"]
 schema_version: 1
 ---
 
@@ -38,6 +38,8 @@ schema_version: 1
 
 ## Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 При оптимистическом изменении нужны откат и объяснение ошибки.
 
 ## Как проверить
@@ -58,4 +60,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://www.w3.org/TR/WCAG22/)
+- [Understanding Success Criterion 4.1.3: Status Messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html)

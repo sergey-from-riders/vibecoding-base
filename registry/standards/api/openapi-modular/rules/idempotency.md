@@ -8,7 +8,7 @@ technologies: ["HTTP"]
 reviewed_at: "2026-11-09"
 order: 33
 related: ["api.http-status", "api.methods"]
-sources: ["https://www.rfc-editor.org/rfc/rfc9110.html"]
+sources: ["https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2", "https://docs.stripe.com/api/idempotent_requests"]
 schema_version: 1
 ---
 
@@ -37,7 +37,7 @@ schema_version: 1
 
 ## Когда применять
 
-Ключ связан с пользователем, операцией и содержимым. Другое содержимое под тем же ключом — конфликт. Срок хранения ключей документируется.
+Ключ связан с пользователем, операцией и содержимым. Другое содержимое под тем же ключом — конфликт. Срок хранения ключей документируется. `Idempotency-Key` — контракт конкретного API, а не обязательный заголовок RFC 9110. После истечения срока дедупликации повтор может стать новой операцией.
 
 ## Как проверить
 
@@ -57,4 +57,5 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9110.html)
+- [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2)
+- [Idempotent requests](https://docs.stripe.com/api/idempotent_requests)

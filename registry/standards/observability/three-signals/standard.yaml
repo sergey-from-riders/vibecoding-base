@@ -1,6 +1,6 @@
 id: observability/three-signals
 name: Three Signals Observability Standard
-version: 2.1.0
+version: 2.1.1
 status: stable
 domain: observability
 owners:

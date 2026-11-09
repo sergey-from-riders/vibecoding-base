@@ -61,4 +61,4 @@ Client Component управляет поиском и кнопками.
 
 ## Источники
 
-- [Первоисточник](https://nextjs.org/docs/app/getting-started/server-and-client-components)
+- [Server and Client Components](https://nextjs.org/docs/app/getting-started/server-and-client-components)

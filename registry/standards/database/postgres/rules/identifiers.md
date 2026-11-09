@@ -62,4 +62,4 @@ UUID уменьшает зависимость от единого генера�
 
 ## Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/functions-uuid.html)
+- [PostgreSQL: Documentation: 18: 9.14. UUID Functions](https://www.postgresql.org/docs/18/functions-uuid.html)

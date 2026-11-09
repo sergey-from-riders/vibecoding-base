@@ -60,4 +60,4 @@ Effect нужен для синхронизации с внешней систе
 
 ## Источники
 
-- [Первоисточник](https://react.dev/learn/you-might-not-need-an-effect)
+- [You Might Not Need an Effect – React](https://react.dev/learn/you-might-not-need-an-effect)

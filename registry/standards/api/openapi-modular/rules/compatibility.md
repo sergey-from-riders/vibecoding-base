@@ -8,7 +8,7 @@ technologies: ["OpenAPI"]
 reviewed_at: "2026-11-09"
 order: 36
 related: ["api.http-status", "api.methods"]
-sources: ["https://spec.openapis.org/oas/v3.2.0.html"]
+sources: ["https://google.aip.dev/180"]
 schema_version: 1
 ---
 
@@ -57,4 +57,4 @@ amount вчера означал рубли, сегодня — копейки.
 
 ## Источники
 
-- [Первоисточник](https://spec.openapis.org/oas/v3.2.0.html)
+- [AIP-180: Backwards compatibility](https://google.aip.dev/180)

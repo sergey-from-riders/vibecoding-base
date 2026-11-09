@@ -1,4 +1,4 @@
-<!-- Generated from registry/standards/backend/python@2.1.0. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/backend/python@2.1.1. Update the registry standard, then regenerate. -->
 
 # Python Backend Engineering Standard
 
@@ -50,7 +50,7 @@ async def handler():
 
 ### Источники
 
-- [Первоисточник](https://docs.python.org/3.14/library/asyncio-task.html)
+- [Coroutines and tasks — Python 3.14.10 documentation](https://docs.python.org/3.14/library/asyncio-task.html)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -100,7 +100,8 @@ quantity = validated_request.quantity
 
 ### Источники
 
-- [Первоисточник](https://spec.openapis.org/oas/v3.2.0.html)
+- [Models](https://docs.pydantic.dev/latest/concepts/models/)
+- [Request Body - FastAPI](https://fastapi.tiangolo.com/tutorial/body/)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -149,7 +150,7 @@ quantity = validated_request.quantity
 
 ### Источники
 
-- [Первоисточник](https://go.dev/doc/effective_go)
+- [Effective Go - The Go Programming Language](https://go.dev/doc/effective_go)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 

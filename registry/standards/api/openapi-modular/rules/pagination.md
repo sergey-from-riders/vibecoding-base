@@ -7,8 +7,8 @@ tags: ["pagination", "HTTP"]
 technologies: ["HTTP"]
 reviewed_at: "2026-11-09"
 order: 35
-related: ["api.http-status", "api.methods"]
-sources: ["https://owasp.org/API-Security/editions/2023/en/0x11-t10/"]
+related: ["database.indexes", "security.resource-limits"]
+sources: ["https://www.postgresql.org/docs/18/queries-limit.html", "https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/"]
 schema_version: 1
 ---
 
@@ -57,4 +57,5 @@ Cursor удобен для меняющихся списков; offset допу�
 
 ## Источники
 
-- [Первоисточник](https://owasp.org/API-Security/editions/2023/en/0x11-t10/)
+- [PostgreSQL: Documentation: 18: 7.6. LIMIT and OFFSET](https://www.postgresql.org/docs/18/queries-limit.html)
+- [API4:2023 Unrestricted Resource Consumption - OWASP API Security Top 10](https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/)

@@ -7,8 +7,8 @@ tags: ["regression"]
 technologies: []
 reviewed_at: "2026-11-09"
 order: 78
-related: ["testing.risk", "testing.integration"]
-sources: ["https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html"]
+related: ["testing.risk", "collaboration.review"]
+sources: ["https://docs.djangoproject.com/en/5.2/intro/tutorial05/"]
 schema_version: 1
 ---
 
@@ -57,4 +57,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
+- [Writing your first Django app, part 5](https://docs.djangoproject.com/en/5.2/intro/tutorial05/)

@@ -1,4 +1,4 @@
-<!-- Generated from registry/standards/ui/shadcn-compact@2.1.0. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/ui/shadcn-compact@2.1.1. Update the registry standard, then regenerate. -->
 
 # shadcn Compact UI Profile
 
@@ -48,7 +48,7 @@
 
 ### Источники
 
-- [Первоисточник](https://www.w3.org/TR/WCAG22/)
+- [Understanding Success Criterion 3.3.2: Labels or Instructions](https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -96,7 +96,8 @@
 
 ### Источники
 
-- [Первоисточник](https://www.w3.org/TR/WCAG22/)
+- [Understanding Success Criterion 2.1.1: Keyboard](https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html)
+- [Understanding Success Criterion 2.4.7: Focus Visible](https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -145,7 +146,8 @@
 
 ### Источники
 
-- [Первоисточник](https://www.w3.org/TR/WCAG22/)
+- [Understanding Success Criterion 1.4.3: Contrast (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html)
+- [Understanding Success Criterion 1.4.1: Use of Color](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -195,7 +197,7 @@
 
 ### Источники
 
-- [Первоисточник](https://www.w3.org/TR/WCAG22/)
+- [Understanding Success Criterion 1.4.10: Reflow](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -244,7 +246,7 @@
 
 ### Источники
 
-- [Первоисточник](https://www.w3.org/TR/WCAG22/)
+- [Understanding Success Criterion 3.3.1: Error Identification](https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -292,7 +294,8 @@ shadcn — один из вариантов. Плотность, интерва�
 
 ### Источники
 
-- [Первоисточник](https://www.w3.org/TR/WCAG22/)
+- [Understanding Success Criterion 3.2.4: Consistent Identification](https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification.html)
+- [Understanding Success Criterion 2.5.8: Target Size (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 

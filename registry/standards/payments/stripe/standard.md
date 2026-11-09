@@ -47,7 +47,7 @@
 
 ### Источники
 
-- [Первоисточник](https://docs.stripe.com/webhooks)
+- [Fulfill orders](https://docs.stripe.com/checkout/fulfillment)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -60,7 +60,7 @@
 ### Плохо
 
 ```text
-Каждый payment.succeeded повторно выдаёт покупку.
+Каждый payment_intent.succeeded повторно выдаёт покупку.
 ```
 
 ### Хорошо
@@ -76,7 +76,7 @@ event_id сохранён.
 
 ### Когда применять
 
-При неоднозначности уточняйте актуальное состояние у провайдера. Сохранение event_id и изменение локального состояния связываются транзакционно.
+При неоднозначности уточняйте актуальное состояние у провайдера. Сохранение event_id и изменение локального состояния связываются транзакционно. Разные event_id тоже могут описывать один объект и тип события: выдачу покупки дополнительно защищает уникальность бизнес-операции по payment_id.
 
 ### Как проверить
 
@@ -96,7 +96,7 @@ event_id сохранён.
 
 ### Источники
 
-- [Первоисточник](https://docs.stripe.com/webhooks)
+- [Receive Stripe events in your webhook endpoint](https://docs.stripe.com/webhooks)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -145,7 +145,7 @@ event_id сохранён.
 
 ### Источники
 
-- [Первоисточник](https://docs.stripe.com/webhooks)
+- [Integration security guide](https://docs.stripe.com/security/guide)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -194,7 +194,8 @@ event_id сохранён.
 
 ### Источники
 
-- [Первоисточник](https://docs.stripe.com/webhooks)
+- [Payment status updates](https://docs.stripe.com/payments/payment-intents/verifying-status)
+- [Refund and cancel payments](https://docs.stripe.com/refunds)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -243,7 +244,8 @@ event_id сохранён.
 
 ### Источники
 
-- [Первоисточник](https://docs.stripe.com/webhooks)
+- [Test card numbers](https://docs.stripe.com/testing)
+- [Versioning](https://docs.stripe.com/api/versioning)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 

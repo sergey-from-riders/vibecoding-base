@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 2
 related: ["architecture.scope", "architecture.contract-first"]
-sources: ["https://slsa.dev/spec/v1.2/"]
+sources: ["https://docs.github.com/en/contributing/writing-for-github-docs/creating-reusable-content"]
 schema_version: 1
 ---
 
@@ -38,6 +38,8 @@ Markdown и инструкции остались прежними.
 
 ## Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Копии для чтения и кеш допустимы, если известны источник и версия.
 
 ## Как проверить
@@ -58,4 +60,4 @@ Markdown и инструкции остались прежними.
 
 ## Источники
 
-- [Первоисточник](https://slsa.dev/spec/v1.2/)
+- [Creating reusable content - GitHub Docs](https://docs.github.com/en/contributing/writing-for-github-docs/creating-reusable-content)

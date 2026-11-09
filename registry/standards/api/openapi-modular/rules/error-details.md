@@ -58,4 +58,4 @@ Problem Details задаёт общую основу; errors и request_id — �
 
 ## Источники
 
-- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9457.html)
+- [RFC 9457: Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457.html)

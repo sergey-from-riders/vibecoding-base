@@ -47,7 +47,7 @@ tenant_id берётся из проверенного контекста, а н
 
 ### Источники
 
-- [Первоисточник](https://owasp.org/API-Security/editions/2023/en/0x11-t10/)
+- [API1:2023 Broken Object Level Authorization - OWASP API Security Top 10](https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -96,7 +96,7 @@ README содержит пример без значения.
 
 ### Источники
 
-- [Первоисточник](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html)
+- [Secrets Management - OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -108,15 +108,14 @@ README содержит пример без значения.
 
 ### Плохо
 
-```sql
-query = "SELECT * FROM users WHERE name = '" + name + "'"
+```python
+cursor.execute("SELECT * FROM users WHERE name = '" + name + "'")
 ```
 
 ### Хорошо
 
-```sql
-query = "SELECT * FROM users WHERE name = $1"
-args = [name]
+```python
+cursor.execute("SELECT * FROM users WHERE name = %s", (name,))
 ```
 
 ### Почему
@@ -125,7 +124,7 @@ args = [name]
 
 ### Когда применять
 
-Для имён колонок и направления сортировки используйте разрешённый список; bind-параметры не заменяют SQL-идентификаторы.
+Пример для Python и Psycopg 3: `%s` — placeholder драйвера, а не строковая подстановка Python. Значения передаются отдельным аргументом. Для имён колонок и направления сортировки используйте разрешённый список; bind-параметры не заменяют SQL-идентификаторы.
 
 ### Как проверить
 
@@ -145,7 +144,8 @@ args = [name]
 
 ### Источники
 
-- [Первоисточник](https://owasp.org/API-Security/editions/2023/en/0x11-t10/)
+- [SQL Injection Prevention - OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
+- [Passing parameters to SQL queries - psycopg 3.3.9.dev1 documentation](https://www.psycopg.org/psycopg3/docs/basic/params.html)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -194,7 +194,7 @@ args = [name]
 
 ### Источники
 
-- [Первоисточник](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html)
+- [Server Side Request Forgery Prevention - OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -242,7 +242,7 @@ log({request_id, route, status, duration_ms})
 
 ### Источники
 
-- [Первоисточник](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html)
+- [Logging - OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -291,7 +291,7 @@ SBOM и provenance зависят от зрелости выпуска. Нали
 
 ### Источники
 
-- [Первоисточник](https://slsa.dev/spec/v1.2/)
+- [SLSA • SLSA specification](https://slsa.dev/spec/v1.2/)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -340,7 +340,7 @@ SBOM и provenance зависят от зрелости выпуска. Нали
 
 ### Источники
 
-- [Первоисточник](https://owasp.org/API-Security/editions/2023/en/0x11-t10/)
+- [API4:2023 Unrestricted Resource Consumption - OWASP API Security Top 10](https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 

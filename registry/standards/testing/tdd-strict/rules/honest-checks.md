@@ -7,8 +7,8 @@ tags: ["honest-checks"]
 technologies: []
 reviewed_at: "2026-11-09"
 order: 81
-related: ["testing.risk", "testing.regression"]
-sources: ["https://slsa.dev/spec/v1.2/"]
+related: ["architecture.readiness", "ai-agents.evidence"]
+sources: ["https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks"]
 schema_version: 1
 ---
 
@@ -37,6 +37,8 @@ Runtime-тесты пока отсутствуют.
 
 ## Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Проверки контента, линтер, сборка и тест поведения доказывают разные вещи.
 
 ## Как проверить
@@ -57,4 +59,4 @@ Runtime-тесты пока отсутствуют.
 
 ## Источники
 
-- [Первоисточник](https://slsa.dev/spec/v1.2/)
+- [Status checks - GitHub Docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks)

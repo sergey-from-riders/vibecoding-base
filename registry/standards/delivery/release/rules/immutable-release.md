@@ -57,4 +57,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://slsa.dev/spec/v1.2/)
+- [SLSA • SLSA specification](https://slsa.dev/spec/v1.2/)

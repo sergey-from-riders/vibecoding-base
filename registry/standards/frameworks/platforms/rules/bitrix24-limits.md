@@ -9,7 +9,7 @@ technologies: ["Bitrix24"]
 reviewed_at: "2026-11-09"
 order: 109
 related: ["integrations.retries", "caching.dead-letter"]
-sources: ["https://apidocs.bitrix24.ru/limits.html", "https://apidocs.bitrix24.ru/api-reference/how-to-call-rest-api/batch.html"]
+sources: ["https://apidocs.bitrix24.ru/limits.html", "https://apidocs.bitrix24.ru/settings/how-to-call-rest-api/batch.html"]
 ---
 
 # Bitrix24: лимиты и повтор запросов
@@ -60,5 +60,5 @@ QUERY_LIMIT_EXCEEDED → задержка с jitter
 
 ## Источники
 
-- [Документация 1](https://apidocs.bitrix24.ru/limits.html)
-- [Документация 2](https://apidocs.bitrix24.ru/api-reference/how-to-call-rest-api/batch.html)
+- [Лимиты REST API](https://apidocs.bitrix24.ru/limits.html)
+- [Как выполнить пакет запросов batch](https://apidocs.bitrix24.ru/settings/how-to-call-rest-api/batch.html)

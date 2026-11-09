@@ -60,6 +60,8 @@ export function parseRule(raw,path,updatedAt) {
   requireValue(!fenced,'Unclosed code fence');
   for(const key of BLOCKS) { requireValue(blocks[key]?.join('\n').trim(),'Missing section '+key); blocks[key]=blocks[key].join('\n').trim(); }
   for(const key of OPTIONAL_BLOCKS) if(blocks[key]) {blocks[key]=blocks[key].join('\n').trim();requireValue(blocks[key],'Empty section '+key);}
+  const citedSources=[...blocks['Источники'].matchAll(/\[[^\]\n]+\]\((https:\/\/[^\s)]+)\)/g)].map(match=>match[1]);
+  requireValue(new Set(meta.sources).size===meta.sources.length && citedSources.length===meta.sources.length && meta.sources.every(source=>citedSources.includes(source)),'Sources differ between metadata and Markdown');
   const examples={};
   for(const [name,key] of [['bad','Плохо'],['good','Хорошо']]) {
     const code=blocks[key].match(/^```([a-z0-9+-]*)\n([\s\S]*?)\n```$/);

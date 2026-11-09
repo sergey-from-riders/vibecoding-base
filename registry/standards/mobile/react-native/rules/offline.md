@@ -7,8 +7,8 @@ tags: ["offline", "React Native"]
 technologies: ["React Native"]
 reviewed_at: "2026-11-09"
 order: 94
-related: ["mobile.secure-storage", "mobile.deep-links"]
-sources: ["https://www.rfc-editor.org/rfc/rfc9110.html"]
+related: ["api.idempotency", "api.concurrency"]
+sources: ["https://developer.android.com/topic/architecture/data-layer/offline-first"]
 schema_version: 1
 ---
 
@@ -57,4 +57,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9110.html)
+- [Build an offline-first app  |  App architecture  |  Android Developers](https://developer.android.com/topic/architecture/data-layer/offline-first)

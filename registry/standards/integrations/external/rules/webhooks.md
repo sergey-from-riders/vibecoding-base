@@ -57,4 +57,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://docs.stripe.com/webhooks)
+- [Receive Stripe events in your webhook endpoint](https://docs.stripe.com/webhooks)

@@ -71,5 +71,5 @@ D7, API сущностей с save(): Result, одна транзакционн�
 
 ## Источники
 
-- [Документация 1](https://dev.1c-bitrix.ru/api_d7/bitrix/main/db/connection/starttransaction.php)
-- [Документация 2](https://dev.1c-bitrix.ru/api_d7/bitrix/main/result/issuccess.php)
+- [Connection::startTransaction](https://dev.1c-bitrix.ru/api_d7/bitrix/main/db/connection/starttransaction.php)
+- [Result::isSuccess](https://dev.1c-bitrix.ru/api_d7/bitrix/main/result/issuccess.php)

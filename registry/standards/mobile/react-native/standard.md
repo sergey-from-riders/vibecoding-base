@@ -17,7 +17,9 @@
 ### Хорошо
 
 ```text
-Токен в Keychain/Keystore через проверенную библиотеку.
+iOS: токен в Keychain.
+Android: токен зашифрован, ключ находится в Keystore.
+Библиотека поддерживает эту схему и очистку при выходе.
 ```
 
 ### Почему
@@ -26,7 +28,7 @@
 
 ### Когда применять
 
-Защищённое хранилище не заменяет срок действия и отзыв токена на сервере. Биометрия обычно разблокирует локальный доступ.
+Android Keystore хранит криптографические ключи, а не произвольный текст токена. Для React Native выбирайте поддерживаемую библиотеку с документированной реализацией для каждой платформы. Защищённое хранилище не заменяет срок действия и отзыв токена на сервере. Биометрия обычно разблокирует локальный доступ.
 
 ### Как проверить
 
@@ -46,7 +48,8 @@
 
 ### Источники
 
-- [Первоисточник](https://reactnative.dev/docs/security)
+- [Security · React Native](https://reactnative.dev/docs/security)
+- [Android Keystore system  |  Security  |  Android Developers](https://developer.android.com/privacy-and-security/keystore)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -95,7 +98,7 @@
 
 ### Источники
 
-- [Первоисточник](https://reactnative.dev/docs/security)
+- [Security · React Native](https://reactnative.dev/docs/security)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -144,7 +147,7 @@
 
 ### Источники
 
-- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9110.html)
+- [Build an offline-first app  |  App architecture  |  Android Developers](https://developer.android.com/topic/architecture/data-layer/offline-first)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -173,7 +176,7 @@ JS-обновление совместимо с установленным runti
 
 ### Когда применять
 
-OTA разрешён только в пределах политики магазина и выбранного механизма обновлений. Версии React и RN должны быть совместимы.
+Пример механизма совместимости — runtimeVersion в Expo EAS Update. OTA разрешён только в пределах политики магазина и выбранного механизма обновлений. Версии React и RN должны быть совместимы.
 
 ### Как проверить
 
@@ -193,7 +196,7 @@ OTA разрешён только в пределах политики мага�
 
 ### Источники
 
-- [Первоисточник](https://reactnative.dev/docs/security)
+- [Runtime versions and updates - Expo documentation](https://docs.expo.dev/eas-update/runtime-versions/)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 

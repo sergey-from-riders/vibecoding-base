@@ -1,0 +1,1368 @@
+{
+  "checked_at": "2026-11-09T13:38:10+03:00",
+  "rules": 117,
+  "unique_sources": 134,
+  "results": [
+    {
+      "url": "https://12factor.net/config",
+      "rules": [
+        "operations.config"
+      ],
+      "status": 200,
+      "final_url": "https://12factor.net/config",
+      "title": "The Twelve-Factor App",
+      "anchor": true
+    },
+    {
+      "url": "https://apidocs.bitrix24.ru/limits.html",
+      "rules": [
+        "frameworks.bitrix24-limits"
+      ],
+      "status": 200,
+      "final_url": "https://apidocs.bitrix24.ru/limits.html",
+      "title": "Лимиты REST API | REST API Битрикс24 и приложения для Маркет",
+      "anchor": true
+    },
+    {
+      "url": "https://apidocs.bitrix24.ru/local-integrations/local-webhooks.html",
+      "rules": [
+        "frameworks.bitrix24-webhook"
+      ],
+      "status": 200,
+      "final_url": "https://apidocs.bitrix24.ru/local-integrations/local-webhooks.html",
+      "title": "Входящие и исходящие вебхуки | REST API Битрикс24 и приложения для Маркет",
+      "anchor": true
+    },
+    {
+      "url": "https://apidocs.bitrix24.ru/settings/how-to-call-rest-api/batch.html",
+      "rules": [
+        "frameworks.bitrix24-limits"
+      ],
+      "status": 200,
+      "final_url": "https://apidocs.bitrix24.ru/settings/how-to-call-rest-api/batch.html",
+      "title": "Как выполнить пакет запросов batch | REST API Битрикс24 и приложения для Маркет",
+      "anchor": true
+    },
+    {
+      "url": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+      "rules": [
+        "integrations.timeouts",
+        "integrations.retries"
+      ],
+      "status": 200,
+      "final_url": "https://builder.aws.com/content/3EumjoZascWd1oZiEgL8ORlv3qE/timeouts-retries-and-backoff-with-jitter",
+      "title": "Timeouts, retries, and backoff with jitter | AWS Builder Center",
+      "anchor": true
+    },
+    {
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html",
+      "rules": [
+        "integrations.files"
+      ],
+      "status": 200,
+      "final_url": "https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html",
+      "title": "File Upload - OWASP Cheat Sheet Series",
+      "anchor": true
+    },
+    {
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+      "rules": [
+        "security.redaction"
+      ],
+      "status": 200,
+      "final_url": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+      "title": "Logging - OWASP Cheat Sheet Series",
+      "anchor": true
+    },
+    {
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+      "rules": [
+        "security.sql-injection"
+      ],
+      "status": 200,
+      "final_url": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+      "title": "SQL Injection Prevention - OWASP Cheat Sheet Series",
+      "anchor": true
+    },
+    {
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+      "rules": [
+        "security.secrets",
+        "operations.config"
+      ],
+      "status": 200,
+      "final_url": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+      "title": "Secrets Management - OWASP Cheat Sheet Series",
+      "anchor": true
+    },
+    {
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+      "rules": [
+        "security.ssrf"
+      ],
+      "status": 200,
+      "final_url": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+      "title": "Server Side Request Forgery Prevention - OWASP Cheat Sheet Series",
+      "anchor": true
+    },
+    {
+      "url": "https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions.html",
+      "rules": [
+        "collaboration.decisions"
+      ],
+      "status": 200,
+      "final_url": "https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions.html",
+      "title": "Documenting Architecture Decisions",
+      "anchor": true
+    },
+    {
+      "url": "https://dev.1c-bitrix.ru/api_d7/bitrix/main/data/cache/index.php",
+      "rules": [
+        "frameworks.bitrix-cache"
+      ],
+      "status": 200,
+      "final_url": "https://dev.1c-bitrix.ru/api_d7/bitrix/main/data/cache/index.php",
+      "title": "Главный модуль:Cache",
+      "anchor": true
+    },
+    {
+      "url": "https://dev.1c-bitrix.ru/api_d7/bitrix/main/db/connection/starttransaction.php",
+      "rules": [
+        "frameworks.bitrix-transactions"
+      ],
+      "status": 200,
+      "final_url": "https://dev.1c-bitrix.ru/api_d7/bitrix/main/db/connection/starttransaction.php",
+      "title": "Connection::startTransaction",
+      "anchor": true
+    },
+    {
+      "url": "https://dev.1c-bitrix.ru/api_d7/bitrix/main/result/issuccess.php",
+      "rules": [
+        "frameworks.bitrix-transactions"
+      ],
+      "status": 200,
+      "final_url": "https://dev.1c-bitrix.ru/api_d7/bitrix/main/result/issuccess.php",
+      "title": "Result::isSuccess",
+      "anchor": true
+    },
+    {
+      "url": "https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=33874&LESSON_PATH=33872.33874",
+      "rules": [
+        "frameworks.bitrix-local"
+      ],
+      "status": 200,
+      "final_url": "https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=33874&LESSON_PATH=33872.33874",
+      "title": "Урок 1. Разворачиваем стенд и знакомимся с проектом",
+      "anchor": true
+    },
+    {
+      "url": "https://developer.android.com/privacy-and-security/keystore",
+      "rules": [
+        "mobile.secure-storage"
+      ],
+      "status": 200,
+      "final_url": "https://developer.android.com/privacy-and-security/keystore",
+      "title": "Android Keystore system  |  Security  |  Android Developers",
+      "anchor": true
+    },
+    {
+      "url": "https://developer.android.com/topic/architecture/data-layer/offline-first",
+      "rules": [
+        "mobile.offline"
+      ],
+      "status": 200,
+      "final_url": "https://developer.android.com/topic/architecture/data-layer/offline-first",
+      "title": "Build an offline-first app  |  App architecture  |  Android Developers",
+      "anchor": true
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API",
+      "rules": [
+        "frontend.url-state"
+      ],
+      "status": 200,
+      "final_url": "https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API",
+      "title": "Working with the History API - Web APIs | MDN",
+      "anchor": true
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams",
+      "rules": [
+        "frontend.url-state"
+      ],
+      "status": 200,
+      "final_url": "https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams",
+      "title": "URLSearchParams - Web APIs | MDN",
+      "anchor": true
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER",
+      "rules": [
+        "database.money"
+      ],
+      "status": 200,
+      "final_url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER",
+      "title": "Number.MAX_SAFE_INTEGER - JavaScript | MDN",
+      "anchor": true
+    },
+    {
+      "url": "https://developer.wordpress.org/apis/security/nonces/",
+      "rules": [
+        "frameworks.wordpress-permissions"
+      ],
+      "status": 200,
+      "final_url": "https://developer.wordpress.org/apis/security/nonces/",
+      "title": "Nonces – Common APIs Handbook | Developer.WordPress.org",
+      "anchor": true
+    },
+    {
+      "url": "https://developer.wordpress.org/plugins/security/checking-user-capabilities/",
+      "rules": [
+        "frameworks.wordpress-permissions"
+      ],
+      "status": 200,
+      "final_url": "https://developer.wordpress.org/plugins/security/checking-user-capabilities/",
+      "title": "Checking User Capabilities – Plugin Handbook | Developer.WordPress.org",
+      "anchor": true
+    },
+    {
+      "url": "https://developer.wordpress.org/reference/functions/wp_update_post/",
+      "rules": [
+        "frameworks.wordpress-permissions"
+      ],
+      "status": 200,
+      "final_url": "https://developer.wordpress.org/reference/functions/wp_update_post/",
+      "title": "wp_update_post() – Function | Developer.WordPress.org",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html",
+      "rules": [
+        "caching.dead-letter"
+      ],
+      "status": 200,
+      "final_url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html",
+      "title": "Using dead-letter queues in Amazon SQS - Amazon Simple Queue Service",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues-at-least-once-delivery.html",
+      "rules": [
+        "caching.idempotent-worker"
+      ],
+      "status": 200,
+      "final_url": "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues-at-least-once-delivery.html",
+      "title": "Amazon SQS at-least-once delivery - Amazon Simple Queue Service",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.djangoproject.com/en/5.2/intro/tutorial05/",
+      "rules": [
+        "testing.regression"
+      ],
+      "status": 200,
+      "final_url": "https://docs.djangoproject.com/en/5.2/intro/tutorial05/",
+      "title": "Writing your first Django app, part 5 | Django documentation | Django",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.djangoproject.com/en/5.2/topics/db/transactions/",
+      "rules": [
+        "frameworks.django-atomic"
+      ],
+      "status": 200,
+      "final_url": "https://docs.djangoproject.com/en/5.2/topics/db/transactions/",
+      "title": "Database transactions | Django documentation | Django",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.expo.dev/eas-update/runtime-versions/",
+      "rules": [
+        "mobile.native-release"
+      ],
+      "status": 200,
+      "final_url": "https://docs.expo.dev/eas-update/runtime-versions/",
+      "title": "Runtime versions and updates - Expo documentation",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.github.com/en/contributing/writing-for-github-docs/creating-reusable-content",
+      "rules": [
+        "architecture.one-source"
+      ],
+      "status": 200,
+      "final_url": "https://docs.github.com/en/contributing/writing-for-github-docs/creating-reusable-content",
+      "title": "Creating reusable content - GitHub Docs",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.github.com/en/copilot/concepts/prompting-and-context/custom-instructions",
+      "rules": [
+        "ai-agents.context"
+      ],
+      "status": 200,
+      "final_url": "https://docs.github.com/en/copilot/concepts/prompting-and-context/custom-instructions",
+      "title": "Custom instructions for GitHub Copilot - GitHub Docs",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks",
+      "rules": [
+        "testing.honest-checks"
+      ],
+      "status": 200,
+      "final_url": "https://docs.github.com/en/pull-requests/reference/status-checks",
+      "title": "Status checks - GitHub Docs",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners",
+      "rules": [
+        "collaboration.ownership"
+      ],
+      "status": 200,
+      "final_url": "https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners",
+      "title": "About code owners - GitHub Docs",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.nestjs.com/guards",
+      "rules": [
+        "frameworks.nestjs-validation"
+      ],
+      "status": 200,
+      "final_url": "https://docs.nestjs.com/guards",
+      "title": "Guards | NestJS - A progressive Node.js framework",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.nestjs.com/techniques/validation",
+      "rules": [
+        "frameworks.nestjs-validation"
+      ],
+      "status": 200,
+      "final_url": "https://docs.nestjs.com/techniques/validation",
+      "title": "Documentation | NestJS - A progressive Node.js framework",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.pydantic.dev/latest/concepts/models/",
+      "rules": [
+        "backend.typed-boundaries"
+      ],
+      "status": 200,
+      "final_url": "https://pydantic.dev/docs/validation/latest/concepts/models/",
+      "title": "Models | Pydantic Docs",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.python.org/3.14/library/asyncio-task.html",
+      "rules": [
+        "backend.async"
+      ],
+      "status": 200,
+      "final_url": "https://docs.python.org/3.14/library/asyncio-task.html",
+      "title": "Coroutines and tasks — Python 3.14.10 documentation",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.stripe.com/api/idempotent_requests",
+      "rules": [
+        "api.idempotency"
+      ],
+      "status": 200,
+      "final_url": "https://docs.stripe.com/api/idempotent_requests",
+      "title": "Idempotent requests | Stripe API Reference",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.stripe.com/api/versioning",
+      "rules": [
+        "payments.test-live"
+      ],
+      "status": 200,
+      "final_url": "https://docs.stripe.com/api/versioning",
+      "title": "Versioning | Stripe API Reference",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.stripe.com/checkout/fulfillment",
+      "rules": [
+        "payments.payment-truth"
+      ],
+      "status": 200,
+      "final_url": "https://docs.stripe.com/checkout/fulfillment",
+      "title": "Fulfill orders | Stripe Documentation",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.stripe.com/currencies",
+      "rules": [
+        "database.money"
+      ],
+      "status": 200,
+      "final_url": "https://docs.stripe.com/currencies",
+      "title": "Supported currencies | Stripe Documentation",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.stripe.com/payments/payment-intents/verifying-status",
+      "rules": [
+        "payments.reconciliation"
+      ],
+      "status": 200,
+      "final_url": "https://docs.stripe.com/payments/payment-intents/verifying-status",
+      "title": "Payment status updates | Stripe Documentation",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.stripe.com/refunds",
+      "rules": [
+        "payments.reconciliation"
+      ],
+      "status": 200,
+      "final_url": "https://docs.stripe.com/refunds",
+      "title": "Refund and cancel payments | Stripe Documentation",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.stripe.com/security/guide",
+      "rules": [
+        "payments.card-data"
+      ],
+      "status": 200,
+      "final_url": "https://docs.stripe.com/security/guide",
+      "title": "Integration security guide | Stripe Documentation",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.stripe.com/testing",
+      "rules": [
+        "payments.test-live"
+      ],
+      "status": 200,
+      "final_url": "https://docs.stripe.com/testing",
+      "title": "Test card numbers | Stripe Documentation",
+      "anchor": true
+    },
+    {
+      "url": "https://docs.stripe.com/webhooks",
+      "rules": [
+        "integrations.webhooks",
+        "payments.payment-events"
+      ],
+      "status": 200,
+      "final_url": "https://docs.stripe.com/webhooks",
+      "title": "Receive Stripe events in your webhook endpoint | Stripe Documentation",
+      "anchor": true
+    },
+    {
+      "url": "https://fastapi.tiangolo.com/async/",
+      "rules": [
+        "frameworks.fastapi-io"
+      ],
+      "status": 200,
+      "final_url": "https://fastapi.tiangolo.com/async/",
+      "title": "Concurrency and async / await - FastAPI",
+      "anchor": true
+    },
+    {
+      "url": "https://fastapi.tiangolo.com/tutorial/body/",
+      "rules": [
+        "backend.typed-boundaries"
+      ],
+      "status": 200,
+      "final_url": "https://fastapi.tiangolo.com/tutorial/body/",
+      "title": "Request Body - FastAPI",
+      "anchor": true
+    },
+    {
+      "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+      "rules": [
+        "ai-agents.untrusted-input"
+      ],
+      "status": 200,
+      "final_url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+      "title": "LLM01:2025 Prompt Injection - OWASP Gen AI Security Project",
+      "anchor": true
+    },
+    {
+      "url": "https://git-scm.com/docs/git-reset",
+      "rules": [
+        "collaboration.preserve-changes"
+      ],
+      "status": 200,
+      "final_url": "https://git-scm.com/docs/git-reset",
+      "title": "Git - git-reset Documentation",
+      "anchor": true
+    },
+    {
+      "url": "https://git-scm.com/docs/git-status",
+      "rules": [
+        "collaboration.preserve-changes"
+      ],
+      "status": 200,
+      "final_url": "https://git-scm.com/docs/git-status",
+      "title": "Git - git-status Documentation",
+      "anchor": true
+    },
+    {
+      "url": "https://git-scm.com/docs/git-worktree",
+      "rules": [
+        "collaboration.ownership"
+      ],
+      "status": 200,
+      "final_url": "https://git-scm.com/docs/git-worktree",
+      "title": "Git - git-worktree Documentation",
+      "anchor": true
+    },
+    {
+      "url": "https://go.dev/blog/go1.13-errors",
+      "rules": [
+        "backend.errors"
+      ],
+      "status": 200,
+      "final_url": "https://go.dev/blog/go1.13-errors",
+      "title": "Working with Errors in Go 1.13 - The Go Programming Language",
+      "anchor": true
+    },
+    {
+      "url": "https://go.dev/doc/articles/race_detector",
+      "rules": [
+        "backend.bounded-concurrency"
+      ],
+      "status": 200,
+      "final_url": "https://go.dev/doc/articles/race_detector",
+      "title": "Data Race Detector - The Go Programming Language",
+      "anchor": true
+    },
+    {
+      "url": "https://go.dev/doc/database/cancel-operations",
+      "rules": [
+        "backend.go-context"
+      ],
+      "status": 200,
+      "final_url": "https://go.dev/doc/database/cancel-operations",
+      "title": "Canceling in-progress operations - The Go Programming Language",
+      "anchor": true
+    },
+    {
+      "url": "https://go.dev/doc/effective_go",
+      "rules": [
+        "backend.readable-code"
+      ],
+      "status": 200,
+      "final_url": "https://go.dev/doc/effective_go",
+      "title": "Effective Go - The Go Programming Language",
+      "anchor": true
+    },
+    {
+      "url": "https://go.dev/doc/effective_go#channels",
+      "rules": [
+        "backend.bounded-concurrency"
+      ],
+      "status": 200,
+      "final_url": "https://go.dev/doc/effective_go",
+      "title": "Effective Go - The Go Programming Language",
+      "anchor": true
+    },
+    {
+      "url": "https://go.dev/doc/modules/layout",
+      "rules": [
+        "backend.boundaries"
+      ],
+      "status": 200,
+      "final_url": "https://go.dev/doc/modules/layout",
+      "title": "Organizing a Go module - The Go Programming Language",
+      "anchor": true
+    },
+    {
+      "url": "https://google.aip.dev/180",
+      "rules": [
+        "api.compatibility"
+      ],
+      "status": 200,
+      "final_url": "https://google.aip.dev/180",
+      "title": "AIP-180: Backwards compatibility",
+      "anchor": true
+    },
+    {
+      "url": "https://google.github.io/eng-practices/review/developer/cl-descriptions.html",
+      "rules": [
+        "architecture.scope",
+        "collaboration.handoff"
+      ],
+      "status": 200,
+      "final_url": "https://google.github.io/eng-practices/review/developer/cl-descriptions.html",
+      "title": "Writing good CL descriptions | eng-practices",
+      "anchor": true
+    },
+    {
+      "url": "https://google.github.io/eng-practices/review/developer/small-cls.html",
+      "rules": [
+        "architecture.thin-slice",
+        "collaboration.small-pr"
+      ],
+      "status": 200,
+      "final_url": "https://google.github.io/eng-practices/review/developer/small-cls.html",
+      "title": "Small CLs | eng-practices",
+      "anchor": true
+    },
+    {
+      "url": "https://google.github.io/eng-practices/review/reviewer/looking-for.html",
+      "rules": [
+        "collaboration.review"
+      ],
+      "status": 200,
+      "final_url": "https://google.github.io/eng-practices/review/reviewer/looking-for.html",
+      "title": "What to look for in a code review | eng-practices",
+      "anchor": true
+    },
+    {
+      "url": "https://laravel.com/docs/12.x/authorization",
+      "rules": [
+        "frameworks.laravel-validation"
+      ],
+      "status": 200,
+      "final_url": "https://laravel.com/framework/docs/12.x/authorization",
+      "title": "Authorization | Laravel 12.x - The clean stack for Artisans and agents",
+      "anchor": true
+    },
+    {
+      "url": "https://laravel.com/docs/12.x/database#database-transactions",
+      "rules": [
+        "frameworks.laravel-jobs"
+      ],
+      "status": 200,
+      "final_url": "https://laravel.com/framework/docs/12.x/database",
+      "title": "Database: Getting Started | Laravel 12.x - The clean stack for Artisans and agents",
+      "anchor": true
+    },
+    {
+      "url": "https://laravel.com/docs/12.x/eloquent-relationships#eager-loading",
+      "rules": [
+        "frameworks.laravel-eloquent"
+      ],
+      "status": 200,
+      "final_url": "https://laravel.com/framework/docs/12.x/eloquent-relationships",
+      "title": "Eloquent: Relationships | Laravel 12.x - The clean stack for Artisans and agents",
+      "anchor": true
+    },
+    {
+      "url": "https://laravel.com/docs/12.x/pagination",
+      "rules": [
+        "frameworks.laravel-eloquent"
+      ],
+      "status": 200,
+      "final_url": "https://laravel.com/framework/docs/12.x/pagination",
+      "title": "Database: Pagination | Laravel 12.x - The clean stack for Artisans and agents",
+      "anchor": true
+    },
+    {
+      "url": "https://laravel.com/docs/12.x/queues",
+      "rules": [
+        "frameworks.laravel-jobs"
+      ],
+      "status": 200,
+      "final_url": "https://laravel.com/framework/docs/12.x/queues",
+      "title": "Queues | Laravel 12.x - The clean stack for Artisans and agents",
+      "anchor": true
+    },
+    {
+      "url": "https://laravel.com/docs/12.x/validation",
+      "rules": [
+        "frameworks.laravel-validation"
+      ],
+      "status": 200,
+      "final_url": "https://laravel.com/framework/docs/12.x/validation",
+      "title": "Validation | Laravel 12.x - The clean stack for Artisans and agents",
+      "anchor": true
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside",
+      "rules": [
+        "caching.source-of-truth"
+      ],
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside",
+      "title": "Cache-Aside Pattern - Azure Architecture Center | Microsoft Learn",
+      "anchor": true
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/power-platform/architecture/reference-architectures/transactional-outbox-pattern",
+      "rules": [
+        "caching.outbox"
+      ],
+      "status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/power-platform/architecture/reference-architectures/transactional-outbox-pattern",
+      "title": "Implement the Transactional Outbox pattern with Dataverse - Power Platform | Microsoft Learn",
+      "anchor": true
+    },
+    {
+      "url": "https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices",
+      "rules": [
+        "ai-agents.least-privilege",
+        "ai-agents.confirm-impact",
+        "integrations.mcp"
+      ],
+      "status": 200,
+      "final_url": "https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices",
+      "title": "Security Best Practices - Model Context Protocol",
+      "anchor": true
+    },
+    {
+      "url": "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+      "rules": [
+        "frontend.server-client"
+      ],
+      "status": 200,
+      "final_url": "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+      "title": "Server and Client Components",
+      "anchor": true
+    },
+    {
+      "url": "https://nextjs.org/docs/app/guides/data-security",
+      "rules": [
+        "frontend.data-boundary"
+      ],
+      "status": 200,
+      "final_url": "https://nextjs.org/docs/app/guides/data-security",
+      "title": "How to think about data security in Next.js",
+      "anchor": true
+    },
+    {
+      "url": "https://nuxt.com/docs/4.x/api/composables/use-async-data",
+      "rules": [
+        "frameworks.nuxt-ssr-data"
+      ],
+      "status": 200,
+      "final_url": "https://nuxt.com/docs/4.x/api/composables/use-async-data",
+      "title": "useAsyncData · Nuxt Composables v4",
+      "anchor": true
+    },
+    {
+      "url": "https://nuxt.com/docs/4.x/getting-started/data-fetching",
+      "rules": [
+        "frameworks.nuxt-ssr-data"
+      ],
+      "status": 200,
+      "final_url": "https://nuxt.com/docs/4.x/getting-started/data-fetching",
+      "title": "Data Fetching · Get Started with Nuxt v4",
+      "anchor": true
+    },
+    {
+      "url": "https://opentelemetry.io/docs/concepts/context-propagation/",
+      "rules": [
+        "operations.correlation"
+      ],
+      "status": 200,
+      "final_url": "https://opentelemetry.io/docs/concepts/context-propagation/",
+      "title": "Context propagation | OpenTelemetry",
+      "anchor": true
+    },
+    {
+      "url": "https://opentelemetry.io/docs/concepts/signals/",
+      "rules": [
+        "operations.signals"
+      ],
+      "status": 200,
+      "final_url": "https://opentelemetry.io/docs/concepts/signals/",
+      "title": "Signals | OpenTelemetry",
+      "anchor": true
+    },
+    {
+      "url": "https://opentelemetry.io/docs/specs/semconv/http/http-spans/",
+      "rules": [
+        "operations.http-spans"
+      ],
+      "status": 200,
+      "final_url": "https://opentelemetry.io/docs/specs/semconv/http/http-spans/",
+      "title": "Semantic conventions for HTTP spans | OpenTelemetry",
+      "anchor": true
+    },
+    {
+      "url": "https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/",
+      "rules": [
+        "security.object-access"
+      ],
+      "status": 200,
+      "final_url": "https://api-security.owasp.org/editions/2023/en/0xa1-broken-object-level-authorization/",
+      "title": "API1:2023 Broken Object Level Authorization - OWASP API Security Top 10",
+      "anchor": true
+    },
+    {
+      "url": "https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/",
+      "rules": [
+        "api.pagination",
+        "security.resource-limits"
+      ],
+      "status": 200,
+      "final_url": "https://api-security.owasp.org/editions/2023/en/0xa4-unrestricted-resource-consumption/",
+      "title": "API4:2023 Unrestricted Resource Consumption - OWASP API Security Top 10",
+      "anchor": true
+    },
+    {
+      "url": "https://pkg.go.dev/database/sql#Rows",
+      "rules": [
+        "backend.go-context"
+      ],
+      "status": 200,
+      "final_url": "https://pkg.go.dev/database/sql",
+      "title": "sql package - database/sql - Go Packages",
+      "anchor": true
+    },
+    {
+      "url": "https://playwright.dev/docs/best-practices",
+      "rules": [
+        "testing.determinism"
+      ],
+      "status": 200,
+      "final_url": "https://playwright.dev/docs/best-practices",
+      "title": "Best Practices | Playwright",
+      "anchor": true
+    },
+    {
+      "url": "https://prometheus.io/docs/practices/naming/",
+      "rules": [
+        "operations.signals"
+      ],
+      "status": 200,
+      "final_url": "https://prometheus.io/docs/practices/naming/",
+      "title": "Metric and label naming | Prometheus",
+      "anchor": true
+    },
+    {
+      "url": "https://react.dev/learn/you-might-not-need-an-effect",
+      "rules": [
+        "frontend.derived-state",
+        "frontend.remote-drafts"
+      ],
+      "status": 200,
+      "final_url": "https://react.dev/learn/you-might-not-need-an-effect",
+      "title": "You Might Not Need an Effect – React",
+      "anchor": true
+    },
+    {
+      "url": "https://reactnative.dev/docs/security",
+      "rules": [
+        "mobile.secure-storage",
+        "mobile.deep-links"
+      ],
+      "status": 200,
+      "final_url": "https://reactnative.dev/docs/security",
+      "title": "Security · React Native",
+      "anchor": true
+    },
+    {
+      "url": "https://redis.io/docs/latest/develop/reference/eviction/",
+      "rules": [
+        "caching.redis-persistence"
+      ],
+      "status": 200,
+      "final_url": "https://redis.io/docs/latest/develop/reference/eviction/",
+      "title": "Key eviction | Docs",
+      "anchor": true
+    },
+    {
+      "url": "https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/",
+      "rules": [
+        "caching.redis-persistence"
+      ],
+      "status": 200,
+      "final_url": "https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/",
+      "title": "Redis persistence | Docs",
+      "anchor": true
+    },
+    {
+      "url": "https://slsa.dev/spec/v1.2/",
+      "rules": [
+        "security.supply-chain",
+        "operations.immutable-release"
+      ],
+      "status": 200,
+      "final_url": "https://slsa.dev/spec/v1.2/",
+      "title": "SLSA • SLSA specification",
+      "anchor": true
+    },
+    {
+      "url": "https://spec.openapis.org/oas/v3.2.0.html",
+      "rules": [
+        "architecture.contract-first",
+        "api.openapi",
+        "frontend.data-boundary"
+      ],
+      "status": 200,
+      "final_url": "https://spec.openapis.org/oas/v3.2.0.html",
+      "title": "OpenAPI Specification v3.2.0",
+      "anchor": true
+    },
+    {
+      "url": "https://sre.google/sre-book/managing-incidents/",
+      "rules": [
+        "operations.incident"
+      ],
+      "status": 200,
+      "final_url": "https://sre.google/sre-book/managing-incidents/",
+      "title": "Google SRE - Incident Management: Key to Restore Operations",
+      "anchor": true
+    },
+    {
+      "url": "https://sre.google/sre-book/reliable-product-launches/",
+      "rules": [
+        "architecture.readiness"
+      ],
+      "status": 200,
+      "final_url": "https://sre.google/sre-book/reliable-product-launches/",
+      "title": "Google SRE - Deployment Strategies for Product Launches",
+      "anchor": true
+    },
+    {
+      "url": "https://sre.google/sre-book/service-level-objectives/",
+      "rules": [
+        "operations.slo"
+      ],
+      "status": 200,
+      "final_url": "https://sre.google/sre-book/service-level-objectives/",
+      "title": "Google SRE - Defining slo: service level objective meaning",
+      "anchor": true
+    },
+    {
+      "url": "https://sre.google/sre-book/simplicity/",
+      "rules": [
+        "architecture.choose-dependencies"
+      ],
+      "status": 200,
+      "final_url": "https://sre.google/sre-book/simplicity/",
+      "title": "Google SRE - Operational Simplicity: Stability and Agility",
+      "anchor": true
+    },
+    {
+      "url": "https://sre.google/workbook/canarying-releases/",
+      "rules": [
+        "operations.rollback"
+      ],
+      "status": 200,
+      "final_url": "https://sre.google/workbook/canarying-releases/",
+      "title": "Google SRE - Canary Release: Deployment Safety and Efficiency",
+      "anchor": true
+    },
+    {
+      "url": "https://svelte.dev/docs/kit/load",
+      "rules": [
+        "frameworks.sveltekit-server"
+      ],
+      "status": 200,
+      "final_url": "https://svelte.dev/docs/kit/load",
+      "title": "Loading data • SvelteKit Docs",
+      "anchor": true
+    },
+    {
+      "url": "https://svelte.dev/docs/kit/server-only-modules",
+      "rules": [
+        "frameworks.sveltekit-server"
+      ],
+      "status": 200,
+      "final_url": "https://svelte.dev/docs/kit/server-only-modules",
+      "title": "Server-only modules • SvelteKit Docs",
+      "anchor": true
+    },
+    {
+      "url": "https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html",
+      "rules": [
+        "testing.risk",
+        "testing.integration",
+        "testing.critical-paths"
+      ],
+      "status": 200,
+      "final_url": "https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html",
+      "title": "Google Testing Blog: Just Say No to More End-to-End Tests",
+      "anchor": true
+    },
+    {
+      "url": "https://vuejs.org/guide/essentials/computed.html",
+      "rules": [
+        "frameworks.vue-computed"
+      ],
+      "status": 200,
+      "final_url": "https://vuejs.org/guide/essentials/computed.html",
+      "title": "Computed Properties | Vue.js",
+      "anchor": true
+    },
+    {
+      "url": "https://web.dev/articles/vitals",
+      "rules": [
+        "frontend.performance"
+      ],
+      "status": 200,
+      "final_url": "https://web.dev/articles/vitals",
+      "title": "Web Vitals  |  Articles  |  web.dev",
+      "anchor": true
+    },
+    {
+      "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "rules": [
+        "ai-agents.evidence",
+        "ai-agents.evals-budget"
+      ],
+      "status": 200,
+      "final_url": "https://www.anthropic.com/research/demystifying-evals-for-ai-agents",
+      "title": "Demystifying evals for AI agents \\ Anthropic",
+      "anchor": true
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/backup.html",
+      "rules": [
+        "operations.restore"
+      ],
+      "status": 200,
+      "final_url": "https://www.postgresql.org/docs/18/backup.html",
+      "title": "PostgreSQL: Documentation: 18: Chapter 25. Backup and Restore",
+      "anchor": true
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/datatype-datetime.html",
+      "rules": [
+        "database.time-money"
+      ],
+      "status": 200,
+      "final_url": "https://www.postgresql.org/docs/18/datatype-datetime.html",
+      "title": "PostgreSQL: Documentation: 18: 8.5. Date/Time Types",
+      "anchor": true
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/datatype-json.html",
+      "rules": [
+        "database.jsonb"
+      ],
+      "status": 200,
+      "final_url": "https://www.postgresql.org/docs/18/datatype-json.html",
+      "title": "PostgreSQL: Documentation: 18: 8.14. JSON Types",
+      "anchor": true
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/datatype-money.html",
+      "rules": [
+        "database.money"
+      ],
+      "status": 200,
+      "final_url": "https://www.postgresql.org/docs/18/datatype-money.html",
+      "title": "PostgreSQL: Documentation: 18: 8.2. Monetary Types",
+      "anchor": true
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/datatype-numeric.html",
+      "rules": [
+        "database.money"
+      ],
+      "status": 200,
+      "final_url": "https://www.postgresql.org/docs/18/datatype-numeric.html",
+      "title": "PostgreSQL: Documentation: 18: 8.1. Numeric Types",
+      "anchor": true
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/ddl-constraints.html",
+      "rules": [
+        "database.constraints",
+        "database.foreign-keys",
+        "testing.integration"
+      ],
+      "status": 200,
+      "final_url": "https://www.postgresql.org/docs/18/ddl-constraints.html",
+      "title": "PostgreSQL: Documentation: 18: 5.5. Constraints",
+      "anchor": true
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/ddl-constraints.html#DDL-CONSTRAINTS-FK",
+      "rules": [
+        "database.indexes"
+      ],
+      "status": 200,
+      "final_url": "https://www.postgresql.org/docs/18/ddl-constraints.html",
+      "title": "PostgreSQL: Documentation: 18: 5.5. Constraints",
+      "anchor": true
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/functions-uuid.html",
+      "rules": [
+        "database.identifiers"
+      ],
+      "status": 200,
+      "final_url": "https://www.postgresql.org/docs/18/functions-uuid.html",
+      "title": "PostgreSQL: Documentation: 18: 9.14. UUID Functions",
+      "anchor": true
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/indexes-partial.html",
+      "rules": [
+        "database.history-delete"
+      ],
+      "status": 200,
+      "final_url": "https://www.postgresql.org/docs/18/indexes-partial.html",
+      "title": "PostgreSQL: Documentation: 18: 11.8. Partial Indexes",
+      "anchor": true
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/indexes.html",
+      "rules": [
+        "database.indexes"
+      ],
+      "status": 200,
+      "final_url": "https://www.postgresql.org/docs/18/indexes.html",
+      "title": "PostgreSQL: Documentation: 18: Chapter 11. Indexes",
+      "anchor": true
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/plpgsql-trigger.html",
+      "rules": [
+        "database.history-delete"
+      ],
+      "status": 200,
+      "final_url": "https://www.postgresql.org/docs/18/plpgsql-trigger.html",
+      "title": "PostgreSQL: Documentation: 18: 41.10. Trigger Functions",
+      "anchor": true
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/queries-limit.html",
+      "rules": [
+        "api.pagination"
+      ],
+      "status": 200,
+      "final_url": "https://www.postgresql.org/docs/18/queries-limit.html",
+      "title": "PostgreSQL: Documentation: 18: 7.6. LIMIT and OFFSET",
+      "anchor": true
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/sql-altertable.html",
+      "rules": [
+        "database.migrations"
+      ],
+      "status": 200,
+      "final_url": "https://www.postgresql.org/docs/18/sql-altertable.html",
+      "title": "PostgreSQL: Documentation: 18: ALTER TABLE",
+      "anchor": true
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/sql-syntax-lexical.html#SQL-SYNTAX-IDENTIFIERS",
+      "rules": [
+        "database.naming"
+      ],
+      "status": 200,
+      "final_url": "https://www.postgresql.org/docs/18/sql-syntax-lexical.html",
+      "title": "PostgreSQL: Documentation: 18: 4.1. Lexical Structure",
+      "anchor": true
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/tutorial-transactions.html",
+      "rules": [
+        "database.transactions"
+      ],
+      "status": 200,
+      "final_url": "https://www.postgresql.org/docs/18/tutorial-transactions.html",
+      "title": "PostgreSQL: Documentation: 18: 3.4. Transactions",
+      "anchor": true
+    },
+    {
+      "url": "https://www.postgresql.org/docs/18/using-explain.html",
+      "rules": [
+        "database.indexes"
+      ],
+      "status": 200,
+      "final_url": "https://www.postgresql.org/docs/18/using-explain.html",
+      "title": "PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN",
+      "anchor": true
+    },
+    {
+      "url": "https://www.prisma.io/docs/orm/prisma-migrate/workflows/customizing-migrations",
+      "rules": [
+        "database.migrations"
+      ],
+      "status": 200,
+      "final_url": "https://www.prisma.io/docs/orm/migrations/editing-a-migration",
+      "title": "Editing a migration in Prisma ORM | Prisma Documentation",
+      "anchor": true
+    },
+    {
+      "url": "https://www.psycopg.org/psycopg3/docs/basic/params.html",
+      "rules": [
+        "security.sql-injection"
+      ],
+      "status": 200,
+      "final_url": "https://www.psycopg.org/psycopg3/docs/basic/params.html",
+      "title": "Passing parameters to SQL queries - psycopg 3.3.9.dev1 documentation",
+      "anchor": true
+    },
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc5789.html",
+      "rules": [
+        "api.methods"
+      ],
+      "status": 200,
+      "final_url": "https://www.rfc-editor.org/rfc/rfc5789.html",
+      "title": "",
+      "anchor": true
+    },
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+      "rules": [
+        "api.concurrency",
+        "api.headers"
+      ],
+      "status": 200,
+      "final_url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+      "title": "RFC 9110: HTTP Semantics",
+      "anchor": true
+    },
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc9110.html#section-9",
+      "rules": [
+        "api.methods"
+      ],
+      "status": 200,
+      "final_url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+      "title": "RFC 9110: HTTP Semantics",
+      "anchor": true
+    },
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2",
+      "rules": [
+        "api.idempotency"
+      ],
+      "status": 200,
+      "final_url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+      "title": "RFC 9110: HTTP Semantics",
+      "anchor": true
+    },
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc9111.html",
+      "rules": [
+        "caching.freshness",
+        "caching.private-cache"
+      ],
+      "status": 200,
+      "final_url": "https://www.rfc-editor.org/rfc/rfc9111.html",
+      "title": "RFC 9111: HTTP Caching",
+      "anchor": true
+    },
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc9457.html",
+      "rules": [
+        "api.http-status",
+        "api.error-details"
+      ],
+      "status": 200,
+      "final_url": "https://www.rfc-editor.org/rfc/rfc9457.html",
+      "title": "RFC 9457: Problem Details for HTTP APIs",
+      "anchor": true
+    },
+    {
+      "url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+      "rules": [
+        "integrations.oauth"
+      ],
+      "status": 200,
+      "final_url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+      "title": "RFC 9700: Best Current Practice for OAuth 2.0 Security",
+      "anchor": true
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification.html",
+      "rules": [
+        "interface.consistent-components"
+      ],
+      "status": 200,
+      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification.html",
+      "title": "Understanding Success Criterion 3.2.4: Consistent Identification | WAI | W3C",
+      "anchor": true
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+      "rules": [
+        "interface.contrast"
+      ],
+      "status": 200,
+      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+      "title": "Understanding Success Criterion 1.4.3: Contrast (Minimum) | WAI | W3C",
+      "anchor": true
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html",
+      "rules": [
+        "interface.forms"
+      ],
+      "status": 200,
+      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/error-identification.html",
+      "title": "Understanding Success Criterion 3.3.1: Error Identification | WAI | W3C",
+      "anchor": true
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html",
+      "rules": [
+        "interface.keyboard"
+      ],
+      "status": 200,
+      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html",
+      "title": "Understanding Success Criterion 2.4.7: Focus Visible | WAI | W3C",
+      "anchor": true
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html",
+      "rules": [
+        "interface.keyboard"
+      ],
+      "status": 200,
+      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/keyboard.html",
+      "title": "Understanding Success Criterion 2.1.1: Keyboard | WAI | W3C",
+      "anchor": true
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html",
+      "rules": [
+        "interface.clear-actions"
+      ],
+      "status": 200,
+      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions.html",
+      "title": "Understanding Success Criterion 3.3.2: Labels or Instructions | WAI | W3C",
+      "anchor": true
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
+      "rules": [
+        "interface.responsive"
+      ],
+      "status": 200,
+      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/reflow.html",
+      "title": "Understanding Success Criterion 1.4.10: Reflow | WAI | W3C",
+      "anchor": true
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html",
+      "rules": [
+        "frontend.states"
+      ],
+      "status": 200,
+      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html",
+      "title": "Understanding Success Criterion 4.1.3: Status Messages | WAI | W3C",
+      "anchor": true
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
+      "rules": [
+        "interface.consistent-components"
+      ],
+      "status": 200,
+      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html",
+      "title": "Understanding Success Criterion 2.5.8: Target Size (Minimum) | WAI | W3C",
+      "anchor": true
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html",
+      "rules": [
+        "interface.contrast"
+      ],
+      "status": 200,
+      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html",
+      "title": "Understanding Success Criterion 1.4.1: Use of Color | WAI | W3C",
+      "anchor": true
+    }
+  ]
+}

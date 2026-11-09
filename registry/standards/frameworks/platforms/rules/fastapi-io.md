@@ -61,4 +61,4 @@ FastAPI, ASGI. Пример использует синхронный SDK. Дл�
 
 ## Источники
 
-- [Документация 1](https://fastapi.tiangolo.com/async/)
+- [Concurrency and async / await - FastAPI](https://fastapi.tiangolo.com/async/)

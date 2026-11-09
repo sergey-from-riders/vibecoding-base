@@ -7,8 +7,8 @@ tags: ["payment-truth", "Stripe"]
 technologies: ["Stripe"]
 reviewed_at: "2026-11-09"
 order: 96
-related: ["payments.payment-events", "payments.card-data"]
-sources: ["https://docs.stripe.com/webhooks"]
+related: ["payments.payment-events", "database.money"]
+sources: ["https://docs.stripe.com/checkout/fulfillment"]
 schema_version: 1
 ---
 
@@ -57,4 +57,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://docs.stripe.com/webhooks)
+- [Fulfill orders](https://docs.stripe.com/checkout/fulfillment)

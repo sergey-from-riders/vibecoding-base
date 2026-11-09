@@ -59,4 +59,4 @@ Vue 3 Composition API. items — ref, sum — чистая функция. Watch
 
 ## Источники
 
-- [Документация 1](https://vuejs.org/guide/essentials/computed.html)
+- [Computed Properties](https://vuejs.org/guide/essentials/computed.html)

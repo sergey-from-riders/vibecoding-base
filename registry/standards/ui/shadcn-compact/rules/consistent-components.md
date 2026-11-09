@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 57
 related: ["interface.clear-actions", "interface.keyboard"]
-sources: ["https://www.w3.org/TR/WCAG22/"]
+sources: ["https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification.html", "https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html"]
 schema_version: 1
 ---
 
@@ -56,4 +56,5 @@ shadcn — один из вариантов. Плотность, интерва�
 
 ## Источники
 
-- [Первоисточник](https://www.w3.org/TR/WCAG22/)
+- [Understanding Success Criterion 3.2.4: Consistent Identification](https://www.w3.org/WAI/WCAG22/Understanding/consistent-identification.html)
+- [Understanding Success Criterion 2.5.8: Target Size (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html)

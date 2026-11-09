@@ -7,8 +7,8 @@ tags: ["history-delete", "SQL"]
 technologies: ["SQL"]
 reviewed_at: "2026-11-09"
 order: 28
-related: ["database.identifiers", "database.naming"]
-sources: ["https://www.postgresql.org/docs/18/ddl.html"]
+related: ["database.constraints", "operations.restore"]
+sources: ["https://www.postgresql.org/docs/18/indexes-partial.html", "https://www.postgresql.org/docs/18/plpgsql-trigger.html"]
 schema_version: 1
 ---
 
@@ -38,7 +38,7 @@ deleted_at есть, но все запросы читают удалённое.
 
 ## Когда применять
 
-История версий нужна при требованиях аудита. Таблицы связей могут иметь составной ключ без отдельного UUID.
+Аудит фиксирует, кто и что изменил; история версий позволяет восстановить прежнее содержимое. Выберите нужные механизмы отдельно. При soft delete проверьте уникальность активных записей, восстановление и окончательную очистку. Срок хранения задаёт политика проекта.
 
 ## Как проверить
 
@@ -58,4 +58,5 @@ deleted_at есть, но все запросы читают удалённое.
 
 ## Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/ddl.html)
+- [PostgreSQL: Documentation: 18: 11.8. Partial Indexes](https://www.postgresql.org/docs/18/indexes-partial.html)
+- [PostgreSQL: Documentation: 18: 41.10. Trigger Functions](https://www.postgresql.org/docs/18/plpgsql-trigger.html)

@@ -1,4 +1,4 @@
-<!-- Generated from registry/standards/framework/lifecycle@2.1.0. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/framework/lifecycle@2.1.1. Update the registry standard, then regenerate. -->
 
 # Framework Lifecycle Standard
 
@@ -30,6 +30,8 @@
 
 ### Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Для изменений поведения. Опечатку можно исправить без отдельного проектного документа.
 
 ### Как проверить
@@ -50,7 +52,7 @@
 
 ### Источники
 
-- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)
+- [Writing good CL descriptions](https://google.github.io/eng-practices/review/developer/cl-descriptions.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -80,6 +82,8 @@ Markdown и инструкции остались прежними.
 
 ### Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Копии для чтения и кеш допустимы, если известны источник и версия.
 
 ### Как проверить
@@ -100,7 +104,7 @@ Markdown и инструкции остались прежними.
 
 ### Источники
 
-- [Первоисточник](https://slsa.dev/spec/v1.2/)
+- [Creating reusable content - GitHub Docs](https://docs.github.com/en/contributing/writing-for-github-docs/creating-reusable-content)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -150,7 +154,7 @@ Backend отдаёт amount.
 
 ### Источники
 
-- [Первоисточник](https://spec.openapis.org/oas/v3.2.0.html)
+- [OpenAPI Specification v3.2.0](https://spec.openapis.org/oas/v3.2.0.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -180,6 +184,8 @@ Backend отдаёт amount.
 
 ### Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Рекомендация для продуктовой разработки; отдельное исследование может не иметь рабочего интерфейса.
 
 ### Как проверить
@@ -200,7 +206,7 @@ Backend отдаёт amount.
 
 ### Источники
 
-- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)
+- [Small CLs](https://google.github.io/eng-practices/review/developer/small-cls.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -229,6 +235,8 @@ Markdown хранится в Git.
 
 ### Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Инфраструктура оправдана нагрузкой или требованиями, а не модой.
 
 ### Как проверить
@@ -249,7 +257,7 @@ Markdown хранится в Git.
 
 ### Источники
 
-- [Первоисточник](https://sre.google/sre-book/service-level-objectives/)
+- [Google SRE - Operational Simplicity: Stability and Agility](https://sre.google/sre-book/simplicity/)
 
 Уровень: Зависит от задачи. Проверено: 2026-11-09.
 
@@ -278,6 +286,8 @@ Production ready: папки и README созданы.
 
 ### Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Для шаблонов, библиотек и релизов. Указывайте ограничения рядом с результатами.
 
 ### Как проверить
@@ -298,7 +308,7 @@ Production ready: папки и README созданы.
 
 ### Источники
 
-- [Первоисточник](https://slsa.dev/spec/v1.2/)
+- [Google SRE - Deployment Strategies for Product Launches](https://sre.google/sre-book/reliable-product-launches/)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 

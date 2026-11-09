@@ -57,4 +57,4 @@ API должен быть быстрым всегда.
 
 ## Источники
 
-- [Первоисточник](https://sre.google/sre-book/service-level-objectives/)
+- [Google SRE - Defining slo: service level objective meaning](https://sre.google/sre-book/service-level-objectives/)

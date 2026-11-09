@@ -7,8 +7,8 @@ tags: ["incident"]
 technologies: []
 reviewed_at: "2026-11-09"
 order: 91
-related: ["operations.correlation", "operations.http-spans"]
-sources: ["https://sre.google/sre-book/service-level-objectives/"]
+related: ["operations.slo", "operations.restore"]
+sources: ["https://sre.google/sre-book/managing-incidents/"]
 schema_version: 1
 ---
 
@@ -57,4 +57,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://sre.google/sre-book/service-level-objectives/)
+- [Google SRE - Incident Management: Key to Restore Operations](https://sre.google/sre-book/managing-incidents/)

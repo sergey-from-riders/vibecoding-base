@@ -1,4 +1,4 @@
-<!-- Generated from registry/standards/agent/base@2.1.0. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/agent/base@2.1.1. Update the registry standard, then regenerate. -->
 
 # Agent Base Standard
 
@@ -29,6 +29,8 @@
 
 ### Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Путь к инструкциям зависит от агента. AGENTS.md — соглашение проекта, не общий протокол.
 
 ### Как проверить
@@ -49,7 +51,7 @@
 
 ### Источники
 
-- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)
+- [Custom instructions for GitHub Copilot - GitHub Docs](https://docs.github.com/en/copilot/concepts/prompting-and-context/custom-instructions)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -99,7 +101,7 @@
 
 ### Источники
 
-- [Первоисточник](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)
+- [LLM01:2025 Prompt Injection - OWASP Gen AI Security Project](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -148,7 +150,7 @@
 
 ### Источники
 
-- [Первоисточник](https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices)
+- [Security Best Practices - Model Context Protocol](https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -198,7 +200,7 @@
 
 ### Источники
 
-- [Первоисточник](https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices)
+- [Security Best Practices - Model Context Protocol](https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -227,6 +229,8 @@
 
 ### Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Для изменения файлов, публикации, платежей и доставки сообщений.
 
 ### Как проверить
@@ -247,7 +251,7 @@
 
 ### Источники
 
-- [Первоисточник](https://slsa.dev/spec/v1.2/)
+- [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -276,6 +280,8 @@
 
 ### Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Критерии и допустимая цена зависят от продукта; персональные данные в тестах обезличиваются.
 
 ### Как проверить
@@ -296,7 +302,7 @@
 
 ### Источники
 
-- [Первоисточник](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)
+- [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 

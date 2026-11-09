@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 4
 related: ["architecture.scope", "architecture.one-source"]
-sources: ["https://docs.github.com/en/pull-requests/reference/pull-requests"]
+sources: ["https://google.github.io/eng-practices/review/developer/small-cls.html"]
 schema_version: 1
 ---
 
@@ -38,6 +38,8 @@ schema_version: 1
 
 ## Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Рекомендация для продуктовой разработки; отдельное исследование может не иметь рабочего интерфейса.
 
 ## Как проверить
@@ -58,4 +60,4 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)
+- [Small CLs](https://google.github.io/eng-practices/review/developer/small-cls.html)

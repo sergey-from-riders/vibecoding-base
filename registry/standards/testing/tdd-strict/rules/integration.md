@@ -7,8 +7,8 @@ tags: ["integration", "SQL"]
 technologies: ["SQL"]
 reviewed_at: "2026-11-09"
 order: 79
-related: ["testing.risk", "testing.regression"]
-sources: ["https://www.postgresql.org/docs/18/ddl-constraints.html"]
+related: ["database.migrations", "api.openapi"]
+sources: ["https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html", "https://www.postgresql.org/docs/18/ddl-constraints.html"]
 schema_version: 1
 ---
 
@@ -56,4 +56,5 @@ Mock всегда возвращает успех; реальная миграц
 
 ## Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/ddl-constraints.html)
+- [Google Testing Blog: Just Say No to More End-to-End Tests](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
+- [PostgreSQL: Documentation: 18: 5.5. Constraints](https://www.postgresql.org/docs/18/ddl-constraints.html)

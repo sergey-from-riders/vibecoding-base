@@ -8,7 +8,7 @@ technologies: []
 reviewed_at: "2026-11-09"
 order: 70
 related: ["security.secrets", "security.sql-injection"]
-sources: ["https://owasp.org/API-Security/editions/2023/en/0x11-t10/"]
+sources: ["https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/"]
 schema_version: 1
 ---
 
@@ -57,4 +57,4 @@ tenant_id берётся из проверенного контекста, а н
 
 ## Источники
 
-- [Первоисточник](https://owasp.org/API-Security/editions/2023/en/0x11-t10/)
+- [API1:2023 Broken Object Level Authorization - OWASP API Security Top 10](https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/)

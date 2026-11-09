@@ -8,7 +8,7 @@ technologies: ["Python", "FastAPI"]
 reviewed_at: "2026-11-09"
 order: 43
 related: ["backend.boundaries", "backend.go-context"]
-sources: ["https://spec.openapis.org/oas/v3.2.0.html"]
+sources: ["https://docs.pydantic.dev/latest/concepts/models/", "https://fastapi.tiangolo.com/tutorial/body/"]
 schema_version: 1
 ---
 
@@ -58,4 +58,5 @@ quantity = validated_request.quantity
 
 ## Источники
 
-- [Первоисточник](https://spec.openapis.org/oas/v3.2.0.html)
+- [Models](https://docs.pydantic.dev/latest/concepts/models/)
+- [Request Body - FastAPI](https://fastapi.tiangolo.com/tutorial/body/)

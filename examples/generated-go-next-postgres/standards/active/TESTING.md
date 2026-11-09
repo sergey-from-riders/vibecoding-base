@@ -1,4 +1,4 @@
-<!-- Generated from registry/standards/testing/tdd-strict@2.1.0. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/testing/tdd-strict@2.1.1. Update the registry standard, then regenerate. -->
 
 # TDD Strict Quality Gate Standard
 
@@ -48,7 +48,7 @@
 
 ### Источники
 
-- [Первоисточник](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
+- [Google Testing Blog: Just Say No to More End-to-End Tests](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -97,7 +97,7 @@
 
 ### Источники
 
-- [Первоисточник](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
+- [Writing your first Django app, part 5](https://docs.djangoproject.com/en/5.2/intro/tutorial05/)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -145,7 +145,8 @@ Mock всегда возвращает успех; реальная миграц
 
 ### Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/ddl-constraints.html)
+- [Google Testing Blog: Just Say No to More End-to-End Tests](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
+- [PostgreSQL: Documentation: 18: 5.5. Constraints](https://www.postgresql.org/docs/18/ddl-constraints.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -194,7 +195,7 @@ Mock всегда возвращает успех; реальная миграц
 
 ### Источники
 
-- [Первоисточник](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
+- [Google Testing Blog: Just Say No to More End-to-End Tests](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 
@@ -223,6 +224,8 @@ Runtime-тесты пока отсутствуют.
 
 ### Когда применять
 
+Это инженерное правило справочника, а не требование протокола. Первоисточник описывает подход или механизм; конкретный процесс выбирается проектом.
+
 Проверки контента, линтер, сборка и тест поведения доказывают разные вещи.
 
 ### Как проверить
@@ -243,7 +246,7 @@ Runtime-тесты пока отсутствуют.
 
 ### Источники
 
-- [Первоисточник](https://slsa.dev/spec/v1.2/)
+- [Status checks - GitHub Docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks)
 
 Уровень: Обязательно. Проверено: 2026-11-09.
 
@@ -292,7 +295,7 @@ Runtime-тесты пока отсутствуют.
 
 ### Источники
 
-- [Первоисточник](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
+- [Best Practices](https://playwright.dev/docs/best-practices)
 
 Уровень: Рекомендуется. Проверено: 2026-11-09.
 

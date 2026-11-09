@@ -59,4 +59,4 @@ X-Request-Id полезен для поддержки, если согласов
 
 ## Источники
 
-- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9110.html)
+- [RFC 9110: HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html)

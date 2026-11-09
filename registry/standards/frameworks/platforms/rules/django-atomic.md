@@ -62,4 +62,4 @@ Django 5.2 и транзакционная БД. Импорт: `from django.db i
 
 ## Источники
 
-- [Документация 1](https://docs.djangoproject.com/en/5.2/topics/db/transactions/)
+- [Database transactions](https://docs.djangoproject.com/en/5.2/topics/db/transactions/)

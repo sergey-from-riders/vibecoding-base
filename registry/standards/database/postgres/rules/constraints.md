@@ -20,7 +20,7 @@ schema_version: 1
 
 ## Плохо
 
-```sql
+```javascript
 if (!emailExists(email)) {
   insertUser(email);
 }
@@ -59,4 +59,4 @@ CREATE UNIQUE INDEX users_email_unique
 
 ## Источники
 
-- [Первоисточник](https://www.postgresql.org/docs/18/ddl-constraints.html)
+- [PostgreSQL: Documentation: 18: 5.5. Constraints](https://www.postgresql.org/docs/18/ddl-constraints.html)

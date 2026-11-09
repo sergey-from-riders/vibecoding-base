@@ -8,7 +8,7 @@ technologies: ["React"]
 reviewed_at: "2026-11-09"
 order: 49
 related: ["frontend.server-client", "frontend.data-boundary"]
-sources: ["https://www.rfc-editor.org/rfc/rfc9110.html"]
+sources: ["https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API", "https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams"]
 schema_version: 1
 ---
 
@@ -56,4 +56,5 @@ schema_version: 1
 
 ## Источники
 
-- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9110.html)
+- [Working with the History API - Web APIs](https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API)
+- [URLSearchParams - Web APIs](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)
