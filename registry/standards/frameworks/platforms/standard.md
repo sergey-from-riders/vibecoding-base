@@ -63,7 +63,7 @@ Laravel 12.x, Form Request и зарегистрированная Policy; в м
 ### Плохо
 
 ```php
-DB::transaction(function () {
+DB::transaction(function () use ($data) {
   $order = Order::create($data);
   SendReceipt::dispatch($order->id);
 });

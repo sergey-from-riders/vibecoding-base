@@ -21,7 +21,7 @@ sources: ["https://laravel.com/docs/12.x/queues", "https://laravel.com/docs/12.x
 ## Плохо
 
 ```php
-DB::transaction(function () {
+DB::transaction(function () use ($data) {
   $order = Order::create($data);
   SendReceipt::dispatch($order->id);
 });
