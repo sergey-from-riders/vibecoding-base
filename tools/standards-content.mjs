@@ -2,6 +2,7 @@
 export const SCHEMA_VERSION = 1;
 export const LEVELS = {required:'Обязательно',recommended:'Рекомендуется',contextual:'Зависит от задачи'};
 export const BLOCKS = ['Коротко','Плохо','Хорошо','Почему','Когда применять','Как проверить','Источники'];
+const OPTIONAL_BLOCKS = ['Человек','Агент','Пример применения'];
 const slug = /^[a-z][a-z0-9-]{0,79}$/;
 const ruleId = /^[a-z][a-z0-9-]{0,79}\.[a-z][a-z0-9-]{0,79}$/;
 const date = /^\d{4}-\d{2}-\d{2}$/;
@@ -30,7 +31,8 @@ export function parseSection(raw,path) {
   const {meta,body}=frontmatter(raw);
   requireValue(slug.test(meta.id) && path.endsWith('/'+meta.id+'.md') && text(meta.title,100) && text(body,1000),'Invalid section');
   requireValue(Number.isInteger(meta.order) && meta.order>0,'Invalid section order');
-  return {id:meta.id,title:meta.title,description:body,order:meta.order};
+  requireValue(meta.parent===undefined || (slug.test(meta.parent) && meta.parent!==meta.id),'Invalid section parent');
+  return {id:meta.id,title:meta.title,description:body,order:meta.order,...(meta.parent?{parent:meta.parent}:{})};
 }
 export function parseRule(raw,path,updatedAt) {
   requireValue(/^registry\/standards\/[a-z0-9-]+\/[a-z0-9-]+\/rules\/[a-z0-9-]+\.md$/.test(path),'Invalid rule path');
@@ -50,13 +52,14 @@ export function parseRule(raw,path,updatedAt) {
     if(line.startsWith('```')) fenced=!fenced;
     const heading=!fenced && line.match(/^## (.+)$/);
     if(heading) {
-      requireValue(BLOCKS.includes(heading[1]) && !Object.hasOwn(blocks,heading[1]),'Invalid or duplicate section heading');
+      requireValue([...BLOCKS,...OPTIONAL_BLOCKS].includes(heading[1]) && !Object.hasOwn(blocks,heading[1]),'Invalid or duplicate section heading');
       current=heading[1];blocks[current]=[];
     } else if(current) blocks[current].push(line);
     else requireValue(!line.trim(),'Text outside sections');
   }
   requireValue(!fenced,'Unclosed code fence');
   for(const key of BLOCKS) { requireValue(blocks[key]?.join('\n').trim(),'Missing section '+key); blocks[key]=blocks[key].join('\n').trim(); }
+  for(const key of OPTIONAL_BLOCKS) if(blocks[key]) {blocks[key]=blocks[key].join('\n').trim();requireValue(blocks[key],'Empty section '+key);}
   const examples={};
   for(const [name,key] of [['bad','Плохо'],['good','Хорошо']]) {
     const code=blocks[key].match(/^```([a-z0-9+-]*)\n([\s\S]*?)\n```$/);
@@ -73,7 +76,10 @@ export function validateCollection(sections,rules) {
     requireValue(sectionIds.has(rule.section),'Missing category for '+rule.id);
     requireValue(rule.related.every(id=>ids.has(id) && id!==rule.id),'Broken related rule for '+rule.id);
   }
-  for(const section of sections) requireValue(rules.some(r=>r.section===section.id),'Empty category '+section.id);
+  for(const section of sections) {
+    requireValue(rules.some(r=>r.section===section.id),'Empty category '+section.id);
+    if(section.parent)requireValue(sections.some(s=>s.id===section.parent&&!s.parent),'Invalid section hierarchy');
+  }
   sections.sort((a,b)=>a.order-b.order||a.id.localeCompare(b.id));
   rules.sort((a,b)=>a.order-b.order||a.id.localeCompare(b.id));
   return {sections,rules};
@@ -81,6 +87,6 @@ export function validateCollection(sections,rules) {
 export function renderStandard(title,rules) {
   return '# '+title+'\n\n> Собрано автоматически из rules/*.md. Редактируйте исходные правила, затем выполните `node tools/handbook.mjs generate`.\n\n'+rules.map(rule=>{
     const {body}=frontmatter(rule.markdown);
-    return body.replace(/^# /m,'## ').replace(/^## (Коротко|Плохо|Хорошо|Почему|Когда применять|Как проверить|Источники)$/gm,'### $1')+'\n\nУровень: '+LEVELS[rule.level]+'. Проверено: '+rule.reviewedAt+'.\n';
+    return body.replace(/^# /m,'## ').replace(/^## (Коротко|Плохо|Хорошо|Почему|Когда применять|Как проверить|Источники|Человек|Агент|Пример применения)$/gm,'### $1')+'\n\nУровень: '+LEVELS[rule.level]+'. Проверено: '+rule.reviewedAt+'.\n';
   }).join('\n')+'\n';
 }

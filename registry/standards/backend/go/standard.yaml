@@ -1,6 +1,6 @@
 id: backend/go
 name: Go Backend Engineering Standard
-version: 2.0.0
+version: 2.1.0
 status: stable
 domain: backend
 owners:
@@ -11,8 +11,8 @@ applies_to:
   runtimes:
     - go
 dependencies:
-  - security/no-secrets@^2.0.0
-  - testing/tdd-strict@^2.0.0
+  - security/no-secrets@^2.1.0
+  - testing/tdd-strict@^2.1.0
 enforcement:
   documented: true
   linted: false

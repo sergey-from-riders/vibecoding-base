@@ -29,4 +29,4 @@ Forbidden:
 - Do not duplicate business logic across API/web/mobile.
 - Do not change standard versions without updating .vibe/registry.lock.
 
-Generated from vibecoding-base registry 2.0.0.
+Generated from vibecoding-base registry 2.1.0.

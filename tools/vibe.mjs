@@ -7,7 +7,7 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { verifyHandbook } from "./handbook.mjs";
 
-const REGISTRY_VERSION = "2.0.0";
+const REGISTRY_VERSION = "2.1.0";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..");

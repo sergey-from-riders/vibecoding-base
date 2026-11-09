@@ -1,6 +1,6 @@
 id: database/postgres
 name: PostgreSQL Data Contract Standard
-version: 2.0.0
+version: 2.1.0
 status: stable
 domain: database
 owners:
@@ -11,7 +11,7 @@ applies_to:
   runtimes:
     - postgresql
 dependencies:
-  - security/no-secrets@^2.0.0
+  - security/no-secrets@^2.1.0
 enforcement:
   documented: true
   linted: false
