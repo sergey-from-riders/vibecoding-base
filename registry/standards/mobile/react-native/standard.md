@@ -1,56 +1,151 @@
 # React Native Mobile Standard
 
-This experimental optional standard applies when a project enables a React Native mobile client.
+> Собрано автоматически из rules/*.md. Редактируйте исходные правила, затем выполните `node tools/handbook.mjs generate`.
 
-Mobile is optional. A generated project must not contain mobile folders, mobile standards or mobile runtime assumptions until `vibe enable mobile react-native` is used.
+## Храните токены в защищённом хранилище платформы
 
-## May 2026 Baseline
+### Коротко
 
-1. React Native baseline: `0.85.x`.
-2. React baseline: `19.2.x` where supported by the chosen RN release.
-3. Node.js baseline: supported LTS only, with Node 24 preferred for new projects.
-4. Hermes is the default JavaScript engine unless a project documents why not.
-5. New Architecture compatibility is expected for new native modules.
+Обычное локальное хранилище приложения не подходит для секретов.
 
-## Architecture Rules
+### Плохо
 
-1. Mobile must not duplicate backend business rules.
-2. API access must use the shared generated or maintained client.
-3. Secure storage must be used for sensitive local state.
-4. Deep links and auth handoff must be tested.
-5. Offline behavior must be explicitly scoped before implementation.
-6. Native modules require an owner and upgrade note.
-7. Shared UI/business packages must not depend on platform-only APIs.
+```text
+Токен в AsyncStorage и диагностическом логе.
+```
 
-## Security Rules
+### Хорошо
 
-1. Tokens use platform secure storage, not AsyncStorage.
-2. Biometric auth is a local unlock convenience, not the primary server auth proof.
-3. Deep links validate scheme, host, path and state.
-4. Push notifications must not contain secrets or sensitive payloads.
-5. Certificate pinning is optional and must include an operational rotation plan.
+```text
+Токен в Keychain/Keystore через проверенную библиотеку.
+```
 
-## Offline And Sync
+### Почему
 
-1. Offline writes require idempotency keys.
-2. Sync queues require retry limits and conflict handling.
-3. Local caches must define what can be stored and for how long.
-4. Destructive actions require clear confirmation and replay-safe behavior.
+Файл приложения и резервные копии могут раскрыть открытый текст токена.
 
-## Release And OTA Policy
+### Когда применять
 
-1. OTA updates may change JS/UI only within the app-store-approved native capability set.
-2. Native dependency changes require normal binary release.
-3. Runtime config and feature flags must fail closed.
-4. Crash-free and startup metrics are required before production rollout.
+Защищённое хранилище не заменяет срок действия и отзыв токена на сервере. Биометрия обычно разблокирует локальный доступ.
 
-## Accessibility
+### Как проверить
 
-1. WCAG 2.2 concepts apply where relevant.
-2. Platform screen readers must work for core flows.
-3. Touch targets must be usable on small devices.
-4. Critical flows must not require drag-only gestures.
+- Выход удаляет локальный секрет и отзывает нужную сессию?
 
-## Enforcement Reality
+### Источники
 
-This standard is documented only until a concrete mobile runtime and checks are selected.
+- [Первоисточник](https://reactnative.dev/docs/security)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+
+## Проверяйте входящие ссылки и возврат авторизации
+
+### Коротко
+
+Ссылка должна соответствовать разрешённому маршруту и начатой операции.
+
+### Плохо
+
+```text
+Любая ссылка с code открывает авторизованную сессию.
+```
+
+### Хорошо
+
+```text
+Проверены scheme, host, path и state.
+Авторизация завершается проверкой сервера.
+```
+
+### Почему
+
+Другое приложение или сайт может подставить свои параметры.
+
+### Когда применять
+
+Предпочитайте подтверждённые ссылки платформы. Не передавайте секреты в push-уведомлениях.
+
+### Как проверить
+
+- Проверьте чужой host, подмену state и повтор старой ссылки.
+
+### Источники
+
+- [Первоисточник](https://reactnative.dev/docs/security)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+
+## Опишите конфликты и повторы офлайн-изменений
+
+### Коротко
+
+Локальная очередь должна знать идентичность операции и версию изменяемой записи.
+
+### Плохо
+
+```text
+После восстановления сети все действия отправляются как новые.
+```
+
+### Хорошо
+
+```text
+Очередь с постоянными ключами.
+Повторы безопасны. Конфликт версии виден пользователю.
+```
+
+### Почему
+
+Потеря сети не должна создавать дубликаты или молча затирать данные.
+
+### Когда применять
+
+Офлайн-чтение и офлайн-запись — разные возможности. Определите срок и состав локальных данных.
+
+### Как проверить
+
+- Измените одну запись на двух устройствах без сети.
+
+### Источники
+
+- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9110.html)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+
+## Проверяйте совместимость перед мобильным обновлением
+
+### Коротко
+
+Изменение нативных возможностей требует соответствующей сборки приложения.
+
+### Плохо
+
+```text
+Новый нативный модуль доставлен только JavaScript-обновлением.
+```
+
+### Хорошо
+
+```text
+JS-обновление совместимо с установленным runtime.
+Нативные изменения включены в новую сборку.
+```
+
+### Почему
+
+Установленное приложение не сможет вызвать отсутствующий нативный код.
+
+### Когда применять
+
+OTA разрешён только в пределах политики магазина и выбранного механизма обновлений. Версии React и RN должны быть совместимы.
+
+### Как проверить
+
+- Проверьте запуск, авторизацию и возврат на предыдущую совместимую версию.
+
+### Источники
+
+- [Первоисточник](https://reactnative.dev/docs/security)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+

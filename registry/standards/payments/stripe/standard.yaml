@@ -1,6 +1,6 @@
 id: payments/stripe
 name: Stripe Payments Standard
-version: 1.1.0
+version: 2.0.0
 status: experimental
 domain: payments
 owners:
@@ -10,8 +10,8 @@ applies_to:
   runtimes:
     - stripe
 dependencies:
-  - security/no-secrets@^1.0.0
-  - observability/three-signals@^1.0.0
+  - security/no-secrets@^2.0.0
+  - observability/three-signals@^2.0.0
 enforcement:
   documented: true
   linted: false

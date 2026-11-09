@@ -1,0 +1,48 @@
+---
+id: "operations.config"
+title: "Проверяйте конфигурацию при запуске"
+section: "operations"
+level: "required"
+tags: ["config"]
+technologies: []
+reviewed_at: "2026-11-09"
+order: 90
+related: ["operations.correlation", "operations.http-spans"]
+sources: ["https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"]
+schema_version: 1
+---
+
+# Проверяйте конфигурацию при запуске
+
+## Коротко
+
+Один модуль конфигурации должен проверять обязательные значения до приёма запросов.
+
+## Плохо
+
+```text
+Нет ключа → приложение молча использует тестовый.
+```
+
+## Хорошо
+
+```text
+Отсутствует обязательная настройка →
+понятная ошибка запуска без раскрытия секрета.
+```
+
+## Почему
+
+Тихая подмена настройки создаёт труднообнаружимые ошибки и риск доступа.
+
+## Когда применять
+
+Для необязательной функции допустимо явное отключение. Секреты и окружения разделяются.
+
+## Как проверить
+
+- Проверьте запуск без ключа и с недопустимым значением.
+
+## Источники
+
+- [Первоисточник](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html)

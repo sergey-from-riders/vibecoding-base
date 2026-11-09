@@ -17,6 +17,9 @@ Read order:
 1. standards/active/SECURITY.md
 1. standards/active/OBSERVABILITY.md
 1. standards/active/UI.md
+1. standards/active/COLLABORATION.md
+1. standards/active/DELIVERY.md
+1. standards/active/INTEGRATIONS.md
 
 Forbidden:
 - Do not add unused folders.
@@ -26,4 +29,4 @@ Forbidden:
 - Do not duplicate business logic across API/web/mobile.
 - Do not change standard versions without updating .vibe/registry.lock.
 
-Generated from vibecoding-base registry 1.1.0.
+Generated from vibecoding-base registry 2.0.0.

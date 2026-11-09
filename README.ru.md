@@ -1,3 +1,5 @@
+> **Справочник 2.0:** 100 русских правил в 15 разделах. Источник — `registry/standards/<domain>/<name>/rules/*.md`; `standard.md` и примеры генерируются. [Как предложить изменение](docs/contributing-standards.md) · [Аудит прежних правил](docs/audit-2026-11-09.md).
+
 # vibecoding-base 🧱✨
 
 `vibecoding-base` — это composable registry для AI-native проектов.
@@ -75,7 +77,7 @@ standards/active
 
 Если хочешь изменить стандарт:
 
-1. редактируй `registry/standards/<id>/standard.md`;
+1. редактируй `registry/standards/<id>/rules/*.md`;
 2. обнови `standard.yaml` и `CHANGELOG.md`;
 3. перегенерируй examples;
 4. запусти `node tools/vibe.mjs verify`.

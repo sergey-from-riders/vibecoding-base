@@ -1,190 +1,345 @@
-# OpenAPI Modular Contract Standard
+# Modular OpenAPI Contract Standard
 
-This standard applies to every HTTP API endpoint in an active stack.
+> Собрано автоматически из rules/*.md. Редактируйте исходные правила, затем выполните `node tools/handbook.mjs generate`.
 
-The contract is the first runtime surface. Backend code, frontend clients, tests and documentation follow the OpenAPI contract, not the other way around.
+## Сообщайте об ошибке HTTP-статусом
 
-## May 2026 Baseline
+### Коротко
 
-1. OpenAPI Specification: `3.2.0`.
-2. HTTP semantics: RFC 9110.
-3. Problem Details: RFC 9457.
-4. JSON Schema alignment follows the OpenAPI 3.2 model.
-5. Endpoint inventory is mandatory for agent-readable coverage.
+Клиент, прокси и мониторинг должны видеть результат запроса без разбора произвольного JSON.
 
-## Fixed Structure
+### Плохо
 
-1. `OPENAPI_VERSION = 3.2.0`
-2. `ROOT_FILE = contracts/openapi/openapi.root.yaml`
-3. `MODULE_FILES = one file per module`
-4. `INVENTORY_FILE = contracts/openapi/endpoints.inventory.tsv`
-5. `DIST_DIR = contracts/openapi/dist`
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
 
-Each module file owns a bounded API area such as `auth`, `company`, `docs` or `billing`.
+{"status": 404, "message": "Не найдено"}
+```
 
-## Endpoint Coverage Rules
+### Хорошо
 
-The allowed count is `0` for:
+```http
+HTTP/1.1 404 Not Found
+Content-Type: application/problem+json
 
-1. endpoint in code without an OpenAPI operation;
-2. OpenAPI operation without an inventory row;
-3. inventory row without an OpenAPI operation;
-4. missing `operationId`;
-5. missing `summary`;
-6. missing success response;
-7. missing client-error response;
-8. missing `tags`;
-9. duplicate `operationId`;
-10. undocumented auth requirement.
+{"type":"about:blank","title":"Не найдено","status":404}
+```
 
-## Operation Design
+### Почему
 
-Every operation must define:
+Если ошибка замаскирована успешным кодом, инфраструктура может обработать её как успех.
 
-1. stable `operationId`;
-2. module tag;
-3. short summary;
-4. request body schema when applicable;
-5. success response schema;
-6. RFC 9457-compatible error response schema;
-7. request examples for write operations;
-8. response examples;
-9. curl sample through `x-codeSamples` when tooling supports it;
-10. test hint in the endpoint catalog.
+### Когда применять
 
-## HTTP Method Policy
+Для HTTP API. Поле status в Problem Details допустимо, но совпадает с реальным HTTP-кодом. Статус заказа — отдельное бизнес-поле.
 
-Allowed methods:
+### Как проверить
 
-1. `GET` for reads with no business side effects.
-2. `POST` for commands, creates and non-idempotent mutations.
-3. `PUT` for full idempotent replacement.
-4. `PATCH` for partial updates with documented idempotency semantics.
-5. `DELETE` for revoke/remove operations.
-6. `HEAD` for GET metadata mirrors.
-7. `OPTIONS` for CORS and capability negotiation.
+- Проверьте HTTP-код отсутствующего ресурса и ошибки доступа.
 
-Disallowed for business APIs:
+### Источники
 
-1. `TRACE`
-2. `CONNECT`
+- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9457.html)
 
-Body rules:
+Уровень: Обязательно. Проверено: 2026-11-09.
 
-1. `GET` request body count: `0`.
-2. `HEAD` request body count: `0`.
-3. `OPTIONS` request body count: `0`.
-4. `POST|PUT|PATCH` request body examples minimum: `1`.
+## Выбирайте метод по смыслу операции
 
-Same path with different methods is allowed only when each operation has distinct semantics, summaries, examples, responses and tests.
+### Коротко
 
-## Response Contract
+GET и HEAD читают; изменение бизнес-состояния должно иметь соответствующий метод.
 
-Do not wrap every success response in a universal `data/meta/errors` envelope by default. Business payload shape is owned by the endpoint schema.
+### Плохо
 
-Error responses must use a shallow, stable shape compatible with Problem Details:
+```http
+GET /orders/42/delete
+```
 
-1. `status`
-2. `title`
-3. `detail`
-4. `action`
-5. `validate`
-6. `request_id`
+### Хорошо
 
-Field-level validation may include structured extensions, but must remain explicitly documented in the schema.
+```http
+DELETE /orders/42
+```
 
-## Mandatory Response Headers
+### Почему
 
-Every API response includes:
+Ссылку может заранее открыть браузер, робот или прокси.
 
-1. `X-Request-Id`
-2. `X-App-Result`
-3. `Content-Language`
+### Когда применять
 
-`X-App-Result` values:
+POST подходит для команд и создания, PUT — полного идемпотентного замещения, PATCH — частичного изменения. Семантику повторов PATCH нужно описывать.
 
-1. `ok` for successful responses;
-2. `fix_required` for client-correctable `4xx`;
-3. `error` for `5xx` and infrastructure failures.
+### Как проверить
 
-Conditional headers:
+- Открытие обычной ссылки не удаляет и не оплачивает данные?
 
-1. `X-App-Action` when a caller can fix the request.
-2. `X-App-Validate` when specific fields need attention.
+### Источники
 
-## Idempotency And Concurrency
+- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9110.html)
 
-Write endpoints must document their idempotency behavior:
+Уровень: Обязательно. Проверено: 2026-11-09.
 
-1. create endpoints either accept an idempotency key or document why retries are safe;
-2. payment, billing, webhook and worker-triggering endpoints require idempotency keys;
-3. update endpoints that can overwrite user data should use ETags, version fields or explicit conflict responses;
-4. retryable failures must be distinguishable from final failures.
+## Возвращайте понятную и безопасную ошибку
 
-## Pagination, Filtering And Sorting
+### Коротко
 
-List endpoints must define:
+Ошибка должна помогать исправить запрос без раскрытия внутреннего устройства сервера.
 
-1. pagination style: cursor preferred for mutable lists, offset allowed for stable admin lists;
-2. maximum page size;
-3. default sort;
-4. allowed filter fields;
-5. stable response schema for `items` and continuation metadata.
+### Плохо
 
-Do not invent per-endpoint pagination shapes without documenting the reason.
+```json
+{"error":"SQL exception at /private/app/main.go:42"}
+```
 
-## Versioning And Deprecation
+### Хорошо
 
-Breaking changes in `v1` without a migration plan are not allowed.
+```json
+{"type":"https://example.com/problems/validation",
+ "title":"Проверьте поля", "status":422,
+ "errors":[{"field":"email","message":"Неверный формат"}]}
+```
 
-Deprecation requires:
+### Почему
 
-1. `deprecated: true` in the OpenAPI operation or schema property;
-2. removal date in `YYYY-MM-DD` format;
-3. migration note;
-4. minimum production deprecation window of `90` days;
-5. support and observability plan for old and new consumers.
+Стек вызовов и SQL не помогают пользователю и могут раскрыть лишние сведения.
 
-Backward-compatible additions must be optional or have safe default behavior.
+### Когда применять
 
-## Docs Endpoints
+Problem Details задаёт общую основу; errors и request_id — документируемые расширения, а не обязательные поля RFC.
 
-Generated projects should expose docs endpoints when runtime exists:
+### Как проверить
 
-1. `GET /api/v1/docs/openapi.json`
-2. `GET /api/v1/docs/openapi.yaml`
-3. `GET /api/v1/docs/endpoints`
-4. `GET /api/v1/docs/testing/postman`
+- Можно ли понять ошибку? Нет ли секретов и внутренних путей?
 
-The endpoint catalog returns method, path, summary, tag, operation ID, examples and test hints.
+### Источники
 
-## Security Requirements
+- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9457.html)
 
-Every operation must define:
+Уровень: Рекомендуется. Проверено: 2026-11-09.
 
-1. public/private access model;
-2. auth scheme when required;
-3. tenant or ownership boundary when applicable;
-4. rate-limit or abuse note for sensitive business flows;
-5. SSRF-safe URL handling when accepting external URLs;
-6. safe third-party API consumption contract.
+## Поддерживайте контракт вместе с реализацией
 
-This aligns the API standard with OWASP API Security Top 10 2023 risks.
+### Коротко
 
-## Feature Sync Rule
+В контракте должны быть реальные методы, схемы, ошибки, доступ и примеры.
 
-Changing a feature means updating:
+### Плохо
 
-1. module OpenAPI file;
-2. schemas;
-3. examples;
-4. endpoint inventory;
-5. tests or test hints;
-6. docs endpoint catalog when runtime exists;
-7. generated clients when the project uses them.
+```text
+Новый endpoint работает, но в документации его нет.
+```
 
-## Enforcement Reality
+### Хорошо
 
-`check_openapi` verifies the required OpenAPI project structure.
+```text
+Изменены обработчик, OpenAPI, пример и тест.
+operationId уникален и стабилен.
+```
 
-Deep semantic coverage, examples, idempotency and deprecation rules are documented until a stack adds a real OpenAPI linter such as Spectral, Redocly or custom coverage scripts.
+### Почему
+
+Клиенты и агенты не должны угадывать формат запроса.
+
+### Когда применять
+
+OpenAPI 3.2 подходит при поддержке инструментов; 3.1 остаётся допустимым осознанным выбором. Разбиение по модулям зависит от размера API.
+
+### Как проверить
+
+- Сопоставьте реальные маршруты, операции контракта и каталог endpoints.
+
+### Источники
+
+- [Первоисточник](https://spec.openapis.org/oas/v3.2.0.html)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+
+## Повторяйте одну операцию с тем же ключом
+
+### Коротко
+
+После потери ответа повторный запрос не должен создавать вторую оплату или заказ.
+
+### Плохо
+
+```text
+Тайм-аут → новый requestId → повторное списание.
+```
+
+### Хорошо
+
+```text
+Тайм-аут → тот же Idempotency-Key.
+Сервер узнаёт операцию и возвращает её результат.
+```
+
+### Почему
+
+Сетевой тайм-аут не сообщает, успел ли сервер выполнить действие.
+
+### Когда применять
+
+Ключ связан с пользователем, операцией и содержимым. Другое содержимое под тем же ключом — конфликт. Срок хранения ключей документируется.
+
+### Как проверить
+
+- Повторите запрос одновременно и после потери ответа.
+
+### Источники
+
+- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9110.html)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+
+## Обнаруживайте устаревшие изменения
+
+### Коротко
+
+Проверяйте версию записи перед сохранением, если пользователь может перезаписать чужую работу.
+
+### Плохо
+
+```text
+Аня и Борис открыли v3.
+Аня сохранила v4. Борис молча затёр её.
+```
+
+### Хорошо
+
+```text
+Борис отправляет If-Match: "v3".
+Сервер отвечает 412: версия уже изменилась.
+```
+
+### Почему
+
+Последняя запись не всегда является правильным результатом совместной работы.
+
+### Когда применять
+
+Можно использовать ETag/If-Match либо документированный revision с 409. Не смешивайте эти договорённости неявно.
+
+### Как проверить
+
+- Два клиента меняют одну запись: второй получает понятный конфликт?
+
+### Источники
+
+- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9110.html)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+
+## Ограничивайте списки и задавайте порядок
+
+### Коротко
+
+Договоритесь о размере страницы, сортировке, фильтрах и продолжении списка.
+
+### Плохо
+
+```text
+GET /users → вся таблица без лимита.
+```
+
+### Хорошо
+
+```text
+GET /users?limit=50&cursor=...
+Ответ: items и next_cursor.
+```
+
+### Почему
+
+Неограниченная выдача расходует память и делает время ответа непредсказуемым.
+
+### Когда применять
+
+Cursor удобен для меняющихся списков; offset допустим для небольших стабильных выборок. Порядок должен иметь уникальный tie-breaker.
+
+### Как проверить
+
+- Проверьте предел размера и повторяющиеся значения сортировки.
+
+### Источники
+
+- [Первоисточник](https://owasp.org/API-Security/editions/2023/en/0x11-t10/)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+
+## Меняйте публичный контракт с планом перехода
+
+### Коротко
+
+Удаление поля или изменение его смысла требует совместимости со старыми клиентами.
+
+### Плохо
+
+```text
+amount вчера означал рубли, сегодня — копейки.
+```
+
+### Хорошо
+
+```text
+Новое поле amount_minor.
+Старое поддерживается на время перехода.
+```
+
+### Почему
+
+Клиент может продолжить работать без ошибки, но с неверными данными.
+
+### Когда применять
+
+Срок перехода согласуется с потребителями. 90 дней — возможная политика проекта, а не универсальное требование протокола.
+
+### Как проверить
+
+- Старый клиент проходит контрактные тесты новой версии?
+
+### Источники
+
+- [Первоисточник](https://spec.openapis.org/oas/v3.2.0.html)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+
+## Используйте заголовки по назначению
+
+### Коротко
+
+Статус, формат содержимого и кеширование описываются стандартными средствами HTTP.
+
+### Плохо
+
+```http
+HTTP 200
+X-App-Result: error
+```
+
+### Хорошо
+
+```http
+HTTP 503 Service Unavailable
+Retry-After: 30
+Content-Type: application/problem+json
+```
+
+### Почему
+
+Собственный заголовок не заменяет стандартную семантику.
+
+### Когда применять
+
+X-Request-Id полезен для поддержки, если согласован. X-App-Result, X-App-Action и X-App-Validate не обязательны для всех API. Content-Language указывают по смыслу представления.
+
+### Как проверить
+
+- Работает ли обычный HTTP-клиент без знания собственных заголовков?
+
+### Источники
+
+- [Первоисточник](https://www.rfc-editor.org/rfc/rfc9110.html)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+

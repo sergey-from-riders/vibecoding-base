@@ -1,73 +1,189 @@
 # Stripe Payments Standard
 
-This experimental optional standard applies when a project enables Stripe payments.
+> Собрано автоматически из rules/*.md. Редактируйте исходные правила, затем выполните `node tools/handbook.mjs generate`.
 
-Payments are optional. A generated project must not contain payment code, payment standards or Stripe-specific folders until `vibe enable payments stripe` is used.
+## Подтверждайте оплату на стороне сервера
 
-## May 2026 Baseline
+### Коротко
 
-1. Pin the Stripe API version explicitly.
-2. Current Clover GA baseline is `2026-02-25.clover` unless the project chooses a different pinned version.
-3. Payment state changes are driven by verified webhooks.
-4. Application servers never handle raw card data.
-5. Every payment mutation is idempotent.
+Возврат пользователя на страницу успеха не доказывает получение денег.
 
-## Core Rules
+### Плохо
 
-1. Payment state changes must be driven by verified webhooks.
-2. Raw card data must never touch the application server.
-3. Webhook idempotency is mandatory.
-4. Payment events must be auditable.
-5. Test mode and live mode secrets must stay separate.
-6. API version changes require a migration note.
-7. Test clocks or equivalent deterministic tests are required for subscription flows.
+```text
+?success=true → заказ оплачен.
+```
 
-## Payment Flow Rules
+### Хорошо
 
-1. Prefer Checkout or PaymentIntents over custom card collection.
-2. Store provider IDs, not card details.
-3. Persist a local payment/order state machine.
-4. Treat redirect return URLs as hints; final truth comes from webhooks.
-5. Do not mark paid on the client callback alone.
+```text
+Проверенный вебхук или серверная сверка
+подтверждает состояние платежа.
+```
 
-## Webhook Rules
+### Почему
 
-1. Verify webhook signatures.
-2. Persist event IDs before processing side effects.
-3. Duplicate events are safe no-ops.
-4. Out-of-order events are handled through state transitions.
-5. Failed processing is retryable.
-6. Poison events move to a review queue with redacted payload context.
+Параметр адреса можно изменить, а пользователь может закрыть страницу до возврата.
 
-## Reconciliation
+### Когда применять
 
-Production payments need:
+Проверьте идентификатор заказа, сумму, валюту и конечное состояние провайдера.
 
-1. provider event ledger;
-2. local state ledger;
-3. daily reconciliation job or manual runbook;
-4. refund and dispute handling;
-5. dashboard showing mismatches;
-6. audit trail for operator actions.
+### Как проверить
 
-## Security And Compliance
+- Проверьте ложный success и оплату без возврата пользователя.
 
-1. Keep PCI scope low by avoiding raw card data.
-2. Keep publishable and secret keys separate.
-3. Rotate webhook secrets deliberately.
-4. Do not log full provider payloads when they contain personal or payment data.
-5. Use least-privilege restricted keys when possible.
-6. Store idempotency keys or hashes according to data retention policy.
+### Источники
 
-## Test Requirements
+- [Первоисточник](https://docs.stripe.com/webhooks)
 
-1. Webhook signature validation test.
-2. Duplicate webhook test.
-3. Out-of-order webhook test.
-4. Payment success/failure tests.
-5. Refund/dispute tests when those flows are enabled.
-6. Live-mode guard test to prevent accidental live charges in CI.
+Уровень: Обязательно. Проверено: 2026-11-09.
 
-## Enforcement Reality
+## Обрабатывайте дубликаты и порядок платёжных событий
 
-This standard is documented only until a concrete payments module and webhook test gate are selected.
+### Коротко
+
+Повторный или запоздалый вебхук не должен повторять списание и ломать состояние заказа.
+
+### Плохо
+
+```text
+Каждый payment.succeeded повторно выдаёт покупку.
+```
+
+### Хорошо
+
+```text
+event_id сохранён.
+Переход состояния проверен. Повтор безопасен.
+```
+
+### Почему
+
+Доставка события и бизнес-операция не образуют общую сетевую транзакцию.
+
+### Когда применять
+
+При неоднозначности уточняйте актуальное состояние у провайдера. Сохранение event_id и изменение локального состояния связываются транзакционно.
+
+### Как проверить
+
+- Отправьте одно событие дважды и поменяйте порядок событий.
+
+### Источники
+
+- [Первоисточник](https://docs.stripe.com/webhooks)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+
+## Не собирайте карточные данные без необходимости
+
+### Коротко
+
+Используйте платёжную форму или компоненты провайдера и храните его идентификаторы.
+
+### Плохо
+
+```text
+Номер карты и CVC приходят в собственный API и логи.
+```
+
+### Хорошо
+
+```text
+Платёжный компонент провайдера.
+Сервер хранит payment_id и состояние.
+```
+
+### Почему
+
+Обработка карточных данных существенно увеличивает требования к защите.
+
+### Когда применять
+
+Использование провайдера уменьшает объём чувствительных данных, но не отменяет собственные обязательства проекта.
+
+### Как проверить
+
+- В БД, логах и аналитике нет PAN/CVC?
+
+### Источники
+
+- [Первоисточник](https://docs.stripe.com/webhooks)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+
+## Сверяйте деньги и состояние заказов
+
+### Коротко
+
+Периодически находите несовпадения между локальной системой и провайдером.
+
+### Плохо
+
+```text
+Вебхук потерян; оплаченный заказ навсегда остался pending.
+```
+
+### Хорошо
+
+```text
+Сверка неопределённых платежей.
+Расхождение попадает на разбор с историей.
+```
+
+### Почему
+
+Одного канала уведомлений недостаточно для контроля состояния денег.
+
+### Когда применять
+
+Частота зависит от объёма и допустимой задержки. Возвраты и споры включаются в ту же модель.
+
+### Как проверить
+
+- Есть ли проверка потерянного события и частичного возврата?
+
+### Источники
+
+- [Первоисточник](https://docs.stripe.com/webhooks)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+
+## Разделяйте тестовую и рабочую оплату
+
+### Коротко
+
+Используйте разные ключи, события и явную проверку окружения.
+
+### Плохо
+
+```text
+Тесты берут первый доступный ключ и создают живую оплату.
+```
+
+### Хорошо
+
+```text
+Тестовый режим проверяется до запроса.
+Рабочие ключи недоступны тестовой среде.
+```
+
+### Почему
+
+Автотест не должен случайно списывать настоящие деньги.
+
+### Когда применять
+
+Версия API провайдера фиксируется явно; обновляется после проверки схем событий и SDK.
+
+### Как проверить
+
+- Тестовая сборка отказывается запускаться с рабочей конфигурацией?
+
+### Источники
+
+- [Первоисточник](https://docs.stripe.com/webhooks)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+

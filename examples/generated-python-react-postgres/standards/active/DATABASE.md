@@ -1,186 +1,394 @@
-<!-- Generated from registry/standards/database/postgres@1.1.0. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/database/postgres@2.0.0. Update the registry standard, then regenerate. -->
 
 # PostgreSQL Data Contract Standard
 
-This standard applies to PostgreSQL schema, migrations, seeds and data access expectations.
+> Собрано автоматически из rules/*.md. Редактируйте исходные правила, затем выполните `node tools/handbook.mjs generate`.
 
-## May 2026 Baseline
+## Выбирайте тип идентификатора под задачу
 
-1. PostgreSQL baseline: `18.x`.
-2. Domain identifiers use `uuid`.
-3. PostgreSQL 18 `uuidv7()` is preferred for new high-write chronological tables when available.
-4. `gen_random_uuid()` remains acceptable for generic starter templates and older managed PostgreSQL services.
-5. Migrations are append-only, reversible where practical and reviewed before production.
+### Коротко
 
-## Entity Key Principle
+UUID удобен для независимого создания записей и публичных идентификаторов. Имя поля и его тип — разные решения.
 
-Entity name determines key name:
-
-1. table `users` -> primary key `user_id`;
-2. table `companies` -> primary key `company_id`;
-3. table `sessions` -> primary key `session_id`.
-
-Generic `id` columns are not used for domain entities.
-
-## Table Naming
-
-1. Use `snake_case`.
-2. Use plural names for entity tables.
-3. Use explicit names for event/audit tables.
-4. Avoid overloaded tables that mix multiple business concepts.
-
-Examples:
-
-1. `users`
-2. `companies`
-3. `sessions`
-4. `auth_events`
-
-## Primary Keys
-
-1. PK format: `<entity_singular>_id`.
-2. PK type: `uuid`.
-3. Default: `uuidv7()` for PostgreSQL 18 deployments that support it, otherwise `gen_random_uuid()`.
-
-Forbidden:
-
-1. `id`
-2. `uuid`
-3. `user_uuid`
-4. `users_id`
-5. `serial` or `bigserial` for domain entity IDs.
-
-## Foreign Keys
-
-1. FK name follows the target entity: `<target_entity_singular>_id`.
-2. FK type is `uuid`.
-3. Use explicit `ON DELETE` behavior.
-4. Do not rely on application code as the only referential integrity layer.
-
-Examples:
-
-1. `sessions.user_id -> users.user_id`
-2. `companies.owner_user_id -> users.user_id`
-3. `users.current_company_id -> companies.company_id`
-
-## Relation Tables
-
-1. Relation table names use `snake_case`.
-2. Relation tables use canonical FK names.
-3. Composite PK from FKs is preferred.
-4. Add a surrogate `*_id` only when the relation has independent lifecycle or external references.
-
-## Version Tables
-
-Business entities that need audit/history use version tables:
-
-1. table: `<entity_singular>_versions`;
-2. PK: `<entity_singular>_version_id`;
-3. entity reference: `<entity_singular>_id`;
-4. version number: `version_no integer`;
-5. timestamps and actor metadata where available.
-
-## Time And Soft Delete
-
-Standard timestamp fields:
-
-1. `created_at timestamptz not null default now()`
-2. `updated_at timestamptz not null default now()`
-3. `deleted_at timestamptz null` only when soft delete is intentional.
-
-Store timestamps in UTC. Do not store local wall-clock time unless it is domain data.
-
-## Constraints And Indexes
-
-Naming:
-
-1. indexes: `idx_<table>_<column>[_<suffix>]`;
-2. unique indexes: `uidx_<table>_<columns>`;
-3. FK constraints: `<table>_<column>_fkey`;
-4. checks: `<table>_<meaning>_check`.
-
-Rules:
-
-1. enforce invariant constraints in the database when practical;
-2. create indexes for FK columns used in joins;
-3. avoid indexes that are not tied to a query path;
-4. use partial indexes for soft-delete and status filters when useful;
-5. document any intentionally missing FK.
-
-## JSONB Policy
-
-JSONB is allowed for:
-
-1. external provider payload snapshots;
-2. sparse metadata;
-3. append-only audit context;
-4. feature flags or settings where schema churn is high.
-
-JSONB is not a replacement for relational modeling when fields are queried, joined, authorized or validated as core business data.
-
-## Migration Safety
-
-Production-safe migrations should:
-
-1. be append-only files;
-2. avoid long blocking locks;
-3. backfill in batches for large tables;
-4. split expand and contract phases for breaking changes;
-5. avoid dropping columns in the same deploy that stops writing them;
-6. include down migrations for local/test unless impossible and documented;
-7. include verification queries for risky data changes.
-
-## Security And Tenancy
-
-1. Tenant boundaries must be explicit in schema or queries.
-2. RLS may be used when the project has operational skill to maintain it.
-3. Sensitive values are hashed, encrypted or tokenized according to the security standard.
-4. Do not store raw access tokens unless absolutely necessary and encrypted.
-5. Audit tables must not leak secrets into public examples.
-
-## Operations
-
-Production systems need:
-
-1. backup and restore drill;
-2. PITR plan where data matters;
-3. migration rollback plan;
-4. slow query visibility;
-5. `pg_stat_statements` or provider equivalent;
-6. index bloat and vacuum monitoring.
-
-## Good Example
+### Плохо
 
 ```sql
-CREATE TABLE users (
-  user_id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  email text NOT NULL,
-  created_at timestamptz NOT NULL DEFAULT now(),
-  updated_at timestamptz NOT NULL DEFAULT now()
+CREATE TABLE orders (
+  order_id bigint PRIMARY KEY
 );
-
-CREATE TABLE sessions (
-  session_id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id uuid NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
-  created_at timestamptz NOT NULL DEFAULT now()
-);
-
-CREATE INDEX idx_sessions_user_id ON sessions(user_id);
+-- Два независимых сервиса выдали order_id = 42.
 ```
 
-## Bad Example
+### Хорошо
 
 ```sql
-CREATE TABLE users (
-  id bigserial PRIMARY KEY
+CREATE TABLE orders (
+  order_id uuid PRIMARY KEY DEFAULT uuidv7()
 );
+-- PostgreSQL 18: генерация без общего счётчика.
+```
 
+### Почему
+
+UUID уменьшает зависимость от единого генератора. Он не заменяет проверку доступа; UUIDv7 раскрывает временную составляющую.
+
+### Когда применять
+
+Числовой identity допустим в централизованной БД. UUIDv7 есть в PostgreSQL 18; UUIDv4 через gen_random_uuid() подходит там, где v7 недоступен.
+
+### Как проверить
+
+- Где создаётся идентификатор? Нужен ли единый счётчик? Проверяется ли доступ независимо от UUID?
+
+### Источники
+
+- [Первоисточник](https://www.postgresql.org/docs/18/functions-uuid.html)
+
+Уровень: Зависит от задачи. Проверено: 2026-11-09.
+
+## Называйте сущности и связи последовательно
+
+### Коротко
+
+Из имени поля должно быть понятно, какую связь оно хранит.
+
+### Плохо
+
+```sql
 CREATE TABLE sessions (
-  id uuid PRIMARY KEY,
-  user_uuid uuid
+  id uuid, ref uuid
 );
 ```
 
-## Enforcement Reality
+### Хорошо
 
-This standard is documented by default. It becomes linted/tested/CI-blocking only when the generated project includes real migration and schema checks.
+```sql
+CREATE TABLE sessions (
+  session_id uuid PRIMARY KEY,
+  user_id uuid REFERENCES users(user_id)
+);
+```
+
+### Почему
+
+Явные имена помогают читать запросы с несколькими таблицами.
+
+### Когда применять
+
+snake_case и entity_id — соглашение этого справочника. Название id допустимо в другом последовательном соглашении; массовое переименование существующей БД не требуется.
+
+### Как проверить
+
+- Можно ли без комментария понять назначение ref?
+
+### Источники
+
+- [Первоисточник](https://www.postgresql.org/docs/18/ddl-constraints.html)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+
+## Закрепляйте целостность ограничениями БД
+
+### Коротко
+
+Проверка в приложении не защищает от конкурирующих запросов и другого клиента БД.
+
+### Плохо
+
+```sql
+if (!emailExists(email)) {
+  insertUser(email);
+}
+```
+
+### Хорошо
+
+```sql
+CREATE UNIQUE INDEX users_email_unique
+  ON users (email);
+```
+
+### Почему
+
+Два запроса могут одновременно пройти проверку отсутствия записи.
+
+### Когда применять
+
+Способ нормализации email и состав уникальности, включая tenant, определяет продукт.
+
+### Как проверить
+
+- Попробуйте два одновременных создания одной сущности.
+
+### Источники
+
+- [Первоисточник](https://www.postgresql.org/docs/18/ddl-constraints.html)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+
+## Опишите связи и поведение при удалении
+
+### Коротко
+
+Внешний ключ не позволяет хранить ссылку на несуществующую запись.
+
+### Плохо
+
+```sql
+user_id uuid -- связь известна только коду
+```
+
+### Хорошо
+
+```sql
+user_id uuid REFERENCES users(user_id)
+  ON DELETE RESTRICT
+```
+
+### Почему
+
+Без ограничения легко получить осиротевшие данные.
+
+### Когда применять
+
+CASCADE подходит только для действительно зависимых записей. В распределённом хранилище без FK нужен документированный контроль целостности.
+
+### Как проверить
+
+- Проверьте создание неверной ссылки и удаление родителя.
+
+### Источники
+
+- [Первоисточник](https://www.postgresql.org/docs/18/ddl-constraints.html)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+
+## Изменяйте связанные данные одной транзакцией
+
+### Коротко
+
+Связанные операции должны завершиться вместе или вместе отмениться.
+
+### Плохо
+
+```sql
+Списать остаток.
+Сбой.
+Заказ не создан.
+```
+
+### Хорошо
+
+```sql
+BEGIN;
+-- Проверить и списать остаток.
+-- Создать заказ.
+COMMIT;
+```
+
+### Почему
+
+Частичный результат нарушает бизнес-инвариант.
+
+### Когда применять
+
+Транзакция БД не включает внешний API; для внешних эффектов используйте outbox или сверку.
+
+### Как проверить
+
+- Остановите операцию между шагами и проверьте целостность.
+
+### Источники
+
+- [Первоисточник](https://www.postgresql.org/docs/18/ddl.html)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+
+## Расширяйте схему до удаления старого формата
+
+### Коротко
+
+Выпускайте несовместимые изменения в несколько совместимых этапов.
+
+### Плохо
+
+```text
+Удалить колонку → выпустить новый код.
+```
+
+### Хорошо
+
+```text
+Добавить новое поле → заполнить порциями →
+переключить чтение → позже удалить старое.
+```
+
+### Почему
+
+Во время выпуска старый и новый код могут работать одновременно.
+
+### Когда применять
+
+Для production с данными. Уже применённые миграции не переписываются; откат данных не всегда возможен через down.
+
+### Как проверить
+
+- Проверены блокировки, время заполнения и старый код на новой схеме?
+
+### Источники
+
+- [Первоисточник](https://www.postgresql.org/docs/18/ddl.html)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+
+## Создавайте индекс под реальный запрос
+
+### Коротко
+
+Индекс ускоряет выбранное чтение и увеличивает стоимость записи.
+
+### Плохо
+
+```text
+Создать индекс на каждой колонке.
+```
+
+### Хорошо
+
+```text
+Найти медленный запрос → EXPLAIN →
+добавить подходящий индекс → измерить.
+```
+
+### Почему
+
+Лишние индексы расходуют место и замедляют обновления.
+
+### Когда применять
+
+Индексы FK на стороне ссылки не создаются PostgreSQL автоматически. Для связей и фильтров учитывайте объём и план запроса.
+
+### Как проверить
+
+- У индекса есть запрос и сравнение времени до и после?
+
+### Источники
+
+- [Первоисточник](https://www.postgresql.org/docs/18/ddl-constraints.html)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+
+## Храните момент времени и деньги без двусмысленности
+
+### Коротко
+
+Для денег задавайте валюту и точность, для времени различайте момент и местное расписание.
+
+### Плохо
+
+```text
+price = 0.1 + 0.2
+meeting = "09.11.2026 10:00"
+```
+
+### Хорошо
+
+```text
+amount_minor = 30; currency = "RUB"
+created_at timestamptz
+meeting_zone = "Europe/Moscow"
+```
+
+### Почему
+
+Двоичная дробь может округляться неожиданно; время без зоны не всегда определяет момент.
+
+### Когда применять
+
+Для денег подходят integer minor units или numeric с политикой округления. Для будущего местного расписания храните также часовую зону; timestamptz её название не сохраняет.
+
+### Как проверить
+
+- Проверены округление, валюта и переходы часового пояса?
+
+### Источники
+
+- [Первоисточник](https://www.postgresql.org/docs/18/ddl.html)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+
+## Отделяйте бизнес-поля от гибких метаданных
+
+### Коротко
+
+Поля, участвующие в доступе, связях и частом поиске, нуждаются в явной модели.
+
+### Плохо
+
+```text
+Весь заказ — один JSON без ограничений.
+```
+
+### Хорошо
+
+```text
+order_id, tenant_id, total_minor — колонки.
+provider_snapshot — JSONB.
+```
+
+### Почему
+
+Гибкое поле не отменяет проверку структуры и прав.
+
+### Когда применять
+
+JSONB полезен для внешних снимков и разреженных настроек; запросы внутри JSONB тоже можно индексировать.
+
+### Как проверить
+
+- Какие поля нужны для связей, прав и отчётов?
+
+### Источники
+
+- [Первоисточник](https://www.postgresql.org/docs/18/ddl.html)
+
+Уровень: Зависит от задачи. Проверено: 2026-11-09.
+
+## Выберите политику истории и удаления
+
+### Коротко
+
+Мягкое удаление, история версий и аудит решают разные задачи.
+
+### Плохо
+
+```text
+deleted_at есть, но все запросы читают удалённое.
+```
+
+### Хорошо
+
+```text
+Чтение учитывает deleted_at.
+Уникальность и восстановление проверены.
+Срок окончательной очистки определён.
+```
+
+### Почему
+
+Флаг удаления сам по себе не удаляет данные и не создаёт историю изменений.
+
+### Когда применять
+
+История версий нужна при требованиях аудита. Таблицы связей могут иметь составной ключ без отдельного UUID.
+
+### Как проверить
+
+- Проверьте восстановление, повторное создание и очистку связанных данных.
+
+### Источники
+
+- [Первоисточник](https://www.postgresql.org/docs/18/ddl.html)
+
+Уровень: Зависит от задачи. Проверено: 2026-11-09.
+

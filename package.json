@@ -1,6 +1,6 @@
 {
   "name": "vibecoding-base",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "private": true,
   "packageManager": "pnpm@10.12.0",
   "license": "MIT",
@@ -11,6 +11,9 @@
   "scripts": {
     "verify": "node tools/vibe.mjs verify",
     "registry:check": "node tools/vibe.mjs verify --registry-only",
-    "examples:generate": "node tools/vibe.mjs use go-next-postgres --project examples/generated-go-next-postgres --force && node tools/vibe.mjs use python-react-postgres --project examples/generated-python-react-postgres --force"
+    "examples:generate": "node tools/vibe.mjs use go-next-postgres --project examples/generated-go-next-postgres --force && node tools/vibe.mjs use python-react-postgres --project examples/generated-python-react-postgres --force",
+    "handbook:generate": "node tools/handbook.mjs generate",
+    "handbook:check": "node tools/handbook.mjs verify",
+    "test": "node --test tools/standards-content.test.mjs"
   }
 }

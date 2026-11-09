@@ -1,169 +1,157 @@
-<!-- Generated from registry/standards/backend/go@1.1.0. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/backend/go@2.0.0. Update the registry standard, then regenerate. -->
 
 # Go Backend Engineering Standard
 
-This standard applies to `apps/api` when the active stack uses Go.
+> Собрано автоматически из rules/*.md. Редактируйте исходные правила, затем выполните `node tools/handbook.mjs generate`.
 
-## May 2026 Baseline
+## Отделяйте HTTP от бизнес-правил
 
-1. Go baseline: `1.26.x`.
-2. Use Go modules and pin the toolchain in `go.mod`.
-3. Use `context.Context` through request, service and repository boundaries.
-4. Use structured logging through `log/slog` or the stack-approved adapter.
-5. Run `go test ./...`; add race/fuzz/vulnerability checks when runtime maturity allows it.
+### Коротко
 
-## Canonical Structure
+Обработчик переводит запрос в вызов приложения, а доменная логика остаётся переиспользуемой.
+
+### Плохо
 
 ```text
-apps/api/
-├─ cmd/api/main.go
-├─ internal/platform/httpserver/router.go
-├─ internal/platform/httpserver/middleware/*.go
-├─ internal/platform/problem/writer.go
-├─ internal/platform/db/*.go
-├─ internal/modules/auth/module.go
-├─ internal/modules/auth/transport/http/routes.go
-├─ internal/modules/auth/transport/http/*_handler.go
-├─ internal/modules/auth/service/*.go
-├─ internal/modules/auth/repository/*.go
-├─ internal/modules/company/module.go
-├─ internal/modules/company/transport/http/routes.go
-├─ internal/modules/company/transport/http/*_handler.go
-├─ internal/modules/company/service/*.go
-└─ internal/modules/company/repository/*.go
+HTTP-обработчик сам считает скидку, делает SQL и отправляет письмо.
 ```
 
-## Numeric Limits
+### Хорошо
 
-1. `MAX_GO_FILE_LINES = 250`
-2. `MAX_FUNCTION_LINES = 40`
-3. `MAX_HANDLER_LINES = 35`
-4. `MAX_ROUTES_FILE_LINES = 100`
-5. `MAX_FUNCTION_PARAMS = 4`
-6. `MAX_FUNCTION_RETURNS = 3`
-7. `MAX_NESTING_DEPTH = 3`
-8. `MAX_SWITCH_CASES = 7`
-9. `MAX_CYCLOMATIC_COMPLEXITY = 10`
-10. `MAX_HANDLER_DB_CALLS = 0`
-11. `MAX_HANDLER_REPOSITORY_CALLS = 0`
-12. `MAX_HANDLER_SERVICE_CALLS = 1`
-13. `MAX_HANDLER_RESPONSE_WRITES = 1`
-14. `MAX_MODULE_ROUTES_PER_FILE = 12`
-15. `MAX_MIDDLEWARE_PER_ROUTE = 6`
-16. `MAX_COMMENT_RATIO_PERCENT = 5`
-17. `MAX_PANIC_IN_REQUEST_PATH = 0`
-18. `MAX_GLOBAL_MUTABLE_STATE = 0`
-19. `MAX_TODO_IN_MAIN_BRANCH = 0`
-20. `MAX_UNTESTED_CHANGED_FILES = 0`
+```text
+Обработчик → сервис заказа → хранилище.
+Отправка связана с сохранённым событием.
+```
 
-These limits are documented unless the generated project includes a real limits checker.
+### Почему
 
-## Router Decomposition
+Логику можно проверять без запуска HTTP и повторно использовать в worker.
 
-1. `GLOBAL_ROUTER_FILES = 1` (`internal/platform/httpserver/router.go`)
-2. `MODULE_ROUTER_FILES_MIN = 1` per module
-3. `ENDPOINTS_PER_HANDLER_FILE = 1`
-4. `HANDLER_FILES_PER_MODULE_MIN = 1`
-5. `ROUTES_WITHOUT_MODULE_OWNER = 0`
+### Когда применять
 
-## Handler Contract
+Количество слоёв соразмерно задаче. Требование ровно одного вызова сервиса не является свойством Go.
 
-1. Parse input: `1`
-2. Validate input: `1`
-3. Service call: `1`
-4. Error mapping: `1`
-5. Response write: `1`
+### Как проверить
 
-Запрещено в handler:
-1. SQL calls: `0`
-2. Repository orchestration: `0`
-3. Domain policy branches: `0`
-4. Transaction control: `0`
+- Можно ли проверить правило скидки отдельно от сети?
 
-Handlers map protocol to application calls. Business policy lives in services.
+### Источники
 
-## Service Contract
+- [Первоисточник](https://go.dev/doc/effective_go)
 
-1. HTTP imports in service package: `0`
-2. DB driver imports in service package: `0`
-3. Repository interfaces per service file: `<= 4`
-4. Unit tests required per public service method: `>= 1`
-5. Hidden goroutine launches without lifecycle ownership: `0`
-6. Business errors must be typed or wrapped with stable sentinels.
+Уровень: Рекомендуется. Проверено: 2026-11-09.
 
-Use `errors.Is`, `errors.As` and `errors.Join` where they make error handling clearer.
+## Передавайте отмену и ограничивайте время
 
-## Repository Contract
+### Коротко
 
-1. `context.Context` in public methods: `100%`
-2. Non-UUID domain IDs: `0`
-3. Direct HTTP dependency in repository: `0`
-4. Integration tests per repository method: `>= 1`
-5. SQL is parameterized: `100%`
-6. Transactions are explicit and owned by a service/application boundary.
+Запрос к БД или внешнему сервису должен завершаться при отмене родительской работы.
 
-Prefer generated or typed query layers when they exist in the project. Do not add a new ORM by default.
+### Плохо
 
-## Concurrency And Runtime Safety
+```go
+db.Query("SELECT ...") // запрос живёт после ухода клиента
+```
 
-1. Request goroutines must be cancellable.
-2. Background goroutines require a lifecycle owner and shutdown path.
-3. Mutable package globals are forbidden.
-4. Shared maps and caches require synchronization and tests.
-5. Use `context.WithCancelCause` for long-running flows where cancellation reason matters.
-6. Race-sensitive code needs `go test -race` evidence before merge.
+### Хорошо
 
-## Security And Supply Chain
+```go
+ctx, cancel := context.WithTimeout(r.Context(), 2*time.Second)
+defer cancel()
+rows, err := db.QueryContext(ctx, query)
+```
 
-1. `govulncheck` is the preferred vulnerability gate when available.
-2. Keep `GOTOOLCHAIN` or toolchain pinning explicit for reproducible builds.
-3. Do not log tokens, passwords, session secrets or raw credentials.
-4. External calls must set timeouts and handle retries deliberately.
-5. File/path/network inputs need validation before use.
+### Почему
 
-## Observability
+Зависшие операции занимают соединения и ресурсы.
 
-1. Every request has `request_id`.
-2. Logs are structured.
-3. Errors include safe codes, not raw internals.
-4. Traces propagate through service and repository calls.
-5. Metrics use stable route templates, not raw URLs.
+### Когда применять
 
-## Team Readability
+Две секунды — пример, а не норматив. В Go передавайте context явно; фоновая задача должна иметь собственного владельца и срок жизни.
 
-1. Constructor per component: `1`
-2. Hidden singleton mutable state: `0`
-3. Public symbol count per file: `<= 12`
-4. Distinct responsibilities per file: `1`
+### Как проверить
 
-## Test Gates
+- Отмените запрос и проверьте завершение зависимых операций.
 
-1. Unit suite pass rate: `100%`
-2. Integration suite pass rate: `100%`
-3. Contract checks pass rate: `100%`
-4. Migration up/down checks: `100%`
-5. Critical auth/session/security tests pass: `100%`
-6. Race test for concurrency-sensitive code: `100%`
-7. Fuzz tests for parsers/normalizers where malformed input is a risk.
+### Источники
 
-## Merge Gate
+- [Первоисточник](https://go.dev/doc/effective_go)
 
-Feature work is not accepted when:
+Уровень: Рекомендуется. Проверено: 2026-11-09.
 
-1. documented limits are knowingly violated without an ADR;
-2. changed behavior has no test evidence;
-3. handlers bypass services/repositories;
-4. contract and runtime disagree;
-5. secrets or unsafe logs are introduced.
+## Обрабатывайте ошибки там, где известен контекст
 
-## Enforcement Reality
+### Коротко
 
-This standard is documented by default. It becomes linted/tested/CI-blocking only when the generated project includes real Go checks such as formatting, vet, staticcheck, tests, race checks, limits checks or `govulncheck`.
+Сохраняйте причину ошибки внутри системы и возвращайте безопасное объяснение наружу.
 
-## Related Standards
+### Плохо
 
-1. `standards/active/TESTING.md`
-2. `standards/active/API.md`
-3. `standards/active/DATABASE.md`
-4. `standards/active/SECURITY.md`
-5. `standards/active/OBSERVABILITY.md`
+```go
+result, _ := saveOrder(order)
+return success(result)
+```
+
+### Хорошо
+
+```go
+result, err := saveOrder(order)
+if err != nil { return fmt.Errorf("save order: %w", err) }
+return result, nil
+```
+
+### Почему
+
+Игнорирование ошибки создаёт ложный успех.
+
+### Когда применять
+
+Не используйте panic для ожидаемой ошибки запроса. Преобразование внутренних причин в HTTP выполняется на границе.
+
+### Как проверить
+
+- Сбой хранилища не возвращает успешный ответ?
+
+### Источники
+
+- [Первоисточник](https://go.dev/doc/effective_go)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+
+## Ограничивайте параллельную работу
+
+### Коротко
+
+Каждая запущенная задача должна иметь предел, отмену и понятное завершение.
+
+### Плохо
+
+```text
+На каждый файл запускается новая goroutine без лимита.
+```
+
+### Хорошо
+
+```text
+Очередь с ограничением размера.
+Пул работников. Отмена и ожидание завершения.
+```
+
+### Почему
+
+Неограниченная параллельность может исчерпать память и соединения.
+
+### Когда применять
+
+Размер пула выбирают измерением. Для общего изменяемого состояния нужны синхронизация и race-проверка.
+
+### Как проверить
+
+- Проверьте всплеск нагрузки, остановку и утечку goroutine.
+
+### Источники
+
+- [Первоисточник](https://go.dev/doc/effective_go)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+

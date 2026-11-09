@@ -1,3 +1,5 @@
 # agent/base
 
-Agent operating rules for generated projects. Start here when changing generated `AGENTS.md`, read order, forbidden actions or active context rules.
+Источник правил — `rules/*.md`. `standard.md` собирается автоматически.
+
+Редактируйте отдельное правило, затем выполните `node tools/handbook.mjs generate` и `node tools/vibe.mjs verify`.

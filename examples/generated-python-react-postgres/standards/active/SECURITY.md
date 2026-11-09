@@ -1,96 +1,264 @@
-<!-- Generated from registry/standards/security/no-secrets@1.1.0. Update the registry standard, then regenerate. -->
+<!-- Generated from registry/standards/security/no-secrets@2.0.0. Update the registry standard, then regenerate. -->
 
 # No Secrets Security Standard
 
-This standard keeps generated projects safe for public repositories.
+> Собрано автоматически из rules/*.md. Редактируйте исходные правила, затем выполните `node tools/handbook.mjs generate`.
 
-## May 2026 Baseline
+## Проверяйте право на конкретный объект
 
-1. OWASP ASVS 5 and OWASP API Security Top 10 2023 are the security reference baseline.
-2. SLSA v1.2 concepts guide supply-chain maturity.
-3. Public starter repos must be safe before first push.
-4. Generated projects must default to placeholder values only.
-5. CI should fail on likely secret patterns where the project enables the check.
+### Коротко
 
-## Rules
+Вход в систему не даёт доступа ко всем записям.
 
-1. Real secrets are never committed.
-2. `.env` files are ignored.
-3. Only `.env.example` files may be committed.
-4. Tokens, private keys, passwords and production hostnames must not appear in templates.
-5. Generated projects must include a hygiene check before publish.
-6. Incident notes must explain how to rotate leaked credentials.
-7. Default auth/session/payment examples must be non-production placeholders.
-8. Public docs must not include private IPs, private hostnames or personal server paths.
+### Плохо
 
-## Secret Shapes
+```sql
+SELECT * FROM orders WHERE order_id = $1
+```
 
-The hygiene check must scan for common secret shapes:
+### Хорошо
 
-1. private key headers;
-2. GitHub PATs;
-3. OpenAI/API-style `sk-` keys;
-4. AWS access keys;
-5. Google API keys;
-6. Slack tokens;
-7. obvious `client_secret` or `api_key` assignments.
-8. Stripe secret keys;
-9. JWT signing secrets;
-10. database URLs with real passwords.
+```sql
+SELECT * FROM orders
+WHERE order_id = $1 AND tenant_id = $2
+```
 
-## Template Hygiene
+### Почему
 
-Templates must not include:
+Чужой идентификатор может быть известен или случайно раскрыт.
 
-1. private company names;
-2. private hostnames;
-3. personal server paths;
-4. production URLs;
-5. real account IDs;
-6. dependency vendor folders.
-7. generated lockfiles that were created with private registries unless intentionally documented.
+### Когда применять
 
-## Dependency And Supply Chain
+tenant_id берётся из проверенного контекста, а не произвольного поля клиента. Для сложных ролей нужен явный механизм политик.
 
-1. Prefer lockfiles for runnable generated projects.
-2. Use official registries or document private registry setup outside public templates.
-3. Pin CI actions by version or SHA according to project maturity.
-4. Use OIDC federation for cloud deploys when possible.
-5. Keep SBOM/provenance optional until real release automation exists.
-6. Do not claim SLSA compliance without provenance-producing CI.
+### Как проверить
 
-## API Security Basics
+- Пользователь одной организации не читает и не меняет данные другой?
 
-Generated APIs should plan for:
+### Источники
 
-1. object-level authorization;
-2. function-level authorization;
-3. object property authorization;
-4. resource consumption limits;
-5. SSRF protection when accepting URLs;
-6. safe third-party API consumption;
-7. endpoint inventory.
+- [Первоисточник](https://owasp.org/API-Security/editions/2023/en/0x11-t10/)
 
-## Logging And Redaction
+Уровень: Обязательно. Проверено: 2026-11-09.
 
-1. Secrets are redacted before logs leave the process.
-2. Tokens are logged only as hashes or last-four style debug hints.
-3. Payment, OAuth and Telegram signed payloads are not logged raw.
-4. Error responses do not reveal stack traces.
+## Храните секреты вне исходного кода
 
-## Incident Response
+### Коротко
 
-If a real credential is found:
+Используйте управляемую конфигурацию и ограниченный доступ вместо ключей в репозитории.
 
-1. stop publishing;
-2. revoke or rotate the credential;
-3. remove it from the working tree;
-4. rewrite public history only with explicit owner approval;
-5. document the incident and prevention check.
-6. add a regression check if the leak shape was not detected.
+### Плохо
 
-## Enforcement Reality
+```text
+Рабочий пароль записан прямо в README.
+```
 
-Secret-shape and private-residue scanning is linted and CI-blocking through `check_template_hygiene` and `vibe verify`.
+### Хорошо
 
-Broader ASVS, SLSA, dependency and runtime security practices are documented until a project adds real security scanning and release automation.
+```text
+README содержит пример без значения.
+Секрет передаётся через защищённую конфигурацию.
+```
+
+### Почему
+
+Удаление файла из последнего коммита не убирает секрет из истории.
+
+### Когда применять
+
+При утечке сначала отзовите или замените ключ. Очистка истории — отдельная согласованная операция.
+
+### Как проверить
+
+- Проверьте исходники, историю, логи и сборку на реальные секреты.
+
+### Источники
+
+- [Первоисточник](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+
+## Передавайте SQL-параметры отдельно от текста запроса
+
+### Коротко
+
+Не вставляйте пользовательскую строку непосредственно в SQL.
+
+### Плохо
+
+```sql
+query = "SELECT * FROM users WHERE name = '" + name + "'"
+```
+
+### Хорошо
+
+```sql
+query = "SELECT * FROM users WHERE name = $1"
+args = [name]
+```
+
+### Почему
+
+Пользовательский ввод не должен менять структуру команды.
+
+### Когда применять
+
+Для имён колонок и направления сортировки используйте разрешённый список; bind-параметры не заменяют SQL-идентификаторы.
+
+### Как проверить
+
+- Попробуйте кавычки и SQL-фрагмент во входном значении.
+
+### Источники
+
+- [Первоисточник](https://owasp.org/API-Security/editions/2023/en/0x11-t10/)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+
+## Ограничивайте серверное открытие внешних URL
+
+### Коротко
+
+Проверяйте адрес назначения, перенаправления, DNS и объём ответа.
+
+### Плохо
+
+```text
+Сервер скачивает любой URL из формы.
+```
+
+### Хорошо
+
+```text
+Разрешённые HTTPS-источники.
+Запрет внутренних адресов и опасных редиректов.
+```
+
+### Почему
+
+Пользователь может попытаться обратиться через ваш сервер к внутренним сервисам.
+
+### Когда применять
+
+Проверка строкового префикса недостаточна. Учитывайте IPv6, DNS rebinding и адрес после каждого перенаправления.
+
+### Как проверить
+
+- Проверьте loopback, частные адреса и редирект на них.
+
+### Источники
+
+- [Первоисточник](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+
+## Удаляйте секреты из логов до записи
+
+### Коротко
+
+Записывайте идентификаторы операций и безопасные признаки вместо полного содержимого.
+
+### Плохо
+
+```text
+log(request.headers, request.body)
+```
+
+### Хорошо
+
+```text
+log({request_id, route, status, duration_ms})
+```
+
+### Почему
+
+Логи часто доступны большему числу систем, чем исходные данные.
+
+### Когда применять
+
+Персональные сведения допускаются только при обоснованной необходимости, ограничениях доступа и сроке хранения.
+
+### Как проверить
+
+- Нет ли Authorization, cookie, OAuth-кодов и платёжных данных в логах?
+
+### Источники
+
+- [Первоисточник](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+
+## Проверяйте происхождение и версии зависимостей
+
+### Коротко
+
+Фиксируйте воспроизводимый набор зависимостей и обновляйте его с проверками.
+
+### Плохо
+
+```text
+Сборка каждый раз устанавливает произвольный latest.
+```
+
+### Хорошо
+
+```text
+Lockfile + зафиксированный runtime.
+Обновления проходят проверку уязвимостей и тесты.
+```
+
+### Почему
+
+Один исходный коммит должен позволять объяснить, что вошло в сборку.
+
+### Когда применять
+
+SBOM и provenance зависят от зрелости выпуска. Наличие файла не доказывает соответствие уровню SLSA.
+
+### Как проверить
+
+- В чистой среде устанавливаются те же зависимости?
+
+### Источники
+
+- [Первоисточник](https://slsa.dev/spec/v1.2/)
+
+Уровень: Рекомендуется. Проверено: 2026-11-09.
+
+## Ограничивайте ресурсоёмкие действия
+
+### Коротко
+
+У запросов должны быть пределы размера, частоты и сложности.
+
+### Плохо
+
+```text
+Неограниченный upload и тысячи попыток входа.
+```
+
+### Хорошо
+
+```text
+Лимит файла, квота пользователя, предел времени
+и ограничение частоты чувствительных операций.
+```
+
+### Почему
+
+Даже корректный запрос может исчерпать ресурсы сервиса.
+
+### Когда применять
+
+Лимиты выбираются под продукт и учитывают общие ресурсы; один IP не всегда равен одному пользователю.
+
+### Как проверить
+
+- Проверьте большой ввод, параллельные запросы и восстановление после лимита.
+
+### Источники
+
+- [Первоисточник](https://owasp.org/API-Security/editions/2023/en/0x11-t10/)
+
+Уровень: Обязательно. Проверено: 2026-11-09.
+

@@ -1,0 +1,48 @@
+---
+id: "ai-agents.context"
+title: "Дайте агенту короткий маршрут чтения"
+section: "ai-agents"
+level: "recommended"
+tags: ["context"]
+technologies: []
+reviewed_at: "2026-11-09"
+order: 7
+related: ["ai-agents.untrusted-input", "ai-agents.least-privilege"]
+sources: ["https://docs.github.com/en/pull-requests/reference/pull-requests"]
+schema_version: 1
+---
+
+# Дайте агенту короткий маршрут чтения
+
+## Коротко
+
+Инструкции проекта должны объяснять активный стек, важные ограничения и команды проверок.
+
+## Плохо
+
+```text
+Прочитай весь репозиторий и догадайся.
+```
+
+## Хорошо
+
+```text
+Прочитай AGENTS.md → контракт → нужный модуль.
+Проверь: typecheck и тест сценария.
+```
+
+## Почему
+
+Избыточный контекст затрудняет поиск важных требований.
+
+## Когда применять
+
+Путь к инструкциям зависит от агента. AGENTS.md — соглашение проекта, не общий протокол.
+
+## Как проверить
+
+- Новый участник может найти нужные файлы без угадывания?
+
+## Источники
+
+- [Первоисточник](https://docs.github.com/en/pull-requests/reference/pull-requests)

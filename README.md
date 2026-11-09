@@ -1,3 +1,5 @@
+> **Справочник 2.0:** 100 русских правил в 15 разделах. Источник — `registry/standards/<domain>/<name>/rules/*.md`; `standard.md` и примеры генерируются. [Как предложить изменение](docs/contributing-standards.md) · [Аудит прежних правил](docs/audit-2026-11-09.md).
+
 # vibecoding-base 🧱✨
 
 Composable stack profiles and a versioned standards registry for AI-native development.
@@ -98,9 +100,9 @@ registry/standards/backend/go/
 
 See [`docs/contributing-standards.md`](docs/contributing-standards.md) before changing standards.
 
-## May 2026 Baselines
+## Version policy
 
-Current standards target Go 1.26, Python 3.14, PostgreSQL 18, OpenAPI 3.2, Next.js 16, React 19.2, Vite 8, TypeScript 6, Node 24 LTS and React Native 0.85.
+Standards describe applicability and link to primary documentation. Runtime versions are pinned by each project; template metadata is a selected baseline, not a claim to be the latest release.
 
 Templates are intentionally lightweight and marked partial where runtime scaffolding is not complete. Do not treat this repo as "production runtime ready"; treat it as a clean, agent-friendly standards and stack-profile base.
 

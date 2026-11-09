@@ -1,3 +1,5 @@
 # backend/python
 
-Python/FastAPI backend architecture and numeric limits for generated API projects.
+Источник правил — `rules/*.md`. `standard.md` собирается автоматически.
+
+Редактируйте отдельное правило, затем выполните `node tools/handbook.mjs generate` и `node tools/vibe.mjs verify`.
