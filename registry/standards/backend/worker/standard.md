@@ -49,7 +49,7 @@
 
 - [Cache-Aside Pattern - Azure Architecture Center](https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## TTL и инвалидация
 
@@ -98,7 +98,7 @@
 
 - [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111.html)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Изоляция кеша
 
@@ -147,7 +147,7 @@
 
 - [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111.html)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Идемпотентность worker
 
@@ -196,7 +196,7 @@ message_id проверяется транзакционно.
 
 - [Amazon SQS at-least-once delivery - Amazon Simple Queue Service](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/standard-queues-at-least-once-delivery.html)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Transactional outbox
 
@@ -245,7 +245,7 @@ Outbox закрывает разрыв между сохранением БД и
 
 - [Implement the Transactional Outbox pattern with Dataverse - Power Platform](https://learn.microsoft.com/en-us/power-platform/architecture/reference-architectures/transactional-outbox-pattern)
 
-Уровень: Зависит от задачи. Проверено: 2026-11-09.
+Уровень: Зависит от задачи. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Dead-letter queue
 
@@ -294,7 +294,7 @@ Outbox закрывает разрыв между сохранением БД и
 
 - [Using dead-letter queues in Amazon SQS - Amazon Simple Queue Service](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Redis: persistence и восстановление
 
@@ -350,5 +350,5 @@ Redis OSS, AOF и RDB. Для восстанавливаемого кеша pers
 - [Redis persistence](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/)
 - [Key eviction](https://redis.io/docs/latest/develop/reference/eviction/)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 

@@ -6,6 +6,7 @@ section: "database"
 level: "recommended"
 tags: ["money", "PostgreSQL", "SQL"]
 technologies: ["PostgreSQL", "SQL"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 101
 related: ["database.constraints", "payments.reconciliation"]

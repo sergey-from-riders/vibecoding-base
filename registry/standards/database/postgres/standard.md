@@ -54,7 +54,7 @@ UUID уменьшает зависимость от единого генера�
 
 - [PostgreSQL: Documentation: 18: 9.14. UUID Functions](https://www.postgresql.org/docs/18/functions-uuid.html)
 
-Уровень: Зависит от задачи. Проверено: 2026-11-09.
+Уровень: Зависит от задачи. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Имена таблиц и полей
 
@@ -107,7 +107,7 @@ snake_case и entity_id — соглашение этого справочник
 
 - [PostgreSQL: Documentation: 18: 4.1. Lexical Structure](https://www.postgresql.org/docs/18/sql-syntax-lexical.html#SQL-SYNTAX-IDENTIFIERS)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Ограничения целостности
 
@@ -158,7 +158,7 @@ CREATE UNIQUE INDEX users_email_unique
 
 - [PostgreSQL: Documentation: 18: 5.5. Constraints](https://www.postgresql.org/docs/18/ddl-constraints.html)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Внешние ключи
 
@@ -207,7 +207,7 @@ CASCADE подходит только для действительно зави
 
 - [PostgreSQL: Documentation: 18: 5.5. Constraints](https://www.postgresql.org/docs/18/ddl-constraints.html)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Транзакции
 
@@ -260,7 +260,7 @@ COMMIT;
 
 - [PostgreSQL: Documentation: 18: 3.4. Transactions](https://www.postgresql.org/docs/18/tutorial-transactions.html)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Миграции схемы
 
@@ -310,7 +310,7 @@ COMMIT;
 - [PostgreSQL: Documentation: 18: ALTER TABLE](https://www.postgresql.org/docs/18/sql-altertable.html)
 - [Editing a migration in Prisma ORM](https://www.prisma.io/docs/orm/prisma-migrate/workflows/customizing-migrations)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Индексы PostgreSQL
 
@@ -361,7 +361,7 @@ COMMIT;
 - [PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN](https://www.postgresql.org/docs/18/using-explain.html)
 - [PostgreSQL: Documentation: 18: 5.5. Constraints](https://www.postgresql.org/docs/18/ddl-constraints.html#DDL-CONSTRAINTS-FK)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Дата и время: timestamptz
 
@@ -411,7 +411,7 @@ PostgreSQL 18: `timestamptz` — события и аудит; `date` — кал
 
 - [PostgreSQL: Documentation: 18: 8.5. Date/Time Types](https://www.postgresql.org/docs/18/datatype-datetime.html)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## JSONB и реляционные поля
 
@@ -460,7 +460,7 @@ JSONB полезен для внешних снимков и разреженн�
 
 - [PostgreSQL: Documentation: 18: 8.14. JSON Types](https://www.postgresql.org/docs/18/datatype-json.html)
 
-Уровень: Зависит от задачи. Проверено: 2026-11-09.
+Уровень: Зависит от задачи. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## История и удаление данных
 
@@ -511,7 +511,7 @@ deleted_at есть, но все запросы читают удалённое.
 - [PostgreSQL: Documentation: 18: 11.8. Partial Indexes](https://www.postgresql.org/docs/18/indexes-partial.html)
 - [PostgreSQL: Documentation: 18: 41.10. Trigger Functions](https://www.postgresql.org/docs/18/plpgsql-trigger.html)
 
-Уровень: Зависит от задачи. Проверено: 2026-11-09.
+Уровень: Зависит от задачи. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Деньги: bigint, numeric и валюта
 
@@ -577,5 +577,5 @@ PostgreSQL 18. Тип выбирается по единице измерени�
 - [Supported currencies](https://docs.stripe.com/currencies)
 - [Number.MAX_SAFE_INTEGER - JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 

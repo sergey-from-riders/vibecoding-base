@@ -5,6 +5,7 @@ section: "caching"
 level: "required"
 tags: ["private-cache", "HTTP"]
 technologies: ["HTTP"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 66
 related: ["caching.source-of-truth", "caching.freshness"]

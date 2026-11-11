@@ -5,6 +5,7 @@ section: "testing"
 level: "required"
 tags: ["honest-checks"]
 technologies: []
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 81
 related: ["architecture.readiness", "ai-agents.evidence"]

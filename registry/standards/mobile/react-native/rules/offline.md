@@ -5,6 +5,7 @@ section: "mobile"
 level: "recommended"
 tags: ["offline", "React Native"]
 technologies: ["React Native"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 94
 related: ["api.idempotency", "api.concurrency"]

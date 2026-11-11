@@ -6,6 +6,7 @@ section: "frameworks"
 level: "recommended"
 tags: ["bitrix-transactions", "1С-Битрикс", "PHP"]
 technologies: ["1С-Битрикс", "PHP"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 106
 related: ["database.transactions", "caching.outbox"]

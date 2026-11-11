@@ -5,6 +5,7 @@ section: "database"
 level: "required"
 tags: ["constraints", "SQL"]
 technologies: ["SQL"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 21
 related: ["database.identifiers", "database.naming"]

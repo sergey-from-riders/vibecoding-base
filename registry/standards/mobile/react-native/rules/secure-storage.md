@@ -5,6 +5,7 @@ section: "mobile"
 level: "required"
 tags: ["secure-storage", "React Native"]
 technologies: ["React Native"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 92
 related: ["mobile.deep-links", "mobile.offline"]

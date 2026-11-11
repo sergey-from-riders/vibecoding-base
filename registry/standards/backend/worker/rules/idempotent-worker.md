@@ -5,6 +5,7 @@ section: "caching"
 level: "required"
 tags: ["idempotent-worker"]
 technologies: []
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 67
 related: ["caching.source-of-truth", "caching.freshness"]

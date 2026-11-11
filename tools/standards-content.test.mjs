@@ -5,7 +5,7 @@ import {frontmatter,parseRule,validateCollection} from './standards-content.mjs'
 import {readHandbook,verifyHandbook} from './handbook.mjs';
 const file='registry/standards/api/openapi-modular/rules/http-status.md';
 const raw=fs.readFileSync(new URL('../'+file,import.meta.url),'utf8');
-test('all materials and generated standards form a complete catalogue',()=>{const data=readHandbook();assert.equal(data.sections.length,15);assert.equal(data.rules.length,111);verifyHandbook();});
+test('all materials and generated standards form a complete catalogue',()=>{const data=readHandbook();assert.equal(data.sections.length,16);assert.equal(data.rules.length,142);verifyHandbook();});
 test('invalid metadata, future dates, missing examples and duplicate headings fail closed',()=>{
  for(const changed of [raw.replace('level: "required"','level: "anything"'),raw.replace('2026-11-09','2999-01-01'),raw.replace('## Хорошо','## Другое'),raw.replace('## Почему','## Коротко'),raw.replace('https://www.rfc-editor.org','javascript:alert')])assert.throws(()=>parseRule(changed,file,'2026-11-09'));
  assert.throws(()=>frontmatter(raw.replace('title:','id:')));
@@ -20,3 +20,15 @@ test('source links must match in metadata and the exported Markdown',()=>{
 });
 
 test('every rule assigns human and agent responsibilities; section parents must exist',()=>{const data=readHandbook();for(const r of data.rules){assert.ok(r.blocks['Человек']);assert.ok(r.blocks['Агент']);if(r.section==='frameworks')assert.ok(r.blocks['Пример применения']);}assert.throws(()=>validateCollection(data.sections.map(s=>s.id==='frontend'?{...s,parent:'missing'}:s),data.rules));});
+
+test('publication dates and illustration references are validated independently of review dates',()=>{
+ const data=readHandbook();
+ assert.ok(data.rules.every(r=>r.publishedAt));
+ const dated=parseRule(raw,file,'2026-11-11');
+ assert.equal(dated.publishedAt,'2026-11-09');
+ assert.throws(()=>parseRule(raw.replace('published_at: "2026-11-09"','published_at: "2026-02-30"'),file,'2026-11-11'));
+ assert.throws(()=>parseRule(raw.replace('published_at: "2026-11-09"','published_at: "2999-01-01"'),file,'2026-11-11'));
+ const legacy=parseRule(raw.replace(/^published_at:.*\n/m,''),file,'2026-11-11');assert.equal(legacy.publishedAt,undefined);
+ const illustration='illustrations: '+JSON.stringify({bad:{path:'https://remote.test/a.webp',alt:'Bad'},good:{path:'../../a.webp',alt:'Good'}})+'\n';
+ assert.throws(()=>parseRule(raw.replace('schema_version:',illustration+'schema_version:'),file,'2026-11-11'));
+});

@@ -6,6 +6,7 @@ section: "frameworks"
 level: "recommended"
 tags: ["vue-computed", "Vue", "TypeScript"]
 technologies: ["Vue", "TypeScript"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 113
 related: ["frontend.derived-state", "database.money"]

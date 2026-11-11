@@ -51,7 +51,7 @@
 
 - [SLSA • SLSA specification](https://slsa.dev/spec/v1.2/)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Rollback
 
@@ -101,7 +101,7 @@
 
 - [Google SRE - Canary Release: Deployment Safety and Efficiency](https://sre.google/workbook/canarying-releases/)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Backup и restore
 
@@ -150,7 +150,7 @@
 
 - [PostgreSQL: Documentation: 18: Chapter 25. Backup and Restore](https://www.postgresql.org/docs/18/backup.html)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Конфигурация окружения
 
@@ -200,7 +200,7 @@
 - [The Twelve-Factor App](https://12factor.net/config)
 - [Secrets Management - OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Incident runbook
 
@@ -249,5 +249,5 @@
 
 - [Google SRE - Incident Management: Key to Restore Operations](https://sre.google/sre-book/managing-incidents/)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 

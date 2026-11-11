@@ -5,6 +5,7 @@ section: "api"
 level: "recommended"
 tags: ["error-details", "HTTP"]
 technologies: ["HTTP"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 31
 related: ["api.http-status", "api.methods"]

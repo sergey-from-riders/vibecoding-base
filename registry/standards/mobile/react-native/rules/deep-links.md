@@ -5,6 +5,7 @@ section: "mobile"
 level: "required"
 tags: ["deep-links", "React Native"]
 technologies: ["React Native"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 93
 related: ["integrations.oauth", "security.object-access"]

@@ -5,6 +5,7 @@ section: "api"
 level: "required"
 tags: ["compatibility", "OpenAPI"]
 technologies: ["OpenAPI"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 36
 related: ["api.http-status", "api.methods"]

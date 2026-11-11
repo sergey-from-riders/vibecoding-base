@@ -5,6 +5,7 @@ section: "payments"
 level: "required"
 tags: ["card-data", "Stripe"]
 technologies: ["Stripe"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 98
 related: ["payments.payment-truth", "payments.payment-events"]

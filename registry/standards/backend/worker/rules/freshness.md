@@ -5,6 +5,7 @@ section: "caching"
 level: "recommended"
 tags: ["freshness"]
 technologies: []
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 65
 related: ["caching.source-of-truth", "caching.private-cache"]

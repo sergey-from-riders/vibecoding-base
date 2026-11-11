@@ -6,6 +6,7 @@ section: "frameworks"
 level: "recommended"
 tags: ["fastapi-io", "FastAPI", "Python"]
 technologies: ["FastAPI", "Python"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 111
 related: ["backend.async", "integrations.timeouts"]

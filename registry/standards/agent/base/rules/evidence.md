@@ -5,6 +5,7 @@ section: "ai-agents"
 level: "required"
 tags: ["evidence"]
 technologies: []
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 11
 related: ["ai-agents.context", "ai-agents.untrusted-input"]

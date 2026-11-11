@@ -5,6 +5,7 @@ section: "frontend"
 level: "recommended"
 tags: ["server-client", "Next.js", "React"]
 technologies: ["Next.js", "React"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 45
 related: ["frontend.data-boundary", "frontend.derived-state"]

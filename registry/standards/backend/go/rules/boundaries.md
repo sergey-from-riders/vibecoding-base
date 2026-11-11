@@ -5,6 +5,7 @@ section: "backend"
 level: "recommended"
 tags: ["boundaries", "Go", "Backend"]
 technologies: ["Go", "Backend"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 38
 related: ["backend.go-context", "backend.errors"]

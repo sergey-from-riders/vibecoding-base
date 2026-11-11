@@ -5,6 +5,7 @@ section: "security"
 level: "recommended"
 tags: ["supply-chain"]
 technologies: []
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 75
 related: ["operations.immutable-release", "architecture.choose-dependencies"]

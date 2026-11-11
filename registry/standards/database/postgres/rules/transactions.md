@@ -5,6 +5,7 @@ section: "database"
 level: "required"
 tags: ["transactions", "SQL"]
 technologies: ["SQL"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 23
 related: ["caching.outbox", "database.constraints"]

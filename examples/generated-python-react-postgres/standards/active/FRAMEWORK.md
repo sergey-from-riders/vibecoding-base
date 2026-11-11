@@ -54,7 +54,7 @@
 
 - [Writing good CL descriptions](https://google.github.io/eng-practices/review/developer/cl-descriptions.html)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Единый источник истины
 
@@ -106,7 +106,7 @@ Markdown и инструкции остались прежними.
 
 - [Creating reusable content - GitHub Docs](https://docs.github.com/en/contributing/writing-for-github-docs/creating-reusable-content)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Контракты компонентов
 
@@ -156,7 +156,7 @@ Backend отдаёт amount.
 
 - [OpenAPI Specification v3.2.0](https://spec.openapis.org/oas/v3.2.0.html)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Вертикальный сценарий
 
@@ -208,7 +208,7 @@ Backend отдаёт amount.
 
 - [Small CLs](https://google.github.io/eng-practices/review/developer/small-cls.html)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Зависимости проекта
 
@@ -259,7 +259,7 @@ Markdown хранится в Git.
 
 - [Google SRE - Operational Simplicity: Stability and Agility](https://sre.google/sre-book/simplicity/)
 
-Уровень: Зависит от задачи. Проверено: 2026-11-09.
+Уровень: Зависит от задачи. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Критерии готовности
 
@@ -310,5 +310,5 @@ Production ready: папки и README созданы.
 
 - [Google SRE - Deployment Strategies for Product Launches](https://sre.google/sre-book/reliable-product-launches/)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 

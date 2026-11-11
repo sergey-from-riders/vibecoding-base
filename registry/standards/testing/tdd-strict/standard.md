@@ -48,7 +48,7 @@
 
 - [Google Testing Blog: Just Say No to More End-to-End Tests](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Регрессионные тесты
 
@@ -97,7 +97,7 @@
 
 - [Writing your first Django app, part 5](https://docs.djangoproject.com/en/5.2/intro/tutorial05/)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Интеграционные тесты
 
@@ -146,7 +146,7 @@ Mock всегда возвращает успех; реальная миграц
 - [Google Testing Blog: Just Say No to More End-to-End Tests](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
 - [PostgreSQL: Documentation: 18: 5.5. Constraints](https://www.postgresql.org/docs/18/ddl-constraints.html)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## End-to-end тесты
 
@@ -195,7 +195,7 @@ Mock всегда возвращает успех; реальная миграц
 
 - [Google Testing Blog: Just Say No to More End-to-End Tests](https://testing.googleblog.com/2015/04/just-say-no-to-more-end-to-end-tests.html)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Статус проверок
 
@@ -246,7 +246,7 @@ Runtime-тесты пока отсутствуют.
 
 - [Status checks - GitHub Docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/about-status-checks)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Детерминизм тестов
 
@@ -295,5 +295,5 @@ Runtime-тесты пока отсутствуют.
 
 - [Best Practices](https://playwright.dev/docs/best-practices)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 

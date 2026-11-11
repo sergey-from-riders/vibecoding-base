@@ -53,7 +53,7 @@ Client Component управляет поиском и кнопками.
 
 - [Server and Client Components](https://nextjs.org/docs/app/getting-started/server-and-client-components)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Серверные данные
 
@@ -105,7 +105,7 @@ Client Component управляет поиском и кнопками.
 - [How to think about data security in Next.js](https://nextjs.org/docs/app/guides/data-security)
 - [OpenAPI Specification v3.2.0](https://spec.openapis.org/oas/v3.2.0.html)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Состояния интерфейса
 
@@ -157,7 +157,7 @@ Client Component управляет поиском и кнопками.
 
 - [Understanding Success Criterion 4.1.3: Status Messages](https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Web performance
 
@@ -206,5 +206,5 @@ Client Component управляет поиском и кнопками.
 
 - [Web Vitals  |  Articles  |  web.dev](https://web.dev/articles/vitals)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 

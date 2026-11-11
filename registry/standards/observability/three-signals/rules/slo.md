@@ -5,6 +5,7 @@ section: "operations"
 level: "recommended"
 tags: ["slo"]
 technologies: []
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 86
 related: ["operations.correlation", "operations.http-spans"]

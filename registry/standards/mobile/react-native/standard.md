@@ -51,7 +51,7 @@ Android Keystore хранит криптографические ключи, а 
 - [Security · React Native](https://reactnative.dev/docs/security)
 - [Android Keystore system  |  Security  |  Android Developers](https://developer.android.com/privacy-and-security/keystore)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Deep links
 
@@ -100,7 +100,7 @@ Android Keystore хранит криптографические ключи, а 
 
 - [Security · React Native](https://reactnative.dev/docs/security)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Офлайн-синхронизация
 
@@ -149,7 +149,7 @@ Android Keystore хранит криптографические ключи, а 
 
 - [Build an offline-first app  |  App architecture  |  Android Developers](https://developer.android.com/topic/architecture/data-layer/offline-first)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Мобильный релиз
 
@@ -198,5 +198,5 @@ JS-обновление совместимо с установленным runti
 
 - [Runtime versions and updates - Expo documentation](https://docs.expo.dev/eas-update/runtime-versions/)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 

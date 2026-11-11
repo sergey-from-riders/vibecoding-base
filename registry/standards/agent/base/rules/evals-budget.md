@@ -5,6 +5,7 @@ section: "ai-agents"
 level: "recommended"
 tags: ["evals-budget", "LLM"]
 technologies: ["LLM"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 12
 related: ["testing.risk", "ai-agents.evidence"]

@@ -5,6 +5,7 @@ section: "database"
 level: "contextual"
 tags: ["jsonb", "PostgreSQL"]
 technologies: ["PostgreSQL"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 27
 related: ["database.constraints", "security.object-access"]

@@ -5,6 +5,7 @@ section: "api"
 level: "recommended"
 tags: ["openapi", "OpenAPI"]
 technologies: ["OpenAPI"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 32
 related: ["api.http-status", "api.methods"]

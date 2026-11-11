@@ -51,7 +51,7 @@ HTTP-обработчик сам считает скидку, делает SQL �
 
 - [Organizing a Go module - The Go Programming Language](https://go.dev/doc/modules/layout)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Go context
 
@@ -106,7 +106,7 @@ if err != nil { return err }
 - [Canceling in-progress operations - The Go Programming Language](https://go.dev/doc/database/cancel-operations)
 - [sql package - database/sql - Go Packages](https://pkg.go.dev/database/sql#Rows)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Обработка ошибок
 
@@ -163,7 +163,7 @@ func persist(order Order) (*Order, error) {
 
 - [Working with Errors in Go 1.13 - The Go Programming Language](https://go.dev/blog/go1.13-errors)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Ограничение параллелизма
 
@@ -213,5 +213,5 @@ func persist(order Order) (*Order, error) {
 - [Effective Go - The Go Programming Language](https://go.dev/doc/effective_go#channels)
 - [Data Race Detector - The Go Programming Language](https://go.dev/doc/articles/race_detector)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 

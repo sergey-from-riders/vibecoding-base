@@ -6,6 +6,7 @@ section: "caching"
 level: "recommended"
 tags: ["redis-persistence", "Redis"]
 technologies: ["Redis"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 117
 related: ["caching.source-of-truth", "operations.restore"]

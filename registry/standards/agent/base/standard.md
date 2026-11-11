@@ -51,7 +51,7 @@
 
 - [Custom instructions for GitHub Copilot - GitHub Docs](https://docs.github.com/en/copilot/concepts/prompting-and-context/custom-instructions)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Prompt injection
 
@@ -101,7 +101,7 @@
 
 - [LLM01:2025 Prompt Injection - OWASP Gen AI Security Project](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Минимальные привилегии
 
@@ -150,7 +150,7 @@
 
 - [Security Best Practices - Model Context Protocol](https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Полномочия агента
 
@@ -200,7 +200,7 @@
 
 - [Security Best Practices - Model Context Protocol](https://modelcontextprotocol.io/docs/2025-11-25/tutorials/security/security_best_practices)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Доказательства выполнения
 
@@ -251,7 +251,7 @@
 
 - [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## AI evals
 
@@ -302,5 +302,5 @@
 
 - [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 

@@ -5,6 +5,7 @@ section: "frontend"
 level: "recommended"
 tags: ["derived-state", "React"]
 technologies: ["React"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 47
 related: ["frontend.server-client", "frontend.data-boundary"]

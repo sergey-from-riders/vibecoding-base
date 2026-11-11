@@ -6,6 +6,7 @@ section: "frameworks"
 level: "recommended"
 tags: ["bitrix-cache", "1С-Битрикс", "PHP", "Redis"]
 technologies: ["1С-Битрикс", "PHP", "Redis"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 107
 related: ["caching.private-cache", "caching.freshness"]

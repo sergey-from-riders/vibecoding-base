@@ -5,6 +5,7 @@ section: "database"
 level: "recommended"
 tags: ["naming", "SQL"]
 technologies: ["SQL"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 20
 related: ["database.identifiers", "database.constraints"]

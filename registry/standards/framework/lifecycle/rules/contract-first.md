@@ -5,6 +5,7 @@ section: "architecture"
 level: "recommended"
 tags: ["contract-first", "OpenAPI"]
 technologies: ["OpenAPI"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 3
 related: ["architecture.scope", "architecture.one-source"]

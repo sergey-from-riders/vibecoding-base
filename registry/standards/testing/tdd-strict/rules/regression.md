@@ -5,6 +5,7 @@ section: "testing"
 level: "recommended"
 tags: ["regression"]
 technologies: []
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 78
 related: ["testing.risk", "collaboration.review"]

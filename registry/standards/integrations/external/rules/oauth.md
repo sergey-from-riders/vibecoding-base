@@ -5,6 +5,7 @@ section: "integrations"
 level: "required"
 tags: ["oauth", "OAuth"]
 technologies: ["OAuth"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 60
 related: ["integrations.timeouts", "integrations.retries"]

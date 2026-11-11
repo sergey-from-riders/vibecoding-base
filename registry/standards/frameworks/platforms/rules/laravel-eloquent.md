@@ -6,6 +6,7 @@ section: "frameworks"
 level: "recommended"
 tags: ["laravel-eloquent", "Laravel", "PHP"]
 technologies: ["Laravel", "PHP"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 104
 related: ["database.indexes", "api.pagination"]
