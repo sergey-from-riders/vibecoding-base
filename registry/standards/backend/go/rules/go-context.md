@@ -5,6 +5,7 @@ section: "backend"
 level: "recommended"
 tags: ["go-context", "Go"]
 technologies: ["Go"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 39
 related: ["integrations.timeouts", "backend.bounded-concurrency"]

@@ -5,6 +5,7 @@ section: "payments"
 level: "recommended"
 tags: ["reconciliation", "Stripe"]
 technologies: ["Stripe"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 99
 related: ["payments.payment-events", "database.money"]

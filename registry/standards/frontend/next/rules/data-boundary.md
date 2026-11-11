@@ -5,6 +5,7 @@ section: "frontend"
 level: "recommended"
 tags: ["data-boundary", "Next.js", "TypeScript"]
 technologies: ["Next.js", "TypeScript"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 46
 related: ["frontend.server-client", "frontend.derived-state"]

@@ -5,6 +5,7 @@ section: "database"
 level: "required"
 tags: ["migrations", "SQL"]
 technologies: ["SQL"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 24
 related: ["operations.rollback", "operations.restore"]

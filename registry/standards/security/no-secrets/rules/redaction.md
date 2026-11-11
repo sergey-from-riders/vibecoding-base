@@ -5,6 +5,7 @@ section: "security"
 level: "required"
 tags: ["redaction"]
 technologies: []
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 74
 related: ["operations.correlation", "security.secrets"]

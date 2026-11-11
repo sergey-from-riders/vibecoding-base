@@ -36,6 +36,10 @@ readiness:
   checks: partial
   docs: ready
 optional_features:
+  admin-interface:
+    templates: []
+    standards:
+      - ui/admin-interface@^1.0.0
   worker:
     templates:
       - worker/base

@@ -5,6 +5,7 @@ section: "backend"
 level: "required"
 tags: ["typed-boundaries", "Python", "FastAPI"]
 technologies: ["Python", "FastAPI"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 43
 related: ["backend.boundaries", "backend.go-context"]

@@ -5,6 +5,7 @@ section: "api"
 level: "required"
 tags: ["http-status", "HTTP"]
 technologies: ["HTTP"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 29
 related: ["api.methods", "api.error-details"]

@@ -1,0 +1,126 @@
+{
+  "checked_at": "2026-11-11",
+  "materials": 31,
+  "links": [
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent/clipboardData",
+      "status": 200,
+      "final_url": "https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent/clipboardData",
+      "title": "ClipboardEvent: clipboardData property - Web APIs | MDN"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop",
+      "status": 200,
+      "final_url": "https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop",
+      "title": "File drag and drop - Web APIs | MDN"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img",
+      "status": 200,
+      "final_url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img",
+      "title": "&lt;img&gt; HTML image embed element - HTML | MDN"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/file",
+      "status": 200,
+      "final_url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input/file",
+      "title": "&lt;input type=&quot;file&quot;&gt; HTML attribute value - HTML | MDN"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Match",
+      "status": 200,
+      "final_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/If-Match",
+      "title": "If-Match header - HTTP | MDN"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301",
+      "status": 200,
+      "final_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/301",
+      "title": "301 Moved Permanently - HTTP | MDN"
+    },
+    {
+      "url": "https://directus.com/docs/guides/content/content-versioning",
+      "status": 200,
+      "final_url": "https://directus.com/docs/guides/content/content-versioning",
+      "title": "Content Versioning"
+    },
+    {
+      "url": "https://docs.opensearch.org/latest/query-dsl/compound/bool/",
+      "status": 200,
+      "final_url": "https://docs.opensearch.org/latest/query-dsl/compound/bool/",
+      "title": "Boolean query | OpenSearch Documentation"
+    },
+    {
+      "url": "https://docs.opensearch.org/latest/search-plugins/searching-data/paginate/",
+      "status": 200,
+      "final_url": "https://docs.opensearch.org/latest/search-plugins/searching-data/paginate/",
+      "title": "Paginate results | OpenSearch Documentation"
+    },
+    {
+      "url": "https://gohugo.io/content-management/front-matter/",
+      "status": 200,
+      "final_url": "https://gohugo.io/content-management/front-matter/",
+      "title": "Front matter"
+    },
+    {
+      "url": "https://gohugo.io/methods/pages/bydate/",
+      "status": 200,
+      "final_url": "https://gohugo.io/methods/pages/bydate/",
+      "title": "ByDate"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2025-06-18/server/tools",
+      "status": 200,
+      "final_url": "https://modelcontextprotocol.io/specification/2025-06-18/server/tools",
+      "title": "Tools - Model Context Protocol"
+    },
+    {
+      "url": "https://nextjs.org/docs/app/guides/lazy-loading",
+      "status": 200,
+      "final_url": "https://nextjs.org/docs/app/guides/lazy-loading",
+      "title": "How to lazy load Client Components and libraries"
+    },
+    {
+      "url": "https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/",
+      "status": 200,
+      "final_url": "https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/",
+      "title": "Redis persistence | Docs"
+    },
+    {
+      "url": "https://shopify.dev/docs/api/app-home/latest/patterns/compositions/index-table",
+      "status": 200,
+      "final_url": "https://shopify.dev/docs/api/app-home/latest/patterns/compositions/index-table",
+      "title": "Index table"
+    },
+    {
+      "url": "https://www.carbondesignsystem.com/building-blocks/core/components/data-table/guidelines",
+      "status": 200,
+      "final_url": "https://www.carbondesignsystem.com/building-blocks/core/components/data-table/guidelines",
+      "title": "Open menu"
+    },
+    {
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/grid/",
+      "status": 200,
+      "final_url": "https://www.w3.org/WAI/ARIA/apg/patterns/grid/",
+      "title": " Grid (Interactive Tabular Data and Layout Containers) Pattern | APG | WAI | W3C"
+    },
+    {
+      "url": "https://www.w3.org/WAI/ARIA/apg/patterns/table/",
+      "status": 200,
+      "final_url": "https://www.w3.org/WAI/ARIA/apg/patterns/table/",
+      "title": " Table Pattern | APG | WAI | W3C"
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html",
+      "status": 200,
+      "final_url": "https://www.w3.org/WAI/WCAG22/Understanding/dragging-movements.html",
+      "title": "Understanding Success Criterion 2.5.7: Dragging Movements | WAI | W3C"
+    },
+    {
+      "url": "https://www.w3.org/WAI/tutorials/forms/notifications/",
+      "status": 200,
+      "final_url": "https://www.w3.org/WAI/tutorials/forms/notifications/",
+      "title": " User Notification | Web Accessibility Initiative (WAI) | W3C"
+    }
+  ]
+}

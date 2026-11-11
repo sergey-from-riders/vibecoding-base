@@ -5,6 +5,7 @@ section: "architecture"
 level: "recommended"
 tags: ["scope"]
 technologies: []
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 1
 related: ["architecture.one-source", "architecture.contract-first"]

@@ -1,0 +1,24 @@
+id: content/markdown
+name: Публикации из Markdown
+version: 1.0.0
+status: stable
+domain: content
+owners:
+  - maintainers
+applies_to:
+  languages: []
+  runtimes:
+    - any
+dependencies: []
+enforcement:
+  documented: true
+  linted: false
+  tested: false
+  ci_blocking: false
+files:
+  human_readable: standard.md
+compatibility:
+  stacks:
+    - go-next-postgres
+    - python-react-postgres
+changelog: CHANGELOG.md

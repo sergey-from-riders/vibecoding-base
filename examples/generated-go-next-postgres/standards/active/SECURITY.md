@@ -51,7 +51,7 @@ tenant_id берётся из проверенного контекста, а н
 
 - [API1:2023 Broken Object Level Authorization - OWASP API Security Top 10](https://owasp.org/API-Security/editions/2023/en/0xa1-broken-object-level-authorization/)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Управление секретами
 
@@ -100,7 +100,7 @@ README содержит пример без значения.
 
 - [Secrets Management - OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## SQL-параметры
 
@@ -149,7 +149,7 @@ cursor.execute("SELECT * FROM users WHERE name = %s", (name,))
 - [SQL Injection Prevention - OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
 - [Passing parameters to SQL queries - psycopg 3.3.9.dev1 documentation](https://www.psycopg.org/psycopg3/docs/basic/params.html)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## SSRF-защита
 
@@ -198,7 +198,7 @@ cursor.execute("SELECT * FROM users WHERE name = %s", (name,))
 
 - [Server Side Request Forgery Prevention - OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Маскирование секретов в логах
 
@@ -246,7 +246,7 @@ log({request_id, route, status, duration_ms})
 
 - [Logging - OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Software supply chain
 
@@ -295,7 +295,7 @@ SBOM и provenance зависят от зрелости выпуска. Нали
 
 - [SLSA • SLSA specification](https://slsa.dev/spec/v1.2/)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Лимиты ресурсов
 
@@ -344,5 +344,5 @@ SBOM и provenance зависят от зрелости выпуска. Нали
 
 - [API4:2023 Unrestricted Resource Consumption - OWASP API Security Top 10](https://owasp.org/API-Security/editions/2023/en/0xa4-unrestricted-resource-consumption/)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 

@@ -6,6 +6,7 @@ section: "frameworks"
 level: "recommended"
 tags: ["bitrix-local", "1С-Битрикс", "PHP"]
 technologies: ["1С-Битрикс", "PHP"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 105
 related: ["collaboration.preserve-changes", "operations.immutable-release"]

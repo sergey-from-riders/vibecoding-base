@@ -5,6 +5,7 @@ section: "backend"
 level: "required"
 tags: ["async", "Python"]
 technologies: ["Python"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 42
 related: ["backend.boundaries", "backend.go-context"]

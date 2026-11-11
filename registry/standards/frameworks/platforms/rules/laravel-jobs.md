@@ -6,6 +6,7 @@ section: "frameworks"
 level: "recommended"
 tags: ["laravel-jobs", "Laravel", "PHP"]
 technologies: ["Laravel", "PHP"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 103
 related: ["caching.outbox", "caching.idempotent-worker"]

@@ -5,6 +5,7 @@ section: "operations"
 level: "recommended"
 tags: ["signals"]
 technologies: []
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 85
 related: ["operations.correlation", "operations.http-spans"]

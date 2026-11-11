@@ -6,6 +6,7 @@ section: "frameworks"
 level: "recommended"
 tags: ["django-atomic", "Django", "Python"]
 technologies: ["Django", "Python"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 110
 related: ["database.transactions", "caching.outbox"]

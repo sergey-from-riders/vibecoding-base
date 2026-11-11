@@ -5,6 +5,7 @@ section: "ai-agents"
 level: "required"
 tags: ["confirm-impact"]
 technologies: []
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 10
 related: ["ai-agents.context", "ai-agents.untrusted-input"]

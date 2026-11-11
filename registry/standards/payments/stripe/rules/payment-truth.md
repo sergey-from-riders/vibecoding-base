@@ -5,6 +5,7 @@ section: "payments"
 level: "required"
 tags: ["payment-truth", "Stripe"]
 technologies: ["Stripe"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 96
 related: ["payments.payment-events", "database.money"]

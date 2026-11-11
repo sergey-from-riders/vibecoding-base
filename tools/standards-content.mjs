@@ -42,6 +42,14 @@ export function parseRule(raw,path,updatedAt) {
   requireValue(path.endsWith('/'+name+'.md') && text(meta.title,160),'Invalid rule name');
   requireValue(Object.hasOwn(LEVELS,meta.level),'Invalid level');
   requireValue(validDate(meta.reviewed_at) && meta.reviewed_at<=new Date().toISOString().slice(0,10),'Invalid review date');
+  requireValue(meta.published_at===undefined || (validDate(meta.published_at) && meta.published_at<=new Date().toISOString().slice(0,10)),'Invalid publication date');
+  if(meta.illustrations!==undefined) {
+    requireValue(meta.illustrations && typeof meta.illustrations==='object' && !Array.isArray(meta.illustrations) && Object.keys(meta.illustrations).length===2,'Invalid illustrations');
+    for(const kind of ['bad','good']) {
+      const item=meta.illustrations[kind],prefix=path.split('/rules/')[0]+'/assets/';
+      requireValue(item && text(item.alt,500) && typeof item.path==='string' && item.path.startsWith(prefix) && /^[a-z0-9-]+\.(png|webp)$/.test(item.path.slice(prefix.length)),'Invalid illustration path or description');
+    }
+  }
   requireValue(validDate(updatedAt),'Invalid modification date');
   requireValue(strings(meta.tags) && strings(meta.technologies) && strings(meta.related) && meta.related.every(v=>ruleId.test(v)),'Invalid tags or relationships');
   requireValue(strings(meta.sources) && meta.sources.length>0 && meta.sources.every(safeUrl),'Invalid sources');
@@ -68,7 +76,7 @@ export function parseRule(raw,path,updatedAt) {
     requireValue(code && code[2].length<=12000,'Example must be one bounded fenced block');
     examples[name]={language:code[1]||'text',code:code[2]};
   }
-  return {id:meta.id,slug:name,section:meta.section,title:meta.title,level:meta.level,tags:meta.tags,technologies:meta.technologies,reviewedAt:meta.reviewed_at,updatedAt,order:meta.order,related:meta.related,sources:meta.sources,summary:blocks['Коротко'],blocks,examples,sourcePath:path,markdown:raw};
+  return {id:meta.id,slug:name,section:meta.section,title:meta.title,level:meta.level,tags:meta.tags,technologies:meta.technologies,reviewedAt:meta.reviewed_at,updatedAt,...(meta.published_at?{publishedAt:meta.published_at}:{}),...(meta.illustrations?{illustrations:meta.illustrations}:{}),order:meta.order,related:meta.related,sources:meta.sources,summary:blocks['Коротко'],blocks,examples,sourcePath:path,markdown:raw};
 }
 export function validateCollection(sections,rules) {
   requireValue(sections.length>0 && sections.length<=50 && rules.length>0 && rules.length<=2000,'Invalid catalogue size');
@@ -89,6 +97,6 @@ export function validateCollection(sections,rules) {
 export function renderStandard(title,rules) {
   return '# '+title+'\n\n> Собрано автоматически из rules/*.md. Редактируйте исходные правила, затем выполните `node tools/handbook.mjs generate`.\n\n'+rules.map(rule=>{
     const {body}=frontmatter(rule.markdown);
-    return body.replace(/^# /m,'## ').replace(/^## (Коротко|Плохо|Хорошо|Почему|Когда применять|Как проверить|Источники|Человек|Агент|Пример применения)$/gm,'### $1')+'\n\nУровень: '+LEVELS[rule.level]+'. Проверено: '+rule.reviewedAt+'.\n';
+    return body.replace(/^# /m,'## ').replace(/^## (Коротко|Плохо|Хорошо|Почему|Когда применять|Как проверить|Источники|Человек|Агент|Пример применения)$/gm,'### $1')+'\n\nУровень: '+LEVELS[rule.level]+'. Опубликовано: '+(rule.publishedAt||'дата не подтверждена')+'. Проверено: '+rule.reviewedAt+'.\n';
   }).join('\n')+'\n';
 }

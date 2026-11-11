@@ -51,7 +51,7 @@
 
 - [Context propagation](https://opentelemetry.io/docs/concepts/context-propagation/)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## HTTP spans
 
@@ -103,7 +103,7 @@ HTTP 500 → Error
 
 - [Semantic conventions for HTTP spans](https://opentelemetry.io/docs/specs/semconv/http/http-spans/)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Observability
 
@@ -154,7 +154,7 @@ HTTP 500 → Error
 - [Signals](https://opentelemetry.io/docs/concepts/signals/)
 - [Metric and label naming](https://prometheus.io/docs/practices/naming/)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## SLO и error budget
 
@@ -203,5 +203,5 @@ API должен быть быстрым всегда.
 
 - [Google SRE - Defining slo: service level objective meaning](https://sre.google/sre-book/service-level-objectives/)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 

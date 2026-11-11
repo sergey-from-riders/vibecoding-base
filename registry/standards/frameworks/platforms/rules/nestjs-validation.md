@@ -6,6 +6,7 @@ section: "frameworks"
 level: "recommended"
 tags: ["nestjs-validation", "NestJS", "TypeScript"]
 technologies: ["NestJS", "TypeScript"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 112
 related: ["backend.typed-boundaries", "security.object-access"]

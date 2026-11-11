@@ -5,6 +5,7 @@ section: "frontend"
 level: "recommended"
 tags: ["performance", "React", "Next.js"]
 technologies: ["React", "Next.js"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 51
 related: ["frontend.server-client", "frontend.data-boundary"]

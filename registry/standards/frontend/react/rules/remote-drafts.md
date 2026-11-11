@@ -5,6 +5,7 @@ section: "frontend"
 level: "recommended"
 tags: ["remote-drafts", "React"]
 technologies: ["React"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 48
 related: ["frontend.server-client", "frontend.data-boundary"]

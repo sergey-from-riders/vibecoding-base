@@ -16,6 +16,15 @@ export function readHandbook() {
 }
 export function verifyHandbook(write=false) {
   const {sections,rules}=readHandbook(),groups=new Map();
+  for(const rule of rules) {
+    if(!rule.publishedAt)throw new Error('Missing publication date: '+rule.id);
+    for(const item of Object.values(rule.illustrations||{})) {
+      const file=path.join(root,item.path),bytes=fs.readFileSync(file);
+      const png=bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]));
+      const webp=bytes.subarray(0,4).toString()==='RIFF'&&bytes.subarray(8,12).toString()==='WEBP';
+      if(bytes.length>500000||!(file.endsWith('.png')?png:webp))throw new Error('Invalid illustration: '+item.path);
+    }
+  }
   for(const rule of rules) {const dir=rule.sourcePath.split('/rules/')[0];groups.set(dir,[...(groups.get(dir)||[]),rule]);}
   for(const [dir,items] of groups) {
     const yaml=fs.readFileSync(path.join(root,dir,'standard.yaml'),'utf8');

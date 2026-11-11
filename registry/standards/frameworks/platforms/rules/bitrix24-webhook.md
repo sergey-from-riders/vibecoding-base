@@ -6,6 +6,7 @@ section: "frameworks"
 level: "required"
 tags: ["bitrix24-webhook", "Bitrix24"]
 technologies: ["Bitrix24"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 108
 related: ["security.secrets", "api.idempotency"]

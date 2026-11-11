@@ -6,6 +6,7 @@ section: "frameworks"
 level: "recommended"
 tags: ["bitrix24-limits", "Bitrix24"]
 technologies: ["Bitrix24"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 109
 related: ["integrations.retries", "caching.dead-letter"]

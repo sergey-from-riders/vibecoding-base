@@ -5,6 +5,7 @@ section: "testing"
 level: "recommended"
 tags: ["risk"]
 technologies: []
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 77
 related: ["testing.regression", "testing.integration"]

@@ -49,7 +49,7 @@
 
 - [Fulfill orders](https://docs.stripe.com/checkout/fulfillment)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Платёжные события
 
@@ -98,7 +98,7 @@ event_id сохранён.
 
 - [Receive Stripe events in your webhook endpoint](https://docs.stripe.com/webhooks)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Платёжные данные
 
@@ -147,7 +147,7 @@ event_id сохранён.
 
 - [Integration security guide](https://docs.stripe.com/security/guide)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Платёжная сверка
 
@@ -197,7 +197,7 @@ event_id сохранён.
 - [Payment status updates](https://docs.stripe.com/payments/payment-intents/verifying-status)
 - [Refund and cancel payments](https://docs.stripe.com/refunds)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Платёжные окружения
 
@@ -247,5 +247,5 @@ event_id сохранён.
 - [Test card numbers](https://docs.stripe.com/testing)
 - [Versioning](https://docs.stripe.com/api/versioning)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 

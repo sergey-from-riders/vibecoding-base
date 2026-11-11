@@ -5,6 +5,7 @@ section: "operations"
 level: "required"
 tags: ["restore", "PostgreSQL"]
 technologies: ["PostgreSQL"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 89
 related: ["database.migrations", "operations.rollback"]

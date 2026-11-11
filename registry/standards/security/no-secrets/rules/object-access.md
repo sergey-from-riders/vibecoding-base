@@ -5,6 +5,7 @@ section: "security"
 level: "required"
 tags: ["object-access"]
 technologies: []
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 70
 related: ["security.secrets", "security.sql-injection"]

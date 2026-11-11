@@ -5,6 +5,7 @@ section: "caching"
 level: "recommended"
 tags: ["dead-letter"]
 technologies: []
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 69
 related: ["integrations.retries", "caching.idempotent-worker"]

@@ -5,6 +5,7 @@ section: "database"
 level: "contextual"
 tags: ["identifiers", "PostgreSQL", "SQL"]
 technologies: ["PostgreSQL", "SQL"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 19
 related: ["database.naming", "database.constraints"]

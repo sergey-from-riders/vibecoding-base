@@ -5,6 +5,7 @@ section: "backend"
 level: "recommended"
 tags: ["bounded-concurrency", "Go"]
 technologies: ["Go"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 41
 related: ["backend.boundaries", "backend.go-context"]

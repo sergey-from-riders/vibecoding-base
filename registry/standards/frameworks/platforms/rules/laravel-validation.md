@@ -6,6 +6,7 @@ section: "frameworks"
 level: "recommended"
 tags: ["laravel-validation", "Laravel", "PHP"]
 technologies: ["Laravel", "PHP"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 102
 related: ["security.object-access", "testing.integration"]

@@ -5,6 +5,7 @@ section: "api"
 level: "recommended"
 tags: ["pagination", "HTTP"]
 technologies: ["HTTP"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 35
 related: ["database.indexes", "security.resource-limits"]

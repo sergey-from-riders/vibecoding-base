@@ -5,6 +5,7 @@ section: "testing"
 level: "recommended"
 tags: ["integration", "SQL"]
 technologies: ["SQL"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 79
 related: ["database.migrations", "api.openapi"]

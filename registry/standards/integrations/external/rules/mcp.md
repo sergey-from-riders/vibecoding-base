@@ -5,6 +5,7 @@ section: "integrations"
 level: "required"
 tags: ["mcp", "MCP"]
 technologies: ["MCP"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 62
 related: ["integrations.timeouts", "integrations.retries"]

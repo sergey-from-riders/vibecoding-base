@@ -5,6 +5,7 @@ section: "backend"
 level: "recommended"
 tags: ["readable-code", "Python", "Go"]
 technologies: ["Python", "Go"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 44
 related: ["collaboration.review", "architecture.thin-slice"]

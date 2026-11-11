@@ -54,7 +54,7 @@ Effect нужен для синхронизации с внешней систе
 
 - [You Might Not Need an Effect – React](https://react.dev/learn/you-might-not-need-an-effect)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Черновики и серверное состояние
 
@@ -103,7 +103,7 @@ Effect нужен для синхронизации с внешней систе
 
 - [You Might Not Need an Effect – React](https://react.dev/learn/you-might-not-need-an-effect)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Состояние в URL
 
@@ -152,5 +152,5 @@ Effect нужен для синхронизации с внешней систе
 - [Working with the History API - Web APIs](https://developer.mozilla.org/en-US/docs/Web/API/History_API/Working_with_the_History_API)
 - [URLSearchParams - Web APIs](https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 

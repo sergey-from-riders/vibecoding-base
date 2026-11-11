@@ -6,6 +6,7 @@ section: "frameworks"
 level: "recommended"
 tags: ["sveltekit-server", "SvelteKit", "TypeScript"]
 technologies: ["SvelteKit", "TypeScript"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 115
 related: ["security.secrets", "frontend.server-client"]

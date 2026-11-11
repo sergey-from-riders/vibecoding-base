@@ -6,6 +6,7 @@ section: "frameworks"
 level: "required"
 tags: ["wordpress-permissions", "WordPress", "PHP"]
 technologies: ["WordPress", "PHP"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 116
 related: ["security.object-access", "testing.integration"]

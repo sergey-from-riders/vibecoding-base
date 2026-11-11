@@ -5,6 +5,7 @@ section: "caching"
 level: "contextual"
 tags: ["outbox"]
 technologies: []
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 68
 related: ["database.transactions", "caching.idempotent-worker"]

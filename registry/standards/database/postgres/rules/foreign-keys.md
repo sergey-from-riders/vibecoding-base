@@ -5,6 +5,7 @@ section: "database"
 level: "recommended"
 tags: ["foreign-keys", "SQL"]
 technologies: ["SQL"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 22
 related: ["database.identifiers", "database.naming"]

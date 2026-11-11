@@ -5,6 +5,7 @@ section: "database"
 level: "recommended"
 tags: ["indexes", "PostgreSQL"]
 technologies: ["PostgreSQL"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 25
 related: ["api.pagination", "database.foreign-keys"]

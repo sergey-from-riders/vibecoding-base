@@ -5,6 +5,7 @@ section: "architecture"
 level: "recommended"
 tags: ["thin-slice"]
 technologies: []
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 4
 related: ["architecture.scope", "architecture.one-source"]

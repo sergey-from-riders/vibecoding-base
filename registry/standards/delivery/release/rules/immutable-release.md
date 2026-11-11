@@ -5,6 +5,7 @@ section: "operations"
 level: "required"
 tags: ["immutable-release"]
 technologies: []
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 87
 related: ["operations.correlation", "operations.http-spans"]

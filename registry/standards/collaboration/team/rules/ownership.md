@@ -5,6 +5,7 @@ section: "collaboration"
 level: "recommended"
 tags: ["ownership"]
 technologies: []
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 14
 related: ["collaboration.small-pr", "collaboration.preserve-changes"]

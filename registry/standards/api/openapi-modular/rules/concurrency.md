@@ -5,6 +5,7 @@ section: "api"
 level: "recommended"
 tags: ["concurrency", "HTTP"]
 technologies: ["HTTP"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 34
 related: ["frontend.remote-drafts", "database.transactions"]

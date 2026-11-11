@@ -52,7 +52,7 @@ Laravel 12.x, Form Request и зарегистрированная Policy; в м
 - [Validation](https://laravel.com/docs/12.x/validation)
 - [Authorization](https://laravel.com/docs/12.x/authorization)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Laravel: транзакция и afterCommit
 
@@ -108,7 +108,7 @@ Laravel 12.x и асинхронная очередь. Плохой пример
 - [Queues](https://laravel.com/docs/12.x/queues)
 - [Database: Getting Started](https://laravel.com/docs/12.x/database#database-transactions)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Laravel: Eloquent и N+1
 
@@ -163,7 +163,7 @@ Laravel 12.x; связь customer объявлена и обязательна. 
 - [Eloquent: Relationships](https://laravel.com/docs/12.x/eloquent-relationships#eager-loading)
 - [Database: Pagination](https://laravel.com/docs/12.x/pagination)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## 1С-Битрикс: /local и расширения
 
@@ -214,7 +214,7 @@ Bitrix Framework с поддержкой /local (D7). Не копируйте я
 
 - [Урок 1. Разворачиваем стенд и знакомимся с проектом](https://dev.1c-bitrix.ru/learning/course/index.php?COURSE_ID=43&LESSON_ID=33874&LESSON_PATH=33872.33874)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## 1С-Битрикс: D7-транзакции
 
@@ -278,7 +278,7 @@ D7, API сущностей с save(): Result, одна транзакционн�
 - [Connection::startTransaction](https://dev.1c-bitrix.ru/api_d7/bitrix/main/db/connection/starttransaction.php)
 - [Result::isSuccess](https://dev.1c-bitrix.ru/api_d7/bitrix/main/result/issuccess.php)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## 1С-Битрикс: ключ кеша и инвалидация
 
@@ -331,7 +331,7 @@ D7 Cache, PHP 7.3+ для JSON_THROW_ON_ERROR; в примере значени�
 
 - [Главный модуль:Cache](https://dev.1c-bitrix.ru/api_d7/bitrix/main/data/cache/index.php)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Bitrix24: серверный вебхук
 
@@ -382,7 +382,7 @@ Bitrix24 REST, локальная интеграция через входящи
 
 - [Входящие и исходящие вебхуки](https://apidocs.bitrix24.ru/local-integrations/local-webhooks.html)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Bitrix24: лимиты и повтор запросов
 
@@ -435,7 +435,7 @@ QUERY_LIMIT_EXCEEDED → задержка с jitter
 - [Лимиты REST API](https://apidocs.bitrix24.ru/limits.html)
 - [Как выполнить пакет запросов batch](https://apidocs.bitrix24.ru/settings/how-to-call-rest-api/batch.html)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Django: atomic и on_commit
 
@@ -489,7 +489,7 @@ Django 5.2 и транзакционная БД. Импорт: `from django.db i
 
 - [Database transactions](https://docs.djangoproject.com/en/5.2/topics/db/transactions/)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## FastAPI: async и блокирующий I/O
 
@@ -542,7 +542,7 @@ FastAPI, ASGI. Пример использует синхронный SDK. Дл�
 
 - [Concurrency and async / await - FastAPI](https://fastapi.tiangolo.com/async/)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## NestJS: ValidationPipe и DTO
 
@@ -600,7 +600,7 @@ POST /orders принимает title длиной до 200 символов. П
 - [Documentation](https://docs.nestjs.com/techniques/validation)
 - [Guards](https://docs.nestjs.com/guards)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Vue: computed и производное состояние
 
@@ -651,7 +651,7 @@ Vue 3 Composition API. items — ref, sum — чистая функция. Watch
 
 - [Computed Properties](https://vuejs.org/guide/essentials/computed.html)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Nuxt: useAsyncData и SSR
 
@@ -703,7 +703,7 @@ Nuxt 4. Ключ должен учитывать параметры выдачи
 - [useAsyncData · Nuxt Composables v4](https://nuxt.com/docs/4.x/api/composables/use-async-data)
 - [Data Fetching · Get Started with Nuxt v4](https://nuxt.com/docs/4.x/getting-started/data-fetching)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## SvelteKit: server-only modules
 
@@ -761,7 +761,7 @@ SvelteKit 2; db — пример ORM-клиента проекта. В прив�
 - [Server-only modules • SvelteKit Docs](https://svelte.dev/docs/kit/server-only-modules)
 - [Loading data • SvelteKit Docs](https://svelte.dev/docs/kit/load)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## WordPress: capabilities и nonce
 
@@ -823,5 +823,5 @@ WordPress, обработчик формы в админке. Форма соз�
 - [Nonces – Common APIs Handbook](https://developer.wordpress.org/apis/security/nonces/)
 - [wp_update_post() – Function](https://developer.wordpress.org/reference/functions/wp_update_post/)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 

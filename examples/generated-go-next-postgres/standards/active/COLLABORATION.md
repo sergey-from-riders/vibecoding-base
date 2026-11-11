@@ -51,7 +51,7 @@ PR: исправление двойной оплаты.
 
 - [Small CLs](https://google.github.io/eng-practices/review/developer/small-cls.html)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Распределение изменений
 
@@ -104,7 +104,7 @@ PR: исправление двойной оплаты.
 - [About code owners - GitHub Docs](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners)
 - [Git - git-worktree Documentation](https://git-scm.com/docs/git-worktree)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Рабочее дерево Git
 
@@ -155,7 +155,7 @@ PR: исправление двойной оплаты.
 - [Git - git-status Documentation](https://git-scm.com/docs/git-status)
 - [Git - git-reset Documentation](https://git-scm.com/docs/git-reset)
 
-Уровень: Обязательно. Проверено: 2026-11-09.
+Уровень: Обязательно. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Code review
 
@@ -204,7 +204,7 @@ PR: исправление двойной оплаты.
 
 - [What to look for in a code review](https://google.github.io/eng-practices/review/reviewer/looking-for.html)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Передача результата
 
@@ -256,7 +256,7 @@ PR: исправление двойной оплаты.
 
 - [Writing good CL descriptions](https://google.github.io/eng-practices/review/developer/cl-descriptions.html)
 
-Уровень: Рекомендуется. Проверено: 2026-11-09.
+Уровень: Рекомендуется. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 
 ## Architecture Decision Record
 
@@ -305,5 +305,5 @@ PR: исправление двойной оплаты.
 
 - [Documenting Architecture Decisions](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions.html)
 
-Уровень: Зависит от задачи. Проверено: 2026-11-09.
+Уровень: Зависит от задачи. Опубликовано: 2026-11-09. Проверено: 2026-11-09.
 

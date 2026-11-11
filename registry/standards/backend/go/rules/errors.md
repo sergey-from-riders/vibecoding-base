@@ -5,6 +5,7 @@ section: "backend"
 level: "required"
 tags: ["errors", "Go"]
 technologies: ["Go"]
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 40
 related: ["api.error-details", "testing.regression"]

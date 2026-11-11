@@ -5,6 +5,7 @@ section: "testing"
 level: "recommended"
 tags: ["determinism"]
 technologies: []
+published_at: "2026-11-09"
 reviewed_at: "2026-11-09"
 order: 82
 related: ["testing.risk", "testing.regression"]
