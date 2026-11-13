@@ -8,6 +8,8 @@
 
 | Модуль | Назначение |
 | --- | --- |
+| [languages/go](../standards/languages/go/standard.md) | Начальные требования языка, именование, импорты, типы и инструменты |
+| [languages/typescript](../standards/languages/typescript/standard.md) | JavaScript/TypeScript: имена, значения, модули и асинхронность |
 | [collaboration/team](../standards/collaboration/team/standard.md) | Совместная разработка |
 | [integrations/external](../standards/integrations/external/standard.md) | Внешние интеграции |
 | [delivery/release](../standards/delivery/release/standard.md) | Выпуск и восстановление |
@@ -46,3 +48,5 @@
 Уровень каждого правила действует в его условиях. Если критерий не определен или проверка не выполнена, пометьте это явно. Профиль не заменяет анализ требований и безопасности.
 
 [Как работать с профилями](../../docs/stack-profiles.md) · [Каталог](../../docs/catalog.md) · [Выход из прежнего CLI](../../docs/migration-to-docs-only.md).
+
+Для публичного сайта дополнительно рассмотрите [SEO/РФ-профиль](public-site-ru.md), проверив применимость каждой правовой операции. [Карта языков и фреймворков](../../docs/language-baselines.md).

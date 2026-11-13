@@ -6,10 +6,10 @@ level: "recommended"
 tags: ["indexes", "PostgreSQL"]
 technologies: ["PostgreSQL"]
 published_at: "2026-11-09"
-reviewed_at: "2026-11-09"
+reviewed_at: "2026-11-13"
 order: 25
 related: ["api.pagination", "database.foreign-keys"]
-sources: ["https://www.postgresql.org/docs/18/indexes.html", "https://www.postgresql.org/docs/18/using-explain.html", "https://www.postgresql.org/docs/18/ddl-constraints.html#DDL-CONSTRAINTS-FK"]
+sources: ["https://www.postgresql.org/docs/18/using-explain.html", "https://www.postgresql.org/docs/18/sql-createindex.html", "https://www.postgresql.org/docs/18/ddl-constraints.html#DDL-CONSTRAINTS-FK"]
 schema_version: 1
 ---
 
@@ -17,47 +17,53 @@ schema_version: 1
 
 ## Коротко
 
-Индекс ускоряет выбранное чтение и увеличивает стоимость записи.
+Добавляйте индекс под конкретный запрос или ограничение, измеряя чтение, запись и стоимость построения на репрезентативных данных.
 
 ## Плохо
 
 ```text
 Создать индекс на каждой колонке.
+Считать его полезным по самому наличию Index Scan.
 ```
 
 ## Хорошо
 
 ```text
-Найти медленный запрос → EXPLAIN →
-добавить подходящий индекс → измерить.
+Зафиксировать запрос, параметры, объем и распределение данных.
+Снять EXPLAIN и замеры до изменения.
+Построить подходящий индекс согласованным способом.
+Сравнить latency, rows/buffers, размер и нагрузку записи.
+Проверить валидность индекса после построения.
 ```
 
 ## Почему
 
-Лишние индексы расходуют место и замедляют обновления.
+Индекс занимает место и поддерживается при записи; маленькую или слабоселективную выборку PostgreSQL может выгоднее читать последовательно. План без выполнения показывает оценки. EXPLAIN ANALYZE действительно выполняет запрос: особенно для DML его нельзя считать безвредным просмотром.
 
 ## Когда применять
 
-Индексы FK на стороне ссылки не создаются PostgreSQL автоматически. Для связей и фильтров учитывайте объём и план запроса.
+Для PostgreSQL 18. Зафиксируйте одинаковую версию, статистику, данные, параметры, число повторов, холодный/прогретый кеш и согласованный бюджет запросов. Учитывайте порядок колонок, предикаты, сортировку и выборки tenant; FK-индекс на ссылающейся стороне не создается автоматически.
+
+Обычный CREATE INDEX блокирует запись. CONCURRENTLY уменьшает эту блокировку, но делает дополнительные проходы и ожидания, не выполняется внутри transaction block и после сбоя может оставить INVALID-индекс. Проверьте pg_index.indisvalid; восстановление/удаление выполняйте по процедуре, учитывая возможное продолжающееся enforcement уникальности. Не выбирайте CONCURRENTLY автоматически для временной/малой таблицы. Опасные ANALYZE-запросы измеряйте в изолированной копии; ROLLBACK не отменяет все возможные внешние эффекты функций.
 
 ## Как проверить
 
-- У индекса есть запрос и сравнение времени до и после?
+1. Типовой запрос на согласованном объеме → индекс → бюджет чтения достигнут без неприемлемой цены записи → планы, параметры и сравнимые замеры.
+
+2. Низкая селективность/неподходящий порядок колонок → сравнение → бесполезный индекс не принимается только ради Index Scan → измерения.
+
+3. Построение CONCURRENTLY прервано → проверка каталога и восстановление → INVALID не принят за готовый индекс, повтор не слепой → indisvalid и журнал процедуры.
 
 ## Человек
 
-Задаёт приоритетные запросы и допустимую стоимость записи.
+Выбирает критичные запросы, допустимые блокировки и бюджет записи.
 
 ## Агент
 
-Готовит схему или миграцию, проверяет граничные значения и совместимость с текущими запросами.
-
-Контроль результата:
-
-- У индекса есть запрос и сравнение времени до и после?
+Сохраняет воспроизводимые измерения, отличает EXPLAIN от ANALYZE и проверяет итог построения индекса.
 
 ## Источники
 
-- [PostgreSQL: Documentation: 18: Chapter 11. Indexes](https://www.postgresql.org/docs/18/indexes.html)
-- [PostgreSQL: Documentation: 18: 14.1. Using EXPLAIN](https://www.postgresql.org/docs/18/using-explain.html)
-- [PostgreSQL: Documentation: 18: 5.5. Constraints](https://www.postgresql.org/docs/18/ddl-constraints.html#DDL-CONSTRAINTS-FK)
+- [PostgreSQL 18, §14.1: EXPLAIN, ANALYZE, оценки и измерения](https://www.postgresql.org/docs/18/using-explain.html)
+- [PostgreSQL 18, CREATE INDEX: Building Indexes Concurrently](https://www.postgresql.org/docs/18/sql-createindex.html)
+- [PostgreSQL 18, §5.5.5: индекс ссылающихся колонок FK](https://www.postgresql.org/docs/18/ddl-constraints.html#DDL-CONSTRAINTS-FK)

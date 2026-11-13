@@ -6,10 +6,10 @@ level: "required"
 tags: ["typed-boundaries", "Python", "FastAPI"]
 technologies: ["Python", "FastAPI"]
 published_at: "2026-11-09"
-reviewed_at: "2026-11-09"
+reviewed_at: "2026-11-13"
 order: 43
-related: ["backend.boundaries", "backend.go-context"]
-sources: ["https://docs.pydantic.dev/latest/concepts/models/", "https://fastapi.tiangolo.com/tutorial/body/"]
+related: ["api.error-details", "security.object-access", "api.compatibility"]
+sources: ["https://docs.pydantic.dev/latest/concepts/models/", "https://docs.pydantic.dev/latest/concepts/strict_mode/", "https://fastapi.tiangolo.com/tutorial/handling-errors/"]
 schema_version: 1
 ---
 
@@ -17,47 +17,55 @@ schema_version: 1
 
 ## Коротко
 
-Типы помогают разработчику, а проверка входа защищает работающую систему.
+Проверяйте недоверенный ввод до бизнес-эффекта. Статические аннотации Python не заменяют runtime-валидацию, а валидная структура не заменяет авторизацию.
 
 ## Плохо
 
-```text
-quantity = payload["quantity"]
-charge(quantity * price)
+```python
+def read_quantity(payload: dict) -> int:
+    return payload["quantity"]  # Аннотация не проверяет JSON.
 ```
 
 ## Хорошо
 
-```text
-quantity = validated_request.quantity
-# Целое число в разрешённом диапазоне.
+```python
+from pydantic import BaseModel, ConfigDict, Field
+
+class CreateOrder(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    quantity: int = Field(strict=True, ge=1, le=10_000)
+
+request = CreateOrder.model_validate({"quantity": 2})
 ```
 
 ## Почему
 
-Аннотация типа сама по себе не проверяет входящий JSON.
+Пример для Pydantic v2: quantity обязателен, null запрещен, bool/строка/float не становятся int благодаря strict=True; 1..10000 — выбранный диапазон примера. Неизвестные поля запрещены как политика этого DTO. Другая coercion/extra-политика допустима при документированном контракте и приемке.
 
 ## Когда применять
 
-Для Python/FastAPI подходят модели Pydantic; конкретная версия фиксируется зависимостями проекта.
+На HTTP, очередях, импорте и ответах внешних сервисов в Python. Зафиксируйте версии Pydantic/FastAPI и семантику missing/null/default по каждому нужному полю. Pydantic может преобразовывать типы; строгий режим имеет различия между JSON и Python-вводом для некоторых типов, поэтому тестируйте реальный путь model_validate/model_validate_json.
+
+В FastAPI неверный request вызывает RequestValidationError; базовый формат detail не является автоматически RFC 9457. Если принят api.error-details, адаптер преобразует ошибки в согласованный problem media type и extension, исключая raw input/секреты. Ошибка response-модели или внутренний ValidationError не должна выглядеть как вина клиента. После валидации отдельно проверяйте субъект, действие, объект и бизнес-лимит до charge. Любое изменение coercion/required/extra у опубликованного API проверяется на совместимость.
 
 ## Как проверить
 
-- Проверьте строку, отрицательное число и слишком большое значение.
+1. quantity = 2 через реальный JSON-path → модель → int 2 и разрешенная операция после авторизации → результат модели и вызов бизнес-функции.
+
+2. Отсутствие, null, true, "2", 2.0, 0, 10001 или extra → валидация профиля → отказ до charge → список ошибок без входных секретов и ноль эффектов.
+
+3. quantity корректен, но чужой объект; либо ошибка внутренней response-модели → запрос → отказ доступа/серверная ошибка по разным контрактам → HTTP и отсутствие побочного эффекта.
 
 ## Человек
 
-Определяет допустимые значения и поведение при неверном вводе.
+Выбирает допустимые значения, coercion/extra-политику и внешний формат ошибок.
 
 ## Агент
 
-Реализует правило в коде сервиса и проверяет ошибку, отмену и граничные входные данные.
-
-Контроль результата:
-
-- Проверьте строку, отрицательное число и слишком большое значение.
+Строит DTO на фиксированной версии, проверяет missing/null/bool и оба пути ввода; не смешивает validation и authorization.
 
 ## Источники
 
-- [Models](https://docs.pydantic.dev/latest/concepts/models/)
-- [Request Body - FastAPI](https://fastapi.tiangolo.com/tutorial/body/)
+- [Pydantic v2 Models: required, extra и model_validate](https://docs.pydantic.dev/latest/concepts/models/)
+- [Pydantic v2 Strict Mode: Field(strict=True), Python/JSON](https://docs.pydantic.dev/latest/concepts/strict_mode/)
+- [FastAPI Handling Errors: RequestValidationError и exception handlers](https://fastapi.tiangolo.com/tutorial/handling-errors/)
