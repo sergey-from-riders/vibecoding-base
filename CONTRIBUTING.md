@@ -1,44 +1,25 @@
-# Contributing
+# Участие в проекте
 
-`vibecoding-base` is a standards registry plus composable stack profiles.
+Изменения принимаются через pull request. Начните с конкретного пробела: какое поведение описано неоднозначно, где не хватает условий применения, какой пример вводит в заблуждение или какая проверка не подтверждает результат.
 
-Do not add a copied stack folder. Add reusable standards, templates and stack profiles instead.
+## Порядок работы
 
-## Contribution Types
+1. Найдите правило в [каталоге](docs/catalog.md) и прочитайте [контракт контента](docs/content-contract.md).
+2. Изменяйте исходный файл `registry/standards/<domain>/<module>/rules/<slug>.md`. Сохраняйте ID и путь, если смысл правила остается прежним.
+3. Проверьте первоисточник, область его применимости и пример. Укажите конкретный пробел, изменение смысла и способ проверки.
+4. Обновите навигацию модуля и каталога, если меняется состав правил. Запишите содержательное изменение в CHANGELOG модуля.
+5. В PR опишите результат проверки и то, что осталось непроверенным. Используйте [редакционный порядок](docs/contributing-standards.md).
 
-1. Standard changes: edit `registry/standards/<id>/`.
-2. Stack profile changes: edit `registry/stacks/<stack>.yaml`.
-3. Template changes: edit `registry/templates/<template>/`.
-4. Check changes: edit `registry/checks/`.
-5. Docs changes: edit `docs/`.
+Кодовые примеры остаются внутри Markdown. Новые исполняемые файлы, пакеты, CLI, генераторы, workflow и шаблоны приложений в этот репозиторий не добавляются. Если для публикации нужна новая функция, согласуйте изменение контракта с владельцем сайта или отдельного проекта инструментов.
 
-## Standard Change Checklist
+## Что проверяет редактор
 
-1. Update `standard.md`.
-2. Update `standard.yaml`.
-3. Update `CHANGELOG.md`.
-4. Mark breaking/non-breaking impact.
-5. Update `checks.yaml` if automated enforcement changed.
-6. Add migration notes for breaking profile changes.
-7. Regenerate examples if active output changes.
-8. Run `node tools/vibe.mjs verify`.
+Редактор проверяет технический смысл, применимость, достоверность источника, последствия обязательности и возможность подтвердить выполнение. Внешний валидатор потребителя проверяет формат документов и целостность снимка. Эти проверки дополняют друг друга.
 
-## Review Model
+Нельзя отмечать проверку выполненной без результата. `reviewed_at` меняется после содержательной проверки конкретного правила; `published_at` сохраняет дату первой публикации. Ссылка, ответившая HTTP 200, не доказывает правильность совета.
 
-Every standard has `owners`.
+## Слияние и публикация
 
-1. Stable standard changes need review from an owner.
-2. Breaking changes need a major version bump.
-3. CI-blocking enforcement must point to a real check.
-4. Stack profiles should pin compatible ranges.
-5. Generated projects pin exact versions through `.vibe/registry.lock`.
+Слияние PR фиксирует новую редакцию Git. Публикация происходит только после успешной приемки снимка потребителем. При несовместимом изменении нужна [миграция](docs/migration-to-docs-only.md), а действующая опубликованная версия сохраняется до завершения проверки.
 
-## Local Validation
-
-```bash
-node tools/vibe.mjs verify
-```
-
-The verify command checks registry references, schemas, enforcement claims, generated examples and no-clutter project structure.
-
-Do not add fake lockfiles or fake enforcement. If a template is a placeholder, keep its readiness and README honest.
+Применение [лицензии MIT](LICENSE) и [политики безопасности](SECURITY.md) относится и к примерам, и к иллюстрациям.

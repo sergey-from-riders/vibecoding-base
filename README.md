@@ -1,135 +1,57 @@
-> **Справочник 2.3:** 142 русских материала в 16 разделах. Источник — `registry/standards/<domain>/<name>/rules/*.md`; `standard.md` и примеры генерируются. [Как предложить изменение](docs/contributing-standards.md) · [Аудит прежних правил](docs/audit-2026-11-09.md).
+# vibecoding-base
 
-# vibecoding-base 🧱✨
+Открытая база инженерных требований для разработки с ИИ. Она помогает выбрать применимые правила, уточнить задачу, проверить результат и объяснить решения человеку и агенту.
 
-Composable stack profiles and a versioned standards registry for AI-native development.
+**142 отдельных правила, 16 разделов и 20 тематических модулей.** Основной язык — русский. Публичная версия справочника: [eval.su/standards](https://eval.su/standards/). [English overview](README.en.md).
 
-Short version: this repo is no longer a pile of copyable stack folders. The registry is the source of truth. A generated project contains only the active stack you chose, plus the exact standards and checks that apply to that stack.
+Репозиторий содержит документацию и иллюстрации. Тексты правил находятся в `registry/standards/*/*/rules/*.md`; навигационные страницы и профили ссылаются на них. Примеры кода внутри Markdown объясняют требования и нуждаются в адаптации к проекту.
 
-## Languages
+## Начать работу
 
-- 🇬🇧 [English documentation](README.en.md)
-- 🇷🇺 [Русская документация](README.ru.md)
+1. Откройте [каталог всех правил](docs/catalog.md). Выберите темы по задаче, данным, используемым технологиям и последствиям ошибки.
+2. Для типового приложения используйте профиль [Go + Next.js + PostgreSQL](registry/stacks/go-next-postgres.md) или [Python/FastAPI + React + PostgreSQL](registry/stacks/python-react-postgres.md). Уточните состав профиля для своего проекта.
+3. Для выбранных правил прочитайте область применения, примеры и способ проверки. Уровень «Обязательно» действует только внутри указанной области.
+4. В документации своего проекта зафиксируйте выбранные ID, точный commit справочника, проверку, ожидаемое свидетельство и обоснованные исключения. Передавайте агенту нужное подмножество правил вместе с задачей.
+5. Проверьте результат работы. Чтение документа, успешный ответ агента и техническая возможность импорта не подтверждают выполнение инженерного требования.
 
-## The Model
+## Текущее состояние
 
-```text
-registry
-  -> stack profile
-  -> selected templates
-  -> active standards
-  -> generated clean project
-```
+Структурная редакция от 13 ноября 2026 года переводит репозиторий на документационную модель. Все 142 правила, 16 описаний разделов и 6 WebP сохранены побайтно относительно принятой версии `809078d13b3c5c67d75cc51cf82c6ba1ea5b4e8f`, включая уже уточнённые HTTP-статусы, Problem Details и авторизацию MCP. ID, пути, даты и схема 1 не меняются. `standard.md` содержит ссылки на правила; профили стали Markdown-документами. CLI, генераторы, шаблоны приложений, сгенерированные проекты и исполняемые проверки удалены из корпуса.
 
-Generated projects should stay small:
+Содержательная достаточность правил разбирается отдельно. Наличие правила в справочнике не означает, что оно полно, актуально для любой версии технологии или проверено на конкретном проекте. В этой редакции не заявляется, что все 142 текста уже исправлены.
 
-```text
-apps/api
-apps/web
-contracts/openapi
-standards/active
-scripts/check.sh
-README.md
-AGENTS.md
-.vibe/profile.yaml
-.vibe/enabled.yaml
-.vibe/registry.lock
-```
+Материалы текущего разбора:
 
-Disabled features stay in `registry`, not in the generated project.
+- [Общий аудит](docs/audit-2026-11-13.md).
+- [Разбор каждого правила](docs/audit-2026-11-13/index.md).
+- [Очередь содержательных улучшений](docs/standards-backlog.md).
+- [Промпт для уточнения стандарта](prompts/refine-standard.md).
 
-## Duplication Policy
+## Как устроена база
 
-There is one source of truth for standards: `registry/standards`.
+| Путь | Назначение |
+| --- | --- |
+| `registry/standards/<domain>/<module>/rules/*.md` | Единственный исходный текст каждого правила и его метаданные |
+| `registry/standards/<domain>/<module>/standard.md` | Область модуля, прежние метаданные, зависимости и ссылки на правила |
+| `registry/standards/<domain>/<module>/CHANGELOG.md` | История изменений модуля |
+| `registry/handbook/*.md` | Названия, описания и порядок 16 разделов |
+| `registry/stacks/*.md` | Читаемые профили выбора требований |
+| `docs/` | Контракт публикации, сопровождение, аудит и история |
 
-`examples/*/standards/active` contains generated copies so users can inspect a real project shape. Do not edit those files by hand. Update the registry standard and regenerate examples instead.
+Профиль, модуль и раздел справочника решают разные задачи. Профиль выбирает требования для проекта; модуль объединяет их по технологии или ответственности; раздел задает навигацию сайта. Все они ссылаются на одни исходные правила.
 
-`node tools/vibe.mjs verify` checks that generated active standards have not drifted from the registry.
+## Публикация на eval.su
 
-## Quick Start
+Сайт читает документы из зафиксированного снимка Git. Код загрузки, проверки формата, рендеринга, поиска и экспорта должен сопровождаться в проекте eval.su или в отдельном репозитории инструментов. Здесь хранится [контракт контента](docs/content-contract.md).
 
-Generate a project:
+Импортер eval.su читает только `rules/*.md`, `registry/handbook/*.md` и связанные изображения из одного commit. Удалённые CLI, YAML-манифесты и сборные тексты ему не нужны. Совместимость кандидата проверяется действующим импортером; результаты и границы проверки записываются в [журнал миграции](docs/validation-documentation-only-2026-11-13.md). Порядок перехода и отката: [руководство миграции](docs/migration-to-docs-only.md).
 
-```bash
-node tools/vibe.mjs use go-next-postgres --project ../my-app
-```
+## Сопровождение
 
-Or try the examples already generated in this repo:
+- [Принципы применения](FRAMEWORK.md) и [архитектура документации](docs/architecture.md).
+- [Как внести изменение](CONTRIBUTING.md) и [редакционные требования](docs/contributing-standards.md).
+- [Профили проекта](docs/stack-profiles.md), [версии](docs/standards-versioning.md), [даты публикации](docs/publication-dates.md).
+- [Миграция с CLI и откат](docs/migration-to-docs-only.md).
+- [Политика безопасности](SECURITY.md) и [лицензия MIT](LICENSE).
 
-```bash
-node tools/vibe.mjs verify
-examples/generated-go-next-postgres/scripts/check.sh
-examples/generated-python-react-postgres/scripts/check.sh
-```
-
-Enable optional parts later:
-
-```bash
-node tools/vibe.mjs enable worker --project ../my-app
-node tools/vibe.mjs enable mobile react-native --project ../my-app
-node tools/vibe.mjs enable payments stripe --project ../my-app
-```
-
-Disable them again:
-
-```bash
-node tools/vibe.mjs disable mobile --project ../my-app
-```
-
-## Available Stack Profiles
-
-| Stack | Backend | Frontend | Database | Status |
-| --- | --- | --- | --- | --- |
-| `go-next-postgres` | Go | Next.js | PostgreSQL | stable profile, partial runtime |
-| `python-react-postgres` | Python/FastAPI | React | PostgreSQL | stable profile, partial runtime |
-
-See [`registry/stacks`](registry/stacks).
-
-## Standards Registry
-
-Each standard is its own versioned unit:
-
-```text
-registry/standards/backend/go/
-  standard.yaml
-  standard.md
-  checks.yaml
-  CHANGELOG.md
-  README.md
-```
-
-See [`docs/contributing-standards.md`](docs/contributing-standards.md) before changing standards.
-
-## Version policy
-
-Standards describe applicability and link to primary documentation. Runtime versions are pinned by each project; template metadata is a selected baseline, not a claim to be the latest release.
-
-Templates are intentionally lightweight and marked partial where runtime scaffolding is not complete. Do not treat this repo as "production runtime ready"; treat it as a clean, agent-friendly standards and stack-profile base.
-
-## Lockfile Policy
-
-Registry-generated examples pin standard/template versions in `.vibe/registry.lock`.
-
-Package manager lockfiles (`pnpm-lock.yaml`, `go.sum`, `uv.lock`) are not committed in lightweight templates until dependencies are installed in a real project. The package manager/runtime baseline is documented in template metadata and package files; runnable projects should commit their generated lockfiles after first install.
-
-## Commands
-
-```bash
-node tools/vibe.mjs standards list
-node tools/vibe.mjs standards explain backend/go
-node tools/vibe.mjs verify
-node tools/vibe.mjs doctor
-```
-
-## More Docs
-
-- [`docs/architecture.md`](docs/architecture.md)
-- [`docs/stack-profiles.md`](docs/stack-profiles.md)
-- [`docs/standards-versioning.md`](docs/standards-versioning.md)
-- [`docs/contributing-standards.md`](docs/contributing-standards.md)
-
-## Редакционная проверка — 13 ноября 2026
-
-[Решение по входящему аудиту](docs/audit-2026-11-13.md): уточнены три правила HTTP/MCP и исправлены подтверждённые расхождения автоматических проверок. [Карточки всех 142 правил](docs/audit-2026-11-13/index.md) сохранены как редакционные предложения; они не означают завершённую переработку всех статей.
-
-Для сопровождения доступны [контракт контента](docs/content-contract.md), [промпт редактора](prompts/refine-standard.md), [принятие правил проектом](templates/project-adoption.md), [исключения](templates/exception.md) и [свидетельства проверки](templates/evidence.md). CLI, генераторы и профили продолжают работать.
+Исторические аудиты сохраняют исходные даты, числа и выводы. Они помечены как архивы и не заменяют текущую оценку.

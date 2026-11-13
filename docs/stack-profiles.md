@@ -1,125 +1,36 @@
-# Stack Profiles
+# Профили применения
 
-Stack profiles are YAML compositions. They choose standards, templates and checks without copying their content.
+Профиль — читаемый перечень модулей для определенного типа проекта. Он помогает выбрать начальный набор требований и не создает код, каталог приложения, зависимости или lockfile.
 
-Stack profiles must stay small. They reference standards and templates; they do not contain standard text.
+## Доступные профили
 
-## Required Fields
-
-```yaml
-id: go-next-postgres
-name: Go + Next.js + PostgreSQL
-status: stable
-description: Full-stack web app profile.
-components:
-  backend: go
-standards:
-  - backend/go@^1.0.0
-templates:
-  - backend/go
-checks:
-  - check_structure
-readiness:
-  template: ready
-  runtime: partial
-  checks: partial
-  docs: ready
-```
-
-## Status Matrix
-
-Use separate readiness fields:
-
-| Field | Meaning |
+| Профиль | Область |
 | --- | --- |
-| `template` | Files can be generated. |
-| `runtime` | Runtime code is runnable and complete enough for the stated use. |
-| `checks` | Automated checks cover the stated rules. |
-| `docs` | Human/agent docs are usable. |
+| [Go + Next.js + PostgreSQL](../registry/stacks/go-next-postgres.md) | Go API, Next.js-интерфейс, PostgreSQL и документируемый HTTP API |
+| [Python/FastAPI + React + PostgreSQL](../registry/stacks/python-react-postgres.md) | Python/FastAPI API, React-интерфейс, PostgreSQL и документируемый HTTP API |
 
-Allowed values:
+Профили сохраняют состав прежних YAML-манифестов как отправную точку. Прежний статус `stable` описывал профиль в старом реестре; он не доказывает готовность конкретного приложения или достаточность каждого правила.
 
-- `ready`
-- `partial`
-- `missing`
+## Как выбрать состав
 
-## Adding A Stack
+1. Укажите реальные компоненты проекта, внешние системы, типы данных и критические пользовательские сценарии.
+2. Выберите подходящий профиль или отдельные модули из [каталога](catalog.md).
+3. Для каждого модуля проверьте его зависимости и область применения правил. Не переносите требования отсутствующей технологии только потому, что она упомянута в профиле.
+4. Добавьте применимые темы интерфейса, фоновых задач, мобильного приложения, платежей, публикаций или CMS.
+5. Зафиксируйте точный commit корпуса и выбранные ID в документации проекта. Для исключений укажите основание и порядок пересмотра.
 
-1. Create `registry/stacks/<stack-id>.yaml`.
-2. Reuse existing standards where possible.
-3. Add new standards only when rules genuinely differ.
-4. Add templates under `registry/templates`.
-5. Add checks under `registry/checks` only when real automation exists.
-6. Generate an example project.
-7. Run `node tools/vibe.mjs verify`.
+Рекомендуемый профиль не заменяет анализ рисков и требований бизнеса. Состав может оказаться недостаточным; это должно быть видно из приемки, а не скрыто отметкой «подключен профиль».
 
-## Optional Features
+## Связи и версии
 
-Optional features live under `optional_features`.
+`standard.md` модуля содержит ссылки на зависимые модули. Прежние диапазоны версий сохранены там как исторические сведения. В документационной модели никакой процесс в этом репозитории не разрешает диапазоны и не проверяет совместимость автоматически. Для воспроизводимости используйте один точный commit и документируйте выбранный состав.
 
-Simple feature:
+Когда меняется исходный профиль, действующие проекты не обновляются сами. Владелец проекта оценивает новые правила, изменение обязательности и стоимость миграции, затем фиксирует принятую редакцию.
 
-```yaml
-optional_features:
-  worker:
-    templates:
-      - worker/base
-    standards:
-      - backend/worker@^1.0.0
-```
+## Новый профиль
 
-Feature with variants:
+Новый `registry/stacks/<id>.md` должен содержать область применения, фактические компоненты, ссылки на базовые модули, условия подключения дополнительных тем, исключения и порядок фиксации версии. Текст правил не копируется. Название и описание не обещают производственную готовность.
 
-```yaml
-optional_features:
-  mobile:
-    variants:
-      react-native:
-        templates:
-          - mobile/react-native
-        standards:
-          - mobile/react-native@^1.0.0
-```
+Полезный результат применения — конкретные требования и свидетельства приемки в проекте. Флаги готовности runtime, templates или checks прежней системы сюда не переносятся.
 
-Generated projects must not receive optional feature folders until `vibe enable` is run.
-
-## Reusing Standards
-
-Do not copy a common rule into each stack. Put it in `registry/standards` and reference it:
-
-```yaml
-standards:
-  - security/no-secrets@^1.0.0
-  - testing/tdd-strict@^1.0.0
-```
-
-If two stacks differ only by backend/runtime, share the common standards and swap only the specific ones.
-
-## Check Semantics
-
-`checks` lists real registry checks. `vibe verify` runs non-wrapper checks against generated examples.
-
-Use wrapper checks for project structure:
-
-- `check_structure`
-- `check_standards`
-
-Use direct checks for concrete surfaces:
-
-- `check_openapi`
-- `check_template_hygiene`
-
-Do not list checks that do not exist or checks that imply runtime coverage the stack does not have.
-
-## Example Projects
-
-Examples under `examples/generated-*` are generated from stack profiles. They show the expected project shape:
-
-```text
-AGENTS.md
-standards/active
-.vibe/profile.yaml
-.vibe/registry.lock
-```
-
-Do not manually maintain example standards. Change `registry/standards`, regenerate examples, then run `node tools/vibe.mjs verify`.
+Переход от команд `vibe use`, `enable` и `disable` описан в [миграции](migration-to-docs-only.md).

@@ -1,139 +1,40 @@
-> В версии 2.0 источником служат `rules/*.md`. `standard.md` — результат сборки; не редактируйте его вручную.
+# Архитектура документационной базы
 
-# Architecture
+Источник истины — исходные Markdown-файлы правил в конкретном commit Git. На них ссылаются модули, каталог, профили и опубликованные страницы. Репозиторий не создает приложения и не исполняет проверки.
 
-`vibecoding-base` is registry-first.
+## Слои
 
-The registry is the source of truth. Generated projects are consumers of one selected stack profile.
+| Слой | Расположение | Ответственность |
+| --- | --- | --- |
+| Правило | `registry/standards/<domain>/<module>/rules/<slug>.md` | Текст нормы, применимость, примеры, проверка и метаданные |
+| Раздел справочника | `registry/handbook/<id>.md` | Название, описание, порядок и необязательный родитель |
+| Модуль | `registry/standards/<domain>/<module>/standard.md` | Ссылки на правила, область, роли и зависимости |
+| Профиль | `registry/stacks/<id>.md` | Рекомендуемый набор модулей и условия выбора |
+| Редакционная документация | `docs/` | Публикационный контракт, аудит, изменения и сопровождение |
+| Потребитель | eval.su или другой проект | Загрузка, проверка снимка, представление, поиск, экспорт и мониторинг |
 
-## Registry vs Generated Project
+Один модуль может содержать правила нескольких разделов; один раздел может включать правила разных модулей. Поэтому 20 модулей и 16 разделов не являются противоречием. Список всех 142 правил находится в [каталоге](catalog.md).
 
-The registry contains everything that can be composed:
+## Единственный исходный текст
 
-```text
-registry/standards
-registry/stacks
-registry/templates
-registry/checks
-registry/schemas
-```
+Полное правило хранится один раз в `rules/`. Модуль `standard.md` является навигацией и не содержит скопированного корпуса. Профиль перечисляет ссылки, не создает копии. Архивы фиксируют прошлые решения и помечены как исторические материалы.
 
-A generated project contains only active context:
+Сайт и экспорт могут иметь производные представления. Для каждого такого представления нужен точный commit источника и версия преобразователя. Нельзя редактировать производную копию так, чтобы она стала независимым источником правила.
 
-```text
-apps/api
-apps/web
-contracts/openapi
-db/migrations
-standards/active
-scripts/check.sh
-README.md
-AGENTS.md
-.vibe/profile.yaml
-.vibe/enabled.yaml
-.vibe/registry.lock
-```
+## Контракт публикации
 
-The generated project must not contain all stacks, all standards or all templates.
+Потребитель выбирает один commit и получает из него разделы, правила и изображения. После проверки формата, целостности ссылок, существования файлов и правил безопасности он формирует полный кандидат публикации. Замена публичной редакции выполняется целиком после приемки. Ошибка импорта, неподдерживаемая схема или неполный набор не должны заменять последнюю рабочую редакцию.
 
-## Duplication Policy
+Точные поля и ограничения описаны в [контракте контента](content-contract.md). Навигационные `standard.md`, профили, аудит и README не являются дополнительными правилами и не должны попадать в коллекцию материалов по общему поиску всех `.md`.
 
-Forbidden duplication:
+## Граница инструментов
 
-1. copying the same standard into multiple stack folders;
-2. maintaining standards inside generated examples;
-3. adding a second source of truth under `docs/` for rules already owned by `registry/standards`;
-4. copying inactive feature templates into a generated project.
+Код проверки и отображения хранится у потребителя или в отдельном репозитории инструментов. Здесь остаются требования к входу и выходу, ожидаемые отказы и процедура приемки. Любой потребитель должен поддерживать свои проверки и показывать реально проверенные свойства, а не переносить исторические флаги `linted`, `tested` или `ci_blocking` из удаленных манифестов.
 
-Allowed generated copies:
+В eval.su уже имеются собственный парсер, импортер, проверки и экспорт. Они не импортируют инструменты из корпуса. При переходе проверяется действующий импортер, а не только формат отдельных файлов; результаты фиксируются в [журнале миграции](validation-documentation-only-2026-11-13.md).
 
-1. `standards/active/*` inside generated projects;
-2. generated example projects under `examples/`;
-3. lockfile snapshots in `.vibe/registry.lock`.
+## Совместимость
 
-Allowed copies are derived artifacts. They must be regenerated from the registry and verified for drift.
+При миграции от 13 ноября 2026 года все 142 правила, 16 разделов и 6 WebP сохранены побайтно относительно принятой редакции `809078d13b3c5c67d75cc51cf82c6ba1ea5b4e8f`. Содержательные исправления HTTP и MCP из этой редакции сохранены. Изменен способ организации репозитория: удалены CLI, приложение-примеры и YAML-манифесты, а навигация стала ручной Markdown-документацией. Потребитель, импортирующий только `rules/*.md` и `handbook/*.md`, сохраняет входной формат. Потребитель, вызывающий старый CLI или читающий `standard.yaml`, требует отдельного переноса.
 
-## Stack Profile
-
-A stack profile is YAML composition:
-
-```yaml
-id: go-next-postgres
-components:
-  backend: go
-  frontend: next
-  database: postgres
-standards:
-  - backend/go@^1.0.0
-templates:
-  - backend/go
-checks:
-  - check_structure
-```
-
-Profiles select standards and templates. They do not duplicate the standards.
-
-## Active Standards
-
-The generator copies only selected standards into:
-
-```text
-standards/active/
-```
-
-This gives agents short local context without copying the entire registry.
-
-## Optional Features
-
-Optional features exist in stack profiles:
-
-```yaml
-optional_features:
-  mobile:
-    variants:
-      react-native:
-        templates:
-          - mobile/react-native
-        standards:
-          - mobile/react-native@^1.0.0
-```
-
-Disabled features must not create project folders. `vibe enable` adds only the selected feature. `vibe disable` removes the feature paths and regenerates active standards/lockfile.
-
-## Lockfile
-
-`.vibe/registry.lock` pins exact standard and template versions:
-
-```yaml
-standards:
-  backend/go: 1.0.0
-templates:
-  backend/go: 1.0.0
-```
-
-The profile can say `backend/go@^1.0.0`; the lockfile records the resolved version.
-
-Runtime package lockfiles are separate. Lightweight templates do not ship fake `pnpm-lock.yaml`, `go.sum` or `uv.lock` files. A real generated project should commit those after installing dependencies.
-
-## Generated AGENTS.md
-
-`AGENTS.md` is generated from the active profile. It must list only the chosen stack and active read order.
-
-It must not mention inactive future stacks as if they exist in the project.
-
-## Verify
-
-`vibe verify` checks:
-
-1. registry standard metadata;
-2. stack profile references;
-3. template references;
-4. check references;
-5. required changelog/owners/version fields;
-6. enforcement claims versus actual checks;
-7. generated project no-clutter rules;
-8. active standards and lockfile consistency.
-9. active standard file content against the registry source.
-10. exact duplicate standard bodies inside `registry/standards`.
-11. stack checks for generated examples, excluding verify-wrapper checks to avoid recursion.
-12. secret-like patterns across the repository, with scanner implementation files excluded.
+Порядок проверки и выхода из старой модели: [миграция](migration-to-docs-only.md). Изменение формата и изменение инженерного смысла учитываются [раздельно](standards-versioning.md).
