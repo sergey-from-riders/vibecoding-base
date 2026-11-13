@@ -465,6 +465,11 @@ function renderCheckScript() {
   return `#!/usr/bin/env bash
 set -euo pipefail
 
+if ! command -v rg >/dev/null 2>&1; then
+  echo "NOT_RUN generated_project_check reason=missing_ripgrep" >&2
+  exit 2
+fi
+
 ROOT_DIR="$(cd "$(dirname "\${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
@@ -527,9 +532,15 @@ fi
 
 if command -v rg >/dev/null 2>&1; then
   secret_shape_pattern='BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z_-]{35}|xox[baprs]-|ghp_[0-9A-Za-z]{36}|github_pat_[0-9A-Za-z_]{80,}|sk-[A-Za-z0-9]{20,}'
-  if rg -n --glob '!node_modules/**' --glob '!.git/**' --glob '!dist/**' --glob '!scripts/check.sh' "$secret_shape_pattern" .; then
+  if rg -l --glob '!node_modules/**' --glob '!.git/**' --glob '!dist/**' --glob '!scripts/check.sh' "$secret_shape_pattern" .; then
     echo "VIOLATION generated_project_secret_shape"
     violations=$((violations + 1))
+  else
+    scan_status=$?
+    if [ "$scan_status" -ne 1 ]; then
+      echo "ERROR generated_project_check reason=scan_failed" >&2
+      exit 2
+    fi
   fi
 fi
 

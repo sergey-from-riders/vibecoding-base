@@ -127,3 +127,9 @@ node tools/vibe.mjs doctor
 - [`docs/stack-profiles.md`](docs/stack-profiles.md)
 - [`docs/standards-versioning.md`](docs/standards-versioning.md)
 - [`docs/contributing-standards.md`](docs/contributing-standards.md)
+
+## Редакционная проверка — 13 ноября 2026
+
+[Решение по входящему аудиту](docs/audit-2026-11-13.md): уточнены три правила HTTP/MCP и исправлены подтверждённые расхождения автоматических проверок. [Карточки всех 142 правил](docs/audit-2026-11-13/index.md) сохранены как редакционные предложения; они не означают завершённую переработку всех статей.
+
+Для сопровождения доступны [контракт контента](docs/content-contract.md), [промпт редактора](prompts/refine-standard.md), [принятие правил проектом](templates/project-adoption.md), [исключения](templates/exception.md) и [свидетельства проверки](templates/evidence.md). CLI, генераторы и профили продолжают работать.

@@ -1,6 +1,6 @@
 id: api/openapi-modular
 name: Modular OpenAPI Contract Standard
-version: 2.1.1
+version: 2.1.2
 status: stable
 domain: api
 owners:
@@ -15,7 +15,7 @@ enforcement:
   documented: true
   linted: true
   tested: false
-  ci_blocking: true
+  ci_blocking: false
 files:
   human_readable: standard.md
   checks: checks.yaml
