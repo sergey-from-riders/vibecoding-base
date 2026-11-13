@@ -1,38 +1,32 @@
 # vibecoding-base
 
-An open collection of engineering requirements for AI-assisted development. The collection helps people choose relevant rules, clarify a task, verify its outcome, and record the reasons behind engineering decisions.
+A documentation repository of engineering requirements for AI-assisted development: scope, normative statements, examples, primary sources, and acceptance criteria. Russian is the canonical language.
 
-**142 individual rules, 16 navigation sections, and 20 modules.** Russian is the canonical language of the rules. Read the [main README](README.md), the [complete catalog](docs/catalog.md), or the published handbook at [eval.su/standards](https://eval.su/standards/).
+**212 rules, 19 navigation sections, and 26 modules.** Read the [main README](README.md), [catalog](docs/catalog.md), [language baselines](docs/language-baselines.md), and [revision report](docs/revision-2026-11-13.md).
 
-## Use the documentation
+## November 13, 2026 revision
 
-1. Select rules for your project, technologies, data, and failure consequences.
-2. Start with the [Go + Next.js + PostgreSQL profile](registry/stacks/go-next-postgres.md) or the [Python/FastAPI + React + PostgreSQL profile](registry/stacks/python-react-postgres.md) when relevant.
-3. Read the scope, examples, and verification method of each selected rule. A required rule applies within its stated scope.
-4. Record the exact source commit, selected rule IDs, acceptance evidence, and justified exceptions in your own project documentation.
-5. Give your coding agent the relevant subset and verify the resulting work. Reading a rule does not prove compliance.
+The remaining **139 audited rules have been substantively revised**. The three previously accepted HTTP/MCP corrections are preserved from upstream commit `012f33f02faeb12fcae92634bd15bc2cc2d23854`. Another **70 rules** cover language conventions, framework baselines, security, navigation and search, SEO, and Russian personal data processing requirements.
 
-## Documentation model
+The repository contains Markdown documentation, six original WebP illustrations, the license, and Git ignore configuration. It has no executable toolchain, package dependencies, application scaffolds, or JS/TS files. Code fences are examples. Application checks belong to the consuming project.
 
-The November 13, 2026 structural revision preserves all 142 rules, 16 section descriptions, six WebP illustrations, IDs, paths, dates, and schema version 1 byte-for-byte against accepted commit `809078d13b3c5c67d75cc51cf82c6ba1ea5b4e8f`. This includes the previously reviewed HTTP and MCP corrections. Module `standard.md` files provide links instead of duplicated text, and stack profiles are Markdown documents. Executable tooling, application templates, generated projects, package manifests, and YAML manifests are removed.
+## Apply the requirements
 
-The rule texts have not all been substantively rewritten in this revision. The [audit](docs/audit-2026-11-13.md), [per-rule review](docs/audit-2026-11-13/index.md), [improvement backlog](docs/standards-backlog.md), [refinement prompt](prompts/refine-standard.md) describe the next editorial work.
+1. Select relevant rule IDs and record an exact source commit.
+2. Start from the [Go/Next/PostgreSQL](registry/stacks/go-next-postgres.md), [Python/React/PostgreSQL](registry/stacks/python-react-postgres.md), [Russian public website](registry/stacks/public-site-ru.md), or [Bitrix website](registry/stacks/bitrix-site-ru.md) profile.
+3. Read each rule's scope, exceptions, examples, and expected evidence. A required rule applies within its stated scope.
+4. Record justified exceptions and run the actual project acceptance scenarios.
 
-## Structure
+The [site acceptance matrix](templates/site-acceptance.md) and [personal data processing matrix](templates/ru-data-processing-matrix.md) provide editable documentation templates.
 
-| Path | Purpose |
-| --- | --- |
-| `registry/standards/*/*/rules/*.md` | Canonical rule text and metadata |
-| `registry/standards/*/*/standard.md` | Module scope, dependencies, and links |
-| `registry/standards/*/*/CHANGELOG.md` | Module history |
-| `registry/handbook/*.md` | Section descriptions and order |
-| `registry/stacks/*.md` | Human-readable selection profiles |
-| `docs/` | Publishing contract, maintenance, audits, and migration |
+## Sources, validation, and publication
 
-## Publishing and compatibility
+The [source mapping](docs/revision-2026-11-13/source-mapping.md) covers Agent OS, agents-md, AGENTS.md, Spec Kit, OpenSpec, BMad, ASVS 5.0.0, SSDF 1.1, and OSPS v2026.08.28. Selected provisions do not establish full compliance.
 
-Import, validation, rendering, search, and export code belongs in eval.su or a separate tooling repository. This repository defines the [content contract](docs/content-contract.md).
+The [validation record](docs/validation-standards-revision-2026-11-13.md) separates documentary review, syntax checks, isolated runtime checks, and unexecuted application scenarios. Existing rule identity and first-publication dates are retained. New rules deliberately omit a first-publication date until publication is confirmed.
 
-The eval.su importer reads only rule files, section files, and referenced illustrations from one Git commit. It does not use the removed generators or manifests. Integration results are recorded separately in the [migration validation](docs/validation-documentation-only-2026-11-13.md); see the [migration guide](docs/migration-to-docs-only.md) for consumer compatibility and rollback.
+[eval.su/standards](https://eval.su/standards/) is the public consumer. The 212-rule candidate has not been published from this session: the available GitHub connection is read-only and no authorized eval.su deployment channel is available. See the exact [publication status](docs/publication-status.md).
+
+Import, rendering, search, and export code belongs to the consumer. This repository defines the [content contract](docs/content-contract.md). The earlier [documentation migration validation](docs/validation-documentation-only-2026-11-13.md) remains a historical record and does not certify the new candidate.
 
 See [contributing](CONTRIBUTING.md), [versioning](docs/standards-versioning.md), [security](SECURITY.md), and the [MIT license](LICENSE).
