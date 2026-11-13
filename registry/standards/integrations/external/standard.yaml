@@ -1,6 +1,6 @@
 id: integrations/external
 name: Внешние интеграции
-version: 2.1.1
+version: 2.1.2
 status: stable
 domain: integrations
 owners:

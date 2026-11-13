@@ -55,3 +55,7 @@ node tools/vibe.mjs enable <feature> [variant] --project <dir>
 7. Did any generated active standard drift from `registry/standards`?
 8. Do stack checks actually run against examples?
 9. Are package/runtime lockfile expectations honest?
+
+## Применимость требований
+
+Спецификация, рекомендация справочника и решение конкретного проекта имеют разную область действия. Фиксируйте выбранную ревизию и применимые правила в [профиле принятия](templates/project-adoption.md); свидетельства выполнения и исключения сохраняйте отдельно. Предложения аудита не становятся обязательными без содержательного ревью. Редакционные критерии — в [руководстве](docs/contributing-standards.md#нормативность-и-свидетельства).

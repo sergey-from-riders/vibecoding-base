@@ -9,13 +9,13 @@ This project was generated from the `go-next-postgres` stack profile.
 - `backend/go@2.1.1`
 - `frontend/next@2.1.1`
 - `database/postgres@2.1.1`
-- `api/openapi-modular@2.1.1`
+- `api/openapi-modular@2.1.2`
 - `testing/tdd-strict@2.1.1`
 - `security/no-secrets@2.1.1`
 - `observability/three-signals@2.1.1`
 - `collaboration/team@2.1.1`
 - `delivery/release@2.1.1`
-- `integrations/external@2.1.1`
+- `integrations/external@2.1.2`
 
 ## Status Matrix
 

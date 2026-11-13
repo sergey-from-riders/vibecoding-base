@@ -220,3 +220,7 @@ Read:
 - [`docs/contributing-standards.md`](docs/contributing-standards.md)
 - [`docs/standards-versioning.md`](docs/standards-versioning.md)
 - [`docs/stack-profiles.md`](docs/stack-profiles.md)
+
+## Editorial review, 13 November 2026
+
+The [integration decision](docs/audit-2026-11-13.md) records three reviewed HTTP/MCP clarifications and fixes to the starter checks. The [142 incoming audit cards](docs/audit-2026-11-13/index.md) remain attributed editorial proposals, not verified application defects. The CLI, generators and stack profiles are retained. See the [content contract](docs/content-contract.md) and [project adoption template](templates/project-adoption.md).
