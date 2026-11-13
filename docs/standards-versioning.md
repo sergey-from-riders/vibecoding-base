@@ -1,88 +1,39 @@
-# Standards Versioning
+# Версии правил, схемы и публикации
 
-Standards use SemVer.
+Для воспроизводимого использования корпуса фиксируйте полный commit Git. Ветвь `main` движется, а отметка времени не определяет точный набор документов. Семантическая версия модуля, версия схемы контента и ревизия опубликованного экспорта обозначают разные вещи.
 
-```text
-MAJOR.MINOR.PATCH
-```
+## Что фиксировать
 
-Stack profiles may use compatible ranges such as:
+| Значение | Смысл |
+| --- | --- |
+| Commit корпуса | Точные исходные правила, разделы и изображения |
+| Версия содержания модуля | Семантические изменения требований, если редакторы ведут SemVer |
+| `schema_version` | Совместимость frontmatter и структуры отдельного документа; текущая схема — 1 |
+| Версия импортера / экспортера | Реализация чтения и производного представления у потребителя |
+| Export revision | Конкретная принятая комбинация снимка корпуса и преобразования |
 
-```yaml
-standards:
-  - backend/go@^1.0.0
-```
+Исторические версии `2.1.1` и `1.0.0` перенесены из YAML-манифестов в навигацию модулей. Они не являются новым релизом от 13 ноября и не означают, что тексты прошли повторную содержательную проверку. Структурная миграция записана в CHANGELOG как невыпущенное изменение. Тег релиза этим документом не создается.
 
-Generated projects pin exact versions in `.vibe/registry.lock`.
+## Изменение содержания
 
-## PATCH
+- **PATCH:** опечатка, уточнение без изменения обязательств, исправление ссылки или сопоставимого примера. Если правка меняет допустимое поведение, она уже не является простой редактурой.
+- **MINOR:** совместимое добавление рекомендации, необязательного пояснения или нового применимого сценария без ужесточения существующих обязательств.
+- **MAJOR:** новое обязательство для существующих потребителей, усиление уровня, сужение допустимого поведения, удаление требования, несовместимое изменение ID или условий применения.
 
-Use PATCH for non-breaking changes:
+Редактор оценивает влияние на потребителя, а не число измененных строк. Для major-изменения нужны причина, перечень затронутых ID и путь перехода. При добавлении обязательного правила проверяйте, не делает ли оно несовместимым ранее принятый профиль.
 
-1. typos;
-2. clearer wording;
-3. examples that do not change behavior;
-4. non-breaking check fixes;
-5. metadata corrections that do not change active behavior.
+## Изменение формата
 
-Example:
+Смена обязательных полей, типов, имен блоков или способа кодирования требует версии схемы и согласованной поддержки потребителем. Новое значение `schema_version` нельзя публиковать до готовности импортера. Не добавляйте новое поле в обход этой процедуры только потому, что один прежний парсер его игнорировал.
 
-```text
-1.0.0 -> 1.0.1
-```
+ID и пути опубликованных правил сохраняются. При необходимом переносе нужен явный план соответствий старого и нового адреса у потребителя. Ссылки `related`, каталог и профили обновляются согласованно; старые ID нельзя переиспользовать для другого смысла.
 
-## MINOR
+## Даты
 
-Use MINOR for compatible additions:
+`published_at` — первая подтвержденная публикация; `reviewed_at` — содержательное ревью; дата изменения — история файла в Git; синхронизация — событие потребителя. Не обновляйте все даты одним массовым действием. Источник исторических дат описан в [отдельном документе](publication-dates.md).
 
-1. new recommendations;
-2. optional checks;
-3. additional examples;
-4. new non-required metadata;
-5. new optional templates.
-6. updated recommended runtime baselines when templates remain partial and compatible.
+## Выпуск и откат
 
-Example:
+CHANGELOG модуля описывает изменение, обязательность, применимость, затронутые ID, результаты проверки и миграцию. После редакторской приемки потребитель проверяет полный снимок и публикует его одной ревизией. При неуспехе остается последняя принятая версия.
 
-```text
-1.0.0 -> 1.1.0
-```
-
-## MAJOR
-
-Use MAJOR for breaking changes:
-
-1. stricter required checks;
-2. incompatible folder structure;
-3. changed required runtime baseline;
-4. removed rules;
-5. changed generated file names;
-6. new CI-blocking enforcement.
-7. changing a template from placeholder partial runtime to mandatory runnable runtime with stricter checks.
-
-Example:
-
-```text
-1.0.0 -> 2.0.0
-```
-
-## Changelog Requirements
-
-Each `CHANGELOG.md` entry must say:
-
-1. what changed;
-2. whether it is breaking;
-3. migration steps if needed;
-4. affected stack profiles;
-5. affected checks.
-
-## Owner Review
-
-Stable standards require owner review. Breaking stable changes require:
-
-1. owner approval;
-2. major version bump;
-3. migration note;
-4. stack profile update;
-5. regenerated examples;
-6. `node tools/vibe.mjs verify`.
+Удаление CLI, YAML-манифестов и генерируемых проектов несовместимо с прежними инструментальными потребителями, даже при неизменной схеме правил. Этот переход описан в [миграции на документационную модель](migration-to-docs-only.md). Он не должен маскироваться под успешную проверку работающего сайта.

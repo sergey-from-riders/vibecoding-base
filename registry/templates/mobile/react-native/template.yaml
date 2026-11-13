@@ -1,8 +1,0 @@
-id: mobile/react-native
-name: React Native mobile template
-version: 1.1.0
-status: partial
-paths:
-  - apps/mobile
-standards:
-  - mobile/react-native

@@ -1,22 +1,14 @@
-# Environment files
+# Local editorial files and temporary outputs
+.DS_Store
+*.swp
+*.swo
+*.tmp
+*.log
+tmp/
+.artifacts/
+
+# Local credentials must never enter the documentation corpus
 .env
 .env.*
 **/.env
 **/.env.*
-!.env.example
-!**/.env.example
-
-# Dependencies and generated runtime state
-node_modules/
-.venv/
-__pycache__/
-.pytest_cache/
-.next/
-dist/
-build/
-
-# Logs and temp
-logs/
-*.log
-tmp/
-.artifacts/

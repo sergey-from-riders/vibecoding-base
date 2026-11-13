@@ -1,226 +1,38 @@
-> **Справочник 2.0:** 100 русских правил в 15 разделах. Источник — `registry/standards/<domain>/<name>/rules/*.md`; `standard.md` и примеры генерируются. [Как предложить изменение](docs/contributing-standards.md) · [Аудит прежних правил](docs/audit-2026-11-09.md).
+# vibecoding-base
 
-# vibecoding-base 🧱✨
+An open collection of engineering requirements for AI-assisted development. The collection helps people choose relevant rules, clarify a task, verify its outcome, and record the reasons behind engineering decisions.
 
-`vibecoding-base` is a composable registry for AI-native project foundations.
+**142 individual rules, 16 navigation sections, and 20 modules.** Russian is the canonical language of the rules. Read the [main README](README.md), the [complete catalog](docs/catalog.md), or the published handbook at [eval.su/standards](https://eval.su/standards/).
 
-It helps you generate a clean project for one active stack, instead of copying a huge folder that already contains every possible future technology. The registry keeps standards, stack profiles, templates and checks in one place. Your project gets only what it actually uses.
+## Use the documentation
 
-## Why This Exists
+1. Select rules for your project, technologies, data, and failure consequences.
+2. Start with the [Go + Next.js + PostgreSQL profile](registry/stacks/go-next-postgres.md) or the [Python/FastAPI + React + PostgreSQL profile](registry/stacks/python-react-postgres.md) when relevant.
+3. Read the scope, examples, and verification method of each selected rule. A required rule applies within its stated scope.
+4. Record the exact source commit, selected rule IDs, acceptance evidence, and justified exceptions in your own project documentation.
+5. Give your coding agent the relevant subset and verify the resulting work. Reading a rule does not prove compliance.
 
-Coding agents are fast. Without repo rules, they also improvise fast:
+## Documentation model
 
-- random folders;
-- duplicated architecture docs;
-- different rules for nearly identical stacks;
-- hidden framework drift;
-- stale standards nobody wants to update;
-- "ready" claims that only mean "docs exist".
+The November 13, 2026 structural revision preserves all 142 rules, 16 section descriptions, six WebP illustrations, IDs, paths, dates, and schema version 1 byte-for-byte against accepted commit `809078d13b3c5c67d75cc51cf82c6ba1ea5b4e8f`. This includes the previously reviewed HTTP and MCP corrections. Module `standard.md` files provide links instead of duplicated text, and stack profiles are Markdown documents. Executable tooling, application templates, generated projects, package manifests, and YAML manifests are removed.
 
-This repo fixes that with one simple idea:
+The rule texts have not all been substantively rewritten in this revision. The [audit](docs/audit-2026-11-13.md), [per-rule review](docs/audit-2026-11-13/index.md), [improvement backlog](docs/standards-backlog.md), [refinement prompt](prompts/refine-standard.md) describe the next editorial work.
 
-> Registry contains everything. A generated project contains only active context.
+## Structure
 
-## What You Generate
+| Path | Purpose |
+| --- | --- |
+| `registry/standards/*/*/rules/*.md` | Canonical rule text and metadata |
+| `registry/standards/*/*/standard.md` | Module scope, dependencies, and links |
+| `registry/standards/*/*/CHANGELOG.md` | Module history |
+| `registry/handbook/*.md` | Section descriptions and order |
+| `registry/stacks/*.md` | Human-readable selection profiles |
+| `docs/` | Publishing contract, maintenance, audits, and migration |
 
-When you run:
+## Publishing and compatibility
 
-```bash
-node tools/vibe.mjs use go-next-postgres --project ../my-app
-```
+Import, validation, rendering, search, and export code belongs in eval.su or a separate tooling repository. This repository defines the [content contract](docs/content-contract.md).
 
-the target project gets:
+The eval.su importer reads only rule files, section files, and referenced illustrations from one Git commit. It does not use the removed generators or manifests. Integration results are recorded separately in the [migration validation](docs/validation-documentation-only-2026-11-13.md); see the [migration guide](docs/migration-to-docs-only.md) for consumer compatibility and rollback.
 
-```text
-apps/api
-apps/web
-contracts/openapi
-db/migrations
-standards/active
-scripts/check.sh
-README.md
-AGENTS.md
-.vibe/profile.yaml
-.vibe/enabled.yaml
-.vibe/registry.lock
-```
-
-It does not get inactive folders such as:
-
-```text
-mobile
-desktop
-worker
-admin
-payments
-queue
-ai
-```
-
-Those parts stay in the registry until you explicitly enable them.
-
-## No Duplicate Sources 🧭
-
-There is one source of truth for standards:
-
-```text
-registry/standards
-```
-
-Generated projects and examples receive copies in:
-
-```text
-standards/active
-```
-
-That copy is runtime context for humans and agents. It is not where standards are maintained.
-
-If you want to change a standard:
-
-1. edit `registry/standards/<id>/rules/*.md`;
-2. update `standard.yaml` and `CHANGELOG.md`;
-3. regenerate examples;
-4. run `node tools/vibe.mjs verify`.
-
-`verify` fails if generated active standards drift from the registry.
-
-## Daily Commands
-
-```bash
-# Generate a stack
-node tools/vibe.mjs use go-next-postgres --project ../my-app
-
-# Verify registry and examples
-node tools/vibe.mjs verify
-
-# List standards
-node tools/vibe.mjs standards list
-
-# Explain one standard
-node tools/vibe.mjs standards explain backend/go
-
-# Enable optional parts
-node tools/vibe.mjs enable worker --project ../my-app
-node tools/vibe.mjs enable mobile react-native --project ../my-app
-node tools/vibe.mjs enable payments stripe --project ../my-app
-
-# Disable an optional part
-node tools/vibe.mjs disable mobile --project ../my-app
-```
-
-## Repository Layout
-
-```text
-registry/
-  standards/      versioned standards
-  stacks/         YAML stack profiles
-  templates/      composable generated project parts
-  checks/         registry and generated-project checks
-  schemas/        schemas for standards, stacks and profiles
-tools/
-  vibe.mjs        minimal CLI
-examples/
-  generated-go-next-postgres
-  generated-python-react-postgres
-docs/
-  architecture.md
-  contributing-standards.md
-  stack-profiles.md
-  standards-versioning.md
-```
-
-## Stack Profiles
-
-Current stacks:
-
-- `go-next-postgres`: Go API, Next.js web, PostgreSQL, OpenAPI.
-- `python-react-postgres`: Python/FastAPI API, React web, PostgreSQL, OpenAPI.
-
-Each stack profile is YAML composition:
-
-```yaml
-components:
-  backend: go
-  frontend: next
-  database: postgres
-  contracts: openapi
-standards:
-  - backend/go@^1.0.0
-templates:
-  - backend/go
-checks:
-  - check_structure
-```
-
-## Standards
-
-Each standard is independently versioned:
-
-```text
-registry/standards/backend/go/
-  standard.yaml
-  standard.md
-  checks.yaml
-  CHANGELOG.md
-  README.md
-```
-
-`standard.yaml` declares owners, SemVer version, dependencies, enforcement reality and compatible stacks.
-
-Enforcement is explicit:
-
-```yaml
-enforcement:
-  documented: true
-  linted: false
-  tested: false
-  ci_blocking: false
-```
-
-If a rule is only written down, we say so. No fake "enforced" claims.
-
-## Version policy
-
-Current standards target:
-
-- Go 1.26
-- Python 3.14
-- PostgreSQL 18
-- OpenAPI 3.2
-- Next.js 16
-- React 19.2
-- Vite 8
-- TypeScript 6
-- Node 24 LTS
-- React Native 0.85
-
-Templates are lightweight. Some runtime folders are placeholders and their stack readiness says `runtime: partial`. That is intentional and honest.
-
-## Lockfile Policy
-
-`.vibe/registry.lock` pins standard and template versions.
-
-Package-manager lockfiles are created by the real generated project after dependencies are installed. The templates document package managers and tested baseline ranges, but they do not commit fake lockfiles.
-
-## Status Matrix
-
-Stacks use separate readiness fields:
-
-- `template`: files can be generated.
-- `runtime`: runnable app/runtime completeness.
-- `checks`: automated checks completeness.
-- `docs`: documentation completeness.
-
-This avoids calling a stack "ready" when only the docs are ready.
-
-## Contributing
-
-Read:
-
-- [`docs/contributing-standards.md`](docs/contributing-standards.md)
-- [`docs/standards-versioning.md`](docs/standards-versioning.md)
-- [`docs/stack-profiles.md`](docs/stack-profiles.md)
-
-## Editorial review, 13 November 2026
-
-The [integration decision](docs/audit-2026-11-13.md) records three reviewed HTTP/MCP clarifications and fixes to the starter checks. The [142 incoming audit cards](docs/audit-2026-11-13/index.md) remain attributed editorial proposals, not verified application defects. The CLI, generators and stack profiles are retained. See the [content contract](docs/content-contract.md) and [project adoption template](templates/project-adoption.md).
+See [contributing](CONTRIBUTING.md), [versioning](docs/standards-versioning.md), [security](SECURITY.md), and the [MIT license](LICENSE).

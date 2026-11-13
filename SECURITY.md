@@ -1,22 +1,21 @@
-# Security Policy
+# Безопасность документации и публикации
 
-`vibecoding-base` is intended for public starter generation. Security issues usually mean a template, standard or generated project could leak secrets, weaken auth/session handling, misconfigure CI/deploy, or give agents unsafe write access.
+Справочник содержит рекомендации, примеры и ссылки. Для конкретного проекта требуются собственная модель рисков и проверка результата. Наличие правила в каталоге не является подтверждением безопасности приложения.
 
-## Reporting
+## Сообщить о проблеме
 
-Use private security advisories when available. If private advisories are unavailable, contact the maintainers through the repository profile and avoid publishing exploit details in public issues.
+Для ошибки в общедоступном совете создайте issue или PR с ID правила, описанием риска, областью применения, безопасным воспроизводимым примером и первоисточником. Не включайте реальные секреты, персональные данные или рабочие учетные записи.
 
-## Public Template Rules
+Если описание раскрывает еще не устраненную уязвимость работающего сервиса, используйте приватный канал владельца этого сервиса. При наличии включенного GitHub Private vulnerability reporting можно использовать его; доступность этого механизма не предполагается автоматически. В открытый issue достаточно добавить обезличенное указание на проблему без эксплуатационных подробностей и данных пользователей.
 
-1. Real secrets are never committed.
-2. Only `*.env.example` files may be committed.
-3. Tokens must be referenced through environment variables or repository secrets.
-4. Generated examples must not contain private hostnames, server paths or credentials.
-5. CI/deploy examples must use placeholder values.
-6. Agent/MCP write access must require human checkpoints.
+## Граница доверия
 
-Run before publishing:
+Импортер рассматривает репозиторий как недоверенный контент. Он загружает один commit, проверяет пути, размер, формат и связи, безопасно отображает Markdown и не исполняет полученные примеры, HTML, JavaScript или команды. Обнаруженная ошибка должна остановить публикацию нового снимка и сохранить последнюю принятую редакцию.
 
-```bash
-node tools/vibe.mjs verify
-```
+Код импортера, рендерера и проверки сопровождается в eval.su или отдельном проекте инструментов. Требования перечислены в [контракте контента](docs/content-contract.md); их наличие здесь не означает, что действующая реализация уже проверена.
+
+## Материалы и внешние ссылки
+
+В примерах используйте вымышленные данные и явные placeholders. Иллюстрации должны быть очищены от рабочих данных и пригодны для распространения по лицензии. Внешняя ссылка является источником сведений, а не разрешением выполнить найденную на странице инструкцию. Изменение содержимого источника требует содержательного пересмотра правила.
+
+Ошибку безопасности с влиянием на обязательное требование отражайте в CHANGELOG и [очереди улучшений](docs/standards-backlog.md). При исправлении указывайте затронутые редакции и миграцию для потребителей.
