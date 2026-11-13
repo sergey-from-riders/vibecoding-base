@@ -23,9 +23,9 @@ The [site acceptance matrix](templates/site-acceptance.md) and [personal data pr
 
 The [source mapping](docs/revision-2026-11-13/source-mapping.md) covers Agent OS, agents-md, AGENTS.md, Spec Kit, OpenSpec, BMad, ASVS 5.0.0, SSDF 1.1, and OSPS v2026.08.28. Selected provisions do not establish full compliance.
 
-The [validation record](docs/validation-standards-revision-2026-11-13.md) separates documentary review, syntax checks, isolated runtime checks, and unexecuted application scenarios. Existing rule identity and first-publication dates are retained. New rules deliberately omit a first-publication date until publication is confirmed.
+The [integration review](docs/integration-review-2026-11-13.md) separates documentary review, syntax checks, isolated runtime checks, and unexecuted application scenarios. The [archive preparation record](docs/validation-standards-revision-2026-11-13.md) is retained as historical evidence. Existing rule identity and first-publication dates are retained; the 70 new rules were first published on November 13, 2026.
 
-[eval.su/standards](https://eval.su/standards/) is the public consumer. The 212-rule candidate has not been published from this session: the available GitHub connection is read-only and no authorized eval.su deployment channel is available. See the exact [publication status](docs/publication-status.md).
+[eval.su/standards](https://eval.su/standards/) publishes the accepted 212-rule edition. GitHub merge, synchronization, public pages and Markdown downloads have been verified. See the exact [publication status](docs/publication-status.md).
 
 Import, rendering, search, and export code belongs to the consumer. This repository defines the [content contract](docs/content-contract.md). The earlier [documentation migration validation](docs/validation-documentation-only-2026-11-13.md) remains a historical record and does not certify the new candidate.
 
